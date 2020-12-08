@@ -6,16 +6,15 @@
 <p>i have found that it's possible to abuse autocompletion feature to retrieve sensitive data from any user, using an unprivileged account.</p><br>
 <p>Besides hashed session cookies or api keys in cleartext, a malicious user can retrieve the password_forget_token atributte which leads to account takeover when "Reset password" feature is enabled.<p>
 <p>The steps are the following:<p><br>
-    <p>1. Choose a known email or get a list of them using autocompletion</p><br>
-        <p>GET /api/customer/login</p><br>
+    <br><p>1. Choose a known email or get a list of them using autocompletion</p><br>
+        <br><p>GET /api/customer/login</p><br>
    <p>2. Click on reset password link in mail which looks like this</p><br>
       <p>GET /api/resetpassword/ </p><br>
-      <p>GET /api/resetpassword/ </p><br>
-   <p> 3. Invoke "Lost password" with target email</p><br>
-    <p>4. the responce shows the attacker email from which password reset was inittiated change the email and send the responce </p><br>
- <p>    5. Login with new password with target email</p><br>
+    <br><p> 3. Invoke "Lost password" with target email</p><br>
+    <br><p>4. the responce shows the attacker email from which password reset was inittiated change the email and send the responce </p><br>
+ <br><p>5. Login with new password with target email</p><br>
     
 <p>To sum up: an unprivileged user could steal any account or escalate privileges by changing super-admin password. It's also possible to steal admins' api keys and use them with malicious purposes.</p>
- <div class="post-content"> <img src="1.png"><br>
- <div class="post-content"> <img src="2.png"><br>
- <div class="post-content"> <img src="3.png"><br>
+<br> <div class="post-content"> <img src="1.png"><br>
+<br> <div class="post-content"> <img src="2.png"><br>
+<br> <div class="post-content"> <img src="3.png"><br>
