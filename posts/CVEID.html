@@ -1,9 +1,9 @@
-<p>Software: Custom API 
-Version: <= 1.2
-Discovered by: Akshay Jain 
-Vulnerability: Account takeover 
-Description:
-i have found that it's possible to abuse autocompletion feature to retrieve sensitive data from any user, using an unprivileged account.
+<p>Software: Custom API </p>
+<p>Version: <= 1.2</p>
+<p>Discovered by: Akshay Jain </p>
+<p>Vulnerability: Account takeover </p>
+<p>Description:</p>
+<p>i have found that it's possible to abuse autocompletion feature to retrieve sensitive data from any user, using an unprivileged account.</p>
 Besides hashed session cookies or api keys in cleartext, a malicious user can retrieve the password_forget_token atributte which leads to account takeover when "Reset password" feature is enabled.
 The steps are the following:
     1. Choose a known email or get a list of them using autocompletion
