@@ -13,9 +13,9 @@
         gtag('js', new Date());
         gtag('config', 'UA-175469707-1');
     </script>
-    <title>Account takeover | Mr Akuma</title>
+    <title>Account Takeover using OAuthentication| Mr Akuma</title>
     <meta name="generator" content="Jekyll v3.9.0" />
-    <meta property="og:title" content="Account takeover" />
+    <meta property="og:title" content="Account Takeover OAuthentication" />
     <meta name="author" content="Mr Akuma" />
     <meta property="og:locale" content="en_US" />
     <meta name="description"
@@ -125,25 +125,24 @@
                             </blockquote>
                             <h2 id="introduction"><strong><span style="color:#ff5555">Introduction</span></strong></h2>
                             <hr>
-                            <p>Software: Custom API </p><br>
+                            <p>Software: OAuthentication</p><br>
                             <hr>
-                            <p>Version: <= 1.2</p><br><hr>
+                            <p>Version: <= 1 </p><br><hr>
                             <p>Discovered by: Akshay Jain </p><br>
                             
-<p>Vulnerability: Account takeover via weak API</p><br>
+<p>Vulnerability: Account takeover via weak OAuthentication</p><br>
                             <p>i have found that it's possible to abuse autocompletion feature to retrieve sensitive data from any user, using an unprivileged account.</p><br>
-<p>Besides hashed session cookies or api keys in cleartext, a malicious user can retrieve the password_forget_token atributte which leads to account takeover when "Reset password" feature is enabled.<p>
+<p>Besides hashed session cookies or api keys in cleartext, a malicious user can retrieve the password_forget_token atributte which leads to account takeover when "Reset password" feature is enabled. the password are obfuscated but the attacker can change the user name and reset password ashis own<p>
 <p>The steps are the following:<p><br>
     <p>1. Choose a known email or get a list of them using autocompletion</p><br>
-        <p>GET /api/customer/login</p><br>
+        <p>GET /register/login</p><br>
    <p>2. Click on reset password link in mail which looks like this</p><br>
-      <p>GET /api/resetpassword/ </p><br>
-      <p>GET /api/resetpassword/ </p><br>
-   <p> 3. Invoke "Lost password" with target email</p><br>
-    <p>4. the responce shows the attacker email from which password reset was inittiated change the email and send the responce </p><br>
- <p>    5. Login with new password with target email</p><br>
+      <p>GET /auth?client_id/ </p><br>
+     <p> 3. Invoke "Lost password" with target user_ID</p><br>
+    <p>4. the responce shows the attacker email from which password reset was inittiated change the ID to attackers ID and send the responce </p><br>
+ <p>    5. Login with new password with target email set using atatckers password</p><br>
     
-<p>To sum up: an unprivileged user could steal any account or escalate privileges by changing super-admin password. It's also possible to steal admins' api keys and use them with malicious purposes.</p>
+<p>To sum up: an unprivileged user could steal any account or escalate privileges by changing super-admin password. It's also possible to steal admins' via OAuthentication and use them with malicious purposes.</p>
  <div class="post-content"> <img src="1.png"><br>
  <div class="post-content"> <img src="2.png"><br>
  <div class="post-content"> <img src="3.png"><br>
