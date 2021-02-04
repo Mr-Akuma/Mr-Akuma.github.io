@@ -1,0 +1,21 @@
+.typeText{
+    font-size: 30px;
+}
+
+.typeCursor{
+    font-size: 30px;
+}
+
+.shell-red{
+    font-size: 30px;
+color: #ff5555;
+}
+
+.shell-blue{
+    font-size: 30px;
+color: #1E90FF;
+}
+
+.shell-white{
+    font-size: 30px;
+}
