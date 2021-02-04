@@ -1,6 +1,0 @@
-Not just xss challenge
-1) xss vulnerability with filter that blogs opeing and closing scrit
-sol=alert(1) only works
-2) html inection supporting marquee= <marquee attribute_name = "attribute_value"....more attributes>
-  txt
-</marquee> 
