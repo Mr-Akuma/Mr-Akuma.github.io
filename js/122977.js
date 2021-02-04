@@ -1,1 +1,0 @@
-<script src="https://www.hackthebox.eu/badge/189220"></script><script src="https://www.hackthebox.eu/badge/189220"></script>
