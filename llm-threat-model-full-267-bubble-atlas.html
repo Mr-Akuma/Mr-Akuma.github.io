@@ -136,6 +136,20 @@
       letter-spacing: 0;
     }
 
+    .hero-kicker {
+      display: inline-flex;
+      margin: 0 0 12px;
+      border: 1px solid color-mix(in srgb, var(--amber) 42%, var(--line));
+      border-radius: 999px;
+      background: color-mix(in srgb, var(--amber-soft) 62%, transparent);
+      color: var(--amber);
+      padding: 6px 10px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
     .subtitle {
       margin: 0;
       max-width: 800px;
@@ -143,6 +157,11 @@
       font-family: var(--font-mono);
       font-size: 13px;
       line-height: 1.75;
+    }
+
+    .subtitle strong {
+      color: var(--ink);
+      font-weight: 600;
     }
 
     .links {
@@ -282,31 +301,40 @@
 
     .summary {
       display: grid;
-      grid-template-columns: 1.05fr 1fr;
+      grid-template-columns: 1.05fr 0.95fr;
       gap: 14px;
       margin: 18px 0 20px;
     }
 
     .summary-card {
       min-width: 0;
-      border: 1px solid var(--line);
+      border: 1px solid color-mix(in srgb, var(--teal) 18%, var(--line));
       border-radius: 8px;
-      background: var(--paper);
+      background:
+        linear-gradient(135deg, color-mix(in srgb, var(--teal-soft) 48%, transparent), transparent 68%),
+        var(--paper);
       padding: 18px;
       box-shadow: 0 8px 22px rgba(0, 0, 0, 0.05);
     }
 
+    .summary-card--atlas {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
+      gap: 18px;
+      align-items: start;
+    }
+
     .big-number {
-      display: flex;
-      align-items: baseline;
-      gap: 12px;
-      margin-bottom: 10px;
+      display: grid;
+      justify-items: start;
+      gap: 6px;
     }
 
     .big-number strong {
       font-size: 64px;
       line-height: 0.9;
       font-variant-numeric: tabular-nums;
+      color: var(--ink);
     }
 
     .big-number span {
@@ -317,11 +345,133 @@
       letter-spacing: 0.08em;
     }
 
+    .summary-copy h2,
+    .brief-card h2 {
+      margin: 0 0 8px;
+      color: var(--ink);
+      font-size: 22px;
+      letter-spacing: 0;
+    }
+
+    .summary-copy p,
     .summary-card p {
       margin: 0;
       color: var(--muted);
       font-size: 14px;
       line-height: 1.7;
+    }
+
+    .briefing {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 14px;
+      margin: 0 0 20px;
+    }
+
+    .brief-card {
+      min-width: 0;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--paper);
+      padding: 18px;
+    }
+
+    .brief-card--leaf {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 230px;
+      gap: 16px;
+      align-items: center;
+      border-color: color-mix(in srgb, var(--coral) 24%, var(--line));
+      background:
+        linear-gradient(135deg, color-mix(in srgb, var(--coral-soft) 54%, transparent), transparent 72%),
+        var(--paper);
+    }
+
+    .brief-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .leaf-anatomy {
+      border: 1px solid color-mix(in srgb, var(--coral) 42%, var(--line));
+      border-radius: 18px;
+      background:
+        linear-gradient(135deg, color-mix(in srgb, var(--coral-soft) 86%, transparent), transparent 64%),
+        color-mix(in srgb, var(--paper) 94%, var(--coral-soft));
+      padding: 14px;
+      color: var(--coral);
+      box-shadow: 0 10px 22px rgba(0, 0, 0, 0.10);
+    }
+
+    .leaf-anatomy code {
+      display: inline-flex;
+      margin-bottom: 8px;
+      border-radius: 999px;
+      background: color-mix(in srgb, var(--coral-soft) 78%, var(--paper));
+      padding: 3px 8px;
+      color: var(--coral);
+      font-family: var(--font-mono);
+      font-size: 10px;
+    }
+
+    .leaf-anatomy strong {
+      display: block;
+      color: var(--ink);
+      font-size: 15px;
+      line-height: 1.25;
+    }
+
+    .leaf-anatomy span {
+      display: block;
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.45;
+    }
+
+    .workflow {
+      display: grid;
+      gap: 10px;
+    }
+
+    .workflow-step {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
+      gap: 10px;
+      align-items: start;
+      border: 1px solid color-mix(in srgb, var(--blue) 22%, var(--line));
+      border-radius: 8px;
+      background: color-mix(in srgb, var(--blue-soft) 30%, transparent);
+      padding: 12px;
+    }
+
+    .workflow-step code {
+      width: 30px;
+      height: 30px;
+      display: grid;
+      place-items: center;
+      border-radius: 999px;
+      background: color-mix(in srgb, var(--blue-soft) 74%, var(--paper));
+      color: var(--blue);
+      font-family: var(--font-mono);
+      font-size: 11px;
+    }
+
+    .workflow-step strong {
+      display: block;
+      color: var(--ink);
+      font-size: 14px;
+      line-height: 1.3;
+    }
+
+    .workflow-step span {
+      display: block;
+      margin-top: 3px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.45;
     }
 
     .mini-bubbles {
@@ -504,6 +654,8 @@
     @media (max-width: 980px) {
       .hero,
       .summary,
+      .briefing,
+      .brief-card--leaf,
       .control-bar {
         grid-template-columns: 1fr;
       }
@@ -542,8 +694,9 @@
   <main class="page">
     <header class="hero animate" style="--i:0">
       <div>
+        <p class="hero-kicker">LLM security field atlas</p>
         <h1>Full 267 LLM Attack Vector Bubble Atlas</h1>
-        <p class="subtitle">Every leaf bubble below is one attack vector from the source checklist. Use search for workshops, or switch to compact mode for a denser memory-map view.</p>
+        <p class="subtitle"><strong>Every leaf is a concrete threat-modeling question.</strong> Use the atlas to scan an LLM design from prompt input to tool execution, quorum approval, RAG retrieval, memory, MCP plugins, and downstream output handling.</p>
       </div>
       <div class="links">
         <a class="button" href="./llm-threat-model-bubble-map.html">Overview map</a>
@@ -552,9 +705,12 @@
     </header>
 
     <section class="summary animate" style="--i:1">
-      <div class="summary-card">
+      <div class="summary-card summary-card--atlas">
         <div class="big-number"><strong>267</strong><span>visible attack vector bubbles</span></div>
-        <p>This page expands the overview map into the full checklist: 15 domains and 267 individual LLM attack vectors.</p>
+        <div class="summary-copy">
+          <h2>From overview to working review surface</h2>
+          <p>This page expands the overview map into 15 domains and 267 individual LLM attack vectors. Each card is meant to become a design-review prompt, test case, control requirement, or risk-register entry.</p>
+        </div>
       </div>
       <div class="summary-card">
         <div class="mini-bubbles" aria-label="Category counts">
@@ -563,13 +719,35 @@
       </div>
     </section>
 
-    <section class="control-bar animate" style="--i:2" aria-label="Map controls">
+    <section class="briefing animate" style="--i:2" aria-label="How to use the atlas">
+      <div class="brief-card brief-card--leaf">
+        <div>
+          <h2>How to read a leaf bubble</h2>
+          <p>The badge is a stable vector ID, the bold line names the attack path, and the smaller line is the question to ask during threat modeling. If the answer is unclear, that leaf becomes a finding, test, or control gap.</p>
+        </div>
+        <div class="leaf-anatomy">
+          <code>LLM-091</code>
+          <strong>Quorum bypass</strong>
+          <span>Can privileged actions execute without the required approvals?</span>
+        </div>
+      </div>
+      <div class="brief-card">
+        <h2>Workshop rhythm</h2>
+        <div class="workflow">
+          <div class="workflow-step"><code>01</code><div><strong>Filter by architecture</strong><span>Search for RAG, tool, MCP, memory, quorum, or output depending on the system under review.</span></div></div>
+          <div class="workflow-step"><code>02</code><div><strong>Mark trust boundaries</strong><span>Focus where untrusted content, sensitive data, and autonomous actions meet.</span></div></div>
+          <div class="workflow-step"><code>03</code><div><strong>Turn leaves into controls</strong><span>Convert relevant bubbles into validation checks, approvals, logging, or isolation requirements.</span></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="control-bar animate" style="--i:3" aria-label="Map controls">
       <input id="search" class="search" type="search" placeholder="Search all 267 vectors, e.g. quorum, RAG, prompt, MCP, approval, leakage">
       <div class="counter"><strong id="visible-count">267</strong> / 267 visible</div>
       <button id="density-toggle" class="button" type="button">Compact bubbles</button>
     </section>
 
-    <nav class="map-nav animate" style="--i:2">
+    <nav class="map-nav animate" style="--i:3">
 
         <a href="#a-prompt-and-input-manipulation" class="nav-pill nav-pill--teal">
           <span>A</span>
