@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LLM Threat Model Bubble Map</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --font-body: 'Space Grotesk', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', Consolas, monospace;
+
+      --bg: #f8faf7;
+      --paper: #fffefd;
+      --paper-alt: #f2f6f0;
+      --ink: #1e2b24;
+      --muted: #627267;
+      --line: rgba(30, 43, 36, 0.14);
+      --line-strong: rgba(30, 43, 36, 0.25);
+
+      --teal: #178f83;
+      --teal-soft: rgba(23, 143, 131, 0.12);
+      --coral: #d85f4f;
+      --coral-soft: rgba(216, 95, 79, 0.13);
+      --amber: #b77a14;
+      --amber-soft: rgba(183, 122, 20, 0.14);
+      --green: #4f8f2f;
+      --green-soft: rgba(79, 143, 47, 0.13);
+      --plum: #8e4c79;
+      --plum-soft: rgba(142, 76, 121, 0.13);
+      --steel: #3d6f8e;
+      --steel-soft: rgba(61, 111, 142, 0.12);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #111715;
+        --paper: #18211d;
+        --paper-alt: #202b26;
+        --ink: #edf5ef;
+        --muted: #a1b3a8;
+        --line: rgba(237, 245, 239, 0.12);
+        --line-strong: rgba(237, 245, 239, 0.22);
+
+        --teal: #4ed8ca;
+        --teal-soft: rgba(78, 216, 202, 0.15);
+        --coral: #ff897a;
+        --coral-soft: rgba(255, 137, 122, 0.16);
+        --amber: #ffc35a;
+        --amber-soft: rgba(255, 195, 90, 0.15);
+        --green: #91d36a;
+        --green-soft: rgba(145, 211, 106, 0.14);
+        --plum: #df8ec8;
+        --plum-soft: rgba(223, 142, 200, 0.15);
+        --steel: #8cc5df;
+        --steel-soft: rgba(140, 197, 223, 0.14);
+      }
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background-color: var(--bg);
+      background-image:
+        linear-gradient(var(--line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--line) 1px, transparent 1px);
+      background-size: 34px 34px;
+      color: var(--ink);
+      font-family: var(--font-body);
+      overflow-wrap: break-word;
+    }
+
+    a { color: var(--teal); }
+
+    .page {
+      width: min(1180px, calc(100vw - 32px));
+      margin: 0 auto;
+      padding: 36px 0 56px;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 24px;
+      align-items: end;
+      margin-bottom: 24px;
+    }
+
+    h1 {
+      font-size: clamp(34px, 6vw, 70px);
+      line-height: 0.96;
+      letter-spacing: 0;
+      margin: 0 0 12px;
+      max-width: 850px;
+    }
+
+    .subtitle {
+      font-family: var(--font-mono);
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.8;
+      max-width: 760px;
+      margin: 0;
+    }
+
+    .source-link {
+      justify-self: end;
+      display: inline-flex;
+      align-items: center;
+      min-height: 38px;
+      border: 1px solid var(--line-strong);
+      border-radius: 8px;
+      background: var(--paper);
+      padding: 0 13px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      text-decoration: none;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+    }
+
+    .metric-row {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin: 18px 0 28px;
+    }
+
+    .metric {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 16px;
+    }
+
+    .metric strong {
+      display: block;
+      font-size: 34px;
+      line-height: 1;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .metric span {
+      display: block;
+      margin-top: 8px;
+      color: var(--muted);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .panel {
+      background: color-mix(in srgb, var(--paper) 94%, transparent);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 22px;
+      margin: 18px 0;
+      box-shadow: 0 12px 34px rgba(0, 0, 0, 0.05);
+    }
+
+    .panel h2 {
+      margin: 0 0 6px;
+      font-size: 24px;
+      letter-spacing: 0;
+    }
+
+    .panel-note {
+      margin: 0 0 18px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .bubble-wrap {
+      width: 100%;
+      overflow-x: auto;
+      border-radius: 8px;
+      background:
+        repeating-linear-gradient(-45deg, transparent 0 26px, var(--line) 26px 27px),
+        var(--paper-alt);
+      border: 1px solid var(--line);
+    }
+
+    .bubble-svg {
+      display: block;
+      min-width: 980px;
+      width: 100%;
+      height: auto;
+    }
+
+    .bubble-svg text {
+      font-family: var(--font-body);
+      fill: var(--ink);
+    }
+
+    .bubble-svg .tiny {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      fill: var(--muted);
+      letter-spacing: 0.04em;
+    }
+
+    .bubble-svg .label {
+      font-size: 17px;
+      font-weight: 700;
+    }
+
+    .bubble-svg .sub {
+      font-size: 13px;
+      fill: var(--muted);
+    }
+
+    .bubble-svg .count {
+      font-family: var(--font-mono);
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    .connector {
+      stroke: var(--line-strong);
+      stroke-width: 2;
+      stroke-dasharray: 6 7;
+      fill: none;
+    }
+
+    .center-bubble,
+    .threat-bubble {
+      filter: drop-shadow(0 9px 12px rgba(0, 0, 0, 0.08));
+    }
+
+    .domain-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .domain {
+      min-width: 0;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 14px;
+      background: var(--paper);
+    }
+
+    .domain h3 {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      margin: 0 0 10px;
+      font-size: 15px;
+      line-height: 1.25;
+    }
+
+    .domain h3 code {
+      color: var(--muted);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 400;
+    }
+
+    .domain ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .domain li {
+      position: relative;
+      padding-left: 13px;
+      margin: 4px 0;
+    }
+
+    .domain li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.72em;
+      width: 5px;
+      height: 5px;
+      border-radius: 999px;
+      background: currentColor;
+      opacity: 0.65;
+    }
+
+    .quorum-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+      gap: 16px;
+      align-items: center;
+    }
+
+    .quorum-flow {
+      display: grid;
+      gap: 10px;
+    }
+
+    .gate {
+      border: 1px solid var(--line);
+      border-left: 4px solid var(--coral);
+      border-radius: 8px;
+      background: var(--paper);
+      padding: 13px 14px;
+    }
+
+    .gate strong {
+      display: block;
+      font-size: 15px;
+      margin-bottom: 4px;
+    }
+
+    .gate span {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .risk-cloud {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .risk-pill {
+      min-height: 76px;
+      border-radius: 999px;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 14px 18px;
+      border: 1px solid var(--line-strong);
+      background: var(--coral-soft);
+      color: var(--ink);
+      font-weight: 600;
+      font-size: 14px;
+      line-height: 1.25;
+    }
+
+    .mermaid-wrap {
+      position: relative;
+      overflow: auto;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--paper-alt);
+      padding: 34px 18px 18px;
+      scrollbar-width: thin;
+      scrollbar-color: var(--line-strong) transparent;
+    }
+
+    .mermaid-wrap::-webkit-scrollbar { width: 7px; height: 7px; }
+    .mermaid-wrap::-webkit-scrollbar-track { background: transparent; }
+    .mermaid-wrap::-webkit-scrollbar-thumb {
+      background: var(--line-strong);
+      border-radius: 999px;
+    }
+
+    .mermaid-wrap .mermaid {
+      transition: transform 0.2s ease;
+      transform-origin: top center;
+      min-width: 900px;
+    }
+
+    .zoom-controls {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      z-index: 10;
+      display: flex;
+      gap: 2px;
+      padding: 2px;
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      background: var(--paper);
+    }
+
+    .zoom-controls button {
+      width: 30px;
+      height: 30px;
+      border: 0;
+      border-radius: 5px;
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+      font-family: var(--font-mono);
+      font-size: 14px;
+    }
+
+    .zoom-controls button:hover {
+      background: var(--paper-alt);
+      color: var(--ink);
+    }
+
+    .mermaid-wrap.is-zoomed { cursor: grab; }
+    .mermaid-wrap.is-panning { cursor: grabbing; user-select: none; }
+
+    .legend {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 13px;
+      color: var(--muted);
+      font-family: var(--font-mono);
+      font-size: 11px;
+    }
+
+    .legend span {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .swatch {
+      width: 12px;
+      height: 12px;
+      border-radius: 999px;
+      border: 1px solid var(--line-strong);
+    }
+
+    .animate {
+      animation: fadeUp 0.45s ease-out both;
+      animation-delay: calc(var(--i, 0) * 0.055s);
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-delay: 0ms !important;
+        transition-duration: 0.01ms !important;
+      }
+      .mermaid-wrap .mermaid { transition: none; }
+    }
+
+    @media (max-width: 900px) {
+      .hero,
+      .quorum-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .source-link {
+        justify-self: start;
+      }
+
+      .metric-row,
+      .domain-grid,
+      .risk-cloud {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 620px) {
+      .page {
+        width: min(100vw - 20px, 1180px);
+        padding-top: 20px;
+      }
+
+      .panel {
+        padding: 16px;
+      }
+
+      .metric-row,
+      .domain-grid,
+      .risk-cloud {
+        grid-template-columns: 1fr;
+      }
+
+      .metric strong {
+        font-size: 28px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="hero animate" style="--i:0">
+      <div>
+        <h1>LLM Threat Model Bubble Map</h1>
+        <p class="subtitle">Mind map view of the 267-vector LLM threat checklist, with quorum and approval controls pulled into their own control-plane cluster.</p>
+      </div>
+      <a class="source-link" href="./llm-attack-vector-checklist.md">Open checklist</a>
+    </header>
+
+    <section class="metric-row animate" style="--i:1" aria-label="Checklist summary">
+      <div class="metric"><strong>267</strong><span>attack vectors</span></div>
+      <div class="metric"><strong>15</strong><span>threat domains</span></div>
+      <div class="metric"><strong>30</strong><span>quorum risks</span></div>
+      <div class="metric"><strong>10</strong><span>priority combos</span></div>
+    </section>
+
+    <section class="panel animate" style="--i:2">
+      <h2>Radial Bubble Map</h2>
+      <p class="panel-note">Each outer bubble is a threat domain. The number shows how many detailed vectors are in that domain in the full checklist.</p>
+      <div class="bubble-wrap">
+        <svg class="bubble-svg" viewBox="0 0 1200 820" role="img" aria-label="Radial bubble map of LLM threat model domains">
+          <defs>
+            <style>
+              .fill-teal { fill: var(--teal-soft); stroke: var(--teal); }
+              .fill-coral { fill: var(--coral-soft); stroke: var(--coral); }
+              .fill-amber { fill: var(--amber-soft); stroke: var(--amber); }
+              .fill-green { fill: var(--green-soft); stroke: var(--green); }
+              .fill-plum { fill: var(--plum-soft); stroke: var(--plum); }
+              .fill-steel { fill: var(--steel-soft); stroke: var(--steel); }
+              .threat-bubble circle, .center-bubble circle { stroke-width: 2.5; }
+            </style>
+          </defs>
+
+          <path class="connector" d="M600 410 C600 255 600 210 600 150" />
+          <path class="connector" d="M600 410 C720 265 795 235 900 160" />
+          <path class="connector" d="M600 410 C790 345 895 340 1042 285" />
+          <path class="connector" d="M600 410 C780 450 880 478 1030 525" />
+          <path class="connector" d="M600 410 C704 570 770 622 865 700" />
+          <path class="connector" d="M600 410 C608 588 608 654 606 735" />
+          <path class="connector" d="M600 410 C465 568 392 632 310 705" />
+          <path class="connector" d="M600 410 C404 468 305 498 168 535" />
+          <path class="connector" d="M600 410 C397 350 300 318 163 284" />
+          <path class="connector" d="M600 410 C470 270 395 222 293 158" />
+          <path class="connector" d="M600 410 C520 328 490 290 450 245" />
+          <path class="connector" d="M600 410 C695 392 748 384 818 374" />
+          <path class="connector" d="M600 410 C512 500 466 538 405 590" />
+          <path class="connector" d="M600 410 C690 515 736 550 792 596" />
+          <path class="connector" d="M600 410 C486 392 420 385 343 378" />
+
+          <g class="center-bubble">
+            <circle cx="600" cy="410" r="104" class="fill-teal" />
+            <text x="600" y="382" text-anchor="middle" class="tiny">CORE SYSTEM</text>
+            <text x="600" y="414" text-anchor="middle" class="label" style="font-size:28px">LLM</text>
+            <text x="600" y="442" text-anchor="middle" class="label" style="font-size:22px">Threat Model</text>
+          </g>
+
+          <g class="threat-bubble">
+            <circle cx="600" cy="140" r="94" class="fill-teal" />
+            <text x="600" y="106" text-anchor="middle" class="count">20</text>
+            <text x="600" y="133" text-anchor="middle" class="label">Prompt</text>
+            <text x="600" y="156" text-anchor="middle" class="sub">input manipulation</text>
+            <text x="600" y="179" text-anchor="middle" class="tiny">LLM-001..020</text>
+          </g>
+
+          <g class="threat-bubble">
+            <circle cx="910" cy="162" r="98" class="fill-green" />
+            <text x="910" y="126" text-anchor="middle" class="count">20</text>
+            <text x="910" y="152" text-anchor="middle" class="label">RAG</text>
+            <text x="910" y="175" text-anchor="middle" class="sub">context and memory</text>
+            <text x="910" y="198" text-anchor="middle" class="tiny">LLM-021..040</text>
+          </g>
+
+          <g class="threat-bubble">
+            <circle cx="1048" cy="292" r="88" class="fill-plum" />
+            <text x="1048" y="261" text-anchor="middle" class="count">20</text>
+            <text x="1048" y="287" text-anchor="middle" class="label">Privacy</text>
+            <text x="1048" y="310" text-anchor="middle" class="sub">sensitive data</text>
+            <text x="1048" y="333" text-anchor="middle" class="tiny">LLM-041..060</text>
+          </g>
+
+          <g class="threat-bubble">
+            <circle cx="1040" cy="530" r="105" class="fill-coral" />
+            <text x="1040" y="492" text-anchor="middle" class="count">30</text>
+            <text x="1040" y="518" text-anchor="middle" class="label">Tools</text>
+            <text x="1040" y="541" text-anchor="middle" class="sub">function calls and execution</text>
+            <text x="1040" y="564" text-anchor="middle" class="tiny">LLM-061..090</text>
+          </g>
+
+          <g class="threat-bubble">
+            <circle cx="872" cy="698" r="105" class="fill-coral" />
+            <text x="872" y="660" text-anchor="middle" class="count">30</text>
+            <text x="872" y="686" text-anchor="middle" class="label">Quorum</text>
+            <text x="872" y="709" text-anchor="middle" class="sub">approval and gates</text>
+            <text x="872" y="732" text-anchor="middle" class="tiny">LLM-091..120</text>
+          </g>
+
+          <g class="threat-bubble">
+            <circle cx="608" cy="730" r="82" class="fill-amber" />
+            <text x="608" y="700" text-anchor="middle" class="count">15</text>
+            <text x="608" y="726" text-anchor="middle" class="label">Identity</text>
+            <text x="608" y="749" text-anchor="middle" class="sub">tenant boundaries</text>
+          </g>
+
+          <g class="threat-bubble">
+            <circle cx="306" cy="704" r="92" class="fill-steel" />
+            <text x="306" y="670" text-anchor="middle" class="count">20</text>
+            <text x="306" y="696" text-anchor="middle" class="label">Supply Chain</text>
+            <text x="306" y="719" text-anchor="middle" class="sub">models and data</text>
+            <text x="306" y="742" text-anchor="middle" class="tiny">LLM-136..155</text>
+          </g>
+
+          <g class="threat-bubble">
+            <circle cx="160" cy="536" r="92" class="fill-plum" />
+            <text x="160" y="502" text-anchor="middle" class="count">19</text>
+            <text x="160" y="528" text-anchor="middle" class="label">Output</text>
+            <text x="160" y="551" text-anchor="middle" class="sub">downstream injection</text>
+            <text x="160" y="574" text-anchor="middle" class="tiny">LLM-156..174</text>
+          </g>
+
+          <g class="threat-bubble">
+            <circle cx="158" cy="286" r="82" class="fill-amber" />
+            <text x="158" y="256" text-anchor="middle" class="count">16</text>
+            <text x="158" y="282" text-anchor="middle" class="label">DoS</text>
+            <text x="158" y="305" text-anchor="middle" class="sub">cost and reliability</text>
+          </g>
+
+          <g class="threat-bubble">
+            <circle cx="292" cy="158" r="80" class="fill-steel" />
+            <text x="292" y="129" text-anchor="middle" class="count">12</text>
+            <text x="292" y="154" text-anchor="middle" class="label">Extraction</text>
+            <text x="292" y="177" text-anchor="middle" class="sub">inference and evasion</text>
+          </g>
+
+          <g class="threat-bubble">
+            <circle cx="449" cy="244" r="72" class="fill-green" />
+            <text x="449" y="218" text-anchor="middle" class="count">13</text>
+            <text x="449" y="243" text-anchor="middle" class="label">Agents</text>
+            <text x="449" y="266" text-anchor="middle" class="sub">delegation</text>
+          </g>
+
+          <g class="threat-bubble">
+            <circle cx="823" cy="374" r="74" class="fill-amber" />
+            <text x="823" y="347" text-anchor="middle" class="count">12</text>
+            <text x="823" y="372" text-anchor="middle" class="label">Files</text>
+            <text x="823" y="395" text-anchor="middle" class="sub">multimodal input</text>
+          </g>
+
+          <g class="threat-bubble">
+            <circle cx="405" cy="590" r="76" class="fill-plum" />
+            <text x="405" y="563" text-anchor="middle" class="count">12</text>
+            <text x="405" y="588" text-anchor="middle" class="label">Humans</text>
+            <text x="405" y="611" text-anchor="middle" class="sub">UI and trust</text>
+          </g>
+
+          <g class="threat-bubble">
+            <circle cx="790" cy="596" r="78" class="fill-teal" />
+            <text x="790" y="568" text-anchor="middle" class="count">13</text>
+            <text x="790" y="593" text-anchor="middle" class="label">Governance</text>
+            <text x="790" y="616" text-anchor="middle" class="sub">audit and IR</text>
+          </g>
+
+          <g class="threat-bubble">
+            <circle cx="343" cy="378" r="82" class="fill-green" />
+            <text x="343" y="349" text-anchor="middle" class="count">15</text>
+            <text x="343" y="374" text-anchor="middle" class="label">MCP</text>
+            <text x="343" y="397" text-anchor="middle" class="sub">plugins and servers</text>
+          </g>
+        </svg>
+      </div>
+      <div class="legend">
+        <span><i class="swatch" style="background:var(--teal-soft);border-color:var(--teal)"></i> prompt and governance</span>
+        <span><i class="swatch" style="background:var(--coral-soft);border-color:var(--coral)"></i> action control plane</span>
+        <span><i class="swatch" style="background:var(--green-soft);border-color:var(--green)"></i> context and retrieval</span>
+        <span><i class="swatch" style="background:var(--plum-soft);border-color:var(--plum)"></i> data and output</span>
+      </div>
+    </section>
+
+    <section class="panel animate" style="--i:3">
+      <h2>Quorum and Approval Risk Cloud</h2>
+      <p class="panel-note">Quorum helps only when approval is independent, bound to exact action details, and fail-closed. These are the common failure bubbles to test.</p>
+      <div class="quorum-grid">
+        <div class="quorum-flow">
+          <div class="gate"><strong>Request</strong><span>User or agent proposes a privileged action with exact parameters.</span></div>
+          <div class="gate"><strong>Policy Gate</strong><span>Deterministic policy checks identity, scope, tenant, impact, and action type.</span></div>
+          <div class="gate"><strong>Independent Quorum</strong><span>Separate identities, evidence, model context, and approval channels.</span></div>
+          <div class="gate"><strong>Bound Execution</strong><span>Approval is tied to the exact recipient, amount, target, query, and scope.</span></div>
+          <div class="gate"><strong>Immutable Audit</strong><span>Every vote, parameter, model, tool, and outcome is reconstructable.</span></div>
+        </div>
+        <div class="risk-cloud">
+          <div class="risk-pill">One actor casts multiple votes</div>
+          <div class="risk-pill">Shared poisoned context influences all voters</div>
+          <div class="risk-pill">Timeout silently downgrades approval</div>
+          <div class="risk-pill">Old approval replayed for a new action</div>
+          <div class="risk-pill">Summary hides exact action parameters</div>
+          <div class="risk-pill">Approver and executor are the same principal</div>
+          <div class="risk-pill">Abstain or failure counts as approval</div>
+          <div class="risk-pill">State changes between approval and execution</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel animate" style="--i:4">
+      <h2>Zoomable Mind Map</h2>
+      <p class="panel-note">This hierarchy is the workshop view. Use the controls in the top-right corner to zoom or reset the diagram.</p>
+      <div class="mermaid-wrap">
+        <div class="zoom-controls">
+          <button onclick="zoomDiagram(this, 1.2)" title="Zoom in">+</button>
+          <button onclick="zoomDiagram(this, 0.8)" title="Zoom out">&minus;</button>
+          <button onclick="resetZoom(this)" title="Reset zoom">&#8634;</button>
+        </div>
+        <pre class="mermaid">
+mindmap
+  root((LLM Threat Model))
+    Prompt and Input
+      Direct prompt injection
+      Indirect prompt injection
+      Jailbreaks
+      Context stuffing
+    RAG Context Memory
+      RAG authorization bypass
+      Cross tenant retrieval
+      RAG poisoning
+      Persistent memory poisoning
+    Sensitive Data
+      System prompt leakage
+      PII disclosure
+      Secret leakage
+      Retention mismatch
+    Tools and Execution
+      Confused deputy
+      Unsafe tool calls
+      SSRF through fetch tools
+      Destructive action abuse
+    Quorum Approval
+      Threshold misconfiguration
+      Approval replay
+      Non independent voters
+      Race before execution
+    Identity Boundaries
+      Overprivileged service account
+      Session mix up
+      Weak delegation
+    Supply Chain
+      Backdoored weights
+      Poisoned fine tune data
+      Tool manifest tampering
+    Output Handling
+      XSS from generated HTML
+      SQL from generated queries
+      Formula injection
+      Citation hallucination
+    Cost and Reliability
+      Token exhaustion
+      Recursive loops
+      Retry storms
+      Budget drain
+    Extraction and Evasion
+      Model extraction
+      Membership inference
+      Guardrail probing
+    Multi Agent
+      Instruction laundering
+      Rogue sub agents
+      Evidence free consensus
+    Multimodal Inputs
+      Hidden OCR text
+      Audio injection
+      Metadata injection
+    Human Factors
+      Approval fatigue
+      UI truncation
+      Overreliance
+    Monitoring Governance
+      Missing audit trail
+      No kill switch
+      No red team regression
+    MCP Plugins
+      Rogue tool registration
+      Tool shadowing
+      Shadow MCP servers
+        </pre>
+      </div>
+    </section>
+
+    <section class="panel animate" style="--i:5">
+      <h2>Domain Bubbles With Example Leaves</h2>
+      <p class="panel-note">Each cluster points back to the full vector list by ID range. The examples are deliberately short so the map stays usable.</p>
+      <div class="domain-grid">
+        <article class="domain"><h3>Prompt and Input <code>20</code></h3><ul><li>Direct and indirect injection</li><li>Jailbreaks and roleplay</li><li>Delimiter and template confusion</li></ul></article>
+        <article class="domain"><h3>RAG Context Memory <code>20</code></h3><ul><li>Cross tenant retrieval</li><li>Vector poisoning</li><li>Memory privilege mismatch</li></ul></article>
+        <article class="domain"><h3>Sensitive Data <code>20</code></h3><ul><li>Prompt and secret leakage</li><li>PII disclosure</li><li>Log and trace exposure</li></ul></article>
+        <article class="domain"><h3>Tools Execution <code>30</code></h3><ul><li>Confused deputy</li><li>Unsafe code execution</li><li>SSRF and destructive actions</li></ul></article>
+        <article class="domain"><h3>Quorum Approval <code>30</code></h3><ul><li>Replay and fake approvals</li><li>Non independent voters</li><li>Fail open gates</li></ul></article>
+        <article class="domain"><h3>Identity Boundaries <code>15</code></h3><ul><li>Overprivileged service accounts</li><li>Session mix-up</li><li>Tenant boundary failure</li></ul></article>
+        <article class="domain"><h3>Supply Chain <code>20</code></h3><ul><li>Backdoored model weights</li><li>Poisoned datasets</li><li>Compromised dependencies</li></ul></article>
+        <article class="domain"><h3>Output Handling <code>19</code></h3><ul><li>XSS and SQL injection</li><li>Formula injection</li><li>Unsafe auto-ingestion</li></ul></article>
+        <article class="domain"><h3>DoS Cost Reliability <code>16</code></h3><ul><li>Token exhaustion</li><li>Recursive loops</li><li>Budget-drain attacks</li></ul></article>
+        <article class="domain"><h3>Extraction Evasion <code>12</code></h3><ul><li>Model extraction</li><li>Prompt extraction</li><li>Guardrail probing</li></ul></article>
+        <article class="domain"><h3>Multi-Agent <code>13</code></h3><ul><li>Instruction laundering</li><li>Rogue sub-agent registration</li><li>Evidence-free consensus</li></ul></article>
+        <article class="domain"><h3>Multimodal Files <code>12</code></h3><ul><li>Hidden OCR text</li><li>Audio and video injection</li><li>Metadata injection</li></ul></article>
+        <article class="domain"><h3>Human Factors <code>12</code></h3><ul><li>Approval fatigue</li><li>UI truncation</li><li>Overreliance</li></ul></article>
+        <article class="domain"><h3>Monitoring Governance <code>13</code></h3><ul><li>Missing audit trail</li><li>No kill switch</li><li>Policy drift</li></ul></article>
+        <article class="domain"><h3>MCP Plugins <code>15</code></h3><ul><li>Rogue tool registration</li><li>Tool shadowing</li><li>Shadow MCP servers</li></ul></article>
+      </div>
+    </section>
+  </main>
+
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+
+    const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: 'base',
+      look: 'classic',
+      themeVariables: {
+        primaryColor: isDark ? '#20312c' : '#ffffff',
+        primaryBorderColor: isDark ? '#4ed8ca' : '#178f83',
+        primaryTextColor: isDark ? '#edf5ef' : '#1e2b24',
+        secondaryColor: isDark ? '#2d242a' : '#fff1ef',
+        secondaryBorderColor: isDark ? '#ff897a' : '#d85f4f',
+        tertiaryColor: isDark ? '#2d2a1e' : '#fff8e6',
+        tertiaryBorderColor: isDark ? '#ffc35a' : '#b77a14',
+        lineColor: isDark ? '#a1b3a8' : '#627267',
+        textColor: isDark ? '#edf5ef' : '#1e2b24',
+        fontFamily: "'Space Grotesk', system-ui, sans-serif",
+        fontSize: '16px'
+      }
+    });
+  </script>
+  <script>
+    function updateZoomState(wrap) {
+      var target = wrap.querySelector('.mermaid');
+      var zoom = parseFloat(target.dataset.zoom || '1');
+      wrap.classList.toggle('is-zoomed', zoom > 1);
+    }
+
+    function zoomDiagram(btn, factor) {
+      var wrap = btn.closest('.mermaid-wrap');
+      var target = wrap.querySelector('.mermaid');
+      var current = parseFloat(target.dataset.zoom || '1');
+      var next = Math.min(Math.max(current * factor, 0.3), 5);
+      target.dataset.zoom = next;
+      target.style.transform = 'scale(' + next + ')';
+      updateZoomState(wrap);
+    }
+
+    function resetZoom(btn) {
+      var wrap = btn.closest('.mermaid-wrap');
+      var target = wrap.querySelector('.mermaid');
+      target.dataset.zoom = '1';
+      target.style.transform = 'scale(1)';
+      updateZoomState(wrap);
+    }
+
+    document.querySelectorAll('.mermaid-wrap').forEach(function(wrap) {
+      wrap.addEventListener('wheel', function(e) {
+        if (!e.ctrlKey && !e.metaKey) return;
+        e.preventDefault();
+        var target = wrap.querySelector('.mermaid');
+        var current = parseFloat(target.dataset.zoom || '1');
+        var factor = e.deltaY < 0 ? 1.1 : 0.9;
+        var next = Math.min(Math.max(current * factor, 0.3), 5);
+        target.dataset.zoom = next;
+        target.style.transform = 'scale(' + next + ')';
+        updateZoomState(wrap);
+      }, { passive: false });
+
+      var startX;
+      var startY;
+      var scrollLeft;
+      var scrollTop;
+
+      wrap.addEventListener('mousedown', function(e) {
+        if (e.target.closest('.zoom-controls')) return;
+        var target = wrap.querySelector('.mermaid');
+        if (parseFloat(target.dataset.zoom || '1') <= 1) return;
+        wrap.classList.add('is-panning');
+        startX = e.clientX;
+        startY = e.clientY;
+        scrollLeft = wrap.scrollLeft;
+        scrollTop = wrap.scrollTop;
+      });
+
+      window.addEventListener('mousemove', function(e) {
+        if (!wrap.classList.contains('is-panning')) return;
+        wrap.scrollLeft = scrollLeft - (e.clientX - startX);
+        wrap.scrollTop = scrollTop - (e.clientY - startY);
+      });
+
+      window.addEventListener('mouseup', function() {
+        wrap.classList.remove('is-panning');
+      });
+    });
+  </script>
+</body>
+</html>
