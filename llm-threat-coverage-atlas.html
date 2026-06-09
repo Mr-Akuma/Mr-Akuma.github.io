@@ -480,8 +480,7 @@
       line-height: 1.65;
     }
 
-    .audit-list,
-    .source-list {
+    .audit-list {
       display: grid;
       gap: 8px;
       margin: 0;
@@ -489,8 +488,7 @@
       list-style: none;
     }
 
-    .audit-list li,
-    .source-list a {
+    .audit-list li {
       display: flex;
       justify-content: space-between;
       gap: 12px;
@@ -504,11 +502,14 @@
       line-height: 1.35;
     }
 
-    .audit-list b,
-    .source-list b {
+    .audit-list b {
       color: var(--ink);
       font-size: 12px;
       min-width: 120px;
+    }
+
+    .export-card {
+      margin: 0 0 20px;
     }
 
     .crosswalk-card {
@@ -1452,36 +1453,14 @@
       </table>
     </section>
 
-    <section class="audit-panel animate" style="--i:5" aria-label="Sources and export">
-      <div class="audit-card">
-        <h2>Sources and references</h2>
-        <p>The source links below are included so the atlas can be reviewed against the current external frameworks rather than treated as self-asserted coverage.</p>
-        <div class="source-list">
-
-            <a href="https://genai.owasp.org/llm-top-10/" target="_blank" rel="noreferrer"><b>OWASP LLM Top 10 2025</b><span>genai.owasp.org/llm-top-10/</span></a>
-            <a href="https://genai.owasp.org/2025/12/09/owasp-top-10-for-agentic-applications-the-benchmark-for-agentic-security-in-the-age-of-autonomous-ai/" target="_blank" rel="noreferrer"><b>OWASP Agentic Top 10</b><span>genai.owasp.org/2025/12/09/owasp-top-10-for-agentic-applications-the-benchmark-for-agentic-security-in-the-age-of-autonomous-ai/</span></a>
-            <a href="https://owasp.org/www-project-mcp-top-10/" target="_blank" rel="noreferrer"><b>OWASP MCP Top 10</b><span>owasp.org/www-project-mcp-top-10/</span></a>
-            <a href="https://atlas.mitre.org/" target="_blank" rel="noreferrer"><b>MITRE ATLAS</b><span>atlas.mitre.org/</span></a>
-            <a href="https://github.com/mitre-atlas/atlas-data" target="_blank" rel="noreferrer"><b>MITRE ATLAS data</b><span>github.com/mitre-atlas/atlas-data</span></a>
-            <a href="https://attack.mitre.org/" target="_blank" rel="noreferrer"><b>MITRE ATT&amp;CK</b><span>attack.mitre.org/</span></a>
-            <a href="https://www.nist.gov/itl/ai-risk-management-framework" target="_blank" rel="noreferrer"><b>NIST AI RMF</b><span>www.nist.gov/itl/ai-risk-management-framework</span></a>
-            <a href="https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf" target="_blank" rel="noreferrer"><b>NIST AI 600-1</b><span>nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf</span></a>
-            <a href="https://eur-lex.europa.eu/eli/reg/2024/1689/oj/eng" target="_blank" rel="noreferrer"><b>EU AI Act</b><span>eur-lex.europa.eu/eli/reg/2024/1689/oj/eng</span></a>
-            <a href="https://www.iso.org/standard/42001" target="_blank" rel="noreferrer"><b>ISO/IEC 42001</b><span>www.iso.org/standard/42001</span></a>
-            <a href="https://spec.c2pa.org/specifications/" target="_blank" rel="noreferrer"><b>C2PA specifications</b><span>spec.c2pa.org/specifications/</span></a>
-            <a href="https://eur-lex.europa.eu/eli/reg/2016/679/oj/eng" target="_blank" rel="noreferrer"><b>GDPR</b><span>eur-lex.europa.eu/eli/reg/2016/679/oj/eng</span></a>
-            <a href="https://privacy.ca.gov/california-privacy-rights/rights-under-the-california-consumer-privacy-act/" target="_blank" rel="noreferrer"><b>CCPA rights</b><span>privacy.ca.gov/california-privacy-rights/rights-under-the-california-consumer-privacy-act/</span></a>
-        </div>
-      </div>
-      <div class="measure-card">
-        <h2>Usability hooks</h2>
-        <p>Each leaf has a stable hash URL such as <code>#LLM-001</code>, searchable metadata, architecture tags, a starter score, and framework chips. Export the same catalog to JSON or CSV for Jira, GRC, spreadsheets, or control libraries.</p>
-        <div class="measure-grid">
-          <a class="button" href="./llm-threat-coverage-atlas.json" download>Download JSON</a>
-          <a class="button" href="./llm-threat-coverage-atlas.csv" download>Download CSV</a>
-          <a class="button" href="./llm-attack-vector-checklist.md">Source checklist</a>
-          <a class="button" href="#LLM-480">Last leaf</a>
-        </div>
+    <section class="measure-card export-card animate" style="--i:5" aria-label="Atlas exports">
+      <h2>Usability hooks</h2>
+      <p>Each leaf has a stable hash URL such as <code>#LLM-001</code>, searchable metadata, architecture tags, a starter score, and framework chips. Export the same catalog to JSON or CSV for Jira, GRC, spreadsheets, or control libraries.</p>
+      <div class="measure-grid">
+        <a class="button" href="./llm-threat-coverage-atlas.json" download>Download JSON</a>
+        <a class="button" href="./llm-threat-coverage-atlas.csv" download>Download CSV</a>
+        <a class="button" href="./llm-attack-vector-checklist.md">Source checklist</a>
+        <a class="button" href="#LLM-480">Last leaf</a>
       </div>
     </section>
 
