@@ -2,10 +2,26 @@
 
 Purpose: defensive checklist for threat modeling LLM applications, RAG systems, agentic workflows, MCP/tool integrations, and human approval flows.
 
+Version: 2026.06.09-r3
+Status: coverage map, not a completeness score
+Author/maintainer: Mr-Akuma security research atlas, generated and maintained from this checklist
+Method: curated defensive review prompts synthesized from LLM application security practice, OWASP GenAI guidance, MITRE ATLAS, NIST AI RMF / NIST AI 600-1, MCP security work, privacy/governance requirements, and architecture-specific attack-surface review.
+License: draft checklist for defensive security review; confirm reuse terms before redistributing as a formal standard.
+
 References:
 - OWASP Top 10 for LLM Applications 2025: https://genai.owasp.org/llm-top-10/
+- OWASP Top 10 for Agentic Applications: https://genai.owasp.org/2025/12/09/owasp-top-10-for-agentic-applications-the-benchmark-for-agentic-security-in-the-age-of-autonomous-ai/
+- OWASP MCP Top 10: https://owasp.org/www-project-mcp-top-10/
 - MITRE ATLAS: https://atlas.mitre.org/
+- MITRE ATLAS data repository: https://github.com/mitre-atlas/atlas-data
+- MITRE ATT&CK: https://attack.mitre.org/
 - NIST AI Risk Management Framework and Generative AI Profile: https://www.nist.gov/itl/ai-risk-management-framework
+- NIST AI 600-1 Generative AI Profile: https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf
+- EU AI Act, Regulation (EU) 2024/1689: https://eur-lex.europa.eu/eli/reg/2024/1689/oj/eng
+- ISO/IEC 42001:2023 AI management systems: https://www.iso.org/standard/42001
+- C2PA content provenance specification: https://spec.c2pa.org/specifications/
+- GDPR Article 17 right to erasure: https://eur-lex.europa.eu/eli/reg/2016/679/oj/eng
+- California Consumer Privacy Act rights: https://privacy.ca.gov/california-privacy-rights/rights-under-the-california-consumer-privacy-act/
 
 Use this as a backlog. Not every vector applies to every system. Prioritize by where untrusted input, sensitive data, tool permissions, memory, and human approval meet.
 
@@ -87,6 +103,13 @@ Use this as a backlog. Not every vector applies to every system. Prioritize by w
 | LLM-067 | External source sync compromise | Can a compromised wiki, drive, or ticket source poison synchronized RAG content? |
 | LLM-068 | Query expansion leakage | Can generated retrieval queries reveal sensitive terms, project names, or user intent to logs or vendors? |
 | LLM-069 | RAG grounding bypass | Can the model answer from prior context or memory when it should only answer from authorized retrieval results? |
+| LLM-429 | Cross-user KV-cache leakage | Can inference key-value caches expose prompt fragments, retrieved data, or identities across users or tenants? |
+| LLM-430 | Prompt prefix cache tenant collision | Can shared prompt-prefix caching mix tenant policy, system prompt, or private context between sessions? |
+| LLM-431 | Speculative decoding cache bleed | Can speculative decoding or draft-model caches reveal another request's context or generated tokens? |
+| LLM-432 | Retrieval cache stale authorization | Can cached retrieval results survive role revocation, sharing changes, or tenant moves? |
+| LLM-433 | Right-to-deletion memory gap | Can personal data remain in memory, summaries, vector chunks, or prompt caches after a deletion request? |
+| LLM-434 | Vector retention after privacy request | Can embeddings, backups, or derived metadata persist after source records are deleted? |
+| LLM-435 | Cross-region memory drift | Can memory or retrieval replicas move regulated data outside the intended residency boundary? |
 
 ## C. Sensitive Data and Privacy
 
@@ -125,6 +148,11 @@ Use this as a backlog. Not every vector applies to every system. Prioritize by w
 | LLM-100 | Failed tool argument retention | Are failed tool calls with sensitive arguments retained longer or logged more verbosely? |
 | LLM-101 | Generated file preview leakage | Can previews or thumbnails reveal sensitive content from generated or uploaded files? |
 | LLM-102 | Audit-log search exposure | Can users search or export logs containing sensitive prompt, memory, or tool data? |
+| LLM-436 | Chain-of-thought leakage | Can hidden reasoning, thinking tokens, scratchpads, or deliberation traces reach users, logs, tools, or vendors? |
+| LLM-437 | Hidden reasoning prompt injection | Can attacker-controlled text influence hidden reasoning or scratchpad state even when final output looks safe? |
+| LLM-438 | Reasoning trace retention | Are internal traces retained or searchable longer than the user-visible prompt and response? |
+| LLM-439 | Vendor data-use setting drift | Can provider, region, or logging settings change so prompts, files, or traces become available for training or review? |
+| LLM-440 | Privacy request transcript gap | Can access, correction, deletion, or opt-out requests miss prompts, completions, embeddings, memories, traces, or derived artifacts? |
 
 ## D. Tool Use, Function Calling, and Execution
 
@@ -178,6 +206,13 @@ Use this as a backlog. Not every vector applies to every system. Prioritize by w
 | LLM-148 | Missing egress policy for tools | Can tools reach arbitrary domains or internal network paths? |
 | LLM-149 | Write-before-approval bug | Can a tool perform side effects while preparing a preview or approval request? |
 | LLM-150 | Bulk action parameter abuse | Can a single tool call affect many records, users, repositories, or tenants unexpectedly? |
+| LLM-441 | Computer-use screen-control injection | Can on-screen text, overlays, ads, or page content steer a computer-use agent into unsafe clicks or keystrokes? |
+| LLM-442 | Browser-agent clickjacking | Can visual overlays, hidden elements, or deceptive DOM state cause an agent to click a different target than intended? |
+| LLM-443 | Live form autofill exfiltration | Can a browser or desktop agent fill secrets, tokens, PII, or payment data into attacker-controlled forms? |
+| LLM-444 | Voice-command tool invocation | Can spoken, background, or replayed audio trigger tool calls without verified user intent? |
+| LLM-445 | Realtime interruption attack | Can a live voice or streaming interface interrupt, redirect, or override an in-progress agent action? |
+| LLM-446 | Microphone or camera permission abuse | Can an agent grant, retain, or misuse live sensor permissions beyond the task? |
+| LLM-447 | Local app automation overreach | Can a desktop agent operate privileged local apps, password managers, terminals, or admin panels outside the approved scope? |
 
 ## E. Quorum, Approval, Consensus, and Control Gates
 
@@ -289,6 +324,15 @@ Use this as a backlog. Not every vector applies to every system. Prioritize by w
 | LLM-244 | Malicious tokenizer artifact | Can tokenizer files or preprocessing components manipulate model inputs? |
 | LLM-245 | Annotation worker poisoning | Can labelers or data vendors insert biased, malicious, or backdoor examples? |
 | LLM-246 | Guardrail dependency compromise | Can a third-party safety filter, policy engine, or scanner become the weak link? |
+| LLM-448 | RLHF preference poisoning | Can preference data, feedback labels, or ranking tasks teach the model to prefer unsafe behavior? |
+| LLM-449 | Reward model poisoning | Can a compromised reward model or judge hide harmful outputs or over-reward attacker-desired behavior? |
+| LLM-450 | Synthetic data feedback poisoning | Can generated outputs be recycled into training or eval data and amplify previous mistakes or attacks? |
+| LLM-451 | Fine-tuning backdoor trigger | Can rare phrases, formats, or context patterns activate unsafe behavior introduced during fine-tuning? |
+| LLM-452 | Fine-tune job data mix-up | Can one tenant, project, or customer data source be included in another fine-tune or adapter? |
+| LLM-453 | Dataset membership governance gap | Can teams prove whether a specific record was included in training, fine-tuning, evals, or retrieval corpora? |
+| LLM-454 | Distillation policy loss | Can distilled or smaller models lose safety, privacy, refusal, or provenance controls present in the source model? |
+| LLM-455 | Evaluation-to-training contamination | Can red-team payloads, benchmark answers, or evaluation labels leak into later training data and hide regressions? |
+| LLM-456 | Model card or system card drift | Do published limitations, data-use claims, and safety evaluations stay aligned with the deployed model version? |
 
 ## H. Output Handling and Downstream Injection
 
@@ -377,6 +421,13 @@ Use this as a backlog. Not every vector applies to every system. Prioritize by w
 | LLM-317 | Safety prompt diffing | Can attackers compare outputs over time to infer hidden safety prompt changes? |
 | LLM-318 | Canary token extraction | Can prompts reveal planted secrets, markers, or monitoring tokens? |
 | LLM-319 | Behavior cloning through distillation | Can repeated Q&A collection approximate proprietary model or agent behavior? |
+| LLM-457 | Reasoning-token side channel | Can timing, token counts, refusal shape, or trace availability reveal hidden reasoning or policy decisions? |
+| LLM-458 | Hidden scratchpad extraction | Can attackers induce the model or tools to expose internal scratchpads, planner state, or deliberation summaries? |
+| LLM-459 | Content provenance detector evasion | Can generated content evade watermark, provenance, or AI-origin detectors through paraphrase, translation, cropping, or re-encoding? |
+| LLM-460 | C2PA metadata stripping | Can transformations, screenshots, exports, or reposting remove content credentials or provenance manifests? |
+| LLM-461 | Provenance spoofing | Can attackers attach false provenance, fake watermarks, or misleading content credentials to generated content? |
+| LLM-462 | Distillation via answer harvesting | Can repeated prompts collect enough outputs to clone policy, style, reasoning, or proprietary task behavior? |
+| LLM-463 | Safety layer shadow inference | Can attackers infer which moderation, routing, or policy layer blocked a request and adapt around it? |
 
 ## K. Multi-Agent and Delegation Risks
 
@@ -429,6 +480,11 @@ Use this as a backlog. Not every vector applies to every system. Prioritize by w
 | LLM-359 | Polyglot file confusion | Can a file valid in multiple formats bypass type-specific controls? |
 | LLM-360 | Nested archive expansion | Can nested files overwhelm scanners or hide malicious content from review? |
 | LLM-361 | Media thumbnail parser exploit | Can thumbnail or preview generation process risky file content before validation? |
+| LLM-464 | Live voice prompt injection | Can a nearby speaker, broadcast, or replayed recording inject instructions into a realtime assistant? |
+| LLM-465 | Audio deepfake approver spoofing | Can generated or replayed voice satisfy identity, consent, or approval checks? |
+| LLM-466 | Screen overlay injection | Can visual overlays, popups, subtitles, or accessibility text manipulate a screen-reading or computer-use model? |
+| LLM-467 | Visual identity spoofing | Can generated faces, badges, documents, or UI screenshots impersonate trusted people or systems? |
+| LLM-468 | Realtime multimodal desync | Can the transcript, visual frame, and user-visible state disagree during a live audio/video interaction? |
 
 ## M. Human Factors, UI, and Social Engineering
 
@@ -481,6 +537,13 @@ Use this as a backlog. Not every vector applies to every system. Prioritize by w
 | LLM-401 | No memory purge runbook | Can poisoned or sensitive memory be found, revoked, and verified as removed? |
 | LLM-402 | No vector index rebuild process | Can poisoned or stale embeddings be rebuilt safely after remediation? |
 | LLM-403 | No abuse metrics by tenant | Can abnormal usage be detected per tenant, user, model, tool, and connector? |
+| LLM-469 | EU AI Act high-risk inventory gap | Can the organization identify whether an LLM or agent workflow is part of a prohibited, high-risk, GPAI, or transparency-obligation use case? |
+| LLM-470 | GDPR or CCPA deletion evidence gap | Can the team prove deletion or justified retention across prompts, memories, embeddings, logs, backups, exports, and derived artifacts? |
+| LLM-471 | NIST AI RMF mapping gap | Are risks, owners, controls, metrics, and response actions mapped to Govern, Map, Measure, and Manage activities? |
+| LLM-472 | ISO 42001 evidence gap | Can AI management-system policies, objectives, risk treatment, monitoring, and improvement evidence be produced for the LLM system? |
+| LLM-473 | Cross-framework owner gap | Is each OWASP, MITRE, NIST, legal, and internal-control mapping assigned to an accountable owner? |
+| LLM-474 | Audit-ready source gap | Are version, author, derivation method, citations, assumptions, and known limitations documented for the threat model? |
+| LLM-475 | Control coverage false assurance | Can checklist completion be mistaken for real coverage without architecture applicability, tests, evidence, and residual-risk signoff? |
 
 ## O. MCP, Plugin, and Agent Server Specific Risks
 
@@ -511,6 +574,11 @@ Use this as a backlog. Not every vector applies to every system. Prioritize by w
 | LLM-426 | MCP permission prompt spoofing | Can tool descriptions or UI copy misrepresent what permission is being granted? |
 | LLM-427 | Remote MCP downgrade | Can secure transport or authentication be downgraded to a weaker mode? |
 | LLM-428 | MCP request forgery | Can one server cause the agent or client to make unintended requests to another server? |
+| LLM-476 | MCP tool credential harvesting | Can a malicious server or tool description trick the agent into exposing tokens, headers, keys, or session material? |
+| LLM-477 | MCP resource-template injection | Can resource names, URI templates, prompts, or schemas contain instructions that alter agent behavior? |
+| LLM-478 | MCP sampling data retention | Can model-callback or sampling features send sensitive context to an unintended model, provider, or retention policy? |
+| LLM-479 | Poisoned MCP marketplace package | Can a published MCP server package gain trust through ratings, names, examples, or update history before changing behavior? |
+| LLM-480 | MCP tool output callback exfiltration | Can tool output include URLs, images, or callbacks that leak context when rendered or followed? |
 
 ## P. High-Risk Combinations to Prioritize
 
