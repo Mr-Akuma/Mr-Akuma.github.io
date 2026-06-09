@@ -474,6 +474,82 @@
       line-height: 1.45;
     }
 
+    .field-guide {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin: 0 0 20px;
+    }
+
+    .guide-card {
+      min-width: 0;
+      border: 1px solid color-mix(in srgb, var(--accent, var(--teal)) 24%, var(--line));
+      border-radius: 8px;
+      background:
+        linear-gradient(145deg, color-mix(in srgb, var(--soft, var(--teal-soft)) 42%, transparent), transparent 72%),
+        var(--paper);
+      padding: 16px;
+    }
+
+    .guide-card--teal { --accent: var(--teal); --soft: var(--teal-soft); }
+    .guide-card--amber { --accent: var(--amber); --soft: var(--amber-soft); }
+    .guide-card--blue { --accent: var(--blue); --soft: var(--blue-soft); }
+    .guide-card--mint { --accent: var(--mint); --soft: var(--mint-soft); }
+
+    .guide-label {
+      display: inline-flex;
+      margin-bottom: 10px;
+      border-radius: 999px;
+      background: color-mix(in srgb, var(--soft) 78%, var(--paper));
+      color: var(--accent);
+      padding: 4px 8px;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .guide-card h2 {
+      margin: 0 0 8px;
+      color: var(--ink);
+      font-size: 18px;
+      line-height: 1.2;
+      letter-spacing: 0;
+    }
+
+    .guide-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.65;
+    }
+
+    .guide-list {
+      list-style: none;
+      padding: 0;
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.55;
+    }
+
+    .guide-list li {
+      position: relative;
+      padding-left: 14px;
+      margin: 5px 0;
+    }
+
+    .guide-list li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.7em;
+      width: 5px;
+      height: 5px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+
     .mini-bubbles {
       display: flex;
       flex-wrap: wrap;
@@ -656,6 +732,7 @@
       .summary,
       .briefing,
       .brief-card--leaf,
+      .field-guide,
       .control-bar {
         grid-template-columns: 1fr;
       }
@@ -723,7 +800,7 @@
       <div class="brief-card brief-card--leaf">
         <div>
           <h2>How to read a leaf bubble</h2>
-          <p>The badge is a stable vector ID, the bold line names the attack path, and the smaller line is the question to ask during threat modeling. If the answer is unclear, that leaf becomes a finding, test, or control gap.</p>
+          <p>The badge is a stable vector ID, the bold line names the attack path, and the smaller line is the question to ask during threat modeling. Treat each bubble as a review checkpoint: decide whether the vector applies, what trust boundary it crosses, what control should stop it, and how you would prove that control works.</p>
         </div>
         <div class="leaf-anatomy">
           <code>LLM-091</code>
@@ -734,20 +811,64 @@
       <div class="brief-card">
         <h2>Workshop rhythm</h2>
         <div class="workflow">
-          <div class="workflow-step"><code>01</code><div><strong>Filter by architecture</strong><span>Search for RAG, tool, MCP, memory, quorum, or output depending on the system under review.</span></div></div>
-          <div class="workflow-step"><code>02</code><div><strong>Mark trust boundaries</strong><span>Focus where untrusted content, sensitive data, and autonomous actions meet.</span></div></div>
-          <div class="workflow-step"><code>03</code><div><strong>Turn leaves into controls</strong><span>Convert relevant bubbles into validation checks, approvals, logging, or isolation requirements.</span></div></div>
+          <div class="workflow-step"><code>01</code><div><strong>Filter by architecture</strong><span>Search for RAG, tool, MCP, memory, quorum, output, or supply chain depending on what the system actually uses.</span></div></div>
+          <div class="workflow-step"><code>02</code><div><strong>Mark trust boundaries</strong><span>Focus first where untrusted content, sensitive data, privileged tools, external connectors, and autonomous decisions meet.</span></div></div>
+          <div class="workflow-step"><code>03</code><div><strong>Turn leaves into controls</strong><span>Convert relevant bubbles into validation checks, approval gates, isolation rules, audit events, or abuse-case tests.</span></div></div>
+          <div class="workflow-step"><code>04</code><div><strong>Record the decision</strong><span>For every applicable leaf, capture owner, impact, existing control, missing evidence, and residual risk.</span></div></div>
         </div>
       </div>
     </section>
 
-    <section class="control-bar animate" style="--i:3" aria-label="Map controls">
+    <section class="field-guide animate" style="--i:3" aria-label="Threat modeling field guide">
+      <article class="guide-card guide-card--teal">
+        <span class="guide-label">Leaf anatomy</span>
+        <h2>Each bubble is a testable question</h2>
+        <p>A good review does not stop at "could this happen?" It asks where the input enters, which identity or tool is used, what data is exposed, and what deterministic control prevents the model from turning text into authority.</p>
+        <ul class="guide-list">
+          <li>ID for tracking across notes and tickets</li>
+          <li>Attack path name for fast triage</li>
+          <li>Question phrased as a design-review check</li>
+        </ul>
+      </article>
+      <article class="guide-card guide-card--amber">
+        <span class="guide-label">Relevance test</span>
+        <h2>Decide whether the vector applies</h2>
+        <p>A leaf is relevant when the system has the matching capability or trust boundary. Prompt-only chatbots will not need every tool risk, but RAG agents with browser, email, filesystem, or payment tools should review the high-impact clusters first.</p>
+        <ul class="guide-list">
+          <li>Does the system ingest untrusted content?</li>
+          <li>Does it retrieve private or tenant-scoped data?</li>
+          <li>Can it call tools, write data, or trigger actions?</li>
+        </ul>
+      </article>
+      <article class="guide-card guide-card--blue">
+        <span class="guide-label">Evidence</span>
+        <h2>Capture more than a yes or no</h2>
+        <p>When a vector applies, record the concrete component, input source, actor, privilege, expected control, and verification method. The atlas is useful when each leaf becomes evidence that engineering, security, and product can act on.</p>
+        <ul class="guide-list">
+          <li>Preconditions and abuse path</li>
+          <li>Preventive, detective, and recovery controls</li>
+          <li>Test case, log signal, or approval artifact</li>
+        </ul>
+      </article>
+      <article class="guide-card guide-card--mint">
+        <span class="guide-label">Prioritization</span>
+        <h2>Start where blast radius is highest</h2>
+        <p>Prioritize leaves that combine private data, untrusted input, autonomous execution, weak identity boundaries, or irreversible actions. Those combinations usually create the biggest real-world LLM incidents.</p>
+        <ul class="guide-list">
+          <li>Privileged tools or service accounts</li>
+          <li>Cross-tenant retrieval or memory</li>
+          <li>Quorum, approval, and audit bypass</li>
+        </ul>
+      </article>
+    </section>
+
+    <section class="control-bar animate" style="--i:4" aria-label="Map controls">
       <input id="search" class="search" type="search" placeholder="Search all 267 vectors, e.g. quorum, RAG, prompt, MCP, approval, leakage">
       <div class="counter"><strong id="visible-count">267</strong> / 267 visible</div>
       <button id="density-toggle" class="button" type="button">Compact bubbles</button>
     </section>
 
-    <nav class="map-nav animate" style="--i:3">
+    <nav class="map-nav animate" style="--i:4">
 
         <a href="#a-prompt-and-input-manipulation" class="nav-pill nav-pill--teal">
           <span>A</span>
