@@ -393,6 +393,85 @@
       line-height: 1.7;
     }
 
+    .traffic-panel {
+      display: grid;
+      grid-template-columns: minmax(240px, 0.58fr) minmax(0, 1fr);
+      gap: 14px;
+      align-items: stretch;
+      margin: 0 0 20px;
+      border: 1px solid color-mix(in srgb, var(--amber) 28%, var(--line));
+      border-radius: 8px;
+      background:
+        linear-gradient(135deg, color-mix(in srgb, var(--amber-soft) 38%, transparent), transparent 58%),
+        var(--paper);
+      padding: 18px;
+    }
+
+    .traffic-copy {
+      display: grid;
+      align-content: center;
+      gap: 8px;
+    }
+
+    .traffic-label {
+      width: fit-content;
+      border: 1px solid color-mix(in srgb, var(--amber) 38%, var(--line));
+      border-radius: 999px;
+      padding: 5px 9px;
+      color: var(--amber);
+      background: color-mix(in srgb, var(--amber-soft) 55%, transparent);
+      font: 600 11px var(--font-mono);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .traffic-copy h2 {
+      margin: 0;
+      color: var(--ink);
+      font-size: 24px;
+      letter-spacing: 0;
+    }
+
+    .traffic-copy p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .traffic-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .traffic-stat {
+      min-width: 0;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: color-mix(in srgb, var(--paper-soft) 74%, transparent);
+      padding: 14px;
+    }
+
+    .traffic-stat strong {
+      display: block;
+      color: var(--ink);
+      font-size: clamp(24px, 3vw, 40px);
+      line-height: 1;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .traffic-stat span {
+      display: block;
+      margin-top: 8px;
+      color: var(--muted);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      line-height: 1.45;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
     .coverage-model {
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -1222,6 +1301,8 @@
     @media (max-width: 980px) {
       .hero,
       .summary,
+      .traffic-panel,
+      .traffic-grid,
       .coverage-model,
       .audit-panel,
       .measure-grid,
@@ -1295,7 +1376,21 @@
       </div>
     </section>
 
-    <section class="coverage-model animate" style="--i:2" aria-label="Overall LLM threat coverage model">
+    <section id="traffic-signal" class="traffic-panel animate" style="--i:2" aria-label="Atlas traffic signal">
+      <div class="traffic-copy">
+        <span class="traffic-label">Traffic signal</span>
+        <h2>Visits and dwell time</h2>
+        <p>Free public counters. Totals are approximate and do not expose raw IP addresses.</p>
+      </div>
+      <div class="traffic-grid">
+        <div class="traffic-stat"><strong data-traffic-metric="views">...</strong><span>page views</span></div>
+        <div class="traffic-stat"><strong data-traffic-metric="visitors">...</strong><span>unique browser-days</span></div>
+        <div class="traffic-stat"><strong data-traffic-metric="minutes">...</strong><span>foreground minutes</span></div>
+        <div class="traffic-stat"><strong data-traffic-metric="oneMinute">...</strong><span>1m+ sessions</span></div>
+      </div>
+    </section>
+
+    <section class="coverage-model animate" style="--i:3" aria-label="Overall LLM threat coverage model">
       <article class="coverage-tile coverage-tile--teal"><code>01</code><strong>Input authority</strong><span>Prompt injection, instruction hierarchy, templates, metadata, hidden fields, and role impersonation.</span></article>
       <article class="coverage-tile coverage-tile--moss"><code>02</code><strong>Context and retrieval</strong><span>RAG, embeddings, vector stores, memory, cache bleed, corpus poisoning, and stale authorization.</span></article>
       <article class="coverage-tile coverage-tile--blue"><code>03</code><strong>Identity boundaries</strong><span>User, tenant, service account, delegated identity, token scope, and authorization propagation.</span></article>
@@ -1306,7 +1401,7 @@
       <article class="coverage-tile coverage-tile--mint"><code>08</code><strong>Operations and response</strong><span>Logging, telemetry, cost abuse, kill switches, rollback, memory purge, and incident reconstruction.</span></article>
     </section>
 
-    <section class="audit-panel animate" style="--i:3" aria-label="Atlas provenance and measurement">
+    <section class="audit-panel animate" style="--i:4" aria-label="Atlas provenance and measurement">
       <div class="audit-card">
         <h2>Provenance and version</h2>
         <p>This is a defensive review atlas, not a formal standard. The mappings are intended to help security teams reconcile the leaves with frameworks they already track.</p>
@@ -1365,7 +1460,7 @@
       </div>
     </section>
 
-    <section class="crosswalk-card animate" style="--i:4" aria-label="Framework cross-walk">
+    <section class="crosswalk-card animate" style="--i:5" aria-label="Framework cross-walk">
       <h2>Framework cross-walk</h2>
       <p>Use this to reconcile the A-O domains with OWASP LLM, OWASP Agentic, OWASP MCP, MITRE ATLAS, MITRE ATT&CK, NIST AI RMF, privacy, provenance, and governance workstreams.</p>
       <table class="crosswalk-table">
@@ -1453,7 +1548,7 @@
       </table>
     </section>
 
-    <section class="measure-card export-card animate" style="--i:5" aria-label="Atlas exports">
+    <section class="measure-card export-card animate" style="--i:6" aria-label="Atlas exports">
       <h2>Usability hooks</h2>
       <p>Each leaf has a stable hash URL such as <code>#LLM-001</code>, searchable metadata, architecture tags, a starter score, and framework chips. Export the same catalog to JSON or CSV for Jira, GRC, spreadsheets, or control libraries.</p>
       <div class="measure-grid">
@@ -1464,7 +1559,7 @@
       </div>
     </section>
 
-    <section class="briefing animate" style="--i:6" aria-label="How to use the atlas">
+    <section class="briefing animate" style="--i:7" aria-label="How to use the atlas">
       <div class="brief-card brief-card--leaf">
         <div>
           <h2>How to read a leaf bubble</h2>
@@ -1487,7 +1582,7 @@
       </div>
     </section>
 
-    <section class="field-guide animate" style="--i:7" aria-label="Threat modeling field guide">
+    <section class="field-guide animate" style="--i:8" aria-label="Threat modeling field guide">
       <article class="guide-card guide-card--teal">
         <span class="guide-label">Leaf anatomy</span>
         <h2>Each bubble is a testable question</h2>
@@ -26861,6 +26956,108 @@
     const densityToggle = document.getElementById('density-toggle');
     const filterButtons = Array.from(document.querySelectorAll('.filter-chip'));
     let activeFilter = 'all';
+
+    const trafficMetrics = {
+      views: document.querySelector('[data-traffic-metric="views"]'),
+      visitors: document.querySelector('[data-traffic-metric="visitors"]'),
+      minutes: document.querySelector('[data-traffic-metric="minutes"]'),
+      oneMinute: document.querySelector('[data-traffic-metric="oneMinute"]'),
+    };
+    const trafficNamespace = 'mr-akuma.github.io';
+    const trafficPrefix = 'llm-threat-coverage-atlas';
+    const trafficEnabled = location.protocol === 'https:' && location.hostname.endsWith('github.io');
+
+    function setTrafficMetric(metric, value) {
+      const node = trafficMetrics[metric];
+      if (!node) return;
+      node.textContent = typeof value === 'number' && Number.isFinite(value)
+        ? new Intl.NumberFormat('en-US').format(value)
+        : String(value || 'n/a');
+    }
+
+    function trafficCounterUrl(name, action) {
+      const key = encodeURIComponent(trafficPrefix + '-' + name);
+      return 'https://api.counterapi.dev/v1/' + encodeURIComponent(trafficNamespace) + '/' + key + (action ? '/' + action : '');
+    }
+
+    async function readTrafficCounter(name) {
+      const response = await fetch(trafficCounterUrl(name, ''), { cache: 'no-store' });
+      if (!response.ok) return 0;
+      const data = await response.json();
+      return Number(data.count || 0);
+    }
+
+    async function bumpTrafficCounter(name) {
+      const response = await fetch(trafficCounterUrl(name, 'up'), { cache: 'no-store' });
+      if (!response.ok) throw new Error('counter update failed');
+      const data = await response.json();
+      return Number(data.count || 0);
+    }
+
+    function localStorageGet(key) {
+      try {
+        return window.localStorage.getItem(key);
+      } catch (error) {
+        return null;
+      }
+    }
+
+    function localStorageSet(key, value) {
+      try {
+        window.localStorage.setItem(key, value);
+      } catch (error) {}
+    }
+
+    async function initTrafficSignal() {
+      if (!trafficEnabled) {
+        for (const key of Object.keys(trafficMetrics)) setTrafficMetric(key, 'local');
+        return;
+      }
+
+      try {
+        const today = new Date().toISOString().slice(0, 10);
+        const visitorKey = trafficPrefix + ':visitor-day';
+        const sessionKey = trafficPrefix + ':session:' + Date.now() + ':' + Math.random().toString(36).slice(2);
+        try {
+          window.sessionStorage && window.sessionStorage.setItem(trafficPrefix + ':session-id', sessionKey);
+        } catch (error) {}
+        const wasSeenToday = localStorageGet(visitorKey) === today;
+        const safeCounter = promise => promise.catch(function() { return 0; });
+
+        const [views, visitors, minutes, oneMinute] = await Promise.all([
+          safeCounter(bumpTrafficCounter('page-views')),
+          safeCounter(wasSeenToday ? readTrafficCounter('browser-days') : bumpTrafficCounter('browser-days')),
+          safeCounter(readTrafficCounter('foreground-minutes')),
+          safeCounter(readTrafficCounter('one-minute-sessions')),
+        ]);
+
+        if (!wasSeenToday && visitors > 0) localStorageSet(visitorKey, today);
+        setTrafficMetric('views', views);
+        setTrafficMetric('visitors', visitors);
+        setTrafficMetric('minutes', minutes);
+        setTrafficMetric('oneMinute', oneMinute);
+
+        let visibleSeconds = 0;
+        let countedOneMinute = false;
+        window.setInterval(async function() {
+          if (document.visibilityState !== 'visible') return;
+          visibleSeconds += 60;
+          try {
+            const totalMinutes = await bumpTrafficCounter('foreground-minutes');
+            setTrafficMetric('minutes', totalMinutes);
+            if (!countedOneMinute && visibleSeconds >= 60) {
+              countedOneMinute = true;
+              const sessions = await bumpTrafficCounter('one-minute-sessions');
+              setTrafficMetric('oneMinute', sessions);
+            }
+          } catch (error) {}
+        }, 60000);
+      } catch (error) {
+        for (const key of Object.keys(trafficMetrics)) setTrafficMetric(key, 'n/a');
+      }
+    }
+
+    initTrafficSignal();
 
     function setLeafOpen(leaf, nextOpen) {
       leaf.classList.toggle('is-open', nextOpen);
