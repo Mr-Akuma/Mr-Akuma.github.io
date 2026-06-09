@@ -11,48 +11,84 @@
     :root {
       --font-body: 'Space Grotesk', system-ui, sans-serif;
       --font-mono: 'JetBrains Mono', Consolas, monospace;
-      --bg: #f8faf7;
-      --paper: #fffefd;
-      --paper-soft: #f1f6f0;
-      --ink: #1e2b24;
-      --muted: #66786e;
-      --line: rgba(30, 43, 36, 0.13);
-      --line-strong: rgba(30, 43, 36, 0.24);
-      --teal: #158f86;
-      --teal-soft: rgba(21, 143, 134, 0.12);
-      --coral: #d95d4c;
-      --coral-soft: rgba(217, 93, 76, 0.12);
-      --green: #538b35;
-      --green-soft: rgba(83, 139, 53, 0.12);
-      --plum: #924b7e;
-      --plum-soft: rgba(146, 75, 126, 0.12);
-      --amber: #ba7a11;
-      --amber-soft: rgba(186, 122, 17, 0.13);
-      --steel: #3e718d;
-      --steel-soft: rgba(62, 113, 141, 0.12);
+      --bg: #f4f7f5;
+      --paper: #fbfcfa;
+      --paper-soft: #eef3ef;
+      --ink: #18231e;
+      --muted: #617065;
+      --line: rgba(24, 35, 30, 0.11);
+      --line-strong: rgba(24, 35, 30, 0.23);
+      --teal: #007f83;
+      --teal-soft: rgba(0, 127, 131, 0.14);
+      --moss: #4f7f27;
+      --moss-soft: rgba(79, 127, 39, 0.14);
+      --plum: #87528f;
+      --plum-soft: rgba(135, 82, 143, 0.14);
+      --coral: #d6503f;
+      --coral-soft: rgba(214, 80, 63, 0.14);
+      --amber: #a87300;
+      --amber-soft: rgba(168, 115, 0, 0.15);
+      --blue: #2b6fa3;
+      --blue-soft: rgba(43, 111, 163, 0.14);
+      --violet: #6d59ad;
+      --violet-soft: rgba(109, 89, 173, 0.14);
+      --rose: #bd4b76;
+      --rose-soft: rgba(189, 75, 118, 0.14);
+      --orange: #c45e19;
+      --orange-soft: rgba(196, 94, 25, 0.14);
+      --indigo: #5262a7;
+      --indigo-soft: rgba(82, 98, 167, 0.14);
+      --cyan: #1584ad;
+      --cyan-soft: rgba(21, 132, 173, 0.14);
+      --olive: #687c2c;
+      --olive-soft: rgba(104, 124, 44, 0.14);
+      --raspberry: #b33f6b;
+      --raspberry-soft: rgba(179, 63, 107, 0.14);
+      --slate: #596e79;
+      --slate-soft: rgba(89, 110, 121, 0.14);
+      --mint: #247d5c;
+      --mint-soft: rgba(36, 125, 92, 0.14);
     }
 
     @media (prefers-color-scheme: dark) {
       :root {
-        --bg: #101613;
-        --paper: #18211d;
-        --paper-soft: #202b26;
-        --ink: #edf5ef;
-        --muted: #a0b4a8;
-        --line: rgba(237, 245, 239, 0.12);
-        --line-strong: rgba(237, 245, 239, 0.23);
-        --teal: #4bd8ca;
-        --teal-soft: rgba(75, 216, 202, 0.14);
-        --coral: #ff8a79;
-        --coral-soft: rgba(255, 138, 121, 0.14);
-        --green: #91d66c;
-        --green-soft: rgba(145, 214, 108, 0.14);
-        --plum: #e090ca;
-        --plum-soft: rgba(224, 144, 202, 0.14);
-        --amber: #ffc45c;
-        --amber-soft: rgba(255, 196, 92, 0.14);
-        --steel: #8cc7e0;
-        --steel-soft: rgba(140, 199, 224, 0.14);
+        --bg: #101614;
+        --paper: #18211e;
+        --paper-soft: #202a26;
+        --ink: #edf6f0;
+        --muted: #a5b6aa;
+        --line: rgba(237, 246, 240, 0.11);
+        --line-strong: rgba(237, 246, 240, 0.24);
+        --teal: #4dd5d0;
+        --teal-soft: rgba(77, 213, 208, 0.15);
+        --moss: #a3d977;
+        --moss-soft: rgba(163, 217, 119, 0.15);
+        --plum: #df97ea;
+        --plum-soft: rgba(223, 151, 234, 0.15);
+        --coral: #ff8d80;
+        --coral-soft: rgba(255, 141, 128, 0.15);
+        --amber: #ffc764;
+        --amber-soft: rgba(255, 199, 100, 0.15);
+        --blue: #8ac7f5;
+        --blue-soft: rgba(138, 199, 245, 0.15);
+        --violet: #b5a4ff;
+        --violet-soft: rgba(181, 164, 255, 0.15);
+        --rose: #ff94bd;
+        --rose-soft: rgba(255, 148, 189, 0.15);
+        --orange: #ffad6d;
+        --orange-soft: rgba(255, 173, 109, 0.15);
+        --indigo: #aebcff;
+        --indigo-soft: rgba(174, 188, 255, 0.15);
+        --cyan: #77d5ff;
+        --cyan-soft: rgba(119, 213, 255, 0.15);
+        --olive: #c2d86f;
+        --olive-soft: rgba(194, 216, 111, 0.15);
+        --raspberry: #ff8ab1;
+        --raspberry-soft: rgba(255, 138, 177, 0.15);
+        --slate: #b5c7d0;
+        --slate-soft: rgba(181, 199, 208, 0.15);
+        --mint: #7bdcaf;
+        --mint-soft: rgba(123, 220, 175, 0.15);
       }
     }
 
@@ -67,11 +103,12 @@
       font-family: var(--font-body);
       background-color: var(--bg);
       background-image:
-        radial-gradient(circle at 14% 12%, var(--teal-soft), transparent 27%),
-        radial-gradient(circle at 86% 10%, var(--coral-soft), transparent 24%),
+        radial-gradient(circle at 12% 10%, var(--teal-soft), transparent 24%),
+        radial-gradient(circle at 86% 8%, var(--amber-soft), transparent 22%),
+        radial-gradient(circle at 74% 72%, var(--plum-soft), transparent 26%),
         linear-gradient(var(--line) 1px, transparent 1px),
         linear-gradient(90deg, var(--line) 1px, transparent 1px);
-      background-size: auto, auto, 34px 34px, 34px 34px;
+      background-size: auto, auto, auto, 34px 34px, 34px 34px;
       overflow-wrap: break-word;
     }
 
@@ -216,12 +253,32 @@
       color: var(--muted);
     }
 
-    .nav-pill--teal { border-color: color-mix(in srgb, var(--teal) 45%, var(--line)); }
-    .nav-pill--coral { border-color: color-mix(in srgb, var(--coral) 45%, var(--line)); }
-    .nav-pill--green { border-color: color-mix(in srgb, var(--green) 45%, var(--line)); }
-    .nav-pill--plum { border-color: color-mix(in srgb, var(--plum) 45%, var(--line)); }
-    .nav-pill--amber { border-color: color-mix(in srgb, var(--amber) 45%, var(--line)); }
-    .nav-pill--steel { border-color: color-mix(in srgb, var(--steel) 45%, var(--line)); }
+    .nav-pill--teal, .cluster--teal, .leaf--teal, .mini-bubble--teal { --accent: var(--teal); --soft: var(--teal-soft); }
+    .nav-pill--moss, .cluster--moss, .leaf--moss, .mini-bubble--moss { --accent: var(--moss); --soft: var(--moss-soft); }
+    .nav-pill--plum, .cluster--plum, .leaf--plum, .mini-bubble--plum { --accent: var(--plum); --soft: var(--plum-soft); }
+    .nav-pill--coral, .cluster--coral, .leaf--coral, .mini-bubble--coral { --accent: var(--coral); --soft: var(--coral-soft); }
+    .nav-pill--amber, .cluster--amber, .leaf--amber, .mini-bubble--amber { --accent: var(--amber); --soft: var(--amber-soft); }
+    .nav-pill--blue, .cluster--blue, .leaf--blue, .mini-bubble--blue { --accent: var(--blue); --soft: var(--blue-soft); }
+    .nav-pill--violet, .cluster--violet, .leaf--violet, .mini-bubble--violet { --accent: var(--violet); --soft: var(--violet-soft); }
+    .nav-pill--rose, .cluster--rose, .leaf--rose, .mini-bubble--rose { --accent: var(--rose); --soft: var(--rose-soft); }
+    .nav-pill--orange, .cluster--orange, .leaf--orange, .mini-bubble--orange { --accent: var(--orange); --soft: var(--orange-soft); }
+    .nav-pill--indigo, .cluster--indigo, .leaf--indigo, .mini-bubble--indigo { --accent: var(--indigo); --soft: var(--indigo-soft); }
+    .nav-pill--cyan, .cluster--cyan, .leaf--cyan, .mini-bubble--cyan { --accent: var(--cyan); --soft: var(--cyan-soft); }
+    .nav-pill--olive, .cluster--olive, .leaf--olive, .mini-bubble--olive { --accent: var(--olive); --soft: var(--olive-soft); }
+    .nav-pill--raspberry, .cluster--raspberry, .leaf--raspberry, .mini-bubble--raspberry { --accent: var(--raspberry); --soft: var(--raspberry-soft); }
+    .nav-pill--slate, .cluster--slate, .leaf--slate, .mini-bubble--slate { --accent: var(--slate); --soft: var(--slate-soft); }
+    .nav-pill--mint, .cluster--mint, .leaf--mint, .mini-bubble--mint { --accent: var(--mint); --soft: var(--mint-soft); }
+
+    .nav-pill {
+      border-color: color-mix(in srgb, var(--accent, var(--teal)) 46%, var(--line));
+      background:
+        linear-gradient(135deg, color-mix(in srgb, var(--soft, var(--teal-soft)) 76%, transparent), transparent 70%),
+        var(--paper);
+    }
+
+    .nav-pill span {
+      color: var(--accent, var(--teal));
+    }
 
     .summary {
       display: grid;
@@ -280,20 +337,26 @@
       place-items: center;
       border-radius: 999px;
       border: 1px solid var(--line);
-      background: var(--paper-soft);
+      background:
+        radial-gradient(circle at 35% 28%, color-mix(in srgb, var(--soft, var(--teal-soft)) 82%, var(--paper)), var(--paper) 72%);
       font-family: var(--font-mono);
       font-size: 11px;
-      color: var(--muted);
+      color: var(--accent, var(--muted));
+      box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--accent, var(--teal)) 30%, transparent);
     }
 
     .cluster {
       scroll-margin-top: 86px;
-      border: 1px solid var(--line);
+      border: 1px solid color-mix(in srgb, var(--accent, var(--teal)) 28%, var(--line));
+      border-top: 4px solid var(--accent, var(--teal));
       border-radius: 8px;
-      background: color-mix(in srgb, var(--paper) 94%, transparent);
+      background:
+        linear-gradient(180deg, color-mix(in srgb, var(--soft, var(--teal-soft)) 78%, transparent), transparent 210px),
+        color-mix(in srgb, var(--paper) 96%, transparent);
       padding: 16px;
       margin: 16px 0;
       box-shadow: 0 10px 28px rgba(0, 0, 0, 0.05);
+      color: var(--accent, var(--teal));
     }
 
     .cluster-head {
@@ -311,9 +374,12 @@
       place-items: center;
       align-content: center;
       border-radius: 999px;
-      border: 2px solid currentColor;
-      background: var(--paper-soft);
-      box-shadow: inset 0 0 0 7px rgba(255, 255, 255, 0.18);
+      border: 2px solid color-mix(in srgb, currentColor 82%, var(--paper));
+      background:
+        radial-gradient(circle at 36% 28%, color-mix(in srgb, var(--soft, var(--teal-soft)) 88%, var(--paper)), var(--paper) 72%);
+      box-shadow:
+        inset 0 0 0 7px color-mix(in srgb, var(--paper) 66%, transparent),
+        0 8px 18px color-mix(in srgb, currentColor 12%, transparent);
     }
 
     .cluster-orb span {
@@ -340,14 +406,8 @@
       margin: 0;
       font-size: 25px;
       letter-spacing: 0;
+      color: var(--accent, var(--teal));
     }
-
-    .cluster--teal { color: var(--teal); }
-    .cluster--coral { color: var(--coral); }
-    .cluster--green { color: var(--green); }
-    .cluster--plum { color: var(--plum); }
-    .cluster--amber { color: var(--amber); }
-    .cluster--steel { color: var(--steel); }
 
     .leaf-field {
       display: flex;
@@ -362,10 +422,12 @@
       display: grid;
       grid-template-rows: auto auto 1fr;
       gap: 6px;
-      border: 1px solid var(--line);
+      border: 1px solid color-mix(in srgb, var(--accent, var(--teal)) 34%, var(--line));
       border-radius: 18px;
-      background: var(--paper);
-      color: var(--ink);
+      background:
+        linear-gradient(135deg, color-mix(in srgb, var(--soft, var(--teal-soft)) 76%, transparent), transparent 62%),
+        color-mix(in srgb, var(--paper) 94%, var(--soft, var(--teal-soft)));
+      color: var(--accent, var(--teal));
       padding: 12px 13px;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.035);
       transition: transform 0.16s ease, box-shadow 0.16s ease, opacity 0.16s ease;
@@ -373,7 +435,9 @@
 
     .leaf:hover {
       transform: translateY(-2px);
-      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.07);
+      box-shadow:
+        0 8px 18px rgba(0, 0, 0, 0.07),
+        0 0 0 1px color-mix(in srgb, var(--accent, var(--teal)) 42%, transparent);
     }
 
     .leaf code {
@@ -383,8 +447,8 @@
       font-family: var(--font-mono);
       font-size: 10px;
       line-height: 1.2;
-      color: currentColor;
-      background: var(--paper-soft);
+      color: var(--accent, var(--teal));
+      background: color-mix(in srgb, var(--soft, var(--teal-soft)) 76%, var(--paper));
     }
 
     .leaf strong {
@@ -398,13 +462,6 @@
       font-size: 12px;
       line-height: 1.4;
     }
-
-    .leaf--teal { border-color: color-mix(in srgb, var(--teal) 34%, var(--line)); background: color-mix(in srgb, var(--paper) 82%, var(--teal-soft)); }
-    .leaf--coral { border-color: color-mix(in srgb, var(--coral) 34%, var(--line)); background: color-mix(in srgb, var(--paper) 82%, var(--coral-soft)); }
-    .leaf--green { border-color: color-mix(in srgb, var(--green) 34%, var(--line)); background: color-mix(in srgb, var(--paper) 82%, var(--green-soft)); }
-    .leaf--plum { border-color: color-mix(in srgb, var(--plum) 34%, var(--line)); background: color-mix(in srgb, var(--paper) 82%, var(--plum-soft)); }
-    .leaf--amber { border-color: color-mix(in srgb, var(--amber) 34%, var(--line)); background: color-mix(in srgb, var(--paper) 82%, var(--amber-soft)); }
-    .leaf--steel { border-color: color-mix(in srgb, var(--steel) 34%, var(--line)); background: color-mix(in srgb, var(--paper) 82%, var(--steel-soft)); }
 
     body.compact .leaf {
       width: clamp(150px, 11vw, 180px);
@@ -501,7 +558,7 @@
       </div>
       <div class="summary-card">
         <div class="mini-bubbles" aria-label="Category counts">
-          <span class="mini-bubble" title="Prompt and Input Manipulation">20</span><span class="mini-bubble" title="RAG, Context, Memory, and Embeddings">20</span><span class="mini-bubble" title="Sensitive Data and Privacy">20</span><span class="mini-bubble" title="Tool Use, Function Calling, and Execution">30</span><span class="mini-bubble" title="Quorum, Approval, Consensus, and Control Gates">30</span><span class="mini-bubble" title="Identity, Authorization, and Tenant Boundaries">15</span><span class="mini-bubble" title="Supply Chain, Models, Datasets, and Deployment">20</span><span class="mini-bubble" title="Output Handling and Downstream Injection">19</span><span class="mini-bubble" title="Denial of Service, Cost Abuse, and Reliability">16</span><span class="mini-bubble" title="Model Extraction, Inference, and Safety Evasion">12</span><span class="mini-bubble" title="Multi-Agent and Delegation Risks">13</span><span class="mini-bubble" title="Multimodal, Document, and File-Based Inputs">12</span><span class="mini-bubble" title="Human Factors, UI, and Social Engineering">12</span><span class="mini-bubble" title="Monitoring, Audit, Incident Response, and Governance">13</span><span class="mini-bubble" title="MCP, Plugin, and Agent Server Specific Risks">15</span>
+          <span class="mini-bubble mini-bubble--teal" title="Prompt and Input Manipulation">20</span><span class="mini-bubble mini-bubble--moss" title="RAG, Context, Memory, and Embeddings">20</span><span class="mini-bubble mini-bubble--plum" title="Sensitive Data and Privacy">20</span><span class="mini-bubble mini-bubble--coral" title="Tool Use, Function Calling, and Execution">30</span><span class="mini-bubble mini-bubble--amber" title="Quorum, Approval, Consensus, and Control Gates">30</span><span class="mini-bubble mini-bubble--blue" title="Identity, Authorization, and Tenant Boundaries">15</span><span class="mini-bubble mini-bubble--violet" title="Supply Chain, Models, Datasets, and Deployment">20</span><span class="mini-bubble mini-bubble--rose" title="Output Handling and Downstream Injection">19</span><span class="mini-bubble mini-bubble--orange" title="Denial of Service, Cost Abuse, and Reliability">16</span><span class="mini-bubble mini-bubble--indigo" title="Model Extraction, Inference, and Safety Evasion">12</span><span class="mini-bubble mini-bubble--cyan" title="Multi-Agent and Delegation Risks">13</span><span class="mini-bubble mini-bubble--olive" title="Multimodal, Document, and File-Based Inputs">12</span><span class="mini-bubble mini-bubble--raspberry" title="Human Factors, UI, and Social Engineering">12</span><span class="mini-bubble mini-bubble--slate" title="Monitoring, Audit, Incident Response, and Governance">13</span><span class="mini-bubble mini-bubble--mint" title="MCP, Plugin, and Agent Server Specific Risks">15</span>
         </div>
       </div>
     </section>
@@ -519,17 +576,17 @@
           Prompt and Input Manipulation
           <strong>20</strong>
         </a>
-        <a href="#b-rag-context-memory-and-embeddings" class="nav-pill nav-pill--coral">
+        <a href="#b-rag-context-memory-and-embeddings" class="nav-pill nav-pill--moss">
           <span>B</span>
           RAG, Context, Memory, and Embeddings
           <strong>20</strong>
         </a>
-        <a href="#c-sensitive-data-and-privacy" class="nav-pill nav-pill--green">
+        <a href="#c-sensitive-data-and-privacy" class="nav-pill nav-pill--plum">
           <span>C</span>
           Sensitive Data and Privacy
           <strong>20</strong>
         </a>
-        <a href="#d-tool-use-function-calling-and-execution" class="nav-pill nav-pill--plum">
+        <a href="#d-tool-use-function-calling-and-execution" class="nav-pill nav-pill--coral">
           <span>D</span>
           Tool Use, Function Calling, and Execution
           <strong>30</strong>
@@ -539,52 +596,52 @@
           Quorum, Approval, Consensus, and Control Gates
           <strong>30</strong>
         </a>
-        <a href="#f-identity-authorization-and-tenant-boundaries" class="nav-pill nav-pill--steel">
+        <a href="#f-identity-authorization-and-tenant-boundaries" class="nav-pill nav-pill--blue">
           <span>F</span>
           Identity, Authorization, and Tenant Boundaries
           <strong>15</strong>
         </a>
-        <a href="#g-supply-chain-models-datasets-and-deployment" class="nav-pill nav-pill--teal">
+        <a href="#g-supply-chain-models-datasets-and-deployment" class="nav-pill nav-pill--violet">
           <span>G</span>
           Supply Chain, Models, Datasets, and Deployment
           <strong>20</strong>
         </a>
-        <a href="#h-output-handling-and-downstream-injection" class="nav-pill nav-pill--coral">
+        <a href="#h-output-handling-and-downstream-injection" class="nav-pill nav-pill--rose">
           <span>H</span>
           Output Handling and Downstream Injection
           <strong>19</strong>
         </a>
-        <a href="#i-denial-of-service-cost-abuse-and-reliability" class="nav-pill nav-pill--green">
+        <a href="#i-denial-of-service-cost-abuse-and-reliability" class="nav-pill nav-pill--orange">
           <span>I</span>
           Denial of Service, Cost Abuse, and Reliability
           <strong>16</strong>
         </a>
-        <a href="#j-model-extraction-inference-and-safety-evasion" class="nav-pill nav-pill--plum">
+        <a href="#j-model-extraction-inference-and-safety-evasion" class="nav-pill nav-pill--indigo">
           <span>J</span>
           Model Extraction, Inference, and Safety Evasion
           <strong>12</strong>
         </a>
-        <a href="#k-multi-agent-and-delegation-risks" class="nav-pill nav-pill--amber">
+        <a href="#k-multi-agent-and-delegation-risks" class="nav-pill nav-pill--cyan">
           <span>K</span>
           Multi-Agent and Delegation Risks
           <strong>13</strong>
         </a>
-        <a href="#l-multimodal-document-and-file-based-inputs" class="nav-pill nav-pill--steel">
+        <a href="#l-multimodal-document-and-file-based-inputs" class="nav-pill nav-pill--olive">
           <span>L</span>
           Multimodal, Document, and File-Based Inputs
           <strong>12</strong>
         </a>
-        <a href="#m-human-factors-ui-and-social-engineering" class="nav-pill nav-pill--teal">
+        <a href="#m-human-factors-ui-and-social-engineering" class="nav-pill nav-pill--raspberry">
           <span>M</span>
           Human Factors, UI, and Social Engineering
           <strong>12</strong>
         </a>
-        <a href="#n-monitoring-audit-incident-response-and-governance" class="nav-pill nav-pill--coral">
+        <a href="#n-monitoring-audit-incident-response-and-governance" class="nav-pill nav-pill--slate">
           <span>N</span>
           Monitoring, Audit, Incident Response, and Governance
           <strong>13</strong>
         </a>
-        <a href="#o-mcp-plugin-and-agent-server-specific-risks" class="nav-pill nav-pill--green">
+        <a href="#o-mcp-plugin-and-agent-server-specific-risks" class="nav-pill nav-pill--mint">
           <span>O</span>
           MCP, Plugin, and Agent Server Specific Risks
           <strong>15</strong>
@@ -708,7 +765,7 @@
         </div>
       </section>
 
-      <section class="cluster cluster--coral animate" id="b-rag-context-memory-and-embeddings" style="--i:4">
+      <section class="cluster cluster--moss animate" id="b-rag-context-memory-and-embeddings" style="--i:4">
         <header class="cluster-head">
           <div class="cluster-orb">
             <span>B</span>
@@ -721,102 +778,102 @@
         </header>
         <div class="leaf-field">
 
-            <article class="leaf leaf--coral" data-id="LLM-021" data-vector="rag authorization bypass" data-question="are retrieved documents filtered by the user&#39;s real permissions before entering context?">
+            <article class="leaf leaf--moss" data-id="LLM-021" data-vector="rag authorization bypass" data-question="are retrieved documents filtered by the user&#39;s real permissions before entering context?">
               <code>LLM-021</code>
               <strong>RAG authorization bypass</strong>
               <span>Are retrieved documents filtered by the user&#39;s real permissions before entering context?</span>
             </article>
-            <article class="leaf leaf--coral" data-id="LLM-022" data-vector="cross-tenant retrieval" data-question="can one tenant retrieve another tenant&#39;s chunks, metadata, or embeddings?">
+            <article class="leaf leaf--moss" data-id="LLM-022" data-vector="cross-tenant retrieval" data-question="can one tenant retrieve another tenant&#39;s chunks, metadata, or embeddings?">
               <code>LLM-022</code>
               <strong>Cross-tenant retrieval</strong>
               <span>Can one tenant retrieve another tenant&#39;s chunks, metadata, or embeddings?</span>
             </article>
-            <article class="leaf leaf--coral" data-id="LLM-023" data-vector="vector namespace mix-up" data-question="are indexes, collections, and namespaces isolated by tenant, environment, and user scope?">
+            <article class="leaf leaf--moss" data-id="LLM-023" data-vector="vector namespace mix-up" data-question="are indexes, collections, and namespaces isolated by tenant, environment, and user scope?">
               <code>LLM-023</code>
               <strong>Vector namespace mix-up</strong>
               <span>Are indexes, collections, and namespaces isolated by tenant, environment, and user scope?</span>
             </article>
-            <article class="leaf leaf--coral" data-id="LLM-024" data-vector="metadata filter bypass" data-question="can attacker-controlled metadata defeat access-control filters?">
+            <article class="leaf leaf--moss" data-id="LLM-024" data-vector="metadata filter bypass" data-question="can attacker-controlled metadata defeat access-control filters?">
               <code>LLM-024</code>
               <strong>Metadata filter bypass</strong>
               <span>Can attacker-controlled metadata defeat access-control filters?</span>
             </article>
-            <article class="leaf leaf--coral" data-id="LLM-025" data-vector="rag document poisoning" data-question="can untrusted users upload content that influences future answers?">
+            <article class="leaf leaf--moss" data-id="LLM-025" data-vector="rag document poisoning" data-question="can untrusted users upload content that influences future answers?">
               <code>LLM-025</code>
               <strong>RAG document poisoning</strong>
               <span>Can untrusted users upload content that influences future answers?</span>
             </article>
-            <article class="leaf leaf--coral" data-id="LLM-026" data-vector="retrieval content crafting" data-question="can attacker text be written to reliably appear in top-k results?">
+            <article class="leaf leaf--moss" data-id="LLM-026" data-vector="retrieval content crafting" data-question="can attacker text be written to reliably appear in top-k results?">
               <code>LLM-026</code>
               <strong>Retrieval content crafting</strong>
               <span>Can attacker text be written to reliably appear in top-k results?</span>
             </article>
-            <article class="leaf leaf--coral" data-id="LLM-027" data-vector="embedding manipulation" data-question="can adversarial text, repetition, or keyword stuffing distort semantic ranking?">
+            <article class="leaf leaf--moss" data-id="LLM-027" data-vector="embedding manipulation" data-question="can adversarial text, repetition, or keyword stuffing distort semantic ranking?">
               <code>LLM-027</code>
               <strong>Embedding manipulation</strong>
               <span>Can adversarial text, repetition, or keyword stuffing distort semantic ranking?</span>
             </article>
-            <article class="leaf leaf--coral" data-id="LLM-028" data-vector="chunk-boundary manipulation" data-question="can harmful instructions be split across chunks or made to dominate chunk summaries?">
+            <article class="leaf leaf--moss" data-id="LLM-028" data-vector="chunk-boundary manipulation" data-question="can harmful instructions be split across chunks or made to dominate chunk summaries?">
               <code>LLM-028</code>
               <strong>Chunk-boundary manipulation</strong>
               <span>Can harmful instructions be split across chunks or made to dominate chunk summaries?</span>
             </article>
-            <article class="leaf leaf--coral" data-id="LLM-029" data-vector="stale or deleted document retrieval" data-question="do revoked, deleted, or expired documents remain in vector stores or caches?">
+            <article class="leaf leaf--moss" data-id="LLM-029" data-vector="stale or deleted document retrieval" data-question="do revoked, deleted, or expired documents remain in vector stores or caches?">
               <code>LLM-029</code>
               <strong>Stale or deleted document retrieval</strong>
               <span>Do revoked, deleted, or expired documents remain in vector stores or caches?</span>
             </article>
-            <article class="leaf leaf--coral" data-id="LLM-030" data-vector="source attribution spoofing" data-question="can attacker documents appear to come from trusted sources?">
+            <article class="leaf leaf--moss" data-id="LLM-030" data-vector="source attribution spoofing" data-question="can attacker documents appear to come from trusted sources?">
               <code>LLM-030</code>
               <strong>Source attribution spoofing</strong>
               <span>Can attacker documents appear to come from trusted sources?</span>
             </article>
-            <article class="leaf leaf--coral" data-id="LLM-031" data-vector="citation laundering" data-question="can the model cite an untrusted or irrelevant source as evidence?">
+            <article class="leaf leaf--moss" data-id="LLM-031" data-vector="citation laundering" data-question="can the model cite an untrusted or irrelevant source as evidence?">
               <code>LLM-031</code>
               <strong>Citation laundering</strong>
               <span>Can the model cite an untrusted or irrelevant source as evidence?</span>
             </article>
-            <article class="leaf leaf--coral" data-id="LLM-032" data-vector="persistent memory poisoning" data-question="can a user store malicious preferences, rules, or facts that affect later sessions?">
+            <article class="leaf leaf--moss" data-id="LLM-032" data-vector="persistent memory poisoning" data-question="can a user store malicious preferences, rules, or facts that affect later sessions?">
               <code>LLM-032</code>
               <strong>Persistent memory poisoning</strong>
               <span>Can a user store malicious preferences, rules, or facts that affect later sessions?</span>
             </article>
-            <article class="leaf leaf--coral" data-id="LLM-033" data-vector="cross-session memory leakage" data-question="can memories from one user, role, or tenant affect another?">
+            <article class="leaf leaf--moss" data-id="LLM-033" data-vector="cross-session memory leakage" data-question="can memories from one user, role, or tenant affect another?">
               <code>LLM-033</code>
               <strong>Cross-session memory leakage</strong>
               <span>Can memories from one user, role, or tenant affect another?</span>
             </article>
-            <article class="leaf leaf--coral" data-id="LLM-034" data-vector="memory privilege mismatch" data-question="can low-trust interactions write memory used in high-trust workflows?">
+            <article class="leaf leaf--moss" data-id="LLM-034" data-vector="memory privilege mismatch" data-question="can low-trust interactions write memory used in high-trust workflows?">
               <code>LLM-034</code>
               <strong>Memory privilege mismatch</strong>
               <span>Can low-trust interactions write memory used in high-trust workflows?</span>
             </article>
-            <article class="leaf leaf--coral" data-id="LLM-035" data-vector="conversation summary poisoning" data-question="can summaries omit, alter, or elevate malicious instructions?">
+            <article class="leaf leaf--moss" data-id="LLM-035" data-vector="conversation summary poisoning" data-question="can summaries omit, alter, or elevate malicious instructions?">
               <code>LLM-035</code>
               <strong>Conversation summary poisoning</strong>
               <span>Can summaries omit, alter, or elevate malicious instructions?</span>
             </article>
-            <article class="leaf leaf--coral" data-id="LLM-036" data-vector="context over-sharing" data-question="is more private context supplied than the task requires?">
+            <article class="leaf leaf--moss" data-id="LLM-036" data-vector="context over-sharing" data-question="is more private context supplied than the task requires?">
               <code>LLM-036</code>
               <strong>Context over-sharing</strong>
               <span>Is more private context supplied than the task requires?</span>
             </article>
-            <article class="leaf leaf--coral" data-id="LLM-037" data-vector="cache bleed" data-question="can prompt, completion, embedding, or retrieval caches cross users or tenants?">
+            <article class="leaf leaf--moss" data-id="LLM-037" data-vector="cache bleed" data-question="can prompt, completion, embedding, or retrieval caches cross users or tenants?">
               <code>LLM-037</code>
               <strong>Cache bleed</strong>
               <span>Can prompt, completion, embedding, or retrieval caches cross users or tenants?</span>
             </article>
-            <article class="leaf leaf--coral" data-id="LLM-038" data-vector="retrieval of hidden document content" data-question="are comments, tracked changes, hidden text, speaker notes, or ocr artifacts included unintentionally?">
+            <article class="leaf leaf--moss" data-id="LLM-038" data-vector="retrieval of hidden document content" data-question="are comments, tracked changes, hidden text, speaker notes, or ocr artifacts included unintentionally?">
               <code>LLM-038</code>
               <strong>Retrieval of hidden document content</strong>
               <span>Are comments, tracked changes, hidden text, speaker notes, or OCR artifacts included unintentionally?</span>
             </article>
-            <article class="leaf leaf--coral" data-id="LLM-039" data-vector="embedding sensitive data leakage" data-question="can embeddings, vector db exports, backups, or similarity queries reveal sensitive information?">
+            <article class="leaf leaf--moss" data-id="LLM-039" data-vector="embedding sensitive data leakage" data-question="can embeddings, vector db exports, backups, or similarity queries reveal sensitive information?">
               <code>LLM-039</code>
               <strong>Embedding sensitive data leakage</strong>
               <span>Can embeddings, vector DB exports, backups, or similarity queries reveal sensitive information?</span>
             </article>
-            <article class="leaf leaf--coral" data-id="LLM-040" data-vector="model-context provenance loss" data-question="can the system tell which data was user input, trusted policy, retrieved context, memory, or tool output?">
+            <article class="leaf leaf--moss" data-id="LLM-040" data-vector="model-context provenance loss" data-question="can the system tell which data was user input, trusted policy, retrieved context, memory, or tool output?">
               <code>LLM-040</code>
               <strong>Model-context provenance loss</strong>
               <span>Can the system tell which data was user input, trusted policy, retrieved context, memory, or tool output?</span>
@@ -824,7 +881,7 @@
         </div>
       </section>
 
-      <section class="cluster cluster--green animate" id="c-sensitive-data-and-privacy" style="--i:5">
+      <section class="cluster cluster--plum animate" id="c-sensitive-data-and-privacy" style="--i:5">
         <header class="cluster-head">
           <div class="cluster-orb">
             <span>C</span>
@@ -837,102 +894,102 @@
         </header>
         <div class="leaf-field">
 
-            <article class="leaf leaf--green" data-id="LLM-041" data-vector="system prompt leakage" data-question="can the model reveal hidden prompts, guardrails, internal urls, or business logic?">
+            <article class="leaf leaf--plum" data-id="LLM-041" data-vector="system prompt leakage" data-question="can the model reveal hidden prompts, guardrails, internal urls, or business logic?">
               <code>LLM-041</code>
               <strong>System prompt leakage</strong>
               <span>Can the model reveal hidden prompts, guardrails, internal URLs, or business logic?</span>
             </article>
-            <article class="leaf leaf--green" data-id="LLM-042" data-vector="developer prompt leakage" data-question="can intermediate orchestration instructions be exposed?">
+            <article class="leaf leaf--plum" data-id="LLM-042" data-vector="developer prompt leakage" data-question="can intermediate orchestration instructions be exposed?">
               <code>LLM-042</code>
               <strong>Developer prompt leakage</strong>
               <span>Can intermediate orchestration instructions be exposed?</span>
             </article>
-            <article class="leaf leaf--green" data-id="LLM-043" data-vector="secret-in-prompt exposure" data-question="are api keys, tokens, credentials, or internal endpoints ever placed in prompts?">
+            <article class="leaf leaf--plum" data-id="LLM-043" data-vector="secret-in-prompt exposure" data-question="are api keys, tokens, credentials, or internal endpoints ever placed in prompts?">
               <code>LLM-043</code>
               <strong>Secret-in-prompt exposure</strong>
               <span>Are API keys, tokens, credentials, or internal endpoints ever placed in prompts?</span>
             </article>
-            <article class="leaf leaf--green" data-id="LLM-044" data-vector="pii disclosure" data-question="can the model reveal personal data from context, retrieval, memory, or logs?">
+            <article class="leaf leaf--plum" data-id="LLM-044" data-vector="pii disclosure" data-question="can the model reveal personal data from context, retrieval, memory, or logs?">
               <code>LLM-044</code>
               <strong>PII disclosure</strong>
               <span>Can the model reveal personal data from context, retrieval, memory, or logs?</span>
             </article>
-            <article class="leaf leaf--green" data-id="LLM-045" data-vector="training data memorization" data-question="can prompts elicit sensitive data memorized during training or fine-tuning?">
+            <article class="leaf leaf--plum" data-id="LLM-045" data-vector="training data memorization" data-question="can prompts elicit sensitive data memorized during training or fine-tuning?">
               <code>LLM-045</code>
               <strong>Training data memorization</strong>
               <span>Can prompts elicit sensitive data memorized during training or fine-tuning?</span>
             </article>
-            <article class="leaf leaf--green" data-id="LLM-046" data-vector="fine-tuning data disclosure" data-question="can proprietary fine-tune examples be reconstructed from outputs?">
+            <article class="leaf leaf--plum" data-id="LLM-046" data-vector="fine-tuning data disclosure" data-question="can proprietary fine-tune examples be reconstructed from outputs?">
               <code>LLM-046</code>
               <strong>Fine-tuning data disclosure</strong>
               <span>Can proprietary fine-tune examples be reconstructed from outputs?</span>
             </article>
-            <article class="leaf leaf--green" data-id="LLM-047" data-vector="internal reasoning or debug trace leakage" data-question="do debug modes expose sensitive intermediate data or hidden orchestration state?">
+            <article class="leaf leaf--plum" data-id="LLM-047" data-vector="internal reasoning or debug trace leakage" data-question="do debug modes expose sensitive intermediate data or hidden orchestration state?">
               <code>LLM-047</code>
               <strong>Internal reasoning or debug trace leakage</strong>
               <span>Do debug modes expose sensitive intermediate data or hidden orchestration state?</span>
             </article>
-            <article class="leaf leaf--green" data-id="LLM-048" data-vector="tool response overexposure" data-question="do tools return more data than the model needs?">
+            <article class="leaf leaf--plum" data-id="LLM-048" data-vector="tool response overexposure" data-question="do tools return more data than the model needs?">
               <code>LLM-048</code>
               <strong>Tool response overexposure</strong>
               <span>Do tools return more data than the model needs?</span>
             </article>
-            <article class="leaf leaf--green" data-id="LLM-049" data-vector="browser/session data exposure" data-question="can an agent read sensitive pages, cookies, forms, or account information?">
+            <article class="leaf leaf--plum" data-id="LLM-049" data-vector="browser/session data exposure" data-question="can an agent read sensitive pages, cookies, forms, or account information?">
               <code>LLM-049</code>
               <strong>Browser/session data exposure</strong>
               <span>Can an agent read sensitive pages, cookies, forms, or account information?</span>
             </article>
-            <article class="leaf leaf--green" data-id="LLM-050" data-vector="prompt replay in analytics" data-question="are prompts and completions sent to analytics, observability, or vendor systems?">
+            <article class="leaf leaf--plum" data-id="LLM-050" data-vector="prompt replay in analytics" data-question="are prompts and completions sent to analytics, observability, or vendor systems?">
               <code>LLM-050</code>
               <strong>Prompt replay in analytics</strong>
               <span>Are prompts and completions sent to analytics, observability, or vendor systems?</span>
             </article>
-            <article class="leaf leaf--green" data-id="LLM-051" data-vector="log and trace secret leakage" data-question="are prompts, tool arguments, headers, tokens, and retrieved docs redacted in logs?">
+            <article class="leaf leaf--plum" data-id="LLM-051" data-vector="log and trace secret leakage" data-question="are prompts, tool arguments, headers, tokens, and retrieved docs redacted in logs?">
               <code>LLM-051</code>
               <strong>Log and trace secret leakage</strong>
               <span>Are prompts, tool arguments, headers, tokens, and retrieved docs redacted in logs?</span>
             </article>
-            <article class="leaf leaf--green" data-id="LLM-052" data-vector="data residency violation" data-question="can prompts or outputs cross geographic, contractual, or regulatory boundaries?">
+            <article class="leaf leaf--plum" data-id="LLM-052" data-vector="data residency violation" data-question="can prompts or outputs cross geographic, contractual, or regulatory boundaries?">
               <code>LLM-052</code>
               <strong>Data residency violation</strong>
               <span>Can prompts or outputs cross geographic, contractual, or regulatory boundaries?</span>
             </article>
-            <article class="leaf leaf--green" data-id="LLM-053" data-vector="retention mismatch" data-question="are prompts, embeddings, memories, files, and outputs retained longer than allowed?">
+            <article class="leaf leaf--plum" data-id="LLM-053" data-vector="retention mismatch" data-question="are prompts, embeddings, memories, files, and outputs retained longer than allowed?">
               <code>LLM-053</code>
               <strong>Retention mismatch</strong>
               <span>Are prompts, embeddings, memories, files, and outputs retained longer than allowed?</span>
             </article>
-            <article class="leaf leaf--green" data-id="LLM-054" data-vector="backup exposure" data-question="are vector db backups, transcript exports, or model artifacts protected like production data?">
+            <article class="leaf leaf--plum" data-id="LLM-054" data-vector="backup exposure" data-question="are vector db backups, transcript exports, or model artifacts protected like production data?">
               <code>LLM-054</code>
               <strong>Backup exposure</strong>
               <span>Are vector DB backups, transcript exports, or model artifacts protected like production data?</span>
             </article>
-            <article class="leaf leaf--green" data-id="LLM-055" data-vector="third-party connector leakage" data-question="can connected apps receive sensitive data without user-visible consent?">
+            <article class="leaf leaf--plum" data-id="LLM-055" data-vector="third-party connector leakage" data-question="can connected apps receive sensitive data without user-visible consent?">
               <code>LLM-055</code>
               <strong>Third-party connector leakage</strong>
               <span>Can connected apps receive sensitive data without user-visible consent?</span>
             </article>
-            <article class="leaf leaf--green" data-id="LLM-056" data-vector="screenshot or attachment leakage" data-question="can generated screenshots, file previews, or exports contain hidden sensitive data?">
+            <article class="leaf leaf--plum" data-id="LLM-056" data-vector="screenshot or attachment leakage" data-question="can generated screenshots, file previews, or exports contain hidden sensitive data?">
               <code>LLM-056</code>
               <strong>Screenshot or attachment leakage</strong>
               <span>Can generated screenshots, file previews, or exports contain hidden sensitive data?</span>
             </article>
-            <article class="leaf leaf--green" data-id="LLM-057" data-vector="privacy inference" data-question="can repeated queries infer hidden attributes about users, records, or training examples?">
+            <article class="leaf leaf--plum" data-id="LLM-057" data-vector="privacy inference" data-question="can repeated queries infer hidden attributes about users, records, or training examples?">
               <code>LLM-057</code>
               <strong>Privacy inference</strong>
               <span>Can repeated queries infer hidden attributes about users, records, or training examples?</span>
             </article>
-            <article class="leaf leaf--green" data-id="LLM-058" data-vector="token persistence" data-question="are oauth tokens or temporary credentials stored in memory, chat, logs, or files?">
+            <article class="leaf leaf--plum" data-id="LLM-058" data-vector="token persistence" data-question="are oauth tokens or temporary credentials stored in memory, chat, logs, or files?">
               <code>LLM-058</code>
               <strong>Token persistence</strong>
               <span>Are OAuth tokens or temporary credentials stored in memory, chat, logs, or files?</span>
             </article>
-            <article class="leaf leaf--green" data-id="LLM-059" data-vector="unredacted error disclosure" data-question="do failures expose stack traces, internal object ids, sql, document paths, or secrets?">
+            <article class="leaf leaf--plum" data-id="LLM-059" data-vector="unredacted error disclosure" data-question="do failures expose stack traces, internal object ids, sql, document paths, or secrets?">
               <code>LLM-059</code>
               <strong>Unredacted error disclosure</strong>
               <span>Do failures expose stack traces, internal object IDs, SQL, document paths, or secrets?</span>
             </article>
-            <article class="leaf leaf--green" data-id="LLM-060" data-vector="sensitive output transformation" data-question="can the model summarize, translate, encode, or reformat data to bypass dlp?">
+            <article class="leaf leaf--plum" data-id="LLM-060" data-vector="sensitive output transformation" data-question="can the model summarize, translate, encode, or reformat data to bypass dlp?">
               <code>LLM-060</code>
               <strong>Sensitive output transformation</strong>
               <span>Can the model summarize, translate, encode, or reformat data to bypass DLP?</span>
@@ -940,7 +997,7 @@
         </div>
       </section>
 
-      <section class="cluster cluster--plum animate" id="d-tool-use-function-calling-and-execution" style="--i:6">
+      <section class="cluster cluster--coral animate" id="d-tool-use-function-calling-and-execution" style="--i:6">
         <header class="cluster-head">
           <div class="cluster-orb">
             <span>D</span>
@@ -953,152 +1010,152 @@
         </header>
         <div class="leaf-field">
 
-            <article class="leaf leaf--plum" data-id="LLM-061" data-vector="excessive tool permissions" data-question="does the agent have more tools or scopes than the task requires?">
+            <article class="leaf leaf--coral" data-id="LLM-061" data-vector="excessive tool permissions" data-question="does the agent have more tools or scopes than the task requires?">
               <code>LLM-061</code>
               <strong>Excessive tool permissions</strong>
               <span>Does the agent have more tools or scopes than the task requires?</span>
             </article>
-            <article class="leaf leaf--plum" data-id="LLM-062" data-vector="unsafe automatic tool invocation" data-question="can tools run without explicit user intent or policy approval?">
+            <article class="leaf leaf--coral" data-id="LLM-062" data-vector="unsafe automatic tool invocation" data-question="can tools run without explicit user intent or policy approval?">
               <code>LLM-062</code>
               <strong>Unsafe automatic tool invocation</strong>
               <span>Can tools run without explicit user intent or policy approval?</span>
             </article>
-            <article class="leaf leaf--plum" data-id="LLM-063" data-vector="confused deputy through tools" data-question="can a user make the agent use privileged credentials on the user&#39;s behalf?">
+            <article class="leaf leaf--coral" data-id="LLM-063" data-vector="confused deputy through tools" data-question="can a user make the agent use privileged credentials on the user&#39;s behalf?">
               <code>LLM-063</code>
               <strong>Confused deputy through tools</strong>
               <span>Can a user make the agent use privileged credentials on the user&#39;s behalf?</span>
             </article>
-            <article class="leaf leaf--plum" data-id="LLM-064" data-vector="user-controlled tool arguments" data-question="are tool parameters schema-validated and authorization-checked server-side?">
+            <article class="leaf leaf--coral" data-id="LLM-064" data-vector="user-controlled tool arguments" data-question="are tool parameters schema-validated and authorization-checked server-side?">
               <code>LLM-064</code>
               <strong>User-controlled tool arguments</strong>
               <span>Are tool parameters schema-validated and authorization-checked server-side?</span>
             </article>
-            <article class="leaf leaf--plum" data-id="LLM-065" data-vector="prompt-to-api parameter tampering" data-question="can the model alter ids, scopes, filters, amounts, recipients, or destinations?">
+            <article class="leaf leaf--coral" data-id="LLM-065" data-vector="prompt-to-api parameter tampering" data-question="can the model alter ids, scopes, filters, amounts, recipients, or destinations?">
               <code>LLM-065</code>
               <strong>Prompt-to-API parameter tampering</strong>
               <span>Can the model alter IDs, scopes, filters, amounts, recipients, or destinations?</span>
             </article>
-            <article class="leaf leaf--plum" data-id="LLM-066" data-vector="shell command injection" data-question="can generated commands or user text reach a shell or process runner?">
+            <article class="leaf leaf--coral" data-id="LLM-066" data-vector="shell command injection" data-question="can generated commands or user text reach a shell or process runner?">
               <code>LLM-066</code>
               <strong>Shell command injection</strong>
               <span>Can generated commands or user text reach a shell or process runner?</span>
             </article>
-            <article class="leaf leaf--plum" data-id="LLM-067" data-vector="sql or query injection" data-question="can generated queries execute without parameterization or review?">
+            <article class="leaf leaf--coral" data-id="LLM-067" data-vector="sql or query injection" data-question="can generated queries execute without parameterization or review?">
               <code>LLM-067</code>
               <strong>SQL or query injection</strong>
               <span>Can generated queries execute without parameterization or review?</span>
             </article>
-            <article class="leaf leaf--plum" data-id="LLM-068" data-vector="code execution abuse" data-question="can generated code run outside a sandbox or with broad filesystem/network access?">
+            <article class="leaf leaf--coral" data-id="LLM-068" data-vector="code execution abuse" data-question="can generated code run outside a sandbox or with broad filesystem/network access?">
               <code>LLM-068</code>
               <strong>Code execution abuse</strong>
               <span>Can generated code run outside a sandbox or with broad filesystem/network access?</span>
             </article>
-            <article class="leaf leaf--plum" data-id="LLM-069" data-vector="path traversal through file tools" data-question="can model-selected paths read or write outside the intended workspace?">
+            <article class="leaf leaf--coral" data-id="LLM-069" data-vector="path traversal through file tools" data-question="can model-selected paths read or write outside the intended workspace?">
               <code>LLM-069</code>
               <strong>Path traversal through file tools</strong>
               <span>Can model-selected paths read or write outside the intended workspace?</span>
             </article>
-            <article class="leaf leaf--plum" data-id="LLM-070" data-vector="ssrf through fetch or browser tools" data-question="can an agent access internal urls, metadata services, localhost, or private apis?">
+            <article class="leaf leaf--coral" data-id="LLM-070" data-vector="ssrf through fetch or browser tools" data-question="can an agent access internal urls, metadata services, localhost, or private apis?">
               <code>LLM-070</code>
               <strong>SSRF through fetch or browser tools</strong>
               <span>Can an agent access internal URLs, metadata services, localhost, or private APIs?</span>
             </article>
-            <article class="leaf leaf--plum" data-id="LLM-071" data-vector="unsafe browser automation" data-question="can an agent click, submit, purchase, delete, or authorize actions on websites?">
+            <article class="leaf leaf--coral" data-id="LLM-071" data-vector="unsafe browser automation" data-question="can an agent click, submit, purchase, delete, or authorize actions on websites?">
               <code>LLM-071</code>
               <strong>Unsafe browser automation</strong>
               <span>Can an agent click, submit, purchase, delete, or authorize actions on websites?</span>
             </article>
-            <article class="leaf leaf--plum" data-id="LLM-072" data-vector="email or messaging abuse" data-question="can an agent send manipulated content externally or impersonate a user?">
+            <article class="leaf leaf--coral" data-id="LLM-072" data-vector="email or messaging abuse" data-question="can an agent send manipulated content externally or impersonate a user?">
               <code>LLM-072</code>
               <strong>Email or messaging abuse</strong>
               <span>Can an agent send manipulated content externally or impersonate a user?</span>
             </article>
-            <article class="leaf leaf--plum" data-id="LLM-073" data-vector="payment or transfer abuse" data-question="can an agent initiate financial actions without strong approval?">
+            <article class="leaf leaf--coral" data-id="LLM-073" data-vector="payment or transfer abuse" data-question="can an agent initiate financial actions without strong approval?">
               <code>LLM-073</code>
               <strong>Payment or transfer abuse</strong>
               <span>Can an agent initiate financial actions without strong approval?</span>
             </article>
-            <article class="leaf leaf--plum" data-id="LLM-074" data-vector="production deployment abuse" data-question="can an agent deploy code, change infrastructure, or rotate secrets without review?">
+            <article class="leaf leaf--coral" data-id="LLM-074" data-vector="production deployment abuse" data-question="can an agent deploy code, change infrastructure, or rotate secrets without review?">
               <code>LLM-074</code>
               <strong>Production deployment abuse</strong>
               <span>Can an agent deploy code, change infrastructure, or rotate secrets without review?</span>
             </article>
-            <article class="leaf leaf--plum" data-id="LLM-075" data-vector="destructive action abuse" data-question="can an agent delete, revoke, overwrite, or mutate records irreversibly?">
+            <article class="leaf leaf--coral" data-id="LLM-075" data-vector="destructive action abuse" data-question="can an agent delete, revoke, overwrite, or mutate records irreversibly?">
               <code>LLM-075</code>
               <strong>Destructive action abuse</strong>
               <span>Can an agent delete, revoke, overwrite, or mutate records irreversibly?</span>
             </article>
-            <article class="leaf leaf--plum" data-id="LLM-076" data-vector="missing dry-run path" data-question="are high-impact actions previewed with exact parameters before execution?">
+            <article class="leaf leaf--coral" data-id="LLM-076" data-vector="missing dry-run path" data-question="are high-impact actions previewed with exact parameters before execution?">
               <code>LLM-076</code>
               <strong>Missing dry-run path</strong>
               <span>Are high-impact actions previewed with exact parameters before execution?</span>
             </article>
-            <article class="leaf leaf--plum" data-id="LLM-077" data-vector="retry side effects" data-question="can retries duplicate emails, payments, tickets, jobs, or deployments?">
+            <article class="leaf leaf--coral" data-id="LLM-077" data-vector="retry side effects" data-question="can retries duplicate emails, payments, tickets, jobs, or deployments?">
               <code>LLM-077</code>
               <strong>Retry side effects</strong>
               <span>Can retries duplicate emails, payments, tickets, jobs, or deployments?</span>
             </article>
-            <article class="leaf leaf--plum" data-id="LLM-078" data-vector="missing idempotency" data-question="are tool calls protected against duplicate execution?">
+            <article class="leaf leaf--coral" data-id="LLM-078" data-vector="missing idempotency" data-question="are tool calls protected against duplicate execution?">
               <code>LLM-078</code>
               <strong>Missing idempotency</strong>
               <span>Are tool calls protected against duplicate execution?</span>
             </article>
-            <article class="leaf leaf--plum" data-id="LLM-079" data-vector="tool return-value injection" data-question="are tool outputs treated as untrusted data rather than instructions?">
+            <article class="leaf leaf--coral" data-id="LLM-079" data-vector="tool return-value injection" data-question="are tool outputs treated as untrusted data rather than instructions?">
               <code>LLM-079</code>
               <strong>Tool return-value injection</strong>
               <span>Are tool outputs treated as untrusted data rather than instructions?</span>
             </article>
-            <article class="leaf leaf--plum" data-id="LLM-080" data-vector="tool description poisoning" data-question="can a tool&#39;s name, description, or examples manipulate model behavior?">
+            <article class="leaf leaf--coral" data-id="LLM-080" data-vector="tool description poisoning" data-question="can a tool&#39;s name, description, or examples manipulate model behavior?">
               <code>LLM-080</code>
               <strong>Tool description poisoning</strong>
               <span>Can a tool&#39;s name, description, or examples manipulate model behavior?</span>
             </article>
-            <article class="leaf leaf--plum" data-id="LLM-081" data-vector="tool schema poisoning" data-question="can schemas, defaults, enum labels, or parameter descriptions include hidden instructions?">
+            <article class="leaf leaf--coral" data-id="LLM-081" data-vector="tool schema poisoning" data-question="can schemas, defaults, enum labels, or parameter descriptions include hidden instructions?">
               <code>LLM-081</code>
               <strong>Tool schema poisoning</strong>
               <span>Can schemas, defaults, enum labels, or parameter descriptions include hidden instructions?</span>
             </article>
-            <article class="leaf leaf--plum" data-id="LLM-082" data-vector="tool error poisoning" data-question="can errors or warnings from tools steer the agent into unsafe fallback behavior?">
+            <article class="leaf leaf--coral" data-id="LLM-082" data-vector="tool error poisoning" data-question="can errors or warnings from tools steer the agent into unsafe fallback behavior?">
               <code>LLM-082</code>
               <strong>Tool error poisoning</strong>
               <span>Can errors or warnings from tools steer the agent into unsafe fallback behavior?</span>
             </article>
-            <article class="leaf leaf--plum" data-id="LLM-083" data-vector="connector scope creep" data-question="do oauth scopes and api permissions expand without review?">
+            <article class="leaf leaf--coral" data-id="LLM-083" data-vector="connector scope creep" data-question="do oauth scopes and api permissions expand without review?">
               <code>LLM-083</code>
               <strong>Connector scope creep</strong>
               <span>Do OAuth scopes and API permissions expand without review?</span>
             </article>
-            <article class="leaf leaf--plum" data-id="LLM-084" data-vector="arbitrary external api access" data-question="can the agent call unapproved domains, apis, or webhooks?">
+            <article class="leaf leaf--coral" data-id="LLM-084" data-vector="arbitrary external api access" data-question="can the agent call unapproved domains, apis, or webhooks?">
               <code>LLM-084</code>
               <strong>Arbitrary external API access</strong>
               <span>Can the agent call unapproved domains, APIs, or webhooks?</span>
             </article>
-            <article class="leaf leaf--plum" data-id="LLM-085" data-vector="file upload/download exfiltration" data-question="can tools move sensitive files to attacker-controlled locations?">
+            <article class="leaf leaf--coral" data-id="LLM-085" data-vector="file upload/download exfiltration" data-question="can tools move sensitive files to attacker-controlled locations?">
               <code>LLM-085</code>
               <strong>File upload/download exfiltration</strong>
               <span>Can tools move sensitive files to attacker-controlled locations?</span>
             </article>
-            <article class="leaf leaf--plum" data-id="LLM-086" data-vector="tool race condition" data-question="can state change between model decision, approval, and tool execution?">
+            <article class="leaf leaf--coral" data-id="LLM-086" data-vector="tool race condition" data-question="can state change between model decision, approval, and tool execution?">
               <code>LLM-086</code>
               <strong>Tool race condition</strong>
               <span>Can state change between model decision, approval, and tool execution?</span>
             </article>
-            <article class="leaf leaf--plum" data-id="LLM-087" data-vector="parallel tool inconsistency" data-question="can parallel calls observe inconsistent state or bypass sequencing controls?">
+            <article class="leaf leaf--coral" data-id="LLM-087" data-vector="parallel tool inconsistency" data-question="can parallel calls observe inconsistent state or bypass sequencing controls?">
               <code>LLM-087</code>
               <strong>Parallel tool inconsistency</strong>
               <span>Can parallel calls observe inconsistent state or bypass sequencing controls?</span>
             </article>
-            <article class="leaf leaf--plum" data-id="LLM-088" data-vector="agent self-modification" data-question="can the agent edit its own instructions, tools, policy files, or memory rules?">
+            <article class="leaf leaf--coral" data-id="LLM-088" data-vector="agent self-modification" data-question="can the agent edit its own instructions, tools, policy files, or memory rules?">
               <code>LLM-088</code>
               <strong>Agent self-modification</strong>
               <span>Can the agent edit its own instructions, tools, policy files, or memory rules?</span>
             </article>
-            <article class="leaf leaf--plum" data-id="LLM-089" data-vector="unbounded agent loop" data-question="can the agent keep planning, calling tools, or retrying without a hard cap?">
+            <article class="leaf leaf--coral" data-id="LLM-089" data-vector="unbounded agent loop" data-question="can the agent keep planning, calling tools, or retrying without a hard cap?">
               <code>LLM-089</code>
               <strong>Unbounded agent loop</strong>
               <span>Can the agent keep planning, calling tools, or retrying without a hard cap?</span>
             </article>
-            <article class="leaf leaf--plum" data-id="LLM-090" data-vector="action audit gap" data-question="is every tool call tied to user, session, prompt, evidence, approval, and result?">
+            <article class="leaf leaf--coral" data-id="LLM-090" data-vector="action audit gap" data-question="is every tool call tied to user, session, prompt, evidence, approval, and result?">
               <code>LLM-090</code>
               <strong>Action audit gap</strong>
               <span>Is every tool call tied to user, session, prompt, evidence, approval, and result?</span>
@@ -1272,7 +1329,7 @@
         </div>
       </section>
 
-      <section class="cluster cluster--steel animate" id="f-identity-authorization-and-tenant-boundaries" style="--i:8">
+      <section class="cluster cluster--blue animate" id="f-identity-authorization-and-tenant-boundaries" style="--i:8">
         <header class="cluster-head">
           <div class="cluster-orb">
             <span>F</span>
@@ -1285,77 +1342,77 @@
         </header>
         <div class="leaf-field">
 
-            <article class="leaf leaf--steel" data-id="LLM-121" data-vector="llm-based authorization decision" data-question="is the model trusted to decide access rather than deterministic policy?">
+            <article class="leaf leaf--blue" data-id="LLM-121" data-vector="llm-based authorization decision" data-question="is the model trusted to decide access rather than deterministic policy?">
               <code>LLM-121</code>
               <strong>LLM-based authorization decision</strong>
               <span>Is the model trusted to decide access rather than deterministic policy?</span>
             </article>
-            <article class="leaf leaf--steel" data-id="LLM-122" data-vector="prompt-supplied tenant or user id" data-question="can the user influence identity, tenant, role, or permission context?">
+            <article class="leaf leaf--blue" data-id="LLM-122" data-vector="prompt-supplied tenant or user id" data-question="can the user influence identity, tenant, role, or permission context?">
               <code>LLM-122</code>
               <strong>Prompt-supplied tenant or user ID</strong>
               <span>Can the user influence identity, tenant, role, or permission context?</span>
             </article>
-            <article class="leaf leaf--steel" data-id="LLM-123" data-vector="session mix-up" data-question="can one user&#39;s prompt, files, memory, or tool credentials bind to another session?">
+            <article class="leaf leaf--blue" data-id="LLM-123" data-vector="session mix-up" data-question="can one user&#39;s prompt, files, memory, or tool credentials bind to another session?">
               <code>LLM-123</code>
               <strong>Session mix-up</strong>
               <span>Can one user&#39;s prompt, files, memory, or tool credentials bind to another session?</span>
             </article>
-            <article class="leaf leaf--steel" data-id="LLM-124" data-vector="user impersonation through agent action" data-question="can outputs or tool calls appear to come from another user?">
+            <article class="leaf leaf--blue" data-id="LLM-124" data-vector="user impersonation through agent action" data-question="can outputs or tool calls appear to come from another user?">
               <code>LLM-124</code>
               <strong>User impersonation through agent action</strong>
               <span>Can outputs or tool calls appear to come from another user?</span>
             </article>
-            <article class="leaf leaf--steel" data-id="LLM-125" data-vector="overprivileged service account" data-question="does the agent run with broad service credentials instead of user-scoped tokens?">
+            <article class="leaf leaf--blue" data-id="LLM-125" data-vector="overprivileged service account" data-question="does the agent run with broad service credentials instead of user-scoped tokens?">
               <code>LLM-125</code>
               <strong>Overprivileged service account</strong>
               <span>Does the agent run with broad service credentials instead of user-scoped tokens?</span>
             </article>
-            <article class="leaf leaf--steel" data-id="LLM-126" data-vector="missing per-tool authorization" data-question="is authorization checked for each operation, not just login?">
+            <article class="leaf leaf--blue" data-id="LLM-126" data-vector="missing per-tool authorization" data-question="is authorization checked for each operation, not just login?">
               <code>LLM-126</code>
               <strong>Missing per-tool authorization</strong>
               <span>Is authorization checked for each operation, not just login?</span>
             </article>
-            <article class="leaf leaf--steel" data-id="LLM-127" data-vector="long-lived integration tokens" data-question="are tokens scoped, short-lived, revocable, and rotated?">
+            <article class="leaf leaf--blue" data-id="LLM-127" data-vector="long-lived integration tokens" data-question="are tokens scoped, short-lived, revocable, and rotated?">
               <code>LLM-127</code>
               <strong>Long-lived integration tokens</strong>
               <span>Are tokens scoped, short-lived, revocable, and rotated?</span>
             </article>
-            <article class="leaf leaf--steel" data-id="LLM-128" data-vector="weak service-to-service authentication" data-question="can rogue agents, mcp servers, or connectors call internal services?">
+            <article class="leaf leaf--blue" data-id="LLM-128" data-vector="weak service-to-service authentication" data-question="can rogue agents, mcp servers, or connectors call internal services?">
               <code>LLM-128</code>
               <strong>Weak service-to-service authentication</strong>
               <span>Can rogue agents, MCP servers, or connectors call internal services?</span>
             </article>
-            <article class="leaf leaf--steel" data-id="LLM-129" data-vector="cross-workspace action" data-question="can an agent act across repos, projects, tenants, or environments accidentally?">
+            <article class="leaf leaf--blue" data-id="LLM-129" data-vector="cross-workspace action" data-question="can an agent act across repos, projects, tenants, or environments accidentally?">
               <code>LLM-129</code>
               <strong>Cross-workspace action</strong>
               <span>Can an agent act across repos, projects, tenants, or environments accidentally?</span>
             </article>
-            <article class="leaf leaf--steel" data-id="LLM-130" data-vector="default-allow connector policy" data-question="are new tools allowed unless explicitly blocked?">
+            <article class="leaf leaf--blue" data-id="LLM-130" data-vector="default-allow connector policy" data-question="are new tools allowed unless explicitly blocked?">
               <code>LLM-130</code>
               <strong>Default-allow connector policy</strong>
               <span>Are new tools allowed unless explicitly blocked?</span>
             </article>
-            <article class="leaf leaf--steel" data-id="LLM-131" data-vector="stale identity context" data-question="are role changes, revocations, and terminations reflected immediately?">
+            <article class="leaf leaf--blue" data-id="LLM-131" data-vector="stale identity context" data-question="are role changes, revocations, and terminations reflected immediately?">
               <code>LLM-131</code>
               <strong>Stale identity context</strong>
               <span>Are role changes, revocations, and terminations reflected immediately?</span>
             </article>
-            <article class="leaf leaf--steel" data-id="LLM-132" data-vector="privilege escalation via connected app" data-question="can a low-privilege user use a high-privilege connector indirectly?">
+            <article class="leaf leaf--blue" data-id="LLM-132" data-vector="privilege escalation via connected app" data-question="can a low-privilege user use a high-privilege connector indirectly?">
               <code>LLM-132</code>
               <strong>Privilege escalation via connected app</strong>
               <span>Can a low-privilege user use a high-privilege connector indirectly?</span>
             </article>
-            <article class="leaf leaf--steel" data-id="LLM-133" data-vector="multi-tenant prompt bleed" data-question="are tenant-specific instructions or policies isolated?">
+            <article class="leaf leaf--blue" data-id="LLM-133" data-vector="multi-tenant prompt bleed" data-question="are tenant-specific instructions or policies isolated?">
               <code>LLM-133</code>
               <strong>Multi-tenant prompt bleed</strong>
               <span>Are tenant-specific instructions or policies isolated?</span>
             </article>
-            <article class="leaf leaf--steel" data-id="LLM-134" data-vector="shadow ai identity gap" data-question="are unapproved ai tools missing from iam, inventory, monitoring, and dlp?">
+            <article class="leaf leaf--blue" data-id="LLM-134" data-vector="shadow ai identity gap" data-question="are unapproved ai tools missing from iam, inventory, monitoring, and dlp?">
               <code>LLM-134</code>
               <strong>Shadow AI identity gap</strong>
               <span>Are unapproved AI tools missing from IAM, inventory, monitoring, and DLP?</span>
             </article>
-            <article class="leaf leaf--steel" data-id="LLM-135" data-vector="weak delegated authority" data-question="can an agent claim delegated user consent without proof?">
+            <article class="leaf leaf--blue" data-id="LLM-135" data-vector="weak delegated authority" data-question="can an agent claim delegated user consent without proof?">
               <code>LLM-135</code>
               <strong>Weak delegated authority</strong>
               <span>Can an agent claim delegated user consent without proof?</span>
@@ -1363,7 +1420,7 @@
         </div>
       </section>
 
-      <section class="cluster cluster--teal animate" id="g-supply-chain-models-datasets-and-deployment" style="--i:9">
+      <section class="cluster cluster--violet animate" id="g-supply-chain-models-datasets-and-deployment" style="--i:9">
         <header class="cluster-head">
           <div class="cluster-orb">
             <span>G</span>
@@ -1376,102 +1433,102 @@
         </header>
         <div class="leaf-field">
 
-            <article class="leaf leaf--teal" data-id="LLM-136" data-vector="compromised base model" data-question="are models sourced, approved, scanned, and versioned?">
+            <article class="leaf leaf--violet" data-id="LLM-136" data-vector="compromised base model" data-question="are models sourced, approved, scanned, and versioned?">
               <code>LLM-136</code>
               <strong>Compromised base model</strong>
               <span>Are models sourced, approved, scanned, and versioned?</span>
             </article>
-            <article class="leaf leaf--teal" data-id="LLM-137" data-vector="backdoored model weights" data-question="are model artifacts verified with signatures or hashes?">
+            <article class="leaf leaf--violet" data-id="LLM-137" data-vector="backdoored model weights" data-question="are model artifacts verified with signatures or hashes?">
               <code>LLM-137</code>
               <strong>Backdoored model weights</strong>
               <span>Are model artifacts verified with signatures or hashes?</span>
             </article>
-            <article class="leaf leaf--teal" data-id="LLM-138" data-vector="malicious fine-tune adapter" data-question="are lora/adapters and checkpoints trusted like executable code?">
+            <article class="leaf leaf--violet" data-id="LLM-138" data-vector="malicious fine-tune adapter" data-question="are lora/adapters and checkpoints trusted like executable code?">
               <code>LLM-138</code>
               <strong>Malicious fine-tune adapter</strong>
               <span>Are LoRA/adapters and checkpoints trusted like executable code?</span>
             </article>
-            <article class="leaf leaf--teal" data-id="LLM-139" data-vector="poisoned training data" data-question="is data provenance tracked for pretraining and fine-tuning?">
+            <article class="leaf leaf--violet" data-id="LLM-139" data-vector="poisoned training data" data-question="is data provenance tracked for pretraining and fine-tuning?">
               <code>LLM-139</code>
               <strong>Poisoned training data</strong>
               <span>Is data provenance tracked for pretraining and fine-tuning?</span>
             </article>
-            <article class="leaf leaf--teal" data-id="LLM-140" data-vector="poisoned evaluation data" data-question="can benchmarks or red-team tests be manipulated to hide failures?">
+            <article class="leaf leaf--violet" data-id="LLM-140" data-vector="poisoned evaluation data" data-question="can benchmarks or red-team tests be manipulated to hide failures?">
               <code>LLM-140</code>
               <strong>Poisoned evaluation data</strong>
               <span>Can benchmarks or red-team tests be manipulated to hide failures?</span>
             </article>
-            <article class="leaf leaf--teal" data-id="LLM-141" data-vector="dependency compromise" data-question="are inference, orchestration, parser, and plugin dependencies scanned and pinned?">
+            <article class="leaf leaf--violet" data-id="LLM-141" data-vector="dependency compromise" data-question="are inference, orchestration, parser, and plugin dependencies scanned and pinned?">
               <code>LLM-141</code>
               <strong>Dependency compromise</strong>
               <span>Are inference, orchestration, parser, and plugin dependencies scanned and pinned?</span>
             </article>
-            <article class="leaf leaf--teal" data-id="LLM-142" data-vector="typosquatting or dependency confusion" data-question="can malicious packages replace internal or expected dependencies?">
+            <article class="leaf leaf--violet" data-id="LLM-142" data-vector="typosquatting or dependency confusion" data-question="can malicious packages replace internal or expected dependencies?">
               <code>LLM-142</code>
               <strong>Typosquatting or dependency confusion</strong>
               <span>Can malicious packages replace internal or expected dependencies?</span>
             </article>
-            <article class="leaf leaf--teal" data-id="LLM-143" data-vector="prompt template supply-chain attack" data-question="are shared prompt libraries, agents, and templates reviewed and versioned?">
+            <article class="leaf leaf--violet" data-id="LLM-143" data-vector="prompt template supply-chain attack" data-question="are shared prompt libraries, agents, and templates reviewed and versioned?">
               <code>LLM-143</code>
               <strong>Prompt template supply-chain attack</strong>
               <span>Are shared prompt libraries, agents, and templates reviewed and versioned?</span>
             </article>
-            <article class="leaf leaf--teal" data-id="LLM-144" data-vector="model registry tampering" data-question="can registry metadata, tags, or model versions be changed without approval?">
+            <article class="leaf leaf--violet" data-id="LLM-144" data-vector="model registry tampering" data-question="can registry metadata, tags, or model versions be changed without approval?">
               <code>LLM-144</code>
               <strong>Model registry tampering</strong>
               <span>Can registry metadata, tags, or model versions be changed without approval?</span>
             </article>
-            <article class="leaf leaf--teal" data-id="LLM-145" data-vector="unsafe model update" data-question="can provider or model changes alter behavior without regression testing?">
+            <article class="leaf leaf--violet" data-id="LLM-145" data-vector="unsafe model update" data-question="can provider or model changes alter behavior without regression testing?">
               <code>LLM-145</code>
               <strong>Unsafe model update</strong>
               <span>Can provider or model changes alter behavior without regression testing?</span>
             </article>
-            <article class="leaf leaf--teal" data-id="LLM-146" data-vector="unsafe fallback model" data-question="does outage handling route to a weaker or unapproved model?">
+            <article class="leaf leaf--violet" data-id="LLM-146" data-vector="unsafe fallback model" data-question="does outage handling route to a weaker or unapproved model?">
               <code>LLM-146</code>
               <strong>Unsafe fallback model</strong>
               <span>Does outage handling route to a weaker or unapproved model?</span>
             </article>
-            <article class="leaf leaf--teal" data-id="LLM-147" data-vector="container or runtime compromise" data-question="are serving images, gpus, drivers, and runtimes patched and isolated?">
+            <article class="leaf leaf--violet" data-id="LLM-147" data-vector="container or runtime compromise" data-question="are serving images, gpus, drivers, and runtimes patched and isolated?">
               <code>LLM-147</code>
               <strong>Container or runtime compromise</strong>
               <span>Are serving images, GPUs, drivers, and runtimes patched and isolated?</span>
             </article>
-            <article class="leaf leaf--teal" data-id="LLM-148" data-vector="ci/cd poisoning" data-question="can build pipelines inject prompts, tools, configs, or model artifacts?">
+            <article class="leaf leaf--violet" data-id="LLM-148" data-vector="ci/cd poisoning" data-question="can build pipelines inject prompts, tools, configs, or model artifacts?">
               <code>LLM-148</code>
               <strong>CI/CD poisoning</strong>
               <span>Can build pipelines inject prompts, tools, configs, or model artifacts?</span>
             </article>
-            <article class="leaf leaf--teal" data-id="LLM-149" data-vector="third-party plugin marketplace risk" data-question="are plugins signed, reviewed, sandboxed, and monitored?">
+            <article class="leaf leaf--violet" data-id="LLM-149" data-vector="third-party plugin marketplace risk" data-question="are plugins signed, reviewed, sandboxed, and monitored?">
               <code>LLM-149</code>
               <strong>Third-party plugin marketplace risk</strong>
               <span>Are plugins signed, reviewed, sandboxed, and monitored?</span>
             </article>
-            <article class="leaf leaf--teal" data-id="LLM-150" data-vector="insecure parser dependency" data-question="can pdf, image, office, archive, or html parsers be exploited during ingestion?">
+            <article class="leaf leaf--violet" data-id="LLM-150" data-vector="insecure parser dependency" data-question="can pdf, image, office, archive, or html parsers be exploited during ingestion?">
               <code>LLM-150</code>
               <strong>Insecure parser dependency</strong>
               <span>Can PDF, image, office, archive, or HTML parsers be exploited during ingestion?</span>
             </article>
-            <article class="leaf leaf--teal" data-id="LLM-151" data-vector="environment mix-up" data-question="can dev prompts, test keys, staging data, or weaker policies reach production?">
+            <article class="leaf leaf--violet" data-id="LLM-151" data-vector="environment mix-up" data-question="can dev prompts, test keys, staging data, or weaker policies reach production?">
               <code>LLM-151</code>
               <strong>Environment mix-up</strong>
               <span>Can dev prompts, test keys, staging data, or weaker policies reach production?</span>
             </article>
-            <article class="leaf leaf--teal" data-id="LLM-152" data-vector="debug mode in production" data-question="can debug prompts, traces, or bypass flags be enabled by users or attackers?">
+            <article class="leaf leaf--violet" data-id="LLM-152" data-vector="debug mode in production" data-question="can debug prompts, traces, or bypass flags be enabled by users or attackers?">
               <code>LLM-152</code>
               <strong>Debug mode in production</strong>
               <span>Can debug prompts, traces, or bypass flags be enabled by users or attackers?</span>
             </article>
-            <article class="leaf leaf--teal" data-id="LLM-153" data-vector="client-side prompt exposure" data-question="are sensitive prompts or tool schemas exposed in browser/mobile code?">
+            <article class="leaf leaf--violet" data-id="LLM-153" data-vector="client-side prompt exposure" data-question="are sensitive prompts or tool schemas exposed in browser/mobile code?">
               <code>LLM-153</code>
               <strong>Client-side prompt exposure</strong>
               <span>Are sensitive prompts or tool schemas exposed in browser/mobile code?</span>
             </article>
-            <article class="leaf leaf--teal" data-id="LLM-154" data-vector="feature flag guardrail bypass" data-question="can flags disable filters, approvals, logging, or sandboxing?">
+            <article class="leaf leaf--violet" data-id="LLM-154" data-vector="feature flag guardrail bypass" data-question="can flags disable filters, approvals, logging, or sandboxing?">
               <code>LLM-154</code>
               <strong>Feature flag guardrail bypass</strong>
               <span>Can flags disable filters, approvals, logging, or sandboxing?</span>
             </article>
-            <article class="leaf leaf--teal" data-id="LLM-155" data-vector="model artifact theft" data-question="are weights, adapters, prompts, datasets, and evals protected as intellectual property?">
+            <article class="leaf leaf--violet" data-id="LLM-155" data-vector="model artifact theft" data-question="are weights, adapters, prompts, datasets, and evals protected as intellectual property?">
               <code>LLM-155</code>
               <strong>Model artifact theft</strong>
               <span>Are weights, adapters, prompts, datasets, and evals protected as intellectual property?</span>
@@ -1479,7 +1536,7 @@
         </div>
       </section>
 
-      <section class="cluster cluster--coral animate" id="h-output-handling-and-downstream-injection" style="--i:10">
+      <section class="cluster cluster--rose animate" id="h-output-handling-and-downstream-injection" style="--i:10">
         <header class="cluster-head">
           <div class="cluster-orb">
             <span>H</span>
@@ -1492,97 +1549,97 @@
         </header>
         <div class="leaf-field">
 
-            <article class="leaf leaf--coral" data-id="LLM-156" data-vector="xss from generated html or markdown" data-question="is model output encoded and sanitized before rendering?">
+            <article class="leaf leaf--rose" data-id="LLM-156" data-vector="xss from generated html or markdown" data-question="is model output encoded and sanitized before rendering?">
               <code>LLM-156</code>
               <strong>XSS from generated HTML or Markdown</strong>
               <span>Is model output encoded and sanitized before rendering?</span>
             </article>
-            <article class="leaf leaf--coral" data-id="LLM-157" data-vector="markdown link phishing" data-question="can generated links mislead users or hide dangerous destinations?">
+            <article class="leaf leaf--rose" data-id="LLM-157" data-vector="markdown link phishing" data-question="can generated links mislead users or hide dangerous destinations?">
               <code>LLM-157</code>
               <strong>Markdown link phishing</strong>
               <span>Can generated links mislead users or hide dangerous destinations?</span>
             </article>
-            <article class="leaf leaf--coral" data-id="LLM-158" data-vector="sql injection from generated queries" data-question="are generated queries parameterized and reviewed?">
+            <article class="leaf leaf--rose" data-id="LLM-158" data-vector="sql injection from generated queries" data-question="are generated queries parameterized and reviewed?">
               <code>LLM-158</code>
               <strong>SQL injection from generated queries</strong>
               <span>Are generated queries parameterized and reviewed?</span>
             </article>
-            <article class="leaf leaf--coral" data-id="LLM-159" data-vector="command injection from generated commands" data-question="are commands structured without shell string concatenation?">
+            <article class="leaf leaf--rose" data-id="LLM-159" data-vector="command injection from generated commands" data-question="are commands structured without shell string concatenation?">
               <code>LLM-159</code>
               <strong>Command injection from generated commands</strong>
               <span>Are commands structured without shell string concatenation?</span>
             </article>
-            <article class="leaf leaf--coral" data-id="LLM-160" data-vector="json or schema injection" data-question="can output break parsers or smuggle fields into downstream systems?">
+            <article class="leaf leaf--rose" data-id="LLM-160" data-vector="json or schema injection" data-question="can output break parsers or smuggle fields into downstream systems?">
               <code>LLM-160</code>
               <strong>JSON or schema injection</strong>
               <span>Can output break parsers or smuggle fields into downstream systems?</span>
             </article>
-            <article class="leaf leaf--coral" data-id="LLM-161" data-vector="template injection" data-question="can generated templates execute code or access server objects?">
+            <article class="leaf leaf--rose" data-id="LLM-161" data-vector="template injection" data-question="can generated templates execute code or access server objects?">
               <code>LLM-161</code>
               <strong>Template injection</strong>
               <span>Can generated templates execute code or access server objects?</span>
             </article>
-            <article class="leaf leaf--coral" data-id="LLM-162" data-vector="deserialization risk" data-question="can generated serialized data trigger unsafe object construction?">
+            <article class="leaf leaf--rose" data-id="LLM-162" data-vector="deserialization risk" data-question="can generated serialized data trigger unsafe object construction?">
               <code>LLM-162</code>
               <strong>Deserialization risk</strong>
               <span>Can generated serialized data trigger unsafe object construction?</span>
             </article>
-            <article class="leaf leaf--coral" data-id="LLM-163" data-vector="spreadsheet formula injection" data-question="can csv/xlsx output execute formulas when opened?">
+            <article class="leaf leaf--rose" data-id="LLM-163" data-vector="spreadsheet formula injection" data-question="can csv/xlsx output execute formulas when opened?">
               <code>LLM-163</code>
               <strong>Spreadsheet formula injection</strong>
               <span>Can CSV/XLSX output execute formulas when opened?</span>
             </article>
-            <article class="leaf leaf--coral" data-id="LLM-164" data-vector="log injection" data-question="can generated output forge or corrupt logs?">
+            <article class="leaf leaf--rose" data-id="LLM-164" data-vector="log injection" data-question="can generated output forge or corrupt logs?">
               <code>LLM-164</code>
               <strong>Log injection</strong>
               <span>Can generated output forge or corrupt logs?</span>
             </article>
-            <article class="leaf leaf--coral" data-id="LLM-165" data-vector="generated code dependency risk" data-question="can the model recommend non-existent, malicious, or typosquatted packages?">
+            <article class="leaf leaf--rose" data-id="LLM-165" data-vector="generated code dependency risk" data-question="can the model recommend non-existent, malicious, or typosquatted packages?">
               <code>LLM-165</code>
               <strong>Generated code dependency risk</strong>
               <span>Can the model recommend non-existent, malicious, or typosquatted packages?</span>
             </article>
-            <article class="leaf leaf--coral" data-id="LLM-166" data-vector="unsafe infrastructure-as-code" data-question="can generated iac expose public resources, weak iam, or secrets?">
+            <article class="leaf leaf--rose" data-id="LLM-166" data-vector="unsafe infrastructure-as-code" data-question="can generated iac expose public resources, weak iam, or secrets?">
               <code>LLM-166</code>
               <strong>Unsafe infrastructure-as-code</strong>
               <span>Can generated IaC expose public resources, weak IAM, or secrets?</span>
             </article>
-            <article class="leaf leaf--coral" data-id="LLM-167" data-vector="unsafe remediation instructions" data-question="can generated operational guidance cause data loss or security weakening?">
+            <article class="leaf leaf--rose" data-id="LLM-167" data-vector="unsafe remediation instructions" data-question="can generated operational guidance cause data loss or security weakening?">
               <code>LLM-167</code>
               <strong>Unsafe remediation instructions</strong>
               <span>Can generated operational guidance cause data loss or security weakening?</span>
             </article>
-            <article class="leaf leaf--coral" data-id="LLM-168" data-vector="citation hallucination" data-question="can the model invent sources, quote nonexistent evidence, or cite irrelevant documents?">
+            <article class="leaf leaf--rose" data-id="LLM-168" data-vector="citation hallucination" data-question="can the model invent sources, quote nonexistent evidence, or cite irrelevant documents?">
               <code>LLM-168</code>
               <strong>Citation hallucination</strong>
               <span>Can the model invent sources, quote nonexistent evidence, or cite irrelevant documents?</span>
             </article>
-            <article class="leaf leaf--coral" data-id="LLM-169" data-vector="high-stakes misinformation" data-question="can hallucinations affect medical, legal, financial, safety, or security outcomes?">
+            <article class="leaf leaf--rose" data-id="LLM-169" data-vector="high-stakes misinformation" data-question="can hallucinations affect medical, legal, financial, safety, or security outcomes?">
               <code>LLM-169</code>
               <strong>High-stakes misinformation</strong>
               <span>Can hallucinations affect medical, legal, financial, safety, or security outcomes?</span>
             </article>
-            <article class="leaf leaf--coral" data-id="LLM-170" data-vector="hidden control characters" data-question="can unicode, ansi, or invisible characters alter terminals, logs, or reviews?">
+            <article class="leaf leaf--rose" data-id="LLM-170" data-vector="hidden control characters" data-question="can unicode, ansi, or invisible characters alter terminals, logs, or reviews?">
               <code>LLM-170</code>
               <strong>Hidden control characters</strong>
               <span>Can Unicode, ANSI, or invisible characters alter terminals, logs, or reviews?</span>
             </article>
-            <article class="leaf leaf--coral" data-id="LLM-171" data-vector="data tampering in generated reports" data-question="can summaries omit caveats, alter numbers, or misstate evidence?">
+            <article class="leaf leaf--rose" data-id="LLM-171" data-vector="data tampering in generated reports" data-question="can summaries omit caveats, alter numbers, or misstate evidence?">
               <code>LLM-171</code>
               <strong>Data tampering in generated reports</strong>
               <span>Can summaries omit caveats, alter numbers, or misstate evidence?</span>
             </article>
-            <article class="leaf leaf--coral" data-id="LLM-172" data-vector="policy-violating content generation" data-question="can outputs support phishing, fraud, malware, abuse, or harmful instructions?">
+            <article class="leaf leaf--rose" data-id="LLM-172" data-vector="policy-violating content generation" data-question="can outputs support phishing, fraud, malware, abuse, or harmful instructions?">
               <code>LLM-172</code>
               <strong>Policy-violating content generation</strong>
               <span>Can outputs support phishing, fraud, malware, abuse, or harmful instructions?</span>
             </article>
-            <article class="leaf leaf--coral" data-id="LLM-173" data-vector="unsafe auto-ingestion of output" data-question="is model output fed directly into tickets, code, databases, or tools?">
+            <article class="leaf leaf--rose" data-id="LLM-173" data-vector="unsafe auto-ingestion of output" data-question="is model output fed directly into tickets, code, databases, or tools?">
               <code>LLM-173</code>
               <strong>Unsafe auto-ingestion of output</strong>
               <span>Is model output fed directly into tickets, code, databases, or tools?</span>
             </article>
-            <article class="leaf leaf--coral" data-id="LLM-174" data-vector="output trust confusion" data-question="do downstream systems know whether content is generated, user-provided, verified, or authoritative?">
+            <article class="leaf leaf--rose" data-id="LLM-174" data-vector="output trust confusion" data-question="do downstream systems know whether content is generated, user-provided, verified, or authoritative?">
               <code>LLM-174</code>
               <strong>Output trust confusion</strong>
               <span>Do downstream systems know whether content is generated, user-provided, verified, or authoritative?</span>
@@ -1590,7 +1647,7 @@
         </div>
       </section>
 
-      <section class="cluster cluster--green animate" id="i-denial-of-service-cost-abuse-and-reliability" style="--i:11">
+      <section class="cluster cluster--orange animate" id="i-denial-of-service-cost-abuse-and-reliability" style="--i:11">
         <header class="cluster-head">
           <div class="cluster-orb">
             <span>I</span>
@@ -1603,82 +1660,82 @@
         </header>
         <div class="leaf-field">
 
-            <article class="leaf leaf--green" data-id="LLM-175" data-vector="token exhaustion" data-question="can users force very long prompts, contexts, or completions?">
+            <article class="leaf leaf--orange" data-id="LLM-175" data-vector="token exhaustion" data-question="can users force very long prompts, contexts, or completions?">
               <code>LLM-175</code>
               <strong>Token exhaustion</strong>
               <span>Can users force very long prompts, contexts, or completions?</span>
             </article>
-            <article class="leaf leaf--green" data-id="LLM-176" data-vector="context-window stuffing" data-question="can attackers crowd out safety instructions or needed evidence?">
+            <article class="leaf leaf--orange" data-id="LLM-176" data-vector="context-window stuffing" data-question="can attackers crowd out safety instructions or needed evidence?">
               <code>LLM-176</code>
               <strong>Context-window stuffing</strong>
               <span>Can attackers crowd out safety instructions or needed evidence?</span>
             </article>
-            <article class="leaf leaf--green" data-id="LLM-177" data-vector="expensive tool-call abuse" data-question="can users trigger costly search, scraping, code execution, or data processing?">
+            <article class="leaf leaf--orange" data-id="LLM-177" data-vector="expensive tool-call abuse" data-question="can users trigger costly search, scraping, code execution, or data processing?">
               <code>LLM-177</code>
               <strong>Expensive tool-call abuse</strong>
               <span>Can users trigger costly search, scraping, code execution, or data processing?</span>
             </article>
-            <article class="leaf leaf--green" data-id="LLM-178" data-vector="recursive agent loop" data-question="can an agent repeatedly plan, call itself, or spawn tasks?">
+            <article class="leaf leaf--orange" data-id="LLM-178" data-vector="recursive agent loop" data-question="can an agent repeatedly plan, call itself, or spawn tasks?">
               <code>LLM-178</code>
               <strong>Recursive agent loop</strong>
               <span>Can an agent repeatedly plan, call itself, or spawn tasks?</span>
             </article>
-            <article class="leaf leaf--green" data-id="LLM-179" data-vector="retry storm" data-question="can failures create repeated model calls or side-effecting tool calls?">
+            <article class="leaf leaf--orange" data-id="LLM-179" data-vector="retry storm" data-question="can failures create repeated model calls or side-effecting tool calls?">
               <code>LLM-179</code>
               <strong>Retry storm</strong>
               <span>Can failures create repeated model calls or side-effecting tool calls?</span>
             </article>
-            <article class="leaf leaf--green" data-id="LLM-180" data-vector="model latency exhaustion" data-question="can slow prompts tie up workers or streaming connections?">
+            <article class="leaf leaf--orange" data-id="LLM-180" data-vector="model latency exhaustion" data-question="can slow prompts tie up workers or streaming connections?">
               <code>LLM-180</code>
               <strong>Model latency exhaustion</strong>
               <span>Can slow prompts tie up workers or streaming connections?</span>
             </article>
-            <article class="leaf leaf--green" data-id="LLM-181" data-vector="concurrent session flooding" data-question="are per-user, per-tenant, and global limits enforced?">
+            <article class="leaf leaf--orange" data-id="LLM-181" data-vector="concurrent session flooding" data-question="are per-user, per-tenant, and global limits enforced?">
               <code>LLM-181</code>
               <strong>Concurrent session flooding</strong>
               <span>Are per-user, per-tenant, and global limits enforced?</span>
             </article>
-            <article class="leaf leaf--green" data-id="LLM-182" data-vector="trial or account fan-out" data-question="can attackers bypass limits using many identities, keys, or tenants?">
+            <article class="leaf leaf--orange" data-id="LLM-182" data-vector="trial or account fan-out" data-question="can attackers bypass limits using many identities, keys, or tenants?">
               <code>LLM-182</code>
               <strong>Trial or account fan-out</strong>
               <span>Can attackers bypass limits using many identities, keys, or tenants?</span>
             </article>
-            <article class="leaf leaf--green" data-id="LLM-183" data-vector="vector query amplification" data-question="can queries trigger large retrieval, reranking, or graph traversal work?">
+            <article class="leaf leaf--orange" data-id="LLM-183" data-vector="vector query amplification" data-question="can queries trigger large retrieval, reranking, or graph traversal work?">
               <code>LLM-183</code>
               <strong>Vector query amplification</strong>
               <span>Can queries trigger large retrieval, reranking, or graph traversal work?</span>
             </article>
-            <article class="leaf leaf--green" data-id="LLM-184" data-vector="embedding ingestion flood" data-question="can uploads create excessive embedding, ocr, parsing, or indexing costs?">
+            <article class="leaf leaf--orange" data-id="LLM-184" data-vector="embedding ingestion flood" data-question="can uploads create excessive embedding, ocr, parsing, or indexing costs?">
               <code>LLM-184</code>
               <strong>Embedding ingestion flood</strong>
               <span>Can uploads create excessive embedding, OCR, parsing, or indexing costs?</span>
             </article>
-            <article class="leaf leaf--green" data-id="LLM-185" data-vector="parser bomb" data-question="can archives, pdfs, images, or documents exhaust parsing resources?">
+            <article class="leaf leaf--orange" data-id="LLM-185" data-vector="parser bomb" data-question="can archives, pdfs, images, or documents exhaust parsing resources?">
               <code>LLM-185</code>
               <strong>Parser bomb</strong>
               <span>Can archives, PDFs, images, or documents exhaust parsing resources?</span>
             </article>
-            <article class="leaf leaf--green" data-id="LLM-186" data-vector="cache bypass" data-question="can small prompt changes defeat caching and multiply cost?">
+            <article class="leaf leaf--orange" data-id="LLM-186" data-vector="cache bypass" data-question="can small prompt changes defeat caching and multiply cost?">
               <code>LLM-186</code>
               <strong>Cache bypass</strong>
               <span>Can small prompt changes defeat caching and multiply cost?</span>
             </article>
-            <article class="leaf leaf--green" data-id="LLM-187" data-vector="expensive model selection abuse" data-question="can users force premium models or larger context windows unnecessarily?">
+            <article class="leaf leaf--orange" data-id="LLM-187" data-vector="expensive model selection abuse" data-question="can users force premium models or larger context windows unnecessarily?">
               <code>LLM-187</code>
               <strong>Expensive model selection abuse</strong>
               <span>Can users force premium models or larger context windows unnecessarily?</span>
             </article>
-            <article class="leaf leaf--green" data-id="LLM-188" data-vector="approval queue exhaustion" data-question="can attackers flood human or quorum review queues?">
+            <article class="leaf leaf--orange" data-id="LLM-188" data-vector="approval queue exhaustion" data-question="can attackers flood human or quorum review queues?">
               <code>LLM-188</code>
               <strong>Approval queue exhaustion</strong>
               <span>Can attackers flood human or quorum review queues?</span>
             </article>
-            <article class="leaf leaf--green" data-id="LLM-189" data-vector="streaming abuse" data-question="can long-running streams hold resources or evade response limits?">
+            <article class="leaf leaf--orange" data-id="LLM-189" data-vector="streaming abuse" data-question="can long-running streams hold resources or evade response limits?">
               <code>LLM-189</code>
               <strong>Streaming abuse</strong>
               <span>Can long-running streams hold resources or evade response limits?</span>
             </article>
-            <article class="leaf leaf--green" data-id="LLM-190" data-vector="budget-drain denial of service" data-question="can attackers consume api credits, quotas, or vendor budgets?">
+            <article class="leaf leaf--orange" data-id="LLM-190" data-vector="budget-drain denial of service" data-question="can attackers consume api credits, quotas, or vendor budgets?">
               <code>LLM-190</code>
               <strong>Budget-drain denial of service</strong>
               <span>Can attackers consume API credits, quotas, or vendor budgets?</span>
@@ -1686,7 +1743,7 @@
         </div>
       </section>
 
-      <section class="cluster cluster--plum animate" id="j-model-extraction-inference-and-safety-evasion" style="--i:12">
+      <section class="cluster cluster--indigo animate" id="j-model-extraction-inference-and-safety-evasion" style="--i:12">
         <header class="cluster-head">
           <div class="cluster-orb">
             <span>J</span>
@@ -1699,62 +1756,62 @@
         </header>
         <div class="leaf-field">
 
-            <article class="leaf leaf--plum" data-id="LLM-191" data-vector="model extraction" data-question="can repeated queries approximate proprietary behavior or decision logic?">
+            <article class="leaf leaf--indigo" data-id="LLM-191" data-vector="model extraction" data-question="can repeated queries approximate proprietary behavior or decision logic?">
               <code>LLM-191</code>
               <strong>Model extraction</strong>
               <span>Can repeated queries approximate proprietary behavior or decision logic?</span>
             </article>
-            <article class="leaf leaf--plum" data-id="LLM-192" data-vector="prompt extraction" data-question="can attackers infer hidden prompts, policies, or routing rules?">
+            <article class="leaf leaf--indigo" data-id="LLM-192" data-vector="prompt extraction" data-question="can attackers infer hidden prompts, policies, or routing rules?">
               <code>LLM-192</code>
               <strong>Prompt extraction</strong>
               <span>Can attackers infer hidden prompts, policies, or routing rules?</span>
             </article>
-            <article class="leaf leaf--plum" data-id="LLM-193" data-vector="membership inference" data-question="can attackers determine whether a record was in training or fine-tuning data?">
+            <article class="leaf leaf--indigo" data-id="LLM-193" data-vector="membership inference" data-question="can attackers determine whether a record was in training or fine-tuning data?">
               <code>LLM-193</code>
               <strong>Membership inference</strong>
               <span>Can attackers determine whether a record was in training or fine-tuning data?</span>
             </article>
-            <article class="leaf leaf--plum" data-id="LLM-194" data-vector="training data extraction" data-question="can prompts elicit memorized snippets or confidential examples?">
+            <article class="leaf leaf--indigo" data-id="LLM-194" data-vector="training data extraction" data-question="can prompts elicit memorized snippets or confidential examples?">
               <code>LLM-194</code>
               <strong>Training data extraction</strong>
               <span>Can prompts elicit memorized snippets or confidential examples?</span>
             </article>
-            <article class="leaf leaf--plum" data-id="LLM-195" data-vector="fine-tune inversion" data-question="can attackers reconstruct proprietary fine-tune patterns or labels?">
+            <article class="leaf leaf--indigo" data-id="LLM-195" data-vector="fine-tune inversion" data-question="can attackers reconstruct proprietary fine-tune patterns or labels?">
               <code>LLM-195</code>
               <strong>Fine-tune inversion</strong>
               <span>Can attackers reconstruct proprietary fine-tune patterns or labels?</span>
             </article>
-            <article class="leaf leaf--plum" data-id="LLM-196" data-vector="model fingerprinting" data-question="can attackers identify model, version, safety layer, or provider for targeted attacks?">
+            <article class="leaf leaf--indigo" data-id="LLM-196" data-vector="model fingerprinting" data-question="can attackers identify model, version, safety layer, or provider for targeted attacks?">
               <code>LLM-196</code>
               <strong>Model fingerprinting</strong>
               <span>Can attackers identify model, version, safety layer, or provider for targeted attacks?</span>
             </article>
-            <article class="leaf leaf--plum" data-id="LLM-197" data-vector="guardrail boundary probing" data-question="can attackers map what filters allow and block?">
+            <article class="leaf leaf--indigo" data-id="LLM-197" data-vector="guardrail boundary probing" data-question="can attackers map what filters allow and block?">
               <code>LLM-197</code>
               <strong>Guardrail boundary probing</strong>
               <span>Can attackers map what filters allow and block?</span>
             </article>
-            <article class="leaf leaf--plum" data-id="LLM-198" data-vector="safety classifier evasion" data-question="can text transformation bypass moderation or policy classifiers?">
+            <article class="leaf leaf--indigo" data-id="LLM-198" data-vector="safety classifier evasion" data-question="can text transformation bypass moderation or policy classifiers?">
               <code>LLM-198</code>
               <strong>Safety classifier evasion</strong>
               <span>Can text transformation bypass moderation or policy classifiers?</span>
             </article>
-            <article class="leaf leaf--plum" data-id="LLM-199" data-vector="adversarial suffix or trigger" data-question="can crafted suffixes or triggers reliably alter behavior?">
+            <article class="leaf leaf--indigo" data-id="LLM-199" data-vector="adversarial suffix or trigger" data-question="can crafted suffixes or triggers reliably alter behavior?">
               <code>LLM-199</code>
               <strong>Adversarial suffix or trigger</strong>
               <span>Can crafted suffixes or triggers reliably alter behavior?</span>
             </article>
-            <article class="leaf leaf--plum" data-id="LLM-200" data-vector="latent backdoor trigger" data-question="can rare phrases, facts, or patterns activate hidden behavior?">
+            <article class="leaf leaf--indigo" data-id="LLM-200" data-vector="latent backdoor trigger" data-question="can rare phrases, facts, or patterns activate hidden behavior?">
               <code>LLM-200</code>
               <strong>Latent backdoor trigger</strong>
               <span>Can rare phrases, facts, or patterns activate hidden behavior?</span>
             </article>
-            <article class="leaf leaf--plum" data-id="LLM-201" data-vector="eval overfitting" data-question="are controls tuned only to known test cases rather than real adversarial behavior?">
+            <article class="leaf leaf--indigo" data-id="LLM-201" data-vector="eval overfitting" data-question="are controls tuned only to known test cases rather than real adversarial behavior?">
               <code>LLM-201</code>
               <strong>Eval overfitting</strong>
               <span>Are controls tuned only to known test cases rather than real adversarial behavior?</span>
             </article>
-            <article class="leaf leaf--plum" data-id="LLM-202" data-vector="model theft via artifact access" data-question="can insiders or compromised services download weights, adapters, or prompts?">
+            <article class="leaf leaf--indigo" data-id="LLM-202" data-vector="model theft via artifact access" data-question="can insiders or compromised services download weights, adapters, or prompts?">
               <code>LLM-202</code>
               <strong>Model theft via artifact access</strong>
               <span>Can insiders or compromised services download weights, adapters, or prompts?</span>
@@ -1762,7 +1819,7 @@
         </div>
       </section>
 
-      <section class="cluster cluster--amber animate" id="k-multi-agent-and-delegation-risks" style="--i:13">
+      <section class="cluster cluster--cyan animate" id="k-multi-agent-and-delegation-risks" style="--i:13">
         <header class="cluster-head">
           <div class="cluster-orb">
             <span>K</span>
@@ -1775,67 +1832,67 @@
         </header>
         <div class="leaf-field">
 
-            <article class="leaf leaf--amber" data-id="LLM-203" data-vector="instruction laundering between agents" data-question="can one agent pass malicious instructions to another as trusted work product?">
+            <article class="leaf leaf--cyan" data-id="LLM-203" data-vector="instruction laundering between agents" data-question="can one agent pass malicious instructions to another as trusted work product?">
               <code>LLM-203</code>
               <strong>Instruction laundering between agents</strong>
               <span>Can one agent pass malicious instructions to another as trusted work product?</span>
             </article>
-            <article class="leaf leaf--amber" data-id="LLM-204" data-vector="delegation to weaker agent" data-question="can a high-trust agent delegate to a less protected or less monitored agent?">
+            <article class="leaf leaf--cyan" data-id="LLM-204" data-vector="delegation to weaker agent" data-question="can a high-trust agent delegate to a less protected or less monitored agent?">
               <code>LLM-204</code>
               <strong>Delegation to weaker agent</strong>
               <span>Can a high-trust agent delegate to a less protected or less monitored agent?</span>
             </article>
-            <article class="leaf leaf--amber" data-id="LLM-205" data-vector="transitive trust expansion" data-question="does trusting agent a unintentionally trust agent b, tools, memory, and data sources?">
+            <article class="leaf leaf--cyan" data-id="LLM-205" data-vector="transitive trust expansion" data-question="does trusting agent a unintentionally trust agent b, tools, memory, and data sources?">
               <code>LLM-205</code>
               <strong>Transitive trust expansion</strong>
               <span>Does trusting Agent A unintentionally trust Agent B, tools, memory, and data sources?</span>
             </article>
-            <article class="leaf leaf--amber" data-id="LLM-206" data-vector="shared workspace poisoning" data-question="can files, notes, blackboards, or task queues manipulate multiple agents?">
+            <article class="leaf leaf--cyan" data-id="LLM-206" data-vector="shared workspace poisoning" data-question="can files, notes, blackboards, or task queues manipulate multiple agents?">
               <code>LLM-206</code>
               <strong>Shared workspace poisoning</strong>
               <span>Can files, notes, blackboards, or task queues manipulate multiple agents?</span>
             </article>
-            <article class="leaf leaf--amber" data-id="LLM-207" data-vector="manager-agent blind trust" data-question="does an orchestrator accept sub-agent conclusions without evidence validation?">
+            <article class="leaf leaf--cyan" data-id="LLM-207" data-vector="manager-agent blind trust" data-question="does an orchestrator accept sub-agent conclusions without evidence validation?">
               <code>LLM-207</code>
               <strong>Manager-agent blind trust</strong>
               <span>Does an orchestrator accept sub-agent conclusions without evidence validation?</span>
             </article>
-            <article class="leaf leaf--amber" data-id="LLM-208" data-vector="cross-agent context leakage" data-question="can one agent see another agent&#39;s private context, tokens, or tasks?">
+            <article class="leaf leaf--cyan" data-id="LLM-208" data-vector="cross-agent context leakage" data-question="can one agent see another agent&#39;s private context, tokens, or tasks?">
               <code>LLM-208</code>
               <strong>Cross-agent context leakage</strong>
               <span>Can one agent see another agent&#39;s private context, tokens, or tasks?</span>
             </article>
-            <article class="leaf leaf--amber" data-id="LLM-209" data-vector="agent role confusion" data-question="can agents confuse planner, reviewer, executor, and approver responsibilities?">
+            <article class="leaf leaf--cyan" data-id="LLM-209" data-vector="agent role confusion" data-question="can agents confuse planner, reviewer, executor, and approver responsibilities?">
               <code>LLM-209</code>
               <strong>Agent role confusion</strong>
               <span>Can agents confuse planner, reviewer, executor, and approver responsibilities?</span>
             </article>
-            <article class="leaf leaf--amber" data-id="LLM-210" data-vector="malicious sub-agent registration" data-question="can an attacker add a rogue agent to a workflow?">
+            <article class="leaf leaf--cyan" data-id="LLM-210" data-vector="malicious sub-agent registration" data-question="can an attacker add a rogue agent to a workflow?">
               <code>LLM-210</code>
               <strong>Malicious sub-agent registration</strong>
               <span>Can an attacker add a rogue agent to a workflow?</span>
             </article>
-            <article class="leaf leaf--amber" data-id="LLM-211" data-vector="agent collusion or shared failure" data-question="are independent agents actually diverse enough to catch each other&#39;s errors?">
+            <article class="leaf leaf--cyan" data-id="LLM-211" data-vector="agent collusion or shared failure" data-question="are independent agents actually diverse enough to catch each other&#39;s errors?">
               <code>LLM-211</code>
               <strong>Agent collusion or shared failure</strong>
               <span>Are independent agents actually diverse enough to catch each other&#39;s errors?</span>
             </article>
-            <article class="leaf leaf--amber" data-id="LLM-212" data-vector="delegated tool misuse" data-question="can a sub-agent use tools the parent agent should not expose?">
+            <article class="leaf leaf--cyan" data-id="LLM-212" data-vector="delegated tool misuse" data-question="can a sub-agent use tools the parent agent should not expose?">
               <code>LLM-212</code>
               <strong>Delegated tool misuse</strong>
               <span>Can a sub-agent use tools the parent agent should not expose?</span>
             </article>
-            <article class="leaf leaf--amber" data-id="LLM-213" data-vector="task queue poisoning" data-question="can queued instructions be modified before execution?">
+            <article class="leaf leaf--cyan" data-id="LLM-213" data-vector="task queue poisoning" data-question="can queued instructions be modified before execution?">
               <code>LLM-213</code>
               <strong>Task queue poisoning</strong>
               <span>Can queued instructions be modified before execution?</span>
             </article>
-            <article class="leaf leaf--amber" data-id="LLM-214" data-vector="agent self-replication" data-question="can agents create more agents, tasks, or workflows without governance?">
+            <article class="leaf leaf--cyan" data-id="LLM-214" data-vector="agent self-replication" data-question="can agents create more agents, tasks, or workflows without governance?">
               <code>LLM-214</code>
               <strong>Agent self-replication</strong>
               <span>Can agents create more agents, tasks, or workflows without governance?</span>
             </article>
-            <article class="leaf leaf--amber" data-id="LLM-215" data-vector="evidence-free consensus" data-question="can multiple agents agree without independently checking primary evidence?">
+            <article class="leaf leaf--cyan" data-id="LLM-215" data-vector="evidence-free consensus" data-question="can multiple agents agree without independently checking primary evidence?">
               <code>LLM-215</code>
               <strong>Evidence-free consensus</strong>
               <span>Can multiple agents agree without independently checking primary evidence?</span>
@@ -1843,7 +1900,7 @@
         </div>
       </section>
 
-      <section class="cluster cluster--steel animate" id="l-multimodal-document-and-file-based-inputs" style="--i:14">
+      <section class="cluster cluster--olive animate" id="l-multimodal-document-and-file-based-inputs" style="--i:14">
         <header class="cluster-head">
           <div class="cluster-orb">
             <span>L</span>
@@ -1856,62 +1913,62 @@
         </header>
         <div class="leaf-field">
 
-            <article class="leaf leaf--steel" data-id="LLM-216" data-vector="hidden text in images" data-question="can ocr reveal instructions invisible or unobvious to users?">
+            <article class="leaf leaf--olive" data-id="LLM-216" data-vector="hidden text in images" data-question="can ocr reveal instructions invisible or unobvious to users?">
               <code>LLM-216</code>
               <strong>Hidden text in images</strong>
               <span>Can OCR reveal instructions invisible or unobvious to users?</span>
             </article>
-            <article class="leaf leaf--steel" data-id="LLM-217" data-vector="qr code or barcode injection" data-question="can encoded visual content steer browser, fetch, or tool behavior?">
+            <article class="leaf leaf--olive" data-id="LLM-217" data-vector="qr code or barcode injection" data-question="can encoded visual content steer browser, fetch, or tool behavior?">
               <code>LLM-217</code>
               <strong>QR code or barcode injection</strong>
               <span>Can encoded visual content steer browser, fetch, or tool behavior?</span>
             </article>
-            <article class="leaf leaf--steel" data-id="LLM-218" data-vector="audio prompt injection" data-question="can spoken or background audio manipulate transcription and agent behavior?">
+            <article class="leaf leaf--olive" data-id="LLM-218" data-vector="audio prompt injection" data-question="can spoken or background audio manipulate transcription and agent behavior?">
               <code>LLM-218</code>
               <strong>Audio prompt injection</strong>
               <span>Can spoken or background audio manipulate transcription and agent behavior?</span>
             </article>
-            <article class="leaf leaf--steel" data-id="LLM-219" data-vector="video-frame injection" data-question="can hidden frames, captions, or overlays influence multimodal analysis?">
+            <article class="leaf leaf--olive" data-id="LLM-219" data-vector="video-frame injection" data-question="can hidden frames, captions, or overlays influence multimodal analysis?">
               <code>LLM-219</code>
               <strong>Video-frame injection</strong>
               <span>Can hidden frames, captions, or overlays influence multimodal analysis?</span>
             </article>
-            <article class="leaf leaf--steel" data-id="LLM-220" data-vector="pdf hidden-layer injection" data-question="are hidden layers, annotations, forms, comments, and attachments handled safely?">
+            <article class="leaf leaf--olive" data-id="LLM-220" data-vector="pdf hidden-layer injection" data-question="are hidden layers, annotations, forms, comments, and attachments handled safely?">
               <code>LLM-220</code>
               <strong>PDF hidden-layer injection</strong>
               <span>Are hidden layers, annotations, forms, comments, and attachments handled safely?</span>
             </article>
-            <article class="leaf leaf--steel" data-id="LLM-221" data-vector="office document metadata injection" data-question="can comments, tracked changes, speaker notes, or macros affect prompts?">
+            <article class="leaf leaf--olive" data-id="LLM-221" data-vector="office document metadata injection" data-question="can comments, tracked changes, speaker notes, or macros affect prompts?">
               <code>LLM-221</code>
               <strong>Office document metadata injection</strong>
               <span>Can comments, tracked changes, speaker notes, or macros affect prompts?</span>
             </article>
-            <article class="leaf leaf--steel" data-id="LLM-222" data-vector="spreadsheet formula injection" data-question="are formulas neutralized before summarization or export?">
+            <article class="leaf leaf--olive" data-id="LLM-222" data-vector="spreadsheet formula injection" data-question="are formulas neutralized before summarization or export?">
               <code>LLM-222</code>
               <strong>Spreadsheet formula injection</strong>
               <span>Are formulas neutralized before summarization or export?</span>
             </article>
-            <article class="leaf leaf--steel" data-id="LLM-223" data-vector="exif and media metadata injection" data-question="is image/video metadata included in context without trust labeling?">
+            <article class="leaf leaf--olive" data-id="LLM-223" data-vector="exif and media metadata injection" data-question="is image/video metadata included in context without trust labeling?">
               <code>LLM-223</code>
               <strong>EXIF and media metadata injection</strong>
               <span>Is image/video metadata included in context without trust labeling?</span>
             </article>
-            <article class="leaf leaf--steel" data-id="LLM-224" data-vector="ocr parser disagreement" data-question="do humans and models see different content from the same file?">
+            <article class="leaf leaf--olive" data-id="LLM-224" data-vector="ocr parser disagreement" data-question="do humans and models see different content from the same file?">
               <code>LLM-224</code>
               <strong>OCR parser disagreement</strong>
               <span>Do humans and models see different content from the same file?</span>
             </article>
-            <article class="leaf leaf--steel" data-id="LLM-225" data-vector="archive traversal or file confusion" data-question="can uploaded archives create unsafe paths, names, or nested payloads?">
+            <article class="leaf leaf--olive" data-id="LLM-225" data-vector="archive traversal or file confusion" data-question="can uploaded archives create unsafe paths, names, or nested payloads?">
               <code>LLM-225</code>
               <strong>Archive traversal or file confusion</strong>
               <span>Can uploaded archives create unsafe paths, names, or nested payloads?</span>
             </article>
-            <article class="leaf leaf--steel" data-id="LLM-226" data-vector="attachment type spoofing" data-question="can content-type, extension, and actual file content disagree?">
+            <article class="leaf leaf--olive" data-id="LLM-226" data-vector="attachment type spoofing" data-question="can content-type, extension, and actual file content disagree?">
               <code>LLM-226</code>
               <strong>Attachment type spoofing</strong>
               <span>Can content-type, extension, and actual file content disagree?</span>
             </article>
-            <article class="leaf leaf--steel" data-id="LLM-227" data-vector="document summarization poisoning" data-question="can a document manipulate its own summary or classification?">
+            <article class="leaf leaf--olive" data-id="LLM-227" data-vector="document summarization poisoning" data-question="can a document manipulate its own summary or classification?">
               <code>LLM-227</code>
               <strong>Document summarization poisoning</strong>
               <span>Can a document manipulate its own summary or classification?</span>
@@ -1919,7 +1976,7 @@
         </div>
       </section>
 
-      <section class="cluster cluster--teal animate" id="m-human-factors-ui-and-social-engineering" style="--i:15">
+      <section class="cluster cluster--raspberry animate" id="m-human-factors-ui-and-social-engineering" style="--i:15">
         <header class="cluster-head">
           <div class="cluster-orb">
             <span>M</span>
@@ -1932,62 +1989,62 @@
         </header>
         <div class="leaf-field">
 
-            <article class="leaf leaf--teal" data-id="LLM-228" data-vector="ai-generated phishing" data-question="can outputs impersonate trusted people, brands, or internal systems?">
+            <article class="leaf leaf--raspberry" data-id="LLM-228" data-vector="ai-generated phishing" data-question="can outputs impersonate trusted people, brands, or internal systems?">
               <code>LLM-228</code>
               <strong>AI-generated phishing</strong>
               <span>Can outputs impersonate trusted people, brands, or internal systems?</span>
             </article>
-            <article class="leaf leaf--teal" data-id="LLM-229" data-vector="fake confidence" data-question="does the interface overstate certainty or hide uncertainty?">
+            <article class="leaf leaf--raspberry" data-id="LLM-229" data-vector="fake confidence" data-question="does the interface overstate certainty or hide uncertainty?">
               <code>LLM-229</code>
               <strong>Fake confidence</strong>
               <span>Does the interface overstate certainty or hide uncertainty?</span>
             </article>
-            <article class="leaf leaf--teal" data-id="LLM-230" data-vector="fabricated policy or legal authority" data-question="can the model invent rules users will follow?">
+            <article class="leaf leaf--raspberry" data-id="LLM-230" data-vector="fabricated policy or legal authority" data-question="can the model invent rules users will follow?">
               <code>LLM-230</code>
               <strong>Fabricated policy or legal authority</strong>
               <span>Can the model invent rules users will follow?</span>
             </article>
-            <article class="leaf leaf--teal" data-id="LLM-231" data-vector="approval fatigue" data-question="are humans asked to approve too many low-quality or vague actions?">
+            <article class="leaf leaf--raspberry" data-id="LLM-231" data-vector="approval fatigue" data-question="are humans asked to approve too many low-quality or vague actions?">
               <code>LLM-231</code>
               <strong>Approval fatigue</strong>
               <span>Are humans asked to approve too many low-quality or vague actions?</span>
             </article>
-            <article class="leaf leaf--teal" data-id="LLM-232" data-vector="unsafe suggested actions" data-question="can suggested replies, buttons, or next steps nudge users into risky behavior?">
+            <article class="leaf leaf--raspberry" data-id="LLM-232" data-vector="unsafe suggested actions" data-question="can suggested replies, buttons, or next steps nudge users into risky behavior?">
               <code>LLM-232</code>
               <strong>Unsafe suggested actions</strong>
               <span>Can suggested replies, buttons, or next steps nudge users into risky behavior?</span>
             </article>
-            <article class="leaf leaf--teal" data-id="LLM-233" data-vector="ui truncation of critical details" data-question="are recipients, amounts, urls, queries, and scopes visible before approval?">
+            <article class="leaf leaf--raspberry" data-id="LLM-233" data-vector="ui truncation of critical details" data-question="are recipients, amounts, urls, queries, and scopes visible before approval?">
               <code>LLM-233</code>
               <strong>UI truncation of critical details</strong>
               <span>Are recipients, amounts, URLs, queries, and scopes visible before approval?</span>
             </article>
-            <article class="leaf leaf--teal" data-id="LLM-234" data-vector="spoofed citations or provenance" data-question="can generated evidence look official when it is not?">
+            <article class="leaf leaf--raspberry" data-id="LLM-234" data-vector="spoofed citations or provenance" data-question="can generated evidence look official when it is not?">
               <code>LLM-234</code>
               <strong>Spoofed citations or provenance</strong>
               <span>Can generated evidence look official when it is not?</span>
             </article>
-            <article class="leaf leaf--teal" data-id="LLM-235" data-vector="overreliance in high-stakes workflows" data-question="are model outputs independently verified before consequential decisions?">
+            <article class="leaf leaf--raspberry" data-id="LLM-235" data-vector="overreliance in high-stakes workflows" data-question="are model outputs independently verified before consequential decisions?">
               <code>LLM-235</code>
               <strong>Overreliance in high-stakes workflows</strong>
               <span>Are model outputs independently verified before consequential decisions?</span>
             </article>
-            <article class="leaf leaf--teal" data-id="LLM-236" data-vector="social engineering via agent persona" data-question="can a model&#39;s tone, authority, or identity manipulate users or operators?">
+            <article class="leaf leaf--raspberry" data-id="LLM-236" data-vector="social engineering via agent persona" data-question="can a model&#39;s tone, authority, or identity manipulate users or operators?">
               <code>LLM-236</code>
               <strong>Social engineering via agent persona</strong>
               <span>Can a model&#39;s tone, authority, or identity manipulate users or operators?</span>
             </article>
-            <article class="leaf leaf--teal" data-id="LLM-237" data-vector="hidden external communication" data-question="can users miss when the agent will send data outside the organization?">
+            <article class="leaf leaf--raspberry" data-id="LLM-237" data-vector="hidden external communication" data-question="can users miss when the agent will send data outside the organization?">
               <code>LLM-237</code>
               <strong>Hidden external communication</strong>
               <span>Can users miss when the agent will send data outside the organization?</span>
             </article>
-            <article class="leaf leaf--teal" data-id="LLM-238" data-vector="unsafe copy-paste path" data-question="can generated commands, code, or configs harm users when pasted elsewhere?">
+            <article class="leaf leaf--raspberry" data-id="LLM-238" data-vector="unsafe copy-paste path" data-question="can generated commands, code, or configs harm users when pasted elsewhere?">
               <code>LLM-238</code>
               <strong>Unsafe copy-paste path</strong>
               <span>Can generated commands, code, or configs harm users when pasted elsewhere?</span>
             </article>
-            <article class="leaf leaf--teal" data-id="LLM-239" data-vector="human override without accountability" data-question="can users bypass model or policy warnings without reason capture?">
+            <article class="leaf leaf--raspberry" data-id="LLM-239" data-vector="human override without accountability" data-question="can users bypass model or policy warnings without reason capture?">
               <code>LLM-239</code>
               <strong>Human override without accountability</strong>
               <span>Can users bypass model or policy warnings without reason capture?</span>
@@ -1995,7 +2052,7 @@
         </div>
       </section>
 
-      <section class="cluster cluster--coral animate" id="n-monitoring-audit-incident-response-and-governance" style="--i:16">
+      <section class="cluster cluster--slate animate" id="n-monitoring-audit-incident-response-and-governance" style="--i:16">
         <header class="cluster-head">
           <div class="cluster-orb">
             <span>N</span>
@@ -2008,67 +2065,67 @@
         </header>
         <div class="leaf-field">
 
-            <article class="leaf leaf--coral" data-id="LLM-240" data-vector="missing prompt and tool audit trail" data-question="can incidents reconstruct prompts, retrieved context, tool calls, approvals, and outputs?">
+            <article class="leaf leaf--slate" data-id="LLM-240" data-vector="missing prompt and tool audit trail" data-question="can incidents reconstruct prompts, retrieved context, tool calls, approvals, and outputs?">
               <code>LLM-240</code>
               <strong>Missing prompt and tool audit trail</strong>
               <span>Can incidents reconstruct prompts, retrieved context, tool calls, approvals, and outputs?</span>
             </article>
-            <article class="leaf leaf--coral" data-id="LLM-241" data-vector="secret-rich audit logs" data-question="do logs create a second sensitive data store?">
+            <article class="leaf leaf--slate" data-id="LLM-241" data-vector="secret-rich audit logs" data-question="do logs create a second sensitive data store?">
               <code>LLM-241</code>
               <strong>Secret-rich audit logs</strong>
               <span>Do logs create a second sensitive data store?</span>
             </article>
-            <article class="leaf leaf--coral" data-id="LLM-242" data-vector="mutable audit evidence" data-question="can logs, approvals, prompts, or tool records be altered after the fact?">
+            <article class="leaf leaf--slate" data-id="LLM-242" data-vector="mutable audit evidence" data-question="can logs, approvals, prompts, or tool records be altered after the fact?">
               <code>LLM-242</code>
               <strong>Mutable audit evidence</strong>
               <span>Can logs, approvals, prompts, or tool records be altered after the fact?</span>
             </article>
-            <article class="leaf leaf--coral" data-id="LLM-243" data-vector="no anomaly detection" data-question="are unusual prompts, retrievals, tool calls, costs, and approvals monitored?">
+            <article class="leaf leaf--slate" data-id="LLM-243" data-vector="no anomaly detection" data-question="are unusual prompts, retrievals, tool calls, costs, and approvals monitored?">
               <code>LLM-243</code>
               <strong>No anomaly detection</strong>
               <span>Are unusual prompts, retrievals, tool calls, costs, and approvals monitored?</span>
             </article>
-            <article class="leaf leaf--coral" data-id="LLM-244" data-vector="no abuse reporting path" data-question="can users report bad outputs, prompt injection, or unsafe agent behavior?">
+            <article class="leaf leaf--slate" data-id="LLM-244" data-vector="no abuse reporting path" data-question="can users report bad outputs, prompt injection, or unsafe agent behavior?">
               <code>LLM-244</code>
               <strong>No abuse reporting path</strong>
               <span>Can users report bad outputs, prompt injection, or unsafe agent behavior?</span>
             </article>
-            <article class="leaf leaf--coral" data-id="LLM-245" data-vector="no kill switch" data-question="can high-risk agents, tools, models, or connectors be disabled quickly?">
+            <article class="leaf leaf--slate" data-id="LLM-245" data-vector="no kill switch" data-question="can high-risk agents, tools, models, or connectors be disabled quickly?">
               <code>LLM-245</code>
               <strong>No kill switch</strong>
               <span>Can high-risk agents, tools, models, or connectors be disabled quickly?</span>
             </article>
-            <article class="leaf leaf--coral" data-id="LLM-246" data-vector="no model/version provenance" data-question="can outputs be tied to model, prompt version, tool version, and policy version?">
+            <article class="leaf leaf--slate" data-id="LLM-246" data-vector="no model/version provenance" data-question="can outputs be tied to model, prompt version, tool version, and policy version?">
               <code>LLM-246</code>
               <strong>No model/version provenance</strong>
               <span>Can outputs be tied to model, prompt version, tool version, and policy version?</span>
             </article>
-            <article class="leaf leaf--coral" data-id="LLM-247" data-vector="no rollback plan" data-question="can unsafe prompt, model, index, or tool changes be reverted?">
+            <article class="leaf leaf--slate" data-id="LLM-247" data-vector="no rollback plan" data-question="can unsafe prompt, model, index, or tool changes be reverted?">
               <code>LLM-247</code>
               <strong>No rollback plan</strong>
               <span>Can unsafe prompt, model, index, or tool changes be reverted?</span>
             </article>
-            <article class="leaf leaf--coral" data-id="LLM-248" data-vector="missing red-team regression tests" data-question="are known attack patterns tested after model, prompt, tool, and data changes?">
+            <article class="leaf leaf--slate" data-id="LLM-248" data-vector="missing red-team regression tests" data-question="are known attack patterns tested after model, prompt, tool, and data changes?">
               <code>LLM-248</code>
               <strong>Missing red-team regression tests</strong>
               <span>Are known attack patterns tested after model, prompt, tool, and data changes?</span>
             </article>
-            <article class="leaf leaf--coral" data-id="LLM-249" data-vector="shadow ai inventory gap" data-question="are unofficial ai tools, browser extensions, saas copilots, and agents discovered?">
+            <article class="leaf leaf--slate" data-id="LLM-249" data-vector="shadow ai inventory gap" data-question="are unofficial ai tools, browser extensions, saas copilots, and agents discovered?">
               <code>LLM-249</code>
               <strong>Shadow AI inventory gap</strong>
               <span>Are unofficial AI tools, browser extensions, SaaS copilots, and agents discovered?</span>
             </article>
-            <article class="leaf leaf--coral" data-id="LLM-250" data-vector="policy drift" data-question="are prompt policies, code policies, iam policies, and human procedures kept aligned?">
+            <article class="leaf leaf--slate" data-id="LLM-250" data-vector="policy drift" data-question="are prompt policies, code policies, iam policies, and human procedures kept aligned?">
               <code>LLM-250</code>
               <strong>Policy drift</strong>
               <span>Are prompt policies, code policies, IAM policies, and human procedures kept aligned?</span>
             </article>
-            <article class="leaf leaf--coral" data-id="LLM-251" data-vector="incomplete incident containment" data-question="can compromised memory, vector content, approvals, and tokens be purged?">
+            <article class="leaf leaf--slate" data-id="LLM-251" data-vector="incomplete incident containment" data-question="can compromised memory, vector content, approvals, and tokens be purged?">
               <code>LLM-251</code>
               <strong>Incomplete incident containment</strong>
               <span>Can compromised memory, vector content, approvals, and tokens be purged?</span>
             </article>
-            <article class="leaf leaf--coral" data-id="LLM-252" data-vector="vendor incident dependency" data-question="are provider outages, breaches, model changes, and logging policies accounted for?">
+            <article class="leaf leaf--slate" data-id="LLM-252" data-vector="vendor incident dependency" data-question="are provider outages, breaches, model changes, and logging policies accounted for?">
               <code>LLM-252</code>
               <strong>Vendor incident dependency</strong>
               <span>Are provider outages, breaches, model changes, and logging policies accounted for?</span>
@@ -2076,7 +2133,7 @@
         </div>
       </section>
 
-      <section class="cluster cluster--green animate" id="o-mcp-plugin-and-agent-server-specific-risks" style="--i:17">
+      <section class="cluster cluster--mint animate" id="o-mcp-plugin-and-agent-server-specific-risks" style="--i:17">
         <header class="cluster-head">
           <div class="cluster-orb">
             <span>O</span>
@@ -2089,77 +2146,77 @@
         </header>
         <div class="leaf-field">
 
-            <article class="leaf leaf--green" data-id="LLM-253" data-vector="mcp token mismanagement" data-question="are mcp and connector tokens short-lived, scoped, redacted, and rotated?">
+            <article class="leaf leaf--mint" data-id="LLM-253" data-vector="mcp token mismanagement" data-question="are mcp and connector tokens short-lived, scoped, redacted, and rotated?">
               <code>LLM-253</code>
               <strong>MCP token mismanagement</strong>
               <span>Are MCP and connector tokens short-lived, scoped, redacted, and rotated?</span>
             </article>
-            <article class="leaf leaf--green" data-id="LLM-254" data-vector="unauthenticated mcp server" data-question="can unauthorized clients register tools or call mcp endpoints?">
+            <article class="leaf leaf--mint" data-id="LLM-254" data-vector="unauthenticated mcp server" data-question="can unauthorized clients register tools or call mcp endpoints?">
               <code>LLM-254</code>
               <strong>Unauthenticated MCP server</strong>
               <span>Can unauthorized clients register tools or call MCP endpoints?</span>
             </article>
-            <article class="leaf leaf--green" data-id="LLM-255" data-vector="missing per-tool mcp authorization" data-question="does the server enforce authorization per tool and operation?">
+            <article class="leaf leaf--mint" data-id="LLM-255" data-vector="missing per-tool mcp authorization" data-question="does the server enforce authorization per tool and operation?">
               <code>LLM-255</code>
               <strong>Missing per-tool MCP authorization</strong>
               <span>Does the server enforce authorization per tool and operation?</span>
             </article>
-            <article class="leaf leaf--green" data-id="LLM-256" data-vector="rogue tool registration" data-question="can malicious tools be registered or discovered by agents?">
+            <article class="leaf leaf--mint" data-id="LLM-256" data-vector="rogue tool registration" data-question="can malicious tools be registered or discovered by agents?">
               <code>LLM-256</code>
               <strong>Rogue tool registration</strong>
               <span>Can malicious tools be registered or discovered by agents?</span>
             </article>
-            <article class="leaf leaf--green" data-id="LLM-257" data-vector="tool shadowing" data-question="can one tool description influence how the agent uses another trusted tool?">
+            <article class="leaf leaf--mint" data-id="LLM-257" data-vector="tool shadowing" data-question="can one tool description influence how the agent uses another trusted tool?">
               <code>LLM-257</code>
               <strong>Tool shadowing</strong>
               <span>Can one tool description influence how the agent uses another trusted tool?</span>
             </article>
-            <article class="leaf leaf--green" data-id="LLM-258" data-vector="tool rug pull" data-question="can a tool&#39;s behavior or manifest change after approval?">
+            <article class="leaf leaf--mint" data-id="LLM-258" data-vector="tool rug pull" data-question="can a tool&#39;s behavior or manifest change after approval?">
               <code>LLM-258</code>
               <strong>Tool rug pull</strong>
               <span>Can a tool&#39;s behavior or manifest change after approval?</span>
             </article>
-            <article class="leaf leaf--green" data-id="LLM-259" data-vector="unsigned tool manifest" data-question="are mcp tool definitions signed, pinned, or integrity-checked?">
+            <article class="leaf leaf--mint" data-id="LLM-259" data-vector="unsigned tool manifest" data-question="are mcp tool definitions signed, pinned, or integrity-checked?">
               <code>LLM-259</code>
               <strong>Unsigned tool manifest</strong>
               <span>Are MCP tool definitions signed, pinned, or integrity-checked?</span>
             </article>
-            <article class="leaf leaf--green" data-id="LLM-260" data-vector="mcp context over-sharing" data-question="does the server expose more session, memory, or file context than needed?">
+            <article class="leaf leaf--mint" data-id="LLM-260" data-vector="mcp context over-sharing" data-question="does the server expose more session, memory, or file context than needed?">
               <code>LLM-260</code>
               <strong>MCP context over-sharing</strong>
               <span>Does the server expose more session, memory, or file context than needed?</span>
             </article>
-            <article class="leaf leaf--green" data-id="LLM-261" data-vector="mcp protocol logging leak" data-question="are tool arguments, secrets, and context redacted in protocol logs?">
+            <article class="leaf leaf--mint" data-id="LLM-261" data-vector="mcp protocol logging leak" data-question="are tool arguments, secrets, and context redacted in protocol logs?">
               <code>LLM-261</code>
               <strong>MCP protocol logging leak</strong>
               <span>Are tool arguments, secrets, and context redacted in protocol logs?</span>
             </article>
-            <article class="leaf leaf--green" data-id="LLM-262" data-vector="shadow mcp server" data-question="are unapproved mcp servers discoverable, monitored, and blocked?">
+            <article class="leaf leaf--mint" data-id="LLM-262" data-vector="shadow mcp server" data-question="are unapproved mcp servers discoverable, monitored, and blocked?">
               <code>LLM-262</code>
               <strong>Shadow MCP server</strong>
               <span>Are unapproved MCP servers discoverable, monitored, and blocked?</span>
             </article>
-            <article class="leaf leaf--green" data-id="LLM-263" data-vector="broad local filesystem access" data-question="can an mcp server read or write outside intended directories?">
+            <article class="leaf leaf--mint" data-id="LLM-263" data-vector="broad local filesystem access" data-question="can an mcp server read or write outside intended directories?">
               <code>LLM-263</code>
               <strong>Broad local filesystem access</strong>
               <span>Can an MCP server read or write outside intended directories?</span>
             </article>
-            <article class="leaf leaf--green" data-id="LLM-264" data-vector="broad network egress" data-question="can an mcp server reach internal networks or attacker-controlled destinations?">
+            <article class="leaf leaf--mint" data-id="LLM-264" data-vector="broad network egress" data-question="can an mcp server reach internal networks or attacker-controlled destinations?">
               <code>LLM-264</code>
               <strong>Broad network egress</strong>
               <span>Can an MCP server reach internal networks or attacker-controlled destinations?</span>
             </article>
-            <article class="leaf leaf--green" data-id="LLM-265" data-vector="mcp sampling injection" data-question="can sampling or model-callback features introduce untrusted instructions?">
+            <article class="leaf leaf--mint" data-id="LLM-265" data-vector="mcp sampling injection" data-question="can sampling or model-callback features introduce untrusted instructions?">
               <code>LLM-265</code>
               <strong>MCP sampling injection</strong>
               <span>Can sampling or model-callback features introduce untrusted instructions?</span>
             </article>
-            <article class="leaf leaf--green" data-id="LLM-266" data-vector="mcp config tampering" data-question="can users or compromised processes modify server config, tool scopes, or credentials?">
+            <article class="leaf leaf--mint" data-id="LLM-266" data-vector="mcp config tampering" data-question="can users or compromised processes modify server config, tool scopes, or credentials?">
               <code>LLM-266</code>
               <strong>MCP config tampering</strong>
               <span>Can users or compromised processes modify server config, tool scopes, or credentials?</span>
             </article>
-            <article class="leaf leaf--green" data-id="LLM-267" data-vector="mcp dependency compromise" data-question="are mcp sdks, plugins, and server dependencies scanned and pinned?">
+            <article class="leaf leaf--mint" data-id="LLM-267" data-vector="mcp dependency compromise" data-question="are mcp sdks, plugins, and server dependencies scanned and pinned?">
               <code>LLM-267</code>
               <strong>MCP dependency compromise</strong>
               <span>Are MCP SDKs, plugins, and server dependencies scanned and pinned?</span>
