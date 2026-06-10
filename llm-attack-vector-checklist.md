@@ -49,6 +49,7 @@ Use this as a backlog. Not every vector applies to every system. Prioritize by w
 | LLM-018 | Tool error message injection | Can exception text or stack traces influence later model decisions? |
 | LLM-019 | Evaluation harness injection | Can test cases or evaluation prompts manipulate scoring or safety checks? |
 | LLM-020 | Prompt leak canary probing | Can users iteratively infer prompt, guardrails, hidden policies, or secrets? |
+| LLM-437 | Hidden reasoning prompt injection | Can attacker-controlled text influence hidden reasoning or scratchpad state even when final output looks safe? |
 | LLM-021 | Policy sandwiching | Can attackers place malicious instructions before and after trusted text to change how the model interprets the middle? |
 | LLM-022 | Instruction hierarchy collision | Can conflicting system, developer, retrieved, and user instructions cause the model to follow the wrong authority? |
 | LLM-023 | Prompt injection through code comments | Can comments in code, configs, or scripts be interpreted as instructions during analysis or refactoring? |
@@ -149,7 +150,6 @@ Use this as a backlog. Not every vector applies to every system. Prioritize by w
 | LLM-101 | Generated file preview leakage | Can previews or thumbnails reveal sensitive content from generated or uploaded files? |
 | LLM-102 | Audit-log search exposure | Can users search or export logs containing sensitive prompt, memory, or tool data? |
 | LLM-436 | Chain-of-thought leakage | Can hidden reasoning, thinking tokens, scratchpads, or deliberation traces reach users, logs, tools, or vendors? |
-| LLM-437 | Hidden reasoning prompt injection | Can attacker-controlled text influence hidden reasoning or scratchpad state even when final output looks safe? |
 | LLM-438 | Reasoning trace retention | Are internal traces retained or searchable longer than the user-visible prompt and response? |
 | LLM-439 | Vendor data-use setting drift | Can provider, region, or logging settings change so prompts, files, or traces become available for training or review? |
 | LLM-440 | Privacy request transcript gap | Can access, correction, deletion, or opt-out requests miss prompts, completions, embeddings, memories, traces, or derived artifacts? |
@@ -345,7 +345,7 @@ Use this as a backlog. Not every vector applies to every system. Prioritize by w
 | LLM-251 | JSON or schema injection | Can output break parsers or smuggle fields into downstream systems? |
 | LLM-252 | Template injection | Can generated templates execute code or access server objects? |
 | LLM-253 | Deserialization risk | Can generated serialized data trigger unsafe object construction? |
-| LLM-254 | Spreadsheet formula injection | Can CSV/XLSX output execute formulas when opened? |
+| LLM-254 | Generated spreadsheet formula injection | Can CSV/XLSX output execute formulas when opened? |
 | LLM-255 | Log injection | Can generated output forge or corrupt logs? |
 | LLM-256 | Generated code dependency risk | Can the model recommend non-existent, malicious, or typosquatted packages? |
 | LLM-257 | Unsafe infrastructure-as-code | Can generated IaC expose public resources, weak IAM, or secrets? |
@@ -359,7 +359,6 @@ Use this as a backlog. Not every vector applies to every system. Prioritize by w
 | LLM-265 | Output trust confusion | Do downstream systems know whether content is generated, user-provided, verified, or authoritative? |
 | LLM-266 | HTML attribute injection | Can generated attributes such as href, src, style, or event handlers create browser risk? |
 | LLM-267 | Unsafe URL scheme generation | Can generated links use dangerous, deceptive, or unexpected URL schemes? |
-| LLM-268 | Regular-expression denial of service | Can generated regex patterns consume excessive CPU or hang validation paths? |
 | LLM-269 | YAML or CI config injection | Can generated YAML alter pipelines, secrets, permissions, or build steps? |
 | LLM-270 | Terraform or IaC destructive plan | Can generated infrastructure changes destroy or expose resources? |
 | LLM-271 | Kubernetes manifest privilege escalation | Can generated manifests create privileged pods, host mounts, or broad RBAC? |
@@ -376,6 +375,7 @@ Use this as a backlog. Not every vector applies to every system. Prioritize by w
 | LLM-277 | Context-window stuffing | Can attackers crowd out safety instructions or needed evidence? |
 | LLM-278 | Expensive tool-call abuse | Can users trigger costly search, scraping, code execution, or data processing? |
 | LLM-279 | Recursive agent loop | Can an agent repeatedly plan, call itself, or spawn tasks? |
+| LLM-268 | Regular-expression denial of service | Can generated regex patterns consume excessive CPU or hang validation paths? |
 | LLM-280 | Retry storm | Can failures create repeated model calls or side-effecting tool calls? |
 | LLM-281 | Model latency exhaustion | Can slow prompts tie up workers or streaming connections? |
 | LLM-282 | Concurrent session flooding | Are per-user, per-tenant, and global limits enforced? |
@@ -466,7 +466,7 @@ Use this as a backlog. Not every vector applies to every system. Prioritize by w
 | LLM-345 | Video-frame injection | Can hidden frames, captions, or overlays influence multimodal analysis? |
 | LLM-346 | PDF hidden-layer injection | Are hidden layers, annotations, forms, comments, and attachments handled safely? |
 | LLM-347 | Office document metadata injection | Can comments, tracked changes, speaker notes, or macros affect prompts? |
-| LLM-348 | Spreadsheet formula injection | Are formulas neutralized before summarization or export? |
+| LLM-348 | Uploaded spreadsheet formula injection | Are formulas neutralized before summarization or export? |
 | LLM-349 | EXIF and media metadata injection | Is image/video metadata included in context without trust labeling? |
 | LLM-350 | OCR parser disagreement | Do humans and models see different content from the same file? |
 | LLM-351 | Archive traversal or file confusion | Can uploaded archives create unsafe paths, names, or nested payloads? |
