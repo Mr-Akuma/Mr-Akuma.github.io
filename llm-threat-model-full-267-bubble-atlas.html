@@ -526,7 +526,7 @@
 
     .audit-panel {
       display: grid;
-      grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+      grid-template-columns: 1fr;
       gap: 14px;
       margin: 0 0 20px;
     }
@@ -1401,18 +1401,7 @@
       <article class="coverage-tile coverage-tile--mint"><code>08</code><strong>Operations and response</strong><span>Logging, telemetry, cost abuse, kill switches, rollback, memory purge, and incident reconstruction.</span></article>
     </section>
 
-    <section class="audit-panel animate" style="--i:4" aria-label="Atlas provenance and measurement">
-      <div class="audit-card">
-        <h2>Provenance and version</h2>
-        <p>This is a defensive review atlas, not a formal standard. The mappings are intended to help security teams reconcile the leaves with frameworks they already track.</p>
-        <ul class="audit-list">
-          <li><b>Atlas version</b><span>2026.06.09-r3</span></li>
-          <li><b>Generated</b><span>June 9, 2026</span></li>
-          <li><b>Maintainer</b><span>Mr-Akuma security research atlas</span></li>
-          <li><b>MITRE ATLAS data</b><span>5.6.0 (da9ebf9)</span></li>
-          <li><b>Method</b><span>Curated defensive prompts plus framework crosswalks; leaf mappings are exact when a named technique is shown and otherwise domain-inferred.</span></li>
-        </ul>
-      </div>
+    <section class="audit-panel animate" style="--i:4" aria-label="Atlas measurement">
       <div class="measure-card">
         <h2>Measurement model</h2>
         <p>Use the leaf score as a starting point only. Validate applicability first, then score likelihood and impact after looking at architecture, controls, exposure, and blast radius.</p>
