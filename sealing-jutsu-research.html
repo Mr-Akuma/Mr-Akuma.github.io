@@ -1,0 +1,1252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sealing Jutsu Research Notes</title>
+  <meta name="description" content="A research companion page for Sealing Jutsu, a CapsuleGuard prototype for intent-bound memory authorization against persistent LLM agent poisoning.">
+  <meta property="og:title" content="Sealing Jutsu: Intent-Bound Memory Authorization">
+  <meta property="og:description" content="How CapsuleGuard separates memory retrieval from memory authority and blocks poisoned planning influence in LLM agents.">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="images/sealing-jutsu/figure1_architecture_v2.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,650;9..144,800&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #11110f;
+      --ink: #f4efe2;
+      --muted: #bdb3a0;
+      --dim: #8b826f;
+      --panel: #1a1915;
+      --panel-2: #232019;
+      --line: rgba(244, 239, 226, 0.14);
+      --line-strong: rgba(244, 239, 226, 0.28);
+      --red: #d84c38;
+      --red-soft: rgba(216, 76, 56, 0.15);
+      --jade: #45b887;
+      --jade-soft: rgba(69, 184, 135, 0.14);
+      --brass: #c9a24e;
+      --brass-soft: rgba(201, 162, 78, 0.16);
+      --blue: #6aa4c8;
+      --blue-soft: rgba(106, 164, 200, 0.14);
+      --plum: #9e667e;
+      --plum-soft: rgba(158, 102, 126, 0.14);
+      --shadow: 0 22px 80px rgba(0, 0, 0, 0.42);
+      --font-display: "Fraunces", Georgia, serif;
+      --font-body: "Source Sans 3", "Segoe UI", sans-serif;
+      --font-mono: "IBM Plex Mono", Consolas, monospace;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    figure { margin: 0; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      font-family: var(--font-body);
+      background:
+        linear-gradient(90deg, rgba(244, 239, 226, 0.035) 1px, transparent 1px) 0 0 / 52px 52px,
+        linear-gradient(rgba(244, 239, 226, 0.026) 1px, transparent 1px) 0 0 / 52px 52px,
+        radial-gradient(circle at 85% 12%, rgba(216, 76, 56, 0.16), transparent 28%),
+        radial-gradient(circle at 8% 34%, rgba(69, 184, 135, 0.13), transparent 30%),
+        #11110f;
+      overflow-x: hidden;
+      overflow-wrap: break-word;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(180deg, transparent, rgba(17, 17, 15, 0.94) 82%),
+        repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.025) 0 1px, transparent 1px 7px);
+      mix-blend-mode: soft-light;
+      opacity: 0.58;
+      z-index: -1;
+    }
+
+    a { color: inherit; }
+
+    .topline {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      border-bottom: 1px solid var(--line);
+      background: rgba(17, 17, 15, 0.86);
+      backdrop-filter: blur(18px);
+    }
+
+    .topline-inner {
+      width: min(1180px, calc(100vw - 32px));
+      margin: 0 auto;
+      min-height: 62px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .brand-mark {
+      width: 30px;
+      height: 30px;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--line-strong);
+      color: var(--red);
+      font-weight: 700;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .nav a {
+      text-decoration: none;
+      color: var(--muted);
+      font-weight: 600;
+      font-size: 0.9rem;
+      padding: 8px 10px;
+      border-bottom: 1px solid transparent;
+    }
+
+    .nav a:hover,
+    .nav a:focus {
+      color: var(--ink);
+      border-color: var(--red);
+      outline: none;
+    }
+
+    .shell {
+      width: min(1180px, calc(100vw - 32px));
+      margin: 0 auto;
+    }
+
+    .hero-copy,
+    .hero-figure,
+    .artifact-panel,
+    .section-head,
+    .thesis-grid,
+    .result-board {
+      min-width: 0;
+    }
+
+    .hero {
+      min-height: calc(100vh - 62px);
+      display: grid;
+      grid-template-columns: minmax(0, 1.02fr) minmax(330px, 0.78fr);
+      gap: clamp(28px, 5vw, 70px);
+      align-items: center;
+      padding: clamp(46px, 8vw, 96px) 0 40px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--brass);
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 42px;
+      height: 1px;
+      background: var(--brass);
+    }
+
+    h1, h2, h3 {
+      margin: 0;
+      font-family: var(--font-display);
+      letter-spacing: 0;
+    }
+
+    h1 {
+      max-width: 860px;
+      font-size: clamp(3.1rem, 8vw, 8.8rem);
+      line-height: 0.88;
+      font-weight: 800;
+    }
+
+    .hero-subtitle {
+      max-width: 700px;
+      margin: 24px 0 0;
+      color: var(--muted);
+      font-size: clamp(1.12rem, 1.7vw, 1.38rem);
+      line-height: 1.56;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 34px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      min-height: 44px;
+      padding: 10px 16px;
+      border: 1px solid var(--line-strong);
+      text-decoration: none;
+      font-weight: 700;
+      color: var(--ink);
+      background: rgba(244, 239, 226, 0.04);
+      transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+    }
+
+    .button:hover,
+    .button:focus {
+      transform: translateY(-2px);
+      border-color: var(--red);
+      background: var(--red-soft);
+      outline: none;
+    }
+
+    .button.primary {
+      background: var(--red);
+      border-color: var(--red);
+      color: #180d0b;
+    }
+
+    .hero-figure {
+      position: relative;
+      align-self: stretch;
+      min-height: 540px;
+      display: flex;
+      align-items: center;
+    }
+
+    .hero-figure::before {
+      content: "";
+      position: absolute;
+      inset: 8% -10% 10% 10%;
+      border: 1px solid var(--line);
+      transform: rotate(4deg);
+      background: rgba(244, 239, 226, 0.025);
+    }
+
+    .artifact-panel {
+      position: relative;
+      width: 100%;
+      border: 1px solid var(--line-strong);
+      background: linear-gradient(145deg, rgba(35, 32, 25, 0.96), rgba(18, 17, 15, 0.96));
+      box-shadow: var(--shadow);
+      padding: 16px;
+    }
+
+    .artifact-panel img {
+      width: 100%;
+      display: block;
+      background: #f8f6ef;
+    }
+
+    .artifact-caption {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 18px;
+      padding-top: 14px;
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.35;
+    }
+
+    .artifact-caption span {
+      color: var(--brass);
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      white-space: nowrap;
+    }
+
+    .metrics-strip {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      border-bottom: 1px solid var(--line);
+    }
+
+    .metric {
+      min-height: 150px;
+      padding: clamp(18px, 3vw, 28px);
+      border-right: 1px solid var(--line);
+      background: rgba(244, 239, 226, 0.025);
+    }
+
+    .metric:last-child { border-right: 0; }
+
+    .metric strong {
+      display: block;
+      color: var(--ink);
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3.65rem);
+      line-height: 1;
+    }
+
+    .metric span {
+      display: block;
+      margin-top: 10px;
+      color: var(--muted);
+      font-weight: 600;
+      line-height: 1.28;
+    }
+
+    section {
+      padding: clamp(62px, 9vw, 118px) 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: minmax(0, 0.68fr) minmax(280px, 0.32fr);
+      gap: clamp(22px, 5vw, 60px);
+      align-items: end;
+      margin-bottom: clamp(32px, 6vw, 70px);
+    }
+
+    .section-kicker {
+      color: var(--red);
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    h2 {
+      font-size: clamp(2.2rem, 5vw, 5.3rem);
+      line-height: 0.96;
+      font-weight: 750;
+    }
+
+    .section-head p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 1.06rem;
+      line-height: 1.58;
+    }
+
+    .thesis-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(300px, 0.72fr);
+      gap: clamp(26px, 5vw, 62px);
+      align-items: start;
+    }
+
+    .argument {
+      border-left: 2px solid var(--red);
+      padding-left: clamp(18px, 3vw, 34px);
+    }
+
+    .argument p {
+      margin: 0 0 22px;
+      color: var(--ink);
+      font-family: var(--font-display);
+      font-size: clamp(1.35rem, 2.4vw, 2.3rem);
+      line-height: 1.18;
+    }
+
+    .argument .plain {
+      color: var(--muted);
+      font-family: var(--font-body);
+      font-size: 1.08rem;
+      line-height: 1.64;
+    }
+
+    .comparison {
+      border-top: 1px solid var(--line-strong);
+      border-bottom: 1px solid var(--line-strong);
+    }
+
+    .comparison-row {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 22px;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .comparison-row:last-child { border-bottom: 0; }
+
+    .comparison-row b {
+      color: var(--brass);
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+    }
+
+    .comparison-row span {
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    .flow {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      border: 1px solid var(--line-strong);
+    }
+
+    .flow-step {
+      min-height: 210px;
+      padding: 22px;
+      border-right: 1px solid var(--line);
+      background: rgba(244, 239, 226, 0.026);
+      position: relative;
+    }
+
+    .flow-step:last-child { border-right: 0; }
+
+    .flow-step::after {
+      content: "";
+      position: absolute;
+      right: -7px;
+      top: 34px;
+      width: 13px;
+      height: 13px;
+      border-top: 1px solid var(--line-strong);
+      border-right: 1px solid var(--line-strong);
+      transform: rotate(45deg);
+      background: var(--bg);
+      z-index: 1;
+    }
+
+    .flow-step:last-child::after { display: none; }
+
+    .flow-step span {
+      color: var(--red);
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
+
+    .flow-step h3 {
+      margin-top: 18px;
+      font-size: 1.35rem;
+      line-height: 1.08;
+    }
+
+    .flow-step p {
+      color: var(--muted);
+      line-height: 1.45;
+      margin: 14px 0 0;
+    }
+
+    .result-board {
+      display: grid;
+      grid-template-columns: minmax(0, 1.04fr) minmax(300px, 0.56fr);
+      gap: clamp(24px, 5vw, 54px);
+      align-items: start;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--line-strong);
+      background: rgba(244, 239, 226, 0.025);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 740px;
+      font-size: 0.98rem;
+    }
+
+    th, td {
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      color: var(--brass);
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: rgba(201, 162, 78, 0.07);
+    }
+
+    td { color: var(--muted); }
+    td strong { color: var(--ink); }
+    tr:last-child td { border-bottom: 0; }
+
+    .callout {
+      border: 1px solid var(--line-strong);
+      background: linear-gradient(180deg, rgba(69, 184, 135, 0.08), rgba(244, 239, 226, 0.025));
+      padding: 24px;
+    }
+
+    .callout h3 {
+      font-size: 1.6rem;
+      margin-bottom: 12px;
+    }
+
+    .callout p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.58;
+    }
+
+    .quote-band {
+      padding: clamp(44px, 6vw, 82px);
+      border: 1px solid var(--line-strong);
+      background:
+        linear-gradient(135deg, rgba(216, 76, 56, 0.10), transparent 48%),
+        linear-gradient(225deg, rgba(201, 162, 78, 0.10), transparent 44%),
+        rgba(244, 239, 226, 0.03);
+    }
+
+    .quote-band p {
+      margin: 0;
+      max-width: 980px;
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 4vw, 4.3rem);
+      line-height: 1.05;
+    }
+
+    .quote-band span {
+      display: block;
+      max-width: 720px;
+      margin-top: 24px;
+      color: var(--muted);
+      font-size: 1.1rem;
+      line-height: 1.55;
+    }
+
+    .timeline {
+      display: grid;
+      grid-template-columns: 1fr;
+      border-top: 1px solid var(--line-strong);
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 190px minmax(0, 1fr);
+      gap: clamp(20px, 4vw, 52px);
+      padding: 26px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .timeline-item time {
+      color: var(--brass);
+      font-family: var(--font-mono);
+      font-size: 0.84rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .timeline-item h3 {
+      font-size: 1.45rem;
+      margin-bottom: 8px;
+    }
+
+    .timeline-item p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .figure-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .figure-tile {
+      border: 1px solid var(--line-strong);
+      background: rgba(244, 239, 226, 0.03);
+      padding: 12px;
+      text-decoration: none;
+      transition: transform 180ms ease, border-color 180ms ease;
+    }
+
+    .figure-tile:hover,
+    .figure-tile:focus {
+      transform: translateY(-3px);
+      border-color: var(--brass);
+      outline: none;
+    }
+
+    .figure-tile img {
+      width: 100%;
+      aspect-ratio: 1.55;
+      object-fit: contain;
+      display: block;
+      background: #f7f4ed;
+    }
+
+    .figure-tile span {
+      display: block;
+      padding-top: 12px;
+      color: var(--muted);
+      font-weight: 700;
+      line-height: 1.25;
+    }
+
+    details {
+      border-top: 1px solid var(--line-strong);
+      padding: 18px 0;
+    }
+
+    details:last-child { border-bottom: 1px solid var(--line-strong); }
+
+    summary {
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      color: var(--ink);
+      font-weight: 800;
+      font-size: 1.15rem;
+    }
+
+    summary::-webkit-details-marker { display: none; }
+
+    summary::after {
+      content: "+";
+      color: var(--red);
+      font-family: var(--font-mono);
+    }
+
+    details[open] summary::after { content: "-"; }
+
+    details p {
+      max-width: 820px;
+      color: var(--muted);
+      line-height: 1.58;
+      margin: 14px 0 0;
+    }
+
+    .paper-links {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .paper-link {
+      min-height: 170px;
+      padding: 22px;
+      border: 1px solid var(--line-strong);
+      background: rgba(244, 239, 226, 0.03);
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 18px;
+      transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+    }
+
+    .paper-link:hover,
+    .paper-link:focus {
+      transform: translateY(-3px);
+      border-color: var(--red);
+      background: var(--red-soft);
+      outline: none;
+    }
+
+    .paper-link b {
+      color: var(--ink);
+      font-family: var(--font-display);
+      font-size: 1.45rem;
+      line-height: 1.05;
+    }
+
+    .paper-link span {
+      color: var(--muted);
+      line-height: 1.35;
+    }
+
+    .footer {
+      padding: 42px 0 64px;
+      color: var(--dim);
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    .footer a { color: var(--muted); }
+
+    .fade-in,
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .button, .figure-tile, .paper-link, .fade-in {
+        transition: none;
+      }
+      .fade-in {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    @media (max-width: 980px) {
+      .hero,
+      .section-head,
+      .thesis-grid,
+      .result-board {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        min-height: auto;
+      }
+
+      .hero-figure {
+        min-height: auto;
+      }
+
+      .metrics-strip,
+      .flow,
+      .figure-grid,
+      .paper-links {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .flow-step {
+        border-bottom: 1px solid var(--line);
+      }
+
+      .flow-step::after {
+        display: none;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .topline-inner {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 12px 0;
+      }
+
+      .nav {
+        justify-content: flex-start;
+      }
+
+      .hero {
+        padding-top: 42px;
+      }
+
+      .shell {
+        width: min(358px, calc(100vw - 32px));
+        max-width: min(358px, calc(100vw - 32px));
+        margin-left: 16px;
+        margin-right: 0;
+      }
+
+      .hero-subtitle,
+      .section-head p,
+      .artifact-caption {
+        max-width: 100%;
+      }
+
+      .artifact-caption {
+        flex-direction: column;
+      }
+
+      .metrics-strip,
+      .flow,
+      .figure-grid,
+      .paper-links {
+        grid-template-columns: 1fr;
+      }
+
+      .metric {
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .metric:last-child { border-bottom: 0; }
+
+      .timeline-item {
+        grid-template-columns: 1fr;
+      }
+
+      .comparison-row {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topline">
+    <div class="topline-inner">
+      <a class="brand" href="index.html" aria-label="Back to Mr Akuma home">
+        <span class="brand-mark">SJ</span>
+        <span>Sealing Jutsu Research</span>
+      </a>
+      <nav class="nav" aria-label="Page sections">
+        <a href="#thesis">Thesis</a>
+        <a href="#system">System</a>
+        <a href="#results">Results</a>
+        <a href="#timeline">Timeline</a>
+        <a href="#limits">Limits</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="shell">
+      <section class="hero" id="top">
+        <div class="hero-copy fade-in">
+          <div class="eyebrow">Research companion, June 2026</div>
+          <h1>Sealing Jutsu</h1>
+          <p class="hero-subtitle">
+            Intent-bound memory authorization for LLM agents. The project asks a simple security question:
+            if a memory is retrieved, what is it actually allowed to influence?
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="https://github.com/Mr-Akuma/Sealing-Jutsu">Open research repo</a>
+            <a class="button" href="#results">Read the evidence</a>
+            <a class="button" href="#timeline">See the work log</a>
+          </div>
+        </div>
+        <div class="hero-figure fade-in">
+          <figure class="artifact-panel">
+            <img src="images/sealing-jutsu/figure1_architecture_v2.png" alt="CapsuleGuard architecture diagram showing memory intake, capsule compilation, policy gate, planner, and action gate">
+            <figcaption class="artifact-caption">
+              <span>Figure 1</span>
+              CapsuleGuard architecture from the research paper. This page is a readable companion to the paper, not a checklist or map.
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <div class="metrics-strip fade-in" aria-label="Research headline metrics">
+        <div class="metric">
+          <strong>163</strong>
+          <span>tests in the current prototype suite</span>
+        </div>
+        <div class="metric">
+          <strong>0.00%</strong>
+          <span>capsule ASR in the held-out workflow corpus</span>
+        </div>
+        <div class="metric">
+          <strong>0.00%</strong>
+          <span>poison influence in converted AgentDojo and InjecAgent splits</span>
+        </div>
+        <div class="metric">
+          <strong>22.22%</strong>
+          <span>ambient live LLM ASR before capsule filtering</span>
+        </div>
+      </div>
+
+      <section id="thesis">
+        <div class="section-head fade-in">
+          <div>
+            <div class="section-kicker">Core thesis</div>
+            <h2>Retrieval is not authorization.</h2>
+          </div>
+          <p>
+            Long-term memory helps agents feel useful, but it also creates durable attack surface. A poisoned memory can be stored now, sleep across sessions, and later return as context with more authority than it deserves.
+          </p>
+        </div>
+
+        <div class="thesis-grid">
+          <div class="argument fade-in">
+            <p>
+              Sealing Jutsu treats every memory as a bounded security object, not just a chunk of helpful context.
+            </p>
+            <p class="plain">
+              The prototype compiles memories into capsules with source type, topic scope, denied actions, authority score, influence budget, verification count, lineage, freshness, and status. A memory can be retrieved for relevance and still be denied influence over a recommendation, plan, or tool call.
+            </p>
+          </div>
+          <div class="comparison fade-in" aria-label="Defense comparison">
+            <div class="comparison-row">
+              <b>Keyword filter</b>
+              <span>Asks whether the text looks suspicious. Benign-looking poison can survive.</span>
+            </div>
+            <div class="comparison-row">
+              <b>Provenance only</b>
+              <span>Shows where the memory came from. It does not prove what the memory may control.</span>
+            </div>
+            <div class="comparison-row">
+              <b>Output moderation</b>
+              <span>Can block the visible final action after poisoned memory already shaped planning.</span>
+            </div>
+            <div class="comparison-row">
+              <b>Intent capsules</b>
+              <span>Ask whether the memory is authorized for this intent and action before influence is granted.</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="system">
+        <div class="section-head fade-in">
+          <div>
+            <div class="section-kicker">System shape</div>
+            <h2>A memory firewall for the whole lifecycle.</h2>
+          </div>
+          <p>
+            The early plan called this MemShield. The final project became CapsuleGuard inside Sealing Jutsu, but the idea stayed sharp: defend write, retrieval, planning influence, action execution, and repair together.
+          </p>
+        </div>
+
+        <div class="flow fade-in">
+          <div class="flow-step">
+            <span>01</span>
+            <h3>Write Gate</h3>
+            <p>Label source, modality, topic, instruction risk, and lineage before a record becomes long-term memory.</p>
+          </div>
+          <div class="flow-step">
+            <span>02</span>
+            <h3>Capsule Contract</h3>
+            <p>Bind memory to authority, denied actions, verification count, freshness, and allowed topic scope.</p>
+          </div>
+          <div class="flow-step">
+            <span>03</span>
+            <h3>Trusted Retrieval</h3>
+            <p>Retrieve by relevance, then rerank and suppress by trust, risk, quorum, and action context.</p>
+          </div>
+          <div class="flow-step">
+            <span>04</span>
+            <h3>Influence Gate</h3>
+            <p>Separate planner temptation from accepted attack success, so hidden memory compromise is measurable.</p>
+          </div>
+          <div class="flow-step">
+            <span>05</span>
+            <h3>Action Gate</h3>
+            <p>High-risk actions require stronger, independent memory support or the poisoned path is blocked.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="threat-model">
+        <div class="section-head fade-in">
+          <div>
+            <div class="section-kicker">Threat model</div>
+            <h2>The attacker poisons memory, not the host.</h2>
+          </div>
+          <p>
+            The attacker can inject text through web pages, tool output, OCR text, alt text, documents, experience logs, summaries, or imported memory. They cannot edit system prompts, policy code, capsule gates, or benchmark labels.
+          </p>
+        </div>
+
+        <figure class="artifact-panel fade-in">
+          <img src="images/sealing-jutsu/figure2_threat_model_v2.png" alt="Threat model diagram for persistent agent memory poisoning and CapsuleGuard trust boundaries">
+          <figcaption class="artifact-caption">
+            <span>Figure 2</span>
+            The main trust boundary is between memory as relevance evidence and memory as authority.
+          </figcaption>
+        </figure>
+      </section>
+
+      <section id="results">
+        <div class="section-head fade-in">
+          <div>
+            <div class="section-kicker">Evidence</div>
+            <h2>The useful metric was not only ASR.</h2>
+          </div>
+          <p>
+            The reviewer problem was real: output moderation could show 0.00% final ASR on direct action-hijack cases. The project became stronger when it added poison influence rate, which measures whether poisoned memory reached the planner and selected the attacker target before the final gate.
+          </p>
+        </div>
+
+        <div class="quote-band fade-in">
+          <p>Output moderation can win the final-action column while still losing the memory-security property.</p>
+          <span>
+            CapsuleGuard is not claiming that every output gate is useless. It is claiming a different security property: unauthorized memory should not gain planning authority in the first place.
+          </span>
+        </div>
+
+        <div style="height: clamp(28px, 5vw, 54px);"></div>
+
+        <div class="result-board">
+          <div class="table-wrap fade-in">
+            <table aria-label="Converted trace-corpus result table">
+              <thead>
+                <tr>
+                  <th>Corpus</th>
+                  <th>Output-mod ASR</th>
+                  <th>Output-mod influence</th>
+                  <th>Capsule ASR</th>
+                  <th>Capsule influence</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>AgentDojo all</strong></td>
+                  <td>0.00%</td>
+                  <td>80.65%</td>
+                  <td><strong>0.00%</strong></td>
+                  <td><strong>0.00%</strong></td>
+                </tr>
+                <tr>
+                  <td><strong>InjecAgent all</strong></td>
+                  <td>0.00%</td>
+                  <td>61.29%</td>
+                  <td><strong>0.00%</strong></td>
+                  <td><strong>0.00%</strong></td>
+                </tr>
+                <tr>
+                  <td><strong>InjecAgent DH</strong></td>
+                  <td>0.00%</td>
+                  <td>30.00%</td>
+                  <td><strong>0.00%</strong></td>
+                  <td><strong>0.00%</strong></td>
+                </tr>
+                <tr>
+                  <td><strong>InjecAgent DS</strong></td>
+                  <td>0.00%</td>
+                  <td>90.62%</td>
+                  <td><strong>0.00%</strong></td>
+                  <td><strong>0.00%</strong></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <aside class="callout fade-in">
+            <h3>What changed after the preprint?</h3>
+            <p>
+              The paper moved from "CapsuleGuard blocks final attacks" to a cleaner claim: "CapsuleGuard blocks unauthorized memory influence before planning authority is granted." That is why poison influence rate became the key post-preprint metric.
+            </p>
+          </aside>
+        </div>
+
+        <div style="height: clamp(28px, 5vw, 54px);"></div>
+
+        <div class="result-board">
+          <div class="table-wrap fade-in">
+            <table aria-label="Live LLM planner result table">
+              <thead>
+                <tr>
+                  <th>Condition</th>
+                  <th>Rows</th>
+                  <th>Planner tempted</th>
+                  <th>Final ASR</th>
+                  <th>Risky action</th>
+                  <th>Raw parse error</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>ambient_prompt</strong></td>
+                  <td>108</td>
+                  <td>22.22%</td>
+                  <td>22.22%</td>
+                  <td>22.22%</td>
+                  <td>0.00%</td>
+                </tr>
+                <tr>
+                  <td><strong>capsule_filtered_prompt</strong></td>
+                  <td>108</td>
+                  <td>2.78%</td>
+                  <td><strong>0.00%</strong></td>
+                  <td><strong>0.00%</strong></td>
+                  <td>0.00%</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <figure class="artifact-panel fade-in">
+            <img src="images/sealing-jutsu/figure7_live_llm_planner_v2.png" alt="Live LLM planner result chart for ambient and capsule filtered prompts">
+            <figcaption class="artifact-caption">
+              <span>Live LLM</span>
+              Local realism check across llama3, mistral, and phi3.
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section id="figures">
+        <div class="section-head fade-in">
+          <div>
+            <div class="section-kicker">Paper figures</div>
+            <h2>Visual evidence from the draft.</h2>
+          </div>
+          <p>
+            These are the real figures generated for the research paper. They are included here so the blog feels like a companion to the artifact rather than a detached announcement.
+          </p>
+        </div>
+
+        <div class="figure-grid fade-in">
+          <a class="figure-tile" href="images/sealing-jutsu/figure1_architecture_v2.png">
+            <img src="images/sealing-jutsu/figure1_architecture_v2.png" alt="CapsuleGuard architecture">
+            <span>CapsuleGuard architecture</span>
+          </a>
+          <a class="figure-tile" href="images/sealing-jutsu/figure3_trust_rules_v2.png">
+            <img src="images/sealing-jutsu/figure3_trust_rules_v2.png" alt="Memory trust and influence rules">
+            <span>Trust and influence rules</span>
+          </a>
+          <a class="figure-tile" href="images/sealing-jutsu/figure4_workflow_results_v2.png">
+            <img src="images/sealing-jutsu/figure4_workflow_results_v2.png" alt="Held-out workflow result chart">
+            <span>Held-out workflow results</span>
+          </a>
+          <a class="figure-tile" href="images/sealing-jutsu/figure5_stress_asr_v2.png">
+            <img src="images/sealing-jutsu/figure5_stress_asr_v2.png" alt="Stress suite ASR result chart">
+            <span>Stress-suite ASR</span>
+          </a>
+          <a class="figure-tile" href="images/sealing-jutsu/figure2_threat_model_v2.png">
+            <img src="images/sealing-jutsu/figure2_threat_model_v2.png" alt="Threat model and trust boundary diagram">
+            <span>Threat model</span>
+          </a>
+          <a class="figure-tile" href="images/sealing-jutsu/figure_contact_sheet_v2.png">
+            <img src="images/sealing-jutsu/figure_contact_sheet_v2.png" alt="Contact sheet of all research paper figures">
+            <span>Figure contact sheet</span>
+          </a>
+        </div>
+      </section>
+
+      <section id="timeline">
+        <div class="section-head fade-in">
+          <div>
+            <div class="section-kicker">Research arc</div>
+            <h2>From paper idea to measured prototype.</h2>
+          </div>
+          <p>
+            The thread started with a broad memory-firewall idea, then narrowed into a defensible system paper: intent-bound memory authorization with actual benchmark evidence.
+          </p>
+        </div>
+
+        <div class="timeline fade-in">
+          <article class="timeline-item">
+            <time>May 18</time>
+            <div>
+              <h3>The MemShield direction</h3>
+              <p>The initial plan framed the problem as a lifecycle memory firewall: write control, provenance, counterfactual influence, and risk-aware action gating.</p>
+            </div>
+          </article>
+          <article class="timeline-item">
+            <time>May 24</time>
+            <div>
+              <h3>The first submission draft</h3>
+              <p>The paper package gained a structured draft, architecture diagrams, workflow-corpus results, stress suites, and an early reproducibility appendix.</p>
+            </div>
+          </article>
+          <article class="timeline-item">
+            <time>May 26</time>
+            <div>
+              <h3>The breakpoint</h3>
+              <p>The LLM planner became measurable: strict JSON planning reduced raw parse errors to 0.00% across llama3, mistral, and phi3 on the fix branch.</p>
+            </div>
+          </article>
+          <article class="timeline-item">
+            <time>Late May</time>
+            <div>
+              <h3>Medium live LLM benchmark</h3>
+              <p>The project moved from tiny LLM checks to workflow-corpus live planner runs, then integrated those runs into the complete benchmark path.</p>
+            </div>
+          </article>
+          <article class="timeline-item">
+            <time>June 8</time>
+            <div>
+              <h3>The reviewer objection was fixed</h3>
+              <p>Poison influence rate made the difference clear: output moderation can block a final action while poisoned memory still controls planning.</p>
+            </div>
+          </article>
+          <article class="timeline-item">
+            <time>June 8</time>
+            <div>
+              <h3>Final research paper artifacts</h3>
+              <p>The v3 paper, PDF, DOCX, IEEE-style draft, formal threat model, converted-corpus results, and post-preprint scope analysis were produced.</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="limits">
+        <div class="section-head fade-in">
+          <div>
+            <div class="section-kicker">Reviewer-safe framing</div>
+            <h2>Strong result, bounded claim.</h2>
+          </div>
+          <p>
+            The paper is strongest when it is honest. Sealing Jutsu is evidence for least-privilege memory authorization under a stated threat model, not a claim that all memory poisoning is solved.
+          </p>
+        </div>
+
+        <details class="fade-in" open>
+          <summary>What the work can safely claim</summary>
+          <p>Intent-bound capsules reduced final attack success and poison influence to 0.00% in the tested prototype evaluations while preserving benign utility in the held-out workflow corpus.</p>
+        </details>
+        <details class="fade-in">
+          <summary>What still needs more evidence</summary>
+          <p>Larger frontier-model validation, real long-running user traces, raw OCR/image ingestion, production vector database collision testing, and deployed tool-chain sandboxes remain future work.</p>
+        </details>
+        <details class="fade-in">
+          <summary>Why this is still worth publishing</summary>
+          <p>The core contribution is not just another detector. It cleanly separates retrieval from authority, adds poison influence as a measurable property, and shows why late output gates are not equivalent to memory authorization.</p>
+        </details>
+
+        <div style="height: clamp(28px, 5vw, 54px);"></div>
+
+        <div class="paper-links fade-in">
+          <a class="paper-link" href="https://github.com/Mr-Akuma/Sealing-Jutsu">
+            <b>Repository</b>
+            <span>Code, tests, benchmark runners, result artifacts, and paper folder.</span>
+          </a>
+          <a class="paper-link" href="https://github.com/Mr-Akuma/Sealing-Jutsu/tree/main/paper">
+            <b>Paper Artifacts</b>
+            <span>Research paper, IEEE-style version, figures, DOCX/PDF outputs, and logs.</span>
+          </a>
+          <a class="paper-link" href="https://github.com/Mr-Akuma/Sealing-Jutsu/blob/main/README.md">
+            <b>Project README</b>
+            <span>Readable project overview, commands, metrics, and current evidence summary.</span>
+          </a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="shell footer">
+    <p>
+      Sealing Jutsu research companion page by Mr Akuma. Defensive security research only.
+      The safe summary: retrieval selects candidate memories; authorization decides whether those memories may influence the agent.
+    </p>
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      for (const entry of entries) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      }
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.fade-in').forEach((node) => observer.observe(node));
+  </script>
+</body>
+</html>
