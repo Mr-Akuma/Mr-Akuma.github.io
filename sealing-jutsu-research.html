@@ -14,25 +14,25 @@
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,650;9..144,800&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #fff7de;
-      --ink: #25190f;
-      --muted: #6f5d4d;
-      --dim: #927c65;
-      --panel: #fffdf5;
-      --panel-2: #fff0ca;
-      --line: rgba(55, 36, 20, 0.13);
-      --line-strong: rgba(55, 36, 20, 0.28);
-      --red: #e84b35;
-      --red-soft: rgba(232, 75, 53, 0.16);
-      --jade: #0f9b73;
-      --jade-soft: rgba(15, 155, 115, 0.14);
-      --brass: #a97605;
-      --brass-soft: rgba(237, 180, 66, 0.22);
-      --blue: #2478a8;
-      --blue-soft: rgba(36, 120, 168, 0.14);
-      --plum: #a23c6d;
-      --plum-soft: rgba(162, 60, 109, 0.12);
-      --shadow: 0 24px 80px rgba(95, 63, 25, 0.18);
+      --bg: #060707;
+      --ink: #f8f1e5;
+      --muted: #b6ad9e;
+      --dim: #7f7669;
+      --panel: #111315;
+      --panel-2: #171a1d;
+      --line: rgba(248, 241, 229, 0.12);
+      --line-strong: rgba(248, 241, 229, 0.26);
+      --red: #ff4d39;
+      --red-soft: rgba(255, 77, 57, 0.13);
+      --jade: #4fd39d;
+      --jade-soft: rgba(79, 211, 157, 0.12);
+      --brass: #d8aa4d;
+      --brass-soft: rgba(216, 170, 77, 0.14);
+      --blue: #7ab7d9;
+      --blue-soft: rgba(122, 183, 217, 0.11);
+      --plum: #d377a5;
+      --plum-soft: rgba(211, 119, 165, 0.10);
+      --shadow: 0 28px 90px rgba(0, 0, 0, 0.56);
       --font-display: "Fraunces", Georgia, serif;
       --font-body: "Source Sans 3", "Segoe UI", sans-serif;
       --font-mono: "IBM Plex Mono", Consolas, monospace;
@@ -50,11 +50,11 @@
       color: var(--ink);
       font-family: var(--font-body);
       background:
-        linear-gradient(90deg, rgba(55, 36, 20, 0.055) 1px, transparent 1px) 0 0 / 52px 52px,
-        linear-gradient(rgba(55, 36, 20, 0.044) 1px, transparent 1px) 0 0 / 52px 52px,
-        radial-gradient(circle at 85% 12%, rgba(232, 75, 53, 0.18), transparent 30%),
-        radial-gradient(circle at 10% 30%, rgba(15, 155, 115, 0.13), transparent 32%),
-        linear-gradient(135deg, #fff7de 0%, #fff1c7 46%, #eaffed 100%);
+        linear-gradient(90deg, rgba(248, 241, 229, 0.035) 1px, transparent 1px) 0 0 / 52px 52px,
+        linear-gradient(rgba(248, 241, 229, 0.026) 1px, transparent 1px) 0 0 / 52px 52px,
+        radial-gradient(circle at 84% 10%, rgba(255, 77, 57, 0.20), transparent 28%),
+        radial-gradient(circle at 10% 32%, rgba(79, 211, 157, 0.12), transparent 30%),
+        linear-gradient(135deg, #060707 0%, #0d0f11 52%, #090a0b 100%);
       overflow-x: hidden;
       overflow-wrap: break-word;
     }
@@ -65,10 +65,10 @@
       inset: 0;
       pointer-events: none;
       background:
-        linear-gradient(180deg, rgba(255, 255, 255, 0.18), rgba(255, 247, 222, 0.72) 82%),
-        repeating-linear-gradient(90deg, rgba(37, 25, 15, 0.035) 0 1px, transparent 1px 7px);
-      mix-blend-mode: multiply;
-      opacity: 0.34;
+        linear-gradient(180deg, transparent, rgba(6, 7, 7, 0.72) 82%),
+        repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.018) 0 1px, transparent 1px 7px);
+      mix-blend-mode: screen;
+      opacity: 0.32;
       z-index: -1;
     }
 
@@ -79,7 +79,7 @@
       top: 0;
       z-index: 20;
       border-bottom: 1px solid var(--line);
-      background: rgba(255, 253, 245, 0.88);
+      background: rgba(6, 7, 7, 0.88);
       backdrop-filter: blur(18px);
     }
 
@@ -113,7 +113,7 @@
       border: 1px solid var(--line-strong);
       color: var(--red);
       font-weight: 700;
-      background: #fffdf5;
+      background: #101214;
     }
 
     .nav {
@@ -222,7 +222,7 @@
       text-decoration: none;
       font-weight: 700;
       color: var(--ink);
-      background: rgba(255, 253, 245, 0.74);
+      background: rgba(248, 241, 229, 0.045);
       transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
     }
 
@@ -237,7 +237,7 @@
     .button.primary {
       background: var(--red);
       border-color: var(--red);
-      color: #fffdf5;
+      color: #170807;
     }
 
     .hero-figure {
@@ -254,14 +254,14 @@
       inset: 8% -10% 10% 10%;
       border: 1px solid var(--line);
       transform: rotate(4deg);
-      background: rgba(255, 253, 245, 0.34);
+      background: rgba(248, 241, 229, 0.045);
     }
 
     .artifact-panel {
       position: relative;
       width: 100%;
       border: 1px solid var(--line-strong);
-      background: linear-gradient(145deg, rgba(255, 253, 245, 0.98), rgba(255, 236, 188, 0.96));
+      background: linear-gradient(145deg, rgba(17, 19, 21, 0.98), rgba(12, 13, 14, 0.98));
       box-shadow: var(--shadow);
       padding: 16px;
     }
@@ -302,7 +302,7 @@
       min-height: 150px;
       padding: clamp(18px, 3vw, 28px);
       border-right: 1px solid var(--line);
-      background: rgba(255, 253, 245, 0.58);
+      background: rgba(248, 241, 229, 0.045);
     }
 
     .metric:last-child { border-right: 0; }
@@ -424,7 +424,7 @@
       min-height: 210px;
       padding: 22px;
       border-right: 1px solid var(--line);
-      background: rgba(255, 253, 245, 0.64);
+      background: rgba(248, 241, 229, 0.045);
       position: relative;
     }
 
@@ -440,7 +440,7 @@
       border-top: 1px solid var(--line-strong);
       border-right: 1px solid var(--line-strong);
       transform: rotate(45deg);
-      background: #fff7de;
+      background: #060707;
       z-index: 1;
     }
 
@@ -475,7 +475,7 @@
     .table-wrap {
       overflow-x: auto;
       border: 1px solid var(--line-strong);
-      background: rgba(255, 253, 245, 0.78);
+      background: rgba(248, 241, 229, 0.04);
     }
 
     table {
@@ -498,7 +498,7 @@
       font-size: 0.76rem;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      background: rgba(237, 180, 66, 0.18);
+      background: rgba(216, 170, 77, 0.11);
     }
 
     td { color: var(--muted); }
@@ -507,7 +507,7 @@
 
     .callout {
       border: 1px solid var(--line-strong);
-      background: linear-gradient(180deg, rgba(15, 155, 115, 0.12), rgba(255, 253, 245, 0.78));
+      background: linear-gradient(180deg, rgba(79, 211, 157, 0.10), rgba(248, 241, 229, 0.04));
       padding: 24px;
     }
 
@@ -526,9 +526,9 @@
       padding: clamp(44px, 6vw, 82px);
       border: 1px solid var(--line-strong);
       background:
-        linear-gradient(135deg, rgba(232, 75, 53, 0.14), transparent 48%),
-        linear-gradient(225deg, rgba(15, 155, 115, 0.12), transparent 44%),
-        rgba(255, 253, 245, 0.76);
+        linear-gradient(135deg, rgba(255, 77, 57, 0.12), transparent 48%),
+        linear-gradient(225deg, rgba(79, 211, 157, 0.09), transparent 44%),
+        rgba(248, 241, 229, 0.04);
     }
 
     .quote-band p {
@@ -590,7 +590,7 @@
 
     .figure-tile {
       border: 1px solid var(--line-strong);
-      background: rgba(255, 253, 245, 0.76);
+      background: rgba(248, 241, 229, 0.04);
       padding: 12px;
       text-decoration: none;
       transition: transform 180ms ease, border-color 180ms ease;
@@ -664,7 +664,7 @@
       min-height: 170px;
       padding: 22px;
       border: 1px solid var(--line-strong);
-      background: rgba(255, 253, 245, 0.76);
+      background: rgba(248, 241, 229, 0.04);
       text-decoration: none;
       display: flex;
       flex-direction: column;
