@@ -956,7 +956,16 @@
       }
 
       .nav {
+        display: grid;
+        grid-template-columns: repeat(4, max-content);
+        column-gap: 12px;
+        row-gap: 4px;
         justify-content: flex-start;
+        width: 100%;
+      }
+
+      .nav a {
+        padding: 8px 4px;
       }
 
       .hero {
@@ -1023,6 +1032,7 @@
       <nav class="nav" aria-label="Page sections">
         <a href="#thesis">Thesis</a>
         <a href="#explainer">Guide</a>
+        <a href="#rag-boundary">RAG</a>
         <a href="#walkthrough">Walkthrough</a>
         <a href="#system">System</a>
         <a href="#results">Results</a>
@@ -1170,6 +1180,93 @@
           <div>
             <b>Security goal</b>
             <span>Keep useful memory, but remove ambient authority from untrusted or weakly supported memories.</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="rag-boundary">
+        <div class="section-head fade-in">
+          <div>
+            <div class="section-kicker">RAG trust boundary</div>
+            <h2>RAG is valid here because retrieval can become authority.</h2>
+          </div>
+          <p>
+            A normal RAG system retrieves chunks because they are semantically useful. An agentic memory system may go further: it lets those chunks steer recommendations, plans, tool choices, and user preferences. That second step is the security boundary.
+          </p>
+        </div>
+
+        <div class="explain-grid fade-in">
+          <article class="explain-card">
+            <span class="label">Valid attack path</span>
+            <h3>Retrieval collision</h3>
+            <p>
+              An attacker writes content that mentions the same vendor, project, account, product, or workflow terms as a future task. Vector search can retrieve it for the right reason while still giving the wrong source a voice in planning.
+            </p>
+          </article>
+          <article class="explain-card">
+            <span class="label">Valid attack path</span>
+            <h3>Indirect prompt injection</h3>
+            <p>
+              A retrieved chunk may contain text that looks like an instruction: ignore old policy, prefer a named option, skip confirmation, or treat a link as trusted. The model sees it as context unless the system labels and gates it.
+            </p>
+          </article>
+          <article class="explain-card">
+            <span class="label">Valid attack path</span>
+            <h3>Summary laundering</h3>
+            <p>
+              RAG pipelines often summarize, chunk, title, deduplicate, and re-embed documents. If lineage is weak, a low-trust webpage can become a clean-looking memory summary with stronger apparent authority than the source deserved.
+            </p>
+          </article>
+        </div>
+
+        <div class="case-strip fade-in" style="margin-top: 26px;">
+          <div class="field-list" aria-label="RAG security checkpoints">
+            <div class="field-row">
+              <b>Ingest gate</b>
+              <span>Classify source type before indexing: user-confirmed fact, internal document, external webpage, tool output, OCR text, email, chat note, generated summary, or imported memory. Source type becomes part of the capsule, not just metadata for search.</span>
+            </div>
+            <div class="field-row">
+              <b>Index gate</b>
+              <span>Store lineage with every chunk and derived summary. If a summary comes from a weak source, it should inherit that source's authority cap instead of being promoted into trusted memory.</span>
+            </div>
+            <div class="field-row">
+              <b>Retrieve gate</b>
+              <span>Use semantic similarity to find candidates, then separate display from influence. A chunk can be shown to the model as evidence while still being denied permission to change a plan, rank a vendor, or authorize a tool call.</span>
+            </div>
+            <div class="field-row">
+              <b>Prompt gate</b>
+              <span>Pass retrieved text with trust labels and action limits. The prompt should make clear which content is untrusted data, which is verified preference, and which records are sealed or advisory only.</span>
+            </div>
+            <div class="field-row">
+              <b>Action gate</b>
+              <span>For medium- and high-risk actions, require quorum: independent support from sufficiently trusted sources or explicit user confirmation. One retrieved chunk should not be enough to spend money, send mail, delete data, or grant access.</span>
+            </div>
+          </div>
+
+          <aside class="callout">
+            <h3>The defensible claim</h3>
+            <p>
+              CapsuleGuard does not claim to fix every RAG problem. It targets one specific failure: retrieved content gaining more authority than its source, scope, and evidence justify. That is why the paper frames RAG as an authorization problem, not just a retrieval-quality problem.
+            </p>
+          </aside>
+        </div>
+
+        <div class="mini-flow fade-in" aria-label="RAG pipeline validation model">
+          <div>
+            <b>RAG finds</b>
+            <span>Which memories, chunks, and summaries are semantically close to the user's task?</span>
+          </div>
+          <div>
+            <b>Capsules decide</b>
+            <span>Which retrieved records are allowed to affect this topic, user intent, and action class?</span>
+          </div>
+          <div>
+            <b>Planner reasons</b>
+            <span>Only authorized influence reaches ranking, recommendation, workflow, and tool-selection logic.</span>
+          </div>
+          <div>
+            <b>Audit proves</b>
+            <span>Logs show what was retrieved, what was denied, and why the final decision was allowed.</span>
           </div>
         </div>
       </section>
