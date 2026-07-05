@@ -912,7 +912,44 @@ RESULT: <span class="green">card never onboarded: the partner does not exist in 
         <p>The honest next step is to port <code>agents.py</code> onto a live model via the OpenAI Agents SDK and drive it with <a href="https://agentdojo.spylab.ai">AgentDojo</a>'s prompt-injection tasks, to confirm real paraphrase clears the recognizer's bar. The mock proves the architecture is exploitable and that filtering can't catch up with phrasing; a live port would pin the true size of that gap.</p>
       </div>
 
-      <h2><span class="n">14 / takeaway</span>Audit the handoff like a network boundary</h2>
+      <h2><span class="n">14 / in the wild</span>Three real frameworks — and a real model</h2>
+      <p>§13 named the honest next step: stop trusting the hand-written recognizer and put a real model in the seat. Here it is, in two moves. First — does this soft joint exist in the frameworks people actually ship? Second — does a live model actually fall for it?</p>
+
+      <p><strong>The same joint, three real frameworks.</strong> Read the public source of the three most-deployed open-source multi-agent stacks and the primitive that picks the next agent is, every time, a free-form value the model emits — dispatched with no authorization at the join:</p>
+
+      <div class="tblwrap"><table class="knock">
+        <thead><tr><th class="ctl">framework — public source</th><th>the handoff primitive</th><th>native fix</th></tr></thead>
+        <tbody>
+          <tr><td class="ctl">AWS Agent Squad</td><td><code>classifier.selected_agent</code> → <code>send_messages(recipient=&lt;name&gt;)</code></td><td class="hit">none shipped</td></tr>
+          <tr><td class="ctl">CrewAI</td><td><code>Delegate work to coworker(coworker=&lt;role&gt;)</code></td><td><code>allowed_agents</code> (opt-in)</td></tr>
+          <tr><td class="ctl">LangGraph swarm</td><td><code>Command(goto=&lt;agent&gt;)</code></td><td>compiled static edges</td></tr>
+        </tbody>
+      </table></div>
+      <p>Reproduced offline against the same VULN / DETECT / FIXED switch, all three behave identically: an injected redirect crosses a customer→admin privilege boundary and fires the crown-jewel tool under <span style="color:var(--vuln)">VULN</span>; <span style="color:var(--term-amber)">DETECT</span> strips the literal <code class="mk">[[HANDOFF]]</code> marker but the natural-language paraphrase sails through; <span style="color:var(--fixed)">FIXED</span> — authorize at the join — blocks every attack while legitimate handoffs still pass. The soft joint is the architecture, not any one vendor.</p>
+
+      <p><strong>And a real model falls for it.</strong> The §08 recognizer is hand-written; §13 flagged that as the floor. So <code>online_probe.py</code> drops a <em>real</em> LLM into exactly the Agent Squad classifier seat — agent descriptions plus the untrusted message, no authorization rule — and measures how often the injected redirect makes the model choose the privileged agent. No API key, no cloud: three open-weights models driven locally.</p>
+
+      <div class="statrow">
+        <div class="stat v"><div class="big">100%</div><div class="who">real router obeys</div><div class="sub">33/33 runs across llama3 · mistral · phi3 — the injection selects the privileged agent</div></div>
+        <div class="stat f"><div class="big">0</div><div class="who">reach it after the gate</div><div class="sub">the code-level route allow-list blocks all 33, whatever the model chose</div></div>
+      </div>
+
+      <figure>
+        <div class="bars">
+          <div class="bar-row v"><span class="lab">injection (raw router)</span><span class="bar-track"><span class="bar-fill" data-pct="100" style="width:100%"></span></span><span class="pct">33/33</span></div>
+          <div class="bar-row f"><span class="lab">after code-level gate</span><span class="bar-track"><span class="bar-fill" data-pct="0" style="width:0%"></span></span><span class="pct">0/33</span></div>
+        </div>
+        <figcaption>a real LLM in the classifier seat — 3 models × 3 attack phrasings × 3 trials — benign traffic always routed correctly — <code>HANDOFF_BACKEND=ollama python online_probe.py</code></figcaption>
+      </figure>
+
+      <blockquote>The recognizer was a floor, and the floor held: real models don't resist the redirect — they comply every time. Only the control that never reads the wording stops it.</blockquote>
+
+      <div class="note">
+        <div class="k">Scope &amp; ethics</div>
+        <p>Framework behaviour is reproduced from <strong>public source review</strong> of <code>awslabs/agent-squad</code>, <code>crewAIInc/crewAI</code>, and <code>langchain-ai/langgraph-*</code>; the model measurement drives a real LLM over a <strong>local, self-hosted runtime</strong> the author controls. No third-party production system was probed, and no undisclosed vulnerability is named here — confirming the transfer against the installed packages and a hosted frontier model is the step that precedes responsible disclosure to each maintainer.</p>
+      </div>
+
+      <h2><span class="n">15 / takeaway</span>Audit the handoff like a network boundary</h2>
       <p>Because that's what it is: a trust boundary between two privilege domains, with an untrusted payload crossing it. Four questions catch every exploit above:</p>
       <ul class="q">
         <li><b>What does the downstream agent trust from the upstream one?</b><span>If the answer is "everything in the shared context," you have A1 and A5. Carried state is untrusted input, not memory.</span></li>
@@ -926,7 +963,7 @@ RESULT: <span class="green">card never onboarded: the partner does not exist in 
     <footer>
       <div class="wrap">
         <p class="kick">The handoff is the soft joint. Weld it.</p>
-        <p>The lab is stdlib-only Python: mock LLM, VULN / DETECT / FIXED policy switch, eight exploits from a two-hop chain through a four-agent mesh to a cross-org A2A federation boundary, a 185-phrasing natural-language + obfuscation corpus that measures input filtering (12% byte-level, 43% even with perfect de-obfuscation) against structural prevention (100%), a regression suite that pins every control, and a happy-path guard. It maps directly onto real primitives: OpenAI Agents SDK / Swarm <code style="color:var(--accent)">handoff()</code> &amp; <code style="color:var(--accent)">context_variables</code>, CrewAI delegation, LangGraph state &amp; edges, Google A2A signed Agent Cards. Porting to a live model and driving it with AgentDojo is the natural next step.</p>
+        <p>The lab is stdlib-only Python: mock LLM, VULN / DETECT / FIXED policy switch, eight exploits from a two-hop chain through a four-agent mesh to a cross-org A2A federation boundary, a 185-phrasing natural-language + obfuscation corpus that measures input filtering (12% byte-level, 43% even with perfect de-obfuscation) against structural prevention (100%), a regression suite that pins every control, and a happy-path guard. It maps directly onto real primitives: OpenAI Agents SDK / Swarm <code style="color:var(--accent)">handoff()</code> &amp; <code style="color:var(--accent)">context_variables</code>, CrewAI delegation, LangGraph state &amp; edges, Google A2A signed Agent Cards. §14 carries it further: the same soft joint is reproduced from the public source of AWS Agent Squad, CrewAI, and LangGraph, and a real LLM in the classifier seat obeys the injected redirect <strong>33/33 (100%)</strong> across three local models — closed to zero by the same structural gate.</p>
       </div>
     </footer>
   </article>
