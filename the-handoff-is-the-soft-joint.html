@@ -426,7 +426,7 @@ MARKER_RE = re.compile(<span class="st">r"\[\[(HANDOFF|TOOL|SETROLE):(.*?)\]\]"<
          └────────────────────────┘</pre>
       </figure>
 
-      <p>Two things about that picture are load-bearing. First, <strong>shared context travels with every handoff</strong>, <code>{ user_id, role, notes[] }</code>, and that <code>notes</code> list is the covert channel: free-form "memory" every downstream hop reads as authoritative. Second, not everything is a straight line. <strong>KnowledgeAgent</strong> is a retrieval-only peer that sits <em>beside</em> AccountAgent, turning the chain into a <strong>mesh</strong>; and <strong>FraudCheckPartner</strong> sits entirely outside the company, onboarded by fetching its signed Agent Card (§07). Those two, the retrieval peer and the cross-org partner, are the architecture's hardest trust boundaries, and the reason the bug list runs past the obvious four.</p>
+      <p>Two things about that picture are load-bearing. First, <strong>shared context travels with every handoff</strong>, <code>{ user_id, role, notes[] }</code>, and that <code>notes</code> list is the covert channel: free-form "memory" every downstream hop reads as authoritative. Second, not everything is a straight line. <strong>KnowledgeAgent</strong> is a retrieval-only peer that sits <em>beside</em> AccountAgent, turning the chain into a <strong>mesh</strong>; and <strong>FraudCheckPartner</strong> sits entirely outside the company, onboarded by fetching its signed Agent Card (07). Those two, the retrieval peer and the cross-org partner, are the architecture's hardest trust boundaries, and the reason the bug list runs past the obvious four.</p>
 
       <p><strong>The whole attack surface is five trust boundaries.</strong> Every exploit in this piece is a failure to re-check something as it crosses one of these seams: nothing more exotic than that:</p>
       <div class="tblwrap"><table>
@@ -439,7 +439,7 @@ MARKER_RE = re.compile(<span class="st">r"\[\[(HANDOFF|TOOL|SETROLE):(.*?)\]\]"<
           <tr><td>❺</td><td>registry / federation</td><td>an agent identity or Agent Card</td><td>a named or signed agent trusted without <em>authorization</em></td><td>A4 · A7 · A8</td></tr>
         </tbody>
       </table></div>
-      <p>Hold that table in mind. The eight exploits below are just the eight ways to abuse these five seams, and the three root controls in §10 collapse to a single instruction: <em>re-check every seam, and never trust the payload crossing it.</em></p>
+      <p>Hold that table in mind. The eight exploits below are just the eight ways to abuse these five seams, and the three root controls in 10 collapse to a single instruction: <em>re-check every seam, and never trust the payload crossing it.</em></p>
 
       <h2><span class="n">03 / anatomy</span>The whole runtime in one screen</h2>
       <p>Before the exploits, it's worth seeing how little machinery is required to reproduce all of them, because the smallness is the point. The failure isn't a subtle bug in a big framework; it's an <em>architecture</em> that trusts the wrong thing, and it fits on a screen.</p>
@@ -460,7 +460,7 @@ VULN   = SecurityPolicy(<span class="st">honor=True,  ... everything permissive 
 DETECT = SecurityPolicy(<span class="st">honor=True,  ... still gullible, but ...           sanitize=True </span>)  <span class="cm"># input filter</span>
 FIXED  = SecurityPolicy(<span class="st">honor=False, allowlist/caps/authed/loops/cards ON, sanitize=False</span>)</pre></figure>
 
-      <p>Ignore <code>DETECT</code> for now: it's the star of §08, where we drop the labelled markers and measure. Until then, the only switch that matters is <code>VULN</code> vs <code>FIXED</code>.</p>
+      <p>Ignore <code>DETECT</code> for now: it's the star of 08, where we drop the labelled markers and measure. Until then, the only switch that matters is <code>VULN</code> vs <code>FIXED</code>.</p>
 
       <p>The router is where data becomes instructions. On the vulnerable policy, any marker found <em>anywhere</em> in the untrusted surface, the user message plus every carried note, is executed as the agent's own decision:</p>
 
@@ -789,7 +789,7 @@ RESULT: <span class="green">card never onboarded: the partner does not exist in 
           <tr><td><span class="stride">E</span>Elevation of priv.</td><td>a low-tier agent runs a high-tier tool; a partner over-claims caps</td><td>❶ ❺</td><td>A2 · A3 · A7 · A8</td></tr>
         </tbody>
       </table></div>
-      <p><strong>Repudiation is the row with no exploit</strong>, and finding that gap is the whole reason to run STRIDE by hand. The lab never demonstrates it, but the threat is real and the fix is cheap: log every handoff as an <em>authenticated edge</em>, who authorized this hop, so a rogue route can be attributed and alerted on. It's the detection half of §12, and it's the row you'd have skipped if you only worked backward from the exploits you already knew.</p>
+      <p><strong>Repudiation is the row with no exploit</strong>, and finding that gap is the whole reason to run STRIDE by hand. The lab never demonstrates it, but the threat is real and the fix is cheap: log every handoff as an <em>authenticated edge</em>, who authorized this hop, so a rogue route can be attributed and alerted on. It's the detection half of 12, and it's the row you'd have skipped if you only worked backward from the exploits you already knew.</p>
 
       <h3>One asset, many paths: the attack tree</h3>
       <p>Threats aren't independent: several exploits reach the <em>same</em> prize by different routes. Draw the tree for the crown jewel and the argument for defense-in-depth writes itself: closing one branch doesn't close the goal.</p>
@@ -806,7 +806,7 @@ RESULT: <span class="green">card never onboarded: the partner does not exist in 
            ├─ <span class="cy">A7</span>  forge a partner card that self-grants db_admin
            └─ <span class="cy">A8</span>  over-claim db_admin in a validly signed card</pre>
       </figure>
-      <p>Five leaves, one goal. A point fix on any single branch, say, an input filter that catches <code>[[SETROLE:admin]]</code>, leaves the other four wide open, which is precisely what §08 measured. That is the entire case for the structural controls in the next section: they cut the tree at the <strong>trunk</strong> (the five boundaries), not the leaves.</p>
+      <p>Five leaves, one goal. A point fix on any single branch, say, an input filter that catches <code>[[SETROLE:admin]]</code>, leaves the other four wide open, which is precisely what 08 measured. That is the entire case for the structural controls in the next section: they cut the tree at the <strong>trunk</strong> (the five boundaries), not the leaves.</p>
 
       <h2><span class="n">10 / defense</span>Eight exploits, one idea underneath</h2>
       <p>Eight distinct exploits, named controls in the <code>FIXED</code> build. Here they are against the attacks they stop:</p>
@@ -905,7 +905,7 @@ RESULT: <span class="green">card never onboarded: the partner does not exist in 
       <h2><span class="n">13 / honesty</span>What the mock doesn't capture</h2>
       <div class="note">
         <div class="k">Limitations, stated plainly</div>
-        <p><strong>The comprehension model is hand-written, not a real LLM.</strong> §08 drops the labelled markers and models natural language and obfuscation, but the recognizer in <code>lab/nlp.py</code> is a curated pattern set, not a live model. So the measured gap is a <em>floor</em>: a real model comprehends more paraphrase than the recognizer does, which only <em>widens</em> the ground a filter must cover. The direction of the result is robust; the exact percentage is a property of the 185-phrasing corpus.</p>
+        <p><strong>The comprehension model is hand-written, not a real LLM.</strong> 08 drops the labelled markers and models natural language and obfuscation, but the recognizer in <code>lab/nlp.py</code> is a curated pattern set, not a live model. So the measured gap is a <em>floor</em>: a real model comprehends more paraphrase than the recognizer does, which only <em>widens</em> the ground a filter must cover. The direction of the result is robust; the exact percentage is a property of the 185-phrasing corpus.</p>
         <p><strong>The 43% ceiling is charitable to the filter twice over.</strong> It grants perfect de-obfuscation <em>and</em> zero false positives, and a real classifier gets neither. A fielded prompt-injection guard trades precision for recall, so it lands <em>below</em> 43%, not at it. The gap FIXED closes is, if anything, understated here.</p>
         <p><strong>Every attack here is single-turn.</strong> Real-world handoff attacks are often multi-turn (crescendo, gradual context poisoning). The lab shows the mechanism, not the full campaign.</p>
         <p><strong>The structural results don't depend on the model at all.</strong> A2, A3, A4, A6, A7, A8 live in trust boundaries, not wording: a smarter model doesn't close A2; an allow-list does. Those are exact, not approximate.</p>
@@ -913,7 +913,7 @@ RESULT: <span class="green">card never onboarded: the partner does not exist in 
       </div>
 
       <h2><span class="n">14 / in the wild</span>Three real frameworks  and a real model</h2>
-      <p>§13 named the honest next step: stop trusting the hand-written recognizer and put a real model in the seat. Here it is, in two moves. First  does this soft joint exist in the frameworks people actually ship? Second  does a live model actually fall for it?</p>
+      <p>13 named the honest next step: stop trusting the hand-written recognizer and put a real model in the seat. Here it is, in two moves. First  does this soft joint exist in the frameworks people actually ship? Second  does a live model actually fall for it?</p>
 
       <p><strong>The same joint, three real frameworks.</strong> Read the public source of the three most-deployed open-source multi-agent stacks and the primitive that picks the next agent is, every time, a free-form value the model emits  dispatched with no authorization at the join:</p>
 
@@ -927,7 +927,7 @@ RESULT: <span class="green">card never onboarded: the partner does not exist in 
       </table></div>
       <p>Reproduced offline against the same VULN / DETECT / FIXED switch, all three behave identically: an injected redirect crosses a customer→admin privilege boundary and fires the crown-jewel tool under <span style="color:var(--vuln)">VULN</span>; <span style="color:var(--term-amber)">DETECT</span> strips the literal <code class="mk">[[HANDOFF]]</code> marker but the natural-language paraphrase sails through; <span style="color:var(--fixed)">FIXED</span>  authorize at the join  blocks every attack while legitimate handoffs still pass. The soft joint is the architecture, not any one vendor.</p>
 
-      <p><strong>And a real model falls for it.</strong> The §08 recognizer is hand-written; §13 flagged that as the floor. So <code>online_probe.py</code> drops a <em>real</em> LLM into exactly the Agent Squad classifier seat  agent descriptions plus the untrusted message, no authorization rule  and measures how often the injected redirect makes the model choose the privileged agent. No API key, no cloud: three open-weights models driven locally.</p>
+      <p><strong>And a real model falls for it.</strong> The 08 recognizer is hand-written; 13 flagged that as the floor. So <code>online_probe.py</code> drops a <em>real</em> LLM into exactly the Agent Squad classifier seat  agent descriptions plus the untrusted message, no authorization rule  and measures how often the injected redirect makes the model choose the privileged agent. No API key, no cloud: three open-weights models driven locally.</p>
 
       <div class="statrow">
         <div class="stat v"><div class="big">100%</div><div class="who">real router obeys</div><div class="sub">33/33 runs across llama3 · mistral · phi3  the injection selects the privileged agent</div></div>
@@ -1251,7 +1251,7 @@ OK</pre>
     <footer>
       <div class="wrap">
         <p class="kick">The handoff is the soft joint. Weld it.</p>
-        <p>The lab is stdlib-only Python: mock LLM, VULN / DETECT / FIXED policy switch, eight exploits from a two-hop chain through a four-agent mesh to a cross-org A2A federation boundary, a 185-phrasing natural-language + obfuscation corpus that measures input filtering (12% byte-level, 43% even with perfect de-obfuscation) against structural prevention (100%), a regression suite that pins every control, and a happy-path guard. It maps directly onto real primitives: OpenAI Agents SDK / Swarm <code style="color:var(--accent)">handoff()</code> &amp; <code style="color:var(--accent)">context_variables</code>, CrewAI delegation, LangGraph state &amp; edges, Google A2A signed Agent Cards. §14 carries it further: the same soft joint is reproduced from the public source of AWS Agent Squad, CrewAI, and LangGraph, and a real LLM in the classifier seat obeys the injected redirect <strong>33/33 (100%)</strong> across three local models  closed to zero by the same structural gate.</p>
+        <p>The lab is stdlib-only Python: mock LLM, VULN / DETECT / FIXED policy switch, eight exploits from a two-hop chain through a four-agent mesh to a cross-org A2A federation boundary, a 185-phrasing natural-language + obfuscation corpus that measures input filtering (12% byte-level, 43% even with perfect de-obfuscation) against structural prevention (100%), a regression suite that pins every control, and a happy-path guard. It maps directly onto real primitives: OpenAI Agents SDK / Swarm <code style="color:var(--accent)">handoff()</code> &amp; <code style="color:var(--accent)">context_variables</code>, CrewAI delegation, LangGraph state &amp; edges, Google A2A signed Agent Cards. 14 carries it further: the same soft joint is reproduced from the public source of AWS Agent Squad, CrewAI, and LangGraph, and a real LLM in the classifier seat obeys the injected redirect <strong>33/33 (100%)</strong> across three local models  closed to zero by the same structural gate.</p>
       </div>
     </footer>
   </article>
