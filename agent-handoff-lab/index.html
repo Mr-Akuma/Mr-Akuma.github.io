@@ -208,7 +208,7 @@
       <h1>The handoff is the <span class="em">soft joint</span></h1>
       <p class="dek"><strong>A brand-new mini blog series.</strong> Single-agent LLM security has a playbook by now. But the systems people ship are not single agents, and the moment there are two, a new class of bug appears at the seam between them. This is a field lab and an eight-part series about that seam.</p>
       <div class="byline">
-        <span>8-part series</span>
+        <span>eight-part series</span>
         <span>STRIDE threat model per post</span>
         <span>offline, runnable lab</span>
         <span>part 1 live &#183; rest rolling out</span>
@@ -260,7 +260,7 @@
         <div class="tcard d"><div class="big">DETECT</div><div class="who">filtered</div><div class="sub">an input filter bolted in front, the popular real-world answer</div></div>
         <div class="tcard f"><div class="big">FIXED</div><div class="who">authorized</div><div class="sub">structural controls at the seam; every attack blocked</div></div>
       </div>
-      <p>You can read each post on its own, or clone the lab and watch every attack succeed and then get blocked in your own terminal.</p>
+      <p>You can read each post on its own, or clone the lab from <a href="https://github.com/Mr-Akuma/the-handoff-is-the-soft-joint">GitHub</a> and watch every attack succeed and then get blocked in your own terminal.</p>
       <div class="run"><pre><span class="p">python run.py</span>        <span class="c"># run every exploit against both builds, see the result matrix</span>
 <span class="p">python metrics.py</span>    <span class="c"># the measured harness: block rate per policy</span></pre></div>
 
@@ -282,7 +282,7 @@
       </div>
 
       <h2><span class="n">the finding</span>Why filtering is a speed bump, not a control</h2>
-      <p>The result that ties the series together is a measurement. Take the natural-language injections the attacks use, grow them into a 185-phrasing corpus across plain, obfuscated, and paraphrased forms, and score each build. An input filter, even granted flawless de-obfuscation, tops out at 43% because the rest is pure paraphrase no fixed vocabulary can enumerate. The structural controls reach 100%, because they never read the wording at all.</p>
+      <p>The result that ties the series together is a measurement. Take the natural-language injections the attacks use, grow them into a 185-phrasing corpus across plain, obfuscated, and paraphrased forms, and score each build. An input filter, even granted flawless de-obfuscation, tops out at 43% (81 of 185) because the rest is pure paraphrase no fixed vocabulary can enumerate. The structural controls reach 100%, because they never read the wording at all.</p>
       <blockquote>Detection scales with the attacker's vocabulary. Prevention does not.</blockquote>
 
       <h2><span class="n">the defense</span>Eight fixes, three ideas</h2>
