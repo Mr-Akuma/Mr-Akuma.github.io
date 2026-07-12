@@ -300,7 +300,6 @@
           <span class="bb-hint">flip it, the console below switches between <span class="ex">exploited</span> and <span class="bl">blocked</span></span>
         </div>
       </div>
-      <p class="buildnote" style="font-size:.87rem; color:var(--ink-soft); line-height:1.55; margin:.55rem 0 1.4rem; padding:.7rem .9rem; border:1px solid var(--line); border-left:3px solid var(--accent); border-radius:3px; background:var(--surface-2);"><b style="color:var(--ink)">What the buttons do:</b> click <span class="pill ex">VULN</span> and the console below shows the attack <b style="color:var(--vuln)">succeeding</b> on the vulnerable build; click <span class="pill bl">FIXED</span> and the same console shows it <b style="color:var(--fixed)">blocked</b> on the hardened build. It switches in place, nothing reloads, so you can compare the exact same step exploited versus defended.</p>
 
       <h2><span class="n">the seam</span>Boundary: the carried context</h2>
       <p>The boundary A1 attacks is the context object itself, and specifically its <code>notes</code>, the carried scratchpad that each hop reads as trusted state. Two things are conflated at that seam: the data the system genuinely wrote (this user is <code>u2002</code>, their role is <code>customer</code>) and any data an attacker managed to place there. Notes even carry a provenance tag, <code>user</code>, <code>agent</code>, or <code>external</code>, but on the vulnerable build nothing consults it. A note is just a note. When a later stage honors a control instruction it finds in one, it has treated attacker data as a system decision. That is the whole failure, and it is the same seam A5 later reaches through a poisoned retrieval instead of through the opening request.</p>
@@ -421,7 +420,7 @@ surface = message + <span class="st">" "</span> + context.notes_text()   <span c
       <div class="statrow">
         <div class="stat v"><div class="big">0%</div><div class="who">VULN blocks</div><div class="sub">0/57 phrasings, every escalation is honored and the SSN leaks</div></div>
         <div class="stat d"><div class="big">12%</div><div class="who">DETECT blocks</div><div class="sub">7/57 blocked raw, on A1's own phrasings</div></div>
-        <div class="stat f"><div class="big">100%</div><div class="who">FIXED blocks</div><div class="sub">57/57, the control never reads the wording, so there is nothing to phrase around</div></div>
+        <div class="stat f"><div class="big">100%</div><div class="who">FIXED blocks</div><div class="sub">57/57, the fix holds regardless of encoding or paraphrase</div></div>
       </div>
       <p>Those three stats are A1 on its own 57 phrasings. Widen the lens to the whole eight-family series corpus and the ceiling keeps its shape, which is the result the project turns on:</p>
       <figure>
@@ -471,18 +470,8 @@ surface = message + <span class="st">" "</span> + context.notes_text()   <span c
 <span style="color:var(--term-green)">python run.py fixed</span>                      <span style="color:var(--term-dim)"># the same step, blocked</span>
 <span style="color:var(--term-green)">python metrics.py</span>                        <span style="color:var(--term-dim)"># the measured 0% -&gt; 43% ceiling -&gt; 100%</span>
 <span style="color:var(--term-green)">python -m unittest test_lab test_metrics</span>  <span style="color:var(--term-dim)"># the regression suite</span></pre>
-        <p style="margin:1rem 0 .4rem; font-size:.9rem; color:var(--ink-soft);">And here is what those commands actually print, captured from the lab unedited, the same numbers this post cites:</p>
-        <pre style="margin:.4rem 0 0; padding:.85rem 1rem; background:var(--term-bg); border:1px solid var(--line-strong); border-radius:5px; overflow-x:auto; font-family:var(--mono); font-size:.77rem; line-height:1.7; color:var(--term-ink);"><span style="color:var(--term-green)">$ python run.py vuln</span>
-  [TriageAgent]  !! injected context override applied: role := admin
-  [AccountAgent] get_account('u2002') -&gt; {'name':'Bob','balance':88000.0, <span style="color:var(--term-red)">'ssn':'222-22-2222'</span>}
-  A1 context-variable injection  -&gt;  <span style="color:var(--term-red)">EXPLOITED</span>
-
-<span style="color:var(--term-green)">$ python run.py fixed</span>
-  [AccountAgent] recv role=customer notes=[<span style="color:var(--term-green)">'user:[filtered]'</span>]
-  [AccountAgent] get_account('u2002') -&gt; {'name':'Bob','balance':88000.0}
-  A1 context-variable injection  -&gt;  <span style="color:var(--term-green)">blocked</span>
-
-<span style="color:var(--term-green)">$ python metrics.py</span>
+        <p style="margin:1rem 0 .4rem; font-size:.9rem; color:var(--ink-soft);">The <code>run.py</code> trace is the console up the page; here is what the harness and the suite print, captured from the lab unedited, the same numbers this post cites:</p>
+        <pre style="margin:.4rem 0 0; padding:.85rem 1rem; background:var(--term-bg); border:1px solid var(--line-strong); border-radius:5px; overflow-x:auto; font-family:var(--mono); font-size:.77rem; line-height:1.7; color:var(--term-ink);"><span style="color:var(--term-green)">$ python metrics.py</span>
   attack family              VULN         DETECT          FIXED
   A1 role escalation   <span style="color:var(--term-red)">0/57 (  0%)</span>   <span style="color:var(--term-amber)">7/57 ( 12%)</span>   <span style="color:var(--term-green)">57/57 (100%)</span>
   ceiling for a PERFECT de-obfuscating filter : 81/185 (43%)
