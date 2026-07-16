@@ -156,6 +156,49 @@
   hr{border:0;border-top:1px solid var(--line);margin:60px 0}
   .foot{color:var(--dim);font-size:.92rem}
   ul,ol{padding-left:22px} li{margin:6px 0}
+  /* offensive pentest checklist */
+  .ckl{margin:22px 0}
+  .ckl-bar{position:sticky;top:6px;z-index:6;background:var(--card2);
+    border:1px solid var(--line2);border-radius:12px;padding:12px 16px;margin:10px 0 18px;
+    display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+    box-shadow:0 14px 34px -22px rgba(0,0,0,.85)}
+  .ckl-bar .cnt{font:700 .84rem var(--mono);color:var(--ink);white-space:nowrap}
+  .ckl-bar .prog{flex:1;min-width:150px;height:8px;background:var(--bg);
+    border-radius:6px;overflow:hidden;border:1px solid var(--line)}
+  .ckl-bar .prog>span{display:block;height:100%;width:0;background:var(--accent);
+    transition:width .3s;box-shadow:0 0 10px rgba(92,200,223,.5)}
+  .ckl-bar button{font:600 .74rem var(--mono);color:var(--dim);background:var(--card);
+    border:1px solid var(--line2);border-radius:8px;padding:6px 11px;cursor:pointer;transition:.15s}
+  .ckl-bar button:hover{color:#fff;border-color:var(--cyn)}
+  .ckl details{background:linear-gradient(180deg,var(--card),var(--bg2));
+    border:1px solid var(--line2);border-radius:12px;margin:12px 0;overflow:hidden}
+  .ckl summary{cursor:pointer;list-style:none;padding:14px 18px;font-weight:700;
+    font-size:1.04rem;display:flex;align-items:center;gap:12px;user-select:none;color:#fff}
+  .ckl summary::-webkit-details-marker{display:none}
+  .ckl summary::before{content:"\25B8";color:var(--cyn);font-family:var(--mono);
+    transition:transform .15s;display:inline-block;flex:0 0 auto}
+  .ckl details[open]>summary::before{transform:rotate(90deg)}
+  .ckl summary:hover{color:var(--cyn)}
+  .ckl summary .pnum{font:700 .78rem var(--mono);color:var(--cyn);
+    border:1px solid var(--line2);border-radius:6px;padding:.1em .5em}
+  .ckl summary .pmeta{margin-left:auto;font:600 .72rem var(--mono);color:var(--dim);
+    white-space:nowrap}
+  .ckl .items{padding:2px 18px 14px}
+  .ckl label.item{display:flex;gap:12px;align-items:flex-start;padding:11px 0;
+    border-top:1px solid var(--line);cursor:pointer;text-align:left;hyphens:manual}
+  .ckl label.item input{margin-top:4px;width:16px;height:16px;accent-color:var(--cyn);
+    flex:0 0 auto;cursor:pointer}
+  .ckl .txt{flex:1;min-width:0}
+  .ckl .lead-t{font-weight:600;color:var(--ink);display:block}
+  .ckl label.item input:checked ~ .txt .lead-t{color:var(--faint);text-decoration:line-through}
+  .ckl .desc{color:var(--dim);font-size:.92rem;margin-top:3px;line-height:1.55}
+  .ckl .desc code{font-size:.85em}
+  .ckl .maps{margin-top:6px;display:flex;flex-wrap:wrap;gap:6px}
+  .ckl .m{font:700 .68rem var(--mono);padding:.12em .5em;border-radius:5px;
+    border:1px solid var(--line2);color:var(--dim);white-space:nowrap}
+  .ckl .m.a{color:var(--red);border-color:rgba(255,107,122,.4);background:rgba(255,107,122,.06)}
+  .ckl .m.o{color:var(--yel);border-color:rgba(242,201,122,.4);background:rgba(242,201,122,.06)}
+  .ckl .m.t{color:var(--cyn);border-color:rgba(92,200,223,.4);background:rgba(92,200,223,.06)}
   /* back to top */
   #top{position:fixed;right:22px;bottom:22px;z-index:40;width:46px;height:46px;
     border-radius:50%;border:1px solid var(--line2);background:var(--card);color:var(--ink);
@@ -227,6 +270,7 @@ can be enforced.</p>
     <li><a href="#fix">Fixing it for good: defense in depth</a></li>
     <li><a href="#generalize">Now do it on your own stack</a></li>
     <li><a href="#atlas">The Atlas map</a></li>
+    <li><a href="#pentest">AI offensive pentest checklist</a></li>
     <li><a href="#faq">FAQ</a></li>
     <li><a href="#refs">References</a></li>
   </ol>
@@ -838,6 +882,209 @@ approval.</div>
   <tr><td>6</td><td>No alert on the chain</td><td>N - Monitoring &amp; IR</td><td>-</td><td>T1562</td><td>Alert on the triple</td></tr>
 </table>
 
+<h2 id="pentest">AI offensive pentest checklist</h2>
+
+<p>The Atlas map above walks the <em>one</em> chain this incident happened to take. This
+checklist generalizes it into a repeatable offensive methodology for any LLM-agent
+target: the same six failure classes, plus the neighbouring attack surfaces the same
+harness usually leaves open. It's organized by kill-chain phase; every item carries its
+Atlas domain, OWASP LLM (2025), and MITRE ATLAS/ATT&amp;CK mapping so a finding drops
+straight into a report. Progress is saved in your browser only.</p>
+
+<div class="callout red">
+  <b>Authorized testing only.</b> Run this against systems you own or are explicitly
+  contracted to test. The goal is a <em>proof</em> - a canary string, a benign marker
+  resource, a blocked-vs-ran verdict - never a real destructive action. Prove the gate is
+  missing; don't rotate the production key.
+</div>
+
+<div class="ckl">
+  <div class="ckl-bar">
+    <span class="cnt" id="ckl-cnt">0 / 0</span>
+    <span class="prog"><span id="ckl-prog"></span></span>
+    <button type="button" id="ckl-expand">expand all</button>
+    <button type="button" id="ckl-reset">reset</button>
+  </div>
+
+  <details open>
+    <summary><span class="pnum">0</span> Recon &amp; trust-boundary mapping <span class="pmeta">scope the attack surface</span></summary>
+    <div class="items">
+      <label class="item"><input type="checkbox"><span class="txt">
+        <span class="lead-t">Enumerate every tool / function the agent can call</span>
+        <span class="desc">Ask the agent to list its capabilities; diff against tool schemas if exposed. Tag each as <b>read-only</b> or <b>privileged / state-changing</b> - the privileged set is your target list.</span>
+        <span class="maps"><span class="m a">D · Tool Use</span><span class="m o">LLM06</span><span class="m t">AML.T0053</span></span>
+      </span></label>
+      <label class="item"><input type="checkbox"><span class="txt">
+        <span class="lead-t">Map every untrusted channel that reaches the model</span>
+        <span class="desc">Chat, support tickets, RAG documents, emails, fetched web pages, file names/metadata, and <em>tool outputs</em>. Anything attacker-influenced is an injection vector - the harness usually treats these as trusted.</span>
+        <span class="maps"><span class="m a">A · Input</span><span class="m a">B · RAG</span><span class="m o">LLM01</span></span>
+      </span></label>
+      <label class="item"><input type="checkbox"><span class="txt">
+        <span class="lead-t">Extract the system prompt &amp; identify the guardrail model</span>
+        <span class="desc">Leak the system prompt / instructions to learn tool names, tenanting, and any "ask another AI to approve" gate. If a judge/moderation model exists, note it - it reads attacker text and is itself injectable.</span>
+        <span class="maps"><span class="m a">A · Input</span><span class="m o">LLM07</span><span class="m t">AML.T0056</span></span>
+      </span></label>
+      <label class="item"><input type="checkbox"><span class="txt">
+        <span class="lead-t">Locate writable memory / RAG stores</span>
+        <span class="desc">Can you get text into a store the agent later auto-reads (vector DB, conversation memory, ticket queue, shared docs)? That converts a one-shot injection into a stored, zero-click one.</span>
+        <span class="maps"><span class="m a">B · RAG/Memory</span><span class="m o">LLM01</span><span class="m t">AML.T0020</span></span>
+      </span></label>
+    </div>
+  </details>
+
+  <details>
+    <summary><span class="pnum">1</span> Direct prompt injection <span class="pmeta">A · Input</span></summary>
+    <div class="items">
+      <label class="item"><input type="checkbox"><span class="txt">
+        <span class="lead-t">Baseline instruction override</span>
+        <span class="desc">Classic "ignore previous instructions and&hellip;" plus data/instruction delimiter confusion. Establishes whether the model separates data from commands at all (it can't reliably - that's the point).</span>
+        <span class="maps"><span class="m a">A · Input</span><span class="m o">LLM01</span><span class="m t">AML.T0051.000</span></span>
+      </span></label>
+      <label class="item"><input type="checkbox"><span class="txt">
+        <span class="lead-t">Obfuscation &amp; encoding bypasses</span>
+        <span class="desc">Re-home the payload through base64, leetspeak, Unicode homoglyphs, zero-width chars, Morse, or "translate this" wrappers. Byte-level input filters miss these; the irreducible-paraphrase surface can't be filtered at all.</span>
+        <span class="maps"><span class="m a">A · Input</span><span class="m o">LLM01</span><span class="m t">AML.T0068</span></span>
+      </span></label>
+      <label class="item"><input type="checkbox"><span class="txt">
+        <span class="lead-t">Multi-turn &amp; memory poisoning</span>
+        <span class="desc">Split the attack across turns, or plant an instruction the agent stores and re-reads later. Defeats single-message content scanners and survives context resets that only clear the visible window.</span>
+        <span class="maps"><span class="m a">A · Input</span><span class="m a">B · Memory</span><span class="m o">LLM01</span></span>
+      </span></label>
+    </div>
+  </details>
+
+  <details>
+    <summary><span class="pnum">2</span> Indirect / zero-click injection <span class="pmeta">B · RAG &amp; data</span></summary>
+    <div class="items">
+      <label class="item"><input type="checkbox"><span class="txt">
+        <span class="lead-t">Payload in auto-ingested content</span>
+        <span class="desc">Hide the instruction in a RAG doc, ticket, email, PDF, or web page the agent reads without a human in the loop. This is the EchoLeak class - no paste required, the data channel <em>is</em> the delivery.</span>
+        <span class="maps"><span class="m a">B · RAG</span><span class="m o">LLM01</span><span class="m t">AML.T0051.001</span></span>
+      </span></label>
+      <label class="item"><input type="checkbox"><span class="txt">
+        <span class="lead-t">Injection via tool / API output</span>
+        <span class="desc">Poison a downstream service the agent queries so the <em>response</em> carries instructions. The harness re-feeds tool output as trusted context - a classic confused-deputy amplifier.</span>
+        <span class="maps"><span class="m a">B · Data</span><span class="m o">LLM01</span><span class="m t">AML.T0051.001</span></span>
+      </span></label>
+      <label class="item"><input type="checkbox"><span class="txt">
+        <span class="lead-t">Injection across an agent handoff</span>
+        <span class="desc">In multi-agent / A2A setups, plant the payload so a <em>delegated</em> agent executes it, or forge an agent card / capability claim (authN &ne; authZ). The soft joint is the handoff - trust propagates without re-validation.</span>
+        <span class="maps"><span class="m a">D · Tool Use</span><span class="m o">LLM06</span><span class="m t">AML.T0053</span></span>
+      </span></label>
+    </div>
+  </details>
+
+  <details>
+    <summary><span class="pnum">3</span> Tool abuse &amp; excessive agency <span class="pmeta">D · Tool Use</span></summary>
+    <div class="items">
+      <label class="item"><input type="checkbox"><span class="txt">
+        <span class="lead-t">Steer the agent to a privileged tool</span>
+        <span class="desc">Use an injection to make the model <em>choose</em> a state-changing tool (<code>rotate_credentials</code>, <code>delete_resource</code>, <code>run_shell</code>). If any privileged tool runs from model output alone, excessive agency is confirmed.</span>
+        <span class="maps"><span class="m a">D · Tool Use</span><span class="m o">LLM06</span><span class="m t">AML.T0053</span></span>
+      </span></label>
+      <label class="item"><input type="checkbox"><span class="txt">
+        <span class="lead-t">Argument / parameter tampering</span>
+        <span class="desc">Steer tool arguments toward SSRF, path traversal, command injection, or another tenant's resource ID. The tool call may be "allowed" while its parameters are fully attacker-controlled.</span>
+        <span class="maps"><span class="m a">D · Tool Use</span><span class="m o">LLM06</span><span class="m t">AML.T0053</span></span>
+      </span></label>
+      <label class="item"><input type="checkbox"><span class="txt">
+        <span class="lead-t">Tool chaining to escalate</span>
+        <span class="desc">Read &rarr; discover &rarr; write &rarr; delete: chain individually-benign calls into an irreversible outcome. Score against reversibility - the irreversible band is the finding that matters.</span>
+        <span class="maps"><span class="m a">D · Tool Use</span><span class="m o">LLM06</span><span class="m t">T1485 / T1531</span></span>
+      </span></label>
+      <label class="item"><input type="checkbox"><span class="txt">
+        <span class="lead-t">MCP / plugin &amp; supply-chain abuse</span>
+        <span class="desc">Test over-permissioned or malicious MCP servers/plugins, poisoned tool descriptions, and rug-pull capability changes. A poisoned tool <em>description</em> injects at registration time, before any user input.</span>
+        <span class="maps"><span class="m a">Plugins/MCP</span><span class="m o">LLM03</span><span class="m t">AML.T0110</span></span>
+      </span></label>
+    </div>
+  </details>
+
+  <details>
+    <summary><span class="pnum">4</span> Approval-gate &amp; judge bypass <span class="pmeta">E · Approval Gates</span></summary>
+    <div class="items">
+      <label class="item"><input type="checkbox"><span class="txt">
+        <span class="lead-t">Forge approval tokens in the payload</span>
+        <span class="desc">Seed strings like <code>approved</code>, <code>pre-authorized</code>, <code>ticket #1234</code>, <code>sign-off</code>. If an LLM judge reads the same payload it's meant to police, it approves the attack (mirror the gate widget above).</span>
+        <span class="maps"><span class="m a">E · Approval</span><span class="m o">LLM06</span><span class="m t">T1548</span></span>
+      </span></label>
+      <label class="item"><input type="checkbox"><span class="txt">
+        <span class="lead-t">Inject the judge model directly</span>
+        <span class="desc">Any defense that asks a model to <em>judge</em> the attack can be defeated by the attack. Prove the second LLM is itself steerable - then the entire approval layer is decorative.</span>
+        <span class="maps"><span class="m a">E · Approval</span><span class="m o">LLM06</span><span class="m t">AML.T0051</span></span>
+      </span></label>
+      <label class="item"><input type="checkbox"><span class="txt">
+        <span class="lead-t">TOCTOU / race on the approval</span>
+        <span class="desc">Get an action approved in a benign form, then swap arguments before execution, or exploit that approval and execution read different state. Approval must bind to the exact call it authorized.</span>
+        <span class="maps"><span class="m a">E · Approval</span><span class="m o">LLM06</span><span class="m t">T1548</span></span>
+      </span></label>
+    </div>
+  </details>
+
+  <details>
+    <summary><span class="pnum">5</span> Identity, authz &amp; multi-tenancy <span class="pmeta">F · Identity &amp; Authz</span></summary>
+    <div class="items">
+      <label class="item"><input type="checkbox"><span class="txt">
+        <span class="lead-t">Confused deputy: ambient vs caller rights</span>
+        <span class="desc">Does the agent act with its own admin credentials rather than the <em>real caller's</em> identity? If so, any low-priv user who can talk to it inherits its privileges. This is the core of the incident.</span>
+        <span class="maps"><span class="m a">F · Identity</span><span class="m o">LLM06</span><span class="m t">T1078</span></span>
+      </span></label>
+      <label class="item"><input type="checkbox"><span class="txt">
+        <span class="lead-t">Cross-tenant access &amp; IDOR</span>
+        <span class="desc">Ask the agent to act on another tenant's resource ID. No per-target authz check on the caller means read, modify, or delete across the tenant boundary - map to sensitive-info disclosure too.</span>
+        <span class="maps"><span class="m a">F · Identity</span><span class="m o">LLM02 / LLM06</span><span class="m t">T1078</span></span>
+      </span></label>
+      <label class="item"><input type="checkbox"><span class="txt">
+        <span class="lead-t">Privilege escalation through the agent</span>
+        <span class="desc">Chain the confused deputy into a durable role/permission grant (add-admin, new key, policy change) so access survives the session. Prove escalation with a benign marker principal, not a real grant.</span>
+        <span class="maps"><span class="m a">F · Identity</span><span class="m o">LLM06</span><span class="m t">T1548 / T1078</span></span>
+      </span></label>
+    </div>
+  </details>
+
+  <details>
+    <summary><span class="pnum">6</span> Output handling &amp; exfiltration <span class="pmeta">H · Output</span></summary>
+    <div class="items">
+      <label class="item"><input type="checkbox"><span class="txt">
+        <span class="lead-t">Markdown / image render-time exfil</span>
+        <span class="desc">Get the agent to emit a Markdown image or link to an attacker URL with secrets in the query string; the victim's client fetches it on render. Prove it with a canary to a listener you control.</span>
+        <span class="maps"><span class="m a">H · Output</span><span class="m o">LLM02</span><span class="m t">AML.T0057</span></span>
+      </span></label>
+      <label class="item"><input type="checkbox"><span class="txt">
+        <span class="lead-t">Sensitive-data leakage in responses</span>
+        <span class="desc">Extract system prompt, other users' data, keys, or PII directly in the reply. Use a planted canary secret so the proof is unambiguous and harmless.</span>
+        <span class="maps"><span class="m a">H · Output</span><span class="m o">LLM02</span><span class="m t">AML.T0057</span></span>
+      </span></label>
+      <label class="item"><input type="checkbox"><span class="txt">
+        <span class="lead-t">Insecure output handling downstream</span>
+        <span class="desc">If agent output flows unsanitized into a browser, shell, SQL, or another service, drive stored XSS / SSRF / injection through it. The model output is untrusted input to whatever consumes it.</span>
+        <span class="maps"><span class="m a">H · Output</span><span class="m o">LLM05</span><span class="m t">AML.T0057</span></span>
+      </span></label>
+    </div>
+  </details>
+
+  <details>
+    <summary><span class="pnum">7</span> Denial, cost &amp; monitoring evasion <span class="pmeta">N · Monitoring &amp; IR</span></summary>
+    <div class="items">
+      <label class="item"><input type="checkbox"><span class="txt">
+        <span class="lead-t">Resource / cost exhaustion</span>
+        <span class="desc">Trigger delegation loops, recursive tool calls, or prompt-bomb context blowups to burn tokens and money or stall the service. Multi-agent meshes are especially prone to unbounded handoff loops.</span>
+        <span class="maps"><span class="m a">DoS</span><span class="m o">LLM10</span><span class="m t">AML.T0029</span></span>
+      </span></label>
+      <label class="item"><input type="checkbox"><span class="txt">
+        <span class="lead-t">Confirm what the chain leaves in the logs</span>
+        <span class="desc">Replay the full kill chain and check detection: are tool calls logged with caller, tenant, and privilege? The winning alert is the triple - <b>privileged &times; low-priv caller &times; cross-tenant</b> - fired out-of-band.</span>
+        <span class="maps"><span class="m a">N · Monitoring</span><span class="m o">-</span><span class="m t">T1562</span></span>
+      </span></label>
+      <label class="item"><input type="checkbox"><span class="txt">
+        <span class="lead-t">Verify the structural fix actually holds</span>
+        <span class="desc">Re-run every proven bypass against the patched harness: authorization the model can't influence + out-of-band human approval for irreversible actions. A content filter that "reads better" is not a pass.</span>
+        <span class="maps"><span class="m a">E · Approval</span><span class="m a">F · Identity</span><span class="m o">LLM06</span></span>
+      </span></label>
+    </div>
+  </details>
+</div>
+
 <h2 id="faq">FAQ</h2>
 
 <h4>"Isn't this just prompt injection?"</h4>
@@ -863,7 +1110,7 @@ actions.</p>
 <h2 id="refs">References</h2>
 <ul class="foot">
   <li>The lab - <a href="https://github.com/Mr-Akuma/llm-incident-lab">github.com/Mr-Akuma/llm-incident-lab</a>: every command, diagram, and terminal capture in this post is reproducible from this repo (<code>git clone</code>, then <code>python run_incident.py</code>).</li>
-  <li>LLM Threat Coverage Atlas - <a href="https://mr-akuma.github.io/llm-threat-model-full-267-bubble-atlas.html">the 267-node map (480 vectors across its domains) I built this lab against</a>. Full disclosure: this is my own framework; the Atlas domain labels (D, E, F, N) used throughout are its taxonomy.</li>
+  <li>LLM Threat Coverage Atlas - <a href="https://mr-akuma.github.io/llm-threat-coverage-atlas.html">the 267-node map (480 vectors across its domains) I built this lab against</a>. Full disclosure: this is my own framework; the Atlas domain labels (D, E, F, N) used throughout are its taxonomy.</li>
   <li>OWASP Top 10 for LLM Applications (2025) - LLM01 Prompt Injection, LLM06 Excessive Agency.</li>
   <li>MITRE ATLAS - AML.T0051 (LLM Prompt Injection), AML.T0053 (LLM Plugin Compromise); MITRE ATT&amp;CK T1548 / T1078 / T1485 / T1531 / T1562.</li>
   <li>Simon Willison - "prompt injection", the "lethal trifecta", and the dual-LLM pattern (simonwillison.net).</li>
@@ -942,6 +1189,44 @@ actions.</p>
       +(r.ok&&PRIV.indexOf(tool)>=0?'<br><span style="color:#ff6b7a">↳ real, irreversible side effect would now happen.</span>':'');
   }
   var b=document.getElementById('pg-run'); if(b){b.onclick=runGate; runGate();}
+
+  // offensive pentest checklist: progress + localStorage persistence
+  var ckl=document.querySelector('.ckl');
+  if(ckl){
+    var KEY='llm-pentest-ckl-v1',
+        boxes=Array.prototype.slice.call(ckl.querySelectorAll('label.item input[type=checkbox]')),
+        cnt=document.getElementById('ckl-cnt'),
+        prog=document.getElementById('ckl-prog'),
+        saved={};
+    try{saved=JSON.parse(localStorage.getItem(KEY))||{};}catch(e){saved={};}
+    boxes.forEach(function(box,i){
+      box.dataset.k='i'+i;
+      if(saved[box.dataset.k]) box.checked=true;
+      box.addEventListener('change',function(){
+        saved[box.dataset.k]=box.checked;
+        try{localStorage.setItem(KEY,JSON.stringify(saved));}catch(e){}
+        render();
+      });
+    });
+    function render(){
+      var done=boxes.filter(function(b){return b.checked;}).length;
+      cnt.textContent=done+' / '+boxes.length;
+      prog.style.width=(boxes.length?done/boxes.length*100:0)+'%';
+    }
+    var exp=document.getElementById('ckl-expand'),
+        details=Array.prototype.slice.call(ckl.querySelectorAll('details'));
+    if(exp) exp.onclick=function(){
+      var anyClosed=details.some(function(d){return !d.open;});
+      details.forEach(function(d){d.open=anyClosed;});
+      exp.textContent=anyClosed?'collapse all':'expand all';
+    };
+    var rst=document.getElementById('ckl-reset');
+    if(rst) rst.onclick=function(){
+      boxes.forEach(function(b){b.checked=false;});
+      saved={}; try{localStorage.removeItem(KEY);}catch(e){} render();
+    };
+    render();
+  }
 })();
 </script>
 </body>
