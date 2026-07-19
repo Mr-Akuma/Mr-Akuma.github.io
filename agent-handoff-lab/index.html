@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The Handoff Is the Soft Joint · A Security Series on Multi-Agent Systems</title>
-<meta name="description" content="An introduction to the one primitive every multi-agent framework shares, the handoff, and the eight ways it breaks. A field lab and an eight-part series on the class of bugs that only exists once you have more than one agent: the seams, the measured detection-versus-prevention result, and the three controls that close all of it. Part 1 (A1, context-variable injection) is live; the rest release on a rolling schedule.">
+<meta name="description" content="An introduction to the one primitive every multi-agent framework shares, the handoff, and the eight ways it breaks. A field lab and an eight-part series on the class of bugs that only exists once you have more than one agent: the seams, the measured detection-versus-prevention result, and the three controls that close all of it. Parts 1 and 2 (A1 context-variable injection, A2 handoff-target coercion) are live; the rest release on a rolling schedule.">
 <link rel="canonical" href="https://mr-akuma.github.io/agent-handoff-lab/">
 
 <!-- Open Graph (LinkedIn, Facebook, Slack) -->
@@ -315,7 +315,7 @@
       </div>
 
       <h2><span class="n">the series</span>Eight exploits, one seam</h2>
-      <p>From a single-marker context injection, through the four-agent mesh, to the cross-organization federation boundary. Part 1 is live now; the rest release on a rolling schedule rather than all at once.</p>
+      <p>From a single-marker context injection, through the four-agent mesh, to the cross-organization federation boundary. Parts 1 and 2 are live now; the rest release on a rolling schedule rather than all at once.</p>
       <div class="roadmap">
 
         <a class="post live" href="handoff-a1-context-injection.html">
@@ -327,14 +327,14 @@
           <span class="status live">live</span>
         </a>
 
-        <div class="post soon">
+        <a class="post live" href="handoff-a2-handoff-coercion.html">
           <span class="id">A2</span>
           <span class="meat">
             <span class="t">Handoff-target coercion</span>
             <span class="d">One marker in a user message reroutes a low-tier agent straight past its guardrail into the privileged tier, and moves money.</span>
           </span>
-          <span class="status soon">soon</span>
-        </div>
+          <span class="status live">live</span>
+        </a>
 
         <div class="post soon">
           <span class="id">A3</span>
@@ -394,7 +394,7 @@
 
       <div class="note">
         <div class="k">release schedule</div>
-        <p>Part 1 (A1) is published. A2 through A8 land one at a time, following the arc from a simple chain, through the mesh (A5, A6), to the federation boundary (A7, A8). This page updates as each goes live, so bookmark it to follow along.</p>
+        <p>Parts A1 and A2 are published. A3 through A8 land one at a time, following the arc from a simple chain, through the mesh (A5, A6), to the federation boundary (A7, A8). This page updates as each goes live, so bookmark it to follow along.</p>
       </div>
 
       <h2><span class="n">who this is for</span>Read it if you build with agents</h2>
