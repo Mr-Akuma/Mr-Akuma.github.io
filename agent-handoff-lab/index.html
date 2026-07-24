@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The Handoff Is the Soft Joint · A Security Series on Multi-Agent Systems</title>
-<meta name="description" content="An introduction to the one primitive every multi-agent framework shares, the handoff, and the eight ways it breaks. A field lab and an eight-part series on the class of bugs that only exists once you have more than one agent: the seams, the measured detection-versus-prevention result, and the three controls that close all of it. Parts 1 and 2 (A1 context-variable injection, A2 handoff-target coercion) are live; the rest release on a rolling schedule.">
+<meta name="description" content="An introduction to the one primitive every multi-agent framework shares, the handoff, and the eight ways it breaks. A field lab and an eight-part series on the class of bugs that only exists once you have more than one agent: the seams, the measured detection-versus-prevention result, and the three controls that close all of it. Parts 1 through 4 (A1 context-variable injection, A2 handoff-target coercion, A3 capability jumping, A4 rogue agent registration) are live; the rest release on a rolling schedule.">
 <link rel="canonical" href="https://mr-akuma.github.io/agent-handoff-lab/">
 
 <!-- Open Graph (LinkedIn, Facebook, Slack) -->
@@ -315,7 +315,7 @@
       </div>
 
       <h2><span class="n">the series</span>Eight exploits, one seam</h2>
-      <p>From a single-marker context injection, through the four-agent mesh, to the cross-organization federation boundary. Parts 1 and 2 are live now; the rest release on a rolling schedule rather than all at once.</p>
+      <p>From a single-marker context injection, through the four-agent mesh, to the cross-organization federation boundary. Parts 1 through 4 are live now; the rest release on a rolling schedule rather than all at once.</p>
       <div class="roadmap">
 
         <a class="post live" href="handoff-a1-context-injection.html">
@@ -336,23 +336,23 @@
           <span class="status live">live</span>
         </a>
 
-        <div class="post soon">
+        <a class="post live" href="handoff-a3-capability-jumping.html">
           <span class="id">A3</span>
           <span class="meat">
             <span class="t">Capability jumping</span>
             <span class="d">A tier-0 agent that holds no capabilities is coerced into running a database-admin tool, dumping the whole customer table.</span>
           </span>
-          <span class="status soon">soon</span>
-        </div>
+          <span class="status live">live</span>
+        </a>
 
-        <div class="post soon">
+        <a class="post live" href="handoff-a4-rogue-registration.html">
           <span class="id">A4</span>
           <span class="meat">
             <span class="t">Rogue agent registration</span>
             <span class="d">No prompt injection at all: an attacker registers a malicious agent under a trusted name, and handoffs route to it.</span>
           </span>
-          <span class="status soon">soon</span>
-        </div>
+          <span class="status live">live</span>
+        </a>
 
         <div class="post soon">
           <span class="id">A5</span>
