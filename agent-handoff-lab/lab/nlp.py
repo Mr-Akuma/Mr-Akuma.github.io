@@ -77,9 +77,47 @@ def _decode_base64_blobs(t: str) -> str:
     return t + (" " + " ".join(extra) if extra else "")
 
 
+# --- ASCII smuggling: instructions hidden in invisible Unicode code points ----
+# Johann Rehberger's "ASCII Smuggling" (Unicode Tags block, U+E0000-U+E007F) and
+# "Sneaky Bits". These characters render as nothing in a UI, yet many LLMs read
+# the Tag block as ordinary ASCII — so a payload can be fully invisible on screen
+# and still comprehended as an instruction. Variant selectors (U+FE00-U+FE0F,
+# U+E0100-U+E01EF) are the other common invisible carrier.
+_TAG_BASE = 0xE0000            # U+E0000 + ord(ascii) == the tag character
+_INVISIBLE = dict.fromkeys(
+    list(range(0xE0000, 0xE0080)) +      # Unicode Tags
+    list(range(0xFE00, 0xFE10)) +        # Variant Selectors 1-16
+    list(range(0xE0100, 0xE01F0)),       # Variant Selectors Supplement
+    None,
+)
+
+
+def to_unicode_tags(s: str) -> str:
+    """Encode ASCII `s` as invisible Unicode Tag characters — the smuggling
+    carrier. The result displays as nothing but round-trips through reveal()."""
+    return "".join(chr(_TAG_BASE + ord(c)) for c in s if ord(c) < 0x80)
+
+
+def reveal_smuggled(t: str) -> str:
+    """Model comprehension of invisible carriers: map Tag characters back to the
+    ASCII they encode so a smuggled marker becomes visible to the parser."""
+    return "".join(
+        chr(ord(c) - _TAG_BASE) if 0xE0000 <= ord(c) <= 0xE007F else c
+        for c in t
+    )
+
+
+def strip_invisibles(t: str) -> str:
+    """A byte-level guard's mitigation: delete invisible carrier characters.
+    Removes the known ranges — and, like every filter, only the ranges it
+    knows."""
+    return t.translate(_INVISIBLE)
+
+
 def normalize(t: str) -> str:
-    """The model's comprehension pre-pass: undo the cheap obfuscations."""
-    return _decode_base64_blobs(_defold_homoglyphs(_strip_zero_width(t)))
+    """The model's comprehension pre-pass: undo the cheap obfuscations, and
+    reveal instructions smuggled in invisible Unicode carriers."""
+    return _decode_base64_blobs(_defold_homoglyphs(_strip_zero_width(reveal_smuggled(t))))
 
 
 # --- intent vocabulary --------------------------------------------------------

@@ -374,6 +374,29 @@ The test suite matters as much as the exploits. It pins each control *independen
 
 Three caveats, stated plainly. **The comprehension model is a hand-written pattern set, not a live LLM** — so the measured gap is a *floor*: a real model comprehends more paraphrase than the recognizer does, which only widens the ground a filter must cover. **The 43% ceiling is charitable to the filter twice over** — it grants perfect de-obfuscation *and* zero false positives, and a real classifier gets neither, so a fielded guard lands below 43%, not at it. And **the corpus is 185 phrasings we authored** — enough to make the block rate stable rather than anecdotal, but the load-bearing claim is the *shape* of the result (encoding is recoverable, paraphrase is not), not the exact percentage. The structural results (A2, A3, A4, A6, A7, A8) don't depend on the model at all — they live in trust boundaries, not wording. The honest next step is to port `agents.py` onto a live model via the OpenAI Agents SDK and drive it with [AgentDojo](https://agentdojo.spylab.ai)'s prompt-injection tasks, to pin the true size of that gap.
 
+## In the wild — three real frameworks, and a real model
+
+The honest next step named just above is delivered here, in two moves. First — does this soft joint exist in the frameworks people actually ship? Second — does a live model actually fall for it?
+
+**The same joint, three real frameworks.** Read the public source of the three most-deployed open-source multi-agent stacks and the primitive that picks the next agent is, every time, a free-form value the model emits, dispatched with no authorization at the join:
+
+| framework (public source) | the handoff primitive | native fix |
+|---|---|---|
+| AWS Agent Squad | `classifier.selected_agent` → `send_messages(recipient=<name>)` | none shipped |
+| CrewAI | `Delegate work to coworker(coworker=<role>)` | `allowed_agents` (opt-in) |
+| LangGraph swarm | `Command(goto=<agent>)` | compiled static edges |
+
+Reproduced offline against the same VULN / DETECT / FIXED switch, all three behave identically: an injected redirect crosses a customer→admin privilege boundary and fires the crown-jewel tool under VULN; DETECT strips the literal `[[HANDOFF]]` marker but the natural-language paraphrase sails through; FIXED — authorize at the join — blocks every attack while legitimate handoffs still pass. The soft joint is the architecture, not any one vendor.
+
+**And a real model falls for it.** The §08 recognizer is hand-written, and the honesty section flagged that as a floor. So `online_probe.py` drops a *real* LLM into exactly the Agent Squad classifier seat — agent descriptions plus the untrusted message, no authorization rule — and measures how often the injected redirect makes the model choose the privileged agent. No API key, no cloud: three open-weights models driven locally via Ollama.
+
+- **Injection success against the raw router: 33/33 = 100%** — across llama3, mistral, and phi3 (3 models × 3 attack phrasings × 3 trials). Benign traffic always routed correctly.
+- **After the code-level route allow-list (FIXED): 0/33** — a customer never reaches the privileged agent, whatever the model chose.
+
+The recognizer was a floor, and the floor held: real models don't resist the redirect — they comply every time. Only the control that never reads the wording stops it.
+
+*Scope & ethics.* Framework behaviour is reproduced from **public source review** of `awslabs/agent-squad`, `crewAIInc/crewAI`, and `langchain-ai/langgraph-*`; the model measurement drives a real LLM over a **local, self-hosted runtime** the author controls. No third-party production system was probed, and no undisclosed vulnerability is named here — confirming the transfer against the installed packages and a hosted frontier model precedes responsible disclosure to each maintainer.
+
 ## The takeaway
 
 If you're building with more than one agent, audit your handoffs like a network boundary, because that's what they are. Four questions catch every exploit above:
@@ -387,4 +410,4 @@ Multi-agent systems don't fail because any single agent is dumb. They fail at th
 
 ---
 
-*The lab is stdlib-only Python — mock LLM, VULN / DETECT / FIXED policy switch, eight exploits from a two-hop chain through a four-agent mesh to a cross-org A2A federation boundary, a 185-phrasing natural-language + obfuscation corpus that measures input filtering (12% byte-level, 43% even with perfect de-obfuscation) against structural prevention (100%), and a 25-test regression suite. It maps directly onto real primitives: OpenAI Agents SDK / Swarm `handoff()` and `context_variables`, CrewAI delegation, LangGraph state and edges, Google A2A signed Agent Cards. Porting to a live model is the natural next step.*
+*The lab is stdlib-only Python — mock LLM, VULN / DETECT / FIXED policy switch, eight exploits from a two-hop chain through a four-agent mesh to a cross-org A2A federation boundary, a 185-phrasing natural-language + obfuscation corpus that measures input filtering (12% byte-level, 43% even with perfect de-obfuscation) against structural prevention (100%), and a 25-test regression suite. It maps directly onto real primitives: OpenAI Agents SDK / Swarm `handoff()` and `context_variables`, CrewAI delegation, LangGraph state and edges, Google A2A signed Agent Cards. The same soft joint is then reproduced from the public source of AWS Agent Squad, CrewAI, and LangGraph, and a real LLM in the classifier seat obeys the injected redirect 33/33 (100%) across three local models — closed to zero by the same structural gate.*

@@ -124,6 +124,12 @@ class SecurityPolicy:
     detect_handoff_loops: bool        # block a directed handoff edge taken twice
     verify_agent_cards: bool          # require a signed card + clamp caps to local grant
     sanitize_untrusted: bool = False  # DETECT strawman: strip injections a static filter recognizes
+    # --- extended controls for the exfiltration / persistence labs (A9-A12) ---
+    # Appended with defaults so the positional presets above and keyword-only
+    # construction elsewhere both keep working untouched.
+    enforce_egress_allowlist: bool = False   # A9: render/fetch only to allow-listed hosts
+    provenance_on_memory: bool = False       # A10: untrusted content may not write instruction-bearing long-term memory
+    confirm_sensitive_after_taint: bool = False  # A11: a sensitive call fired by a delayed trigger needs confirmation once context is tainted
 
 
 # VULN   - a gullible stack: it acts on any instruction it comprehends in
@@ -134,9 +140,15 @@ class SecurityPolicy:
 # FIXED  - the real answer: never grant untrusted content authority (provenance),
 #          and enforce a least-privilege agent graph. Content-independent, so it
 #          cannot be paraphrased around.
-VULN   = SecurityPolicy("VULN",   True,  False, False, False, False, False, False, False)
-DETECT = SecurityPolicy("DETECT", True,  False, False, False, False, False, False, True)
-FIXED  = SecurityPolicy("FIXED",  False, True,  True,  True,  True,  True,  True,  False)
+VULN   = SecurityPolicy("VULN",   True,  False, False, False, False, False, False, False,
+                        enforce_egress_allowlist=False, provenance_on_memory=False,
+                        confirm_sensitive_after_taint=False)
+DETECT = SecurityPolicy("DETECT", True,  False, False, False, False, False, False, True,
+                        enforce_egress_allowlist=False, provenance_on_memory=False,
+                        confirm_sensitive_after_taint=False)
+FIXED  = SecurityPolicy("FIXED",  False, True,  True,  True,  True,  True,  True,  False,
+                        enforce_egress_allowlist=True, provenance_on_memory=True,
+                        confirm_sensitive_after_taint=True)
 
 
 class Decision:
