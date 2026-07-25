@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The Handoff Is the Soft Joint · A Security Series on Multi-Agent Systems</title>
-<meta name="description" content="An introduction to the one primitive every multi-agent framework shares, the handoff, and the eight ways it breaks. A field lab and an eight-part series on the class of bugs that only exists once you have more than one agent: the seams, the measured detection-versus-prevention result, and the three controls that close all of it. Parts 1 through 4 (A1 context-variable injection, A2 handoff-target coercion, A3 capability jumping, A4 rogue agent registration) are live; the rest release on a rolling schedule.">
+<meta name="description" content="An introduction to the one primitive every multi-agent framework shares, the handoff, and the eight ways it breaks. A field lab and an eight-part series on the class of bugs that only exists once you have more than one agent: the seams, the measured detection-versus-prevention result, and the three controls that close all of it. All eight parts are live.">
 <link rel="canonical" href="https://mr-akuma.github.io/agent-handoff-lab/">
 
 <!-- Open Graph (LinkedIn, Facebook, Slack) -->
@@ -232,7 +232,7 @@
         <span>eight-part series</span>
         <span>STRIDE threat model per post</span>
         <span>offline, runnable lab</span>
-        <span>part 1 live &#183; rest rolling out</span>
+        <span>all eight parts live</span>
       </div>
       <a class="cta" href="handoff-a1-context-injection.html">Start with A1 &#8594;</a>
       <div class="schematic" role="img" aria-label="A rising-privilege agent chain: user to Triage to Account to Ops, with the handoffs between them highlighted as the vulnerable seam.">
@@ -315,7 +315,7 @@
       </div>
 
       <h2><span class="n">the series</span>Eight exploits, one seam</h2>
-      <p>From a single-marker context injection, through the four-agent mesh, to the cross-organization federation boundary. Parts 1 through 4 are live now; the rest release on a rolling schedule rather than all at once.</p>
+      <p>From a single-marker context injection, through the four-agent mesh, to the cross-organization federation boundary. All eight parts are live.</p>
       <div class="roadmap">
 
         <a class="post live" href="handoff-a1-context-injection.html">
@@ -354,47 +354,47 @@
           <span class="status live">live</span>
         </a>
 
-        <div class="post soon">
+        <a class="post live" href="handoff-a5-indirect-injection.html">
           <span class="id">A5</span>
           <span class="meat">
             <span class="t">Indirect injection through a peer <span class="tag">mesh</span></span>
             <span class="d">The user message is completely benign. A poisoned document a peer retrieves carries the escalation, and reads another user's SSN.</span>
           </span>
-          <span class="status soon">soon</span>
-        </div>
+          <span class="status live">live</span>
+        </a>
 
-        <div class="post soon">
+        <a class="post live" href="handoff-a6-delegation-loops.html">
           <span class="id">A6</span>
           <span class="meat">
             <span class="t">Delegation loops <span class="tag">mesh</span></span>
             <span class="d">A poisoned article bounces control between two agents until the hop budget is gone: a denial of service that costs real inference spend.</span>
           </span>
-          <span class="status soon">soon</span>
-        </div>
+          <span class="status live">live</span>
+        </a>
 
-        <div class="post soon">
+        <a class="post live" href="handoff-a7-agent-card-forgery.html">
           <span class="id">A7</span>
           <span class="meat">
             <span class="t">Agent-card forgery <span class="tag">a2a</span></span>
             <span class="d">A forged partner card that merely names a trusted issuer is imported verbatim, and self-grants database-admin.</span>
           </span>
-          <span class="status soon">soon</span>
-        </div>
+          <span class="status live">live</span>
+        </a>
 
-        <div class="post soon">
+        <a class="post live" href="handoff-a8-capability-overclaim.html">
           <span class="id">A8</span>
           <span class="meat">
             <span class="t">Capability over-claim <span class="tag">a2a</span></span>
             <span class="d">A card validly signed by a trusted issuer claims a power it was never granted. A signature proves who signed, not what they may do.</span>
           </span>
-          <span class="status soon">soon</span>
-        </div>
+          <span class="status live">live</span>
+        </a>
 
       </div>
 
       <div class="note">
         <div class="k">release schedule</div>
-        <p>Parts A1 and A2 are published. A3 through A8 land one at a time, following the arc from a simple chain, through the mesh (A5, A6), to the federation boundary (A7, A8). This page updates as each goes live, so bookmark it to follow along.</p>
+        <p>All eight parts (A1 through A8) are published, following the arc from a simple chain, through the mesh (A5, A6), to the federation boundary (A7, A8).</p>
       </div>
 
       <h2><span class="n">who this is for</span>Read it if you build with agents</h2>
@@ -405,7 +405,7 @@
     <footer>
       <div class="wrap">
         <p class="kick">Design the handoff seam the way you would design a network boundary: explicit routes, least privilege, and no trust in the payload.</p>
-        <p>Start the series &#8594; <a href="handoff-a1-context-injection.html">A1, context-variable injection</a>. New parts release on a rolling schedule.</p>
+        <p>Start the series &#8594; <a href="handoff-a1-context-injection.html">A1, context-variable injection</a>. All eight parts are live.</p>
       </div>
     </footer>
   </article>
