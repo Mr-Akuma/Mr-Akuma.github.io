@@ -1,0 +1,401 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nobody Guarded the Intercom (Part 1)</title>
+<link rel="shortcut icon" href="../images/favicon.png" type="image/png">
+<link rel="icon" href="../images/favicon.png" type="image/png">
+<style>
+  :root{
+    --bg:#0e0f12; --fg:#e7e7ea; --muted:#9a9aa2; --accent:#ff5d5d;
+    --card:#17181c; --border:#272830;
+  }
+  @media (prefers-color-scheme: light){
+    :root:not([data-theme="dark"]){ --bg:#faf9f7; --fg:#15151a; --muted:#5b5b63; --accent:#c3362b; --card:#fff; --border:#e4e2dd; }
+  }
+  :root[data-theme="light"]{ --bg:#faf9f7; --fg:#15151a; --muted:#5b5b63; --accent:#c3362b; --card:#fff; --border:#e4e2dd; }
+  :root[data-theme="dark"]{ --bg:#0e0f12; --fg:#e7e7ea; --muted:#9a9aa2; --accent:#ff5d5d; --card:#17181c; --border:#272830; }
+  *{box-sizing:border-box}
+  .theme-toggle{
+    position:fixed; top:16px; right:16px; z-index:10;
+    width:40px; height:40px; border-radius:50%;
+    background:var(--card); border:1px solid var(--border); color:var(--fg);
+    font-size:1.1rem; line-height:1; cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    font-family: -apple-system, Segoe UI, Arial, sans-serif;
+  }
+  .theme-toggle:hover{border-color:var(--accent)}
+  body{ margin:0; background:var(--bg); color:var(--fg); font-family: Georgia, 'Times New Roman', serif; line-height:1.65; }
+  main{max-width:780px; margin:0 auto; padding:48px 20px 96px;}
+  .series{ font-family: -apple-system, Segoe UI, Arial, sans-serif; color:var(--accent); font-size:0.75rem; font-weight:700; letter-spacing:0.09em; text-transform:uppercase; margin:0 0 10px; }
+  h1{ font-family: -apple-system, Segoe UI, Arial, sans-serif; font-size:2.1rem; line-height:1.15; margin:0 0 4px; letter-spacing:-0.01em; }
+  .kicker{ font-family: -apple-system, Segoe UI, Arial, sans-serif; color:var(--muted); font-size:0.95rem; margin:0 0 6px; }
+  .byline{ font-family: -apple-system, Segoe UI, Arial, sans-serif; color:var(--muted); font-size:0.85rem; margin:0 0 36px; }
+  h2{ font-family: -apple-system, Segoe UI, Arial, sans-serif; font-size:1.2rem; margin:40px 0 2px; color:var(--accent); border-top:1px solid var(--border); padding-top:28px; }
+  h2:first-of-type{border-top:none; padding-top:0;}
+  h3{ font-family: -apple-system, Segoe UI, Arial, sans-serif; font-size:1rem; margin:26px 0 2px; color:var(--fg); }
+  .dateline{ font-family: -apple-system, Segoe UI, Arial, sans-serif; color:var(--muted); font-size:0.8rem; font-style:italic; margin:0 0 10px;}
+  .meta{ font-family: -apple-system, Segoe UI, Arial, sans-serif; color:var(--muted); font-size:0.85rem; margin:0 0 16px; }
+  .meta strong{color:var(--fg)}
+  p{margin:0 0 16px; font-size:1.02rem; text-align:justify; text-justify:inter-word; hyphens:auto; -webkit-hyphens:auto; -ms-hyphens:auto;}
+  strong{color:var(--fg)}
+  .moral{ background:var(--card); border:1px solid var(--border); border-left:3px solid var(--accent); padding:14px 18px; margin:18px 0; border-radius:4px; font-size:0.98rem; text-align:justify; hyphens:auto; }
+  .quote{ background:var(--card); border:1px solid var(--border); border-left:3px solid var(--muted); padding:12px 18px; margin:14px 0; border-radius:4px; font-size:0.95rem; font-style:italic; text-align:justify; hyphens:auto; }
+  .caveat{ background:var(--card); border:1px solid var(--border); border-left:3px solid var(--muted); padding:10px 16px; margin:14px 0; border-radius:4px; font-size:0.88rem; color:var(--muted); text-align:justify; hyphens:auto; }
+  .diagram{ margin:20px 0 6px; }
+  .diagram svg{ width:100%; height:auto; display:block; background:var(--card); border:1px solid var(--border); border-radius:8px; }
+  .shot-wide{ width:min(1200px, 94vw); margin:20px 0 6px; margin-left:50%; transform:translateX(-50%); }
+  .shot-wide img{ max-width:100%; height:auto; display:block; margin:0 auto; }
+  .figcap{ font-family: -apple-system, Segoe UI, Arial, sans-serif; color:var(--muted); font-size:0.8rem; margin:0 0 20px; text-align:center; font-style:italic; }
+  ol{ margin:0 0 16px; padding-left:1.3em; font-size:1.02rem; text-align:justify; hyphens:auto; }
+  ol li{ margin-bottom:8px; }
+  code{ background:var(--card); border:1px solid var(--border); border-radius:4px; padding:0.15em 0.4em; font-family: 'SFMono-Regular', Consolas, monospace; font-size:0.86em; }
+  pre{ background:var(--card); border:1px solid var(--border); border-radius:6px; padding:14px 16px; overflow-x:auto; font-size:0.8rem; line-height:1.5;}
+  pre code{background:none; border:none; padding:0;}
+  table{ width:100%; border-collapse:collapse; margin:16px 0; font-size:0.9rem; font-family: -apple-system, Segoe UI, Arial, sans-serif;}
+  th,td{ border:1px solid var(--border); padding:8px 10px; text-align:left; vertical-align:top;}
+  th{background:var(--card); color:var(--muted); font-weight:600;}
+  hr{border:none; border-top:1px solid var(--border); margin:36px 0;}
+  footer{color:var(--muted); font-size:0.85rem; margin-top:56px; font-family: -apple-system, Segoe UI, Arial, sans-serif; text-align:justify; hyphens:auto;}
+</style>
+</head>
+<body>
+<button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle dark/light theme" title="Toggle theme">&#9789;</button>
+<main>
+
+<p class="series">Part 1 of a series on AI agent trust boundaries</p>
+<h1>Nobody Guarded the Intercom</h1>
+<p class="kicker">The sandbox denied file writes exactly as designed. Nobody designed anything to stop a request to the control panel sitting right next to it.</p>
+<p class="byline"><strong>CVE-2026-82533</strong> is a sandbox escape in DeepSeek's coding-agent harness, <code>dsh</code>, disclosed September 8, 2026. It's one of at least five related 2026 agent-sandbox escapes across four vendors: DeepSeek, OpenAI Codex (two separate flaws), Cursor, and Docker Sandboxes. They share the same underlying failure shape. This piece, and the reproduction built for it, is the base the rest of this series works from: every verifiable technical detail from the public CVE records and disclosure write-ups, with every gap or disagreement between accounts flagged inline rather than smoothed over.</p>
+
+<h2>What <code>dsh</code> actually is</h2>
+<p>DeepSeek Harness, invoked as <code>dsh</code>, is DeepSeek's open-source, local-first harness for running AI coding agents: a browser UI backed by a local HTTP API on <code>127.0.0.1:3080</code>, built on a plugin architecture whose own tagline is "Everything is a Plugin." It's grouped alongside tools like Claude Code, Cursor's agent mode, and GitHub Copilot's agent mode as a comparable class of product. It's described everywhere as one of the most widely adopted agent harnesses of the year, which is why a bug in it isn't a narrow story.</p>
+<p>Harness ships cross-platform sandboxing: bubblewrap or Landlock on Linux, Seatbelt on macOS. On macOS, the shipped Seatbelt profile opens with <code>(allow default)</code> and layers exactly one <code>(deny file-write*)</code> on top of it. On Linux, the bubblewrap invocation passed <code>--unshare-pid</code> but not <code>--unshare-net</code>; the process namespace was isolated, the network namespace was not. Both platforms land on the same policy shape: writes outside the workspace are denied, and everything else (process execution, file reads, loopback networking) is allowed by default.</p>
+
+<h2>The lock was on the wrong door</h2>
+<p>That open loopback-networking decision was made on the reasoning that local-only traffic posed no meaningful risk. That reasoning had to hold up against Harness's own control plane: a local HTTP API, on port 3080 by default, that governs session-level settings, including which approval mode the agent's shell runs under. The only two mode values documented in text are <code>"danger-full-access"</code> and an approval policy of <code>"never"</code>; the matched-control test below ran against what's described only as "the same default preset," with no more specific name given anywhere public.</p>
+<p>That control API's authentication was a single function, <code>isTrustedApiRequest</code>. It decided whether to trust an inbound request by reading <strong>the client-supplied <code>Host</code> header</strong> and checking whether its value was a loopback authority or appeared on a configured <code>trustedHosts</code> list, and it never once checked the connection's actual peer address. That's CWE-807: reliance on an untrusted input for a security decision. The design rationale is visible in the code's own comment: a browser can't forge its own <code>Host</code> header, so this was built to stop DNS-rebinding attacks launched from a malicious web page. It does stop that. It does nothing against a client that isn't a browser, like the shell the agent is already sitting inside, or, as it turns out, anything else with a socket.</p>
+
+<figure class="diagram">
+<svg viewBox="0 0 680 460" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Architecture diagram: inside a sandbox boundary on the developer machine sits the dsh agent process. The sandbox denies file writes outside the workspace but allows process execution, file reads, and loopback networking. A separate control API listening on 127.0.0.1 port 3080 sits reachable over that same loopback network; it authenticates requests only by checking the client-supplied Host header, never the real peer address. A remote attacker who can reach port 3080 through a tunnel or port-forward can speak to it the same way.">
+<defs>
+  <marker id="arrowA" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+    <path d="M0,0 L10,5 L0,10 z" fill="var(--accent)"/>
+  </marker>
+  <marker id="arrowM" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+    <path d="M0,0 L10,5 L0,10 z" fill="var(--muted)"/>
+  </marker>
+</defs>
+<rect x="20" y="60" width="640" height="380" rx="12" fill="none" stroke="var(--border)" stroke-dasharray="6 5"/>
+<text x="36" y="82" font-family="Segoe UI, Arial, sans-serif" font-size="11" letter-spacing="1" fill="var(--muted)">DEVELOPER MACHINE</text>
+
+<rect x="460" y="10" width="190" height="38" rx="6" fill="var(--bg)" stroke="var(--muted)" stroke-dasharray="4 3"/>
+<text x="555" y="25" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="10.5" fill="var(--muted)">remote attacker</text>
+<text x="555" y="39" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="10.5" fill="var(--muted)">(if port 3080 is reachable)</text>
+<path d="M555,48 L555,100" fill="none" stroke="var(--muted)" stroke-dasharray="4 3" stroke-width="1.5" marker-end="url(#arrowM)"/>
+
+<rect x="50" y="100" width="280" height="240" rx="10" fill="var(--bg)" stroke="var(--fg)" stroke-width="1.5"/>
+<text x="65" y="124" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="600" fill="var(--fg)">OS sandbox</text>
+<text x="65" y="141" font-family="Segoe UI, Arial, sans-serif" font-size="10.5" fill="var(--muted)">bubblewrap / Landlock (Linux)</text>
+<text x="65" y="154" font-family="Segoe UI, Arial, sans-serif" font-size="10.5" fill="var(--muted)">Seatbelt (macOS)</text>
+
+<rect x="68" y="166" width="244" height="46" rx="6" fill="var(--card)" stroke="var(--border)"/>
+<text x="190" y="184" text-anchor="middle" font-family="SFMono-Regular, Consolas, monospace" font-size="11.5" fill="var(--fg)">dsh agent process</text>
+<text x="190" y="200" text-anchor="middle" font-family="SFMono-Regular, Consolas, monospace" font-size="11.5" fill="var(--fg)">+ shell</text>
+
+<text x="68" y="235" font-family="Segoe UI, Arial, sans-serif" font-size="10.5" fill="var(--muted)">file writes outside workspace</text>
+<text x="312" y="235" text-anchor="end" font-family="Segoe UI, Arial, sans-serif" font-size="10.5" fill="var(--muted)">denied</text>
+<text x="68" y="258" font-family="Segoe UI, Arial, sans-serif" font-size="10.5" fill="var(--muted)">process exec / file reads</text>
+<text x="312" y="258" text-anchor="end" font-family="Segoe UI, Arial, sans-serif" font-size="10.5" fill="var(--muted)">allowed</text>
+<text x="68" y="283" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="600" fill="var(--accent)">loopback networking</text>
+<text x="312" y="283" text-anchor="end" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="600" fill="var(--accent)">allowed</text>
+
+<rect x="400" y="100" width="230" height="170" rx="10" fill="var(--bg)" stroke="var(--accent)" stroke-width="1.75"/>
+<text x="416" y="124" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="600" fill="var(--fg)">Harness control API</text>
+<text x="416" y="142" font-family="SFMono-Regular, Consolas, monospace" font-size="11" fill="var(--muted)">127.0.0.1:3080</text>
+<text x="416" y="164" font-family="SFMono-Regular, Consolas, monospace" font-size="11" fill="var(--fg)">isTrustedApiRequest()</text>
+<text x="416" y="182" font-family="Segoe UI, Arial, sans-serif" font-size="10.5" fill="var(--muted)">trusts the client Host header;</text>
+<text x="416" y="196" font-family="Segoe UI, Arial, sans-serif" font-size="10.5" fill="var(--muted)">never checks the real peer</text>
+<rect x="416" y="208" width="82" height="18" rx="9" fill="var(--card)" stroke="var(--accent)"/>
+<text x="457" y="220.5" text-anchor="middle" font-family="SFMono-Regular, Consolas, monospace" font-size="10" fill="var(--accent)">CWE-807</text>
+
+<path d="M330,270 C370,255 370,215 400,190" fill="none" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#arrowA)"/>
+<text x="345" y="235" font-family="Segoe UI, Arial, sans-serif" font-size="10" fill="var(--accent)">loopback curl:</text>
+<text x="345" y="248" font-family="Segoe UI, Arial, sans-serif" font-size="10" fill="var(--accent)">already trusted</text>
+
+<path d="M400,230 C370,250 370,275 332,290" fill="none" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#arrowA)" stroke-dasharray="1 0"/>
+<text x="345" y="300" font-family="Segoe UI, Arial, sans-serif" font-size="10" fill="var(--accent)">approvalMode:</text>
+<text x="345" y="312" font-family="Segoe UI, Arial, sans-serif" font-size="10" fill="var(--accent)">danger-full-access</text>
+
+<rect x="50" y="380" width="580" height="50" rx="8" fill="var(--bg)" stroke="var(--fg)"/>
+<text x="340" y="400" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="var(--fg)">host filesystem &middot; shell configs (.zshrc) &middot; SSH keys</text>
+<text x="340" y="416" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="var(--fg)">stored conversations</text>
+
+<path d="M190,340 L190,380" fill="none" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#arrowA)"/>
+<text x="200" y="365" font-family="Segoe UI, Arial, sans-serif" font-size="10" fill="var(--accent)">fence lowered &rarr; unconfined, zero prompts</text>
+</svg>
+</figure>
+<p class="figcap">Fig. 1: one sandbox boundary, two doors, the deny-by-default filesystem door everyone checked, and the always-open loopback door nobody treated as part of the boundary.</p>
+
+<div class="caveat">The <code>isTrustedApiRequest</code> function body, the <code>trustedHosts</code> config schema, and the JSON request/response for the policy API aren't available anywhere as copyable text; the relevant figures in the original disclosure exist only as screenshots. Everything above is a prose description of what those screenshots show, not a transcription of the images themselves.</div>
+
+<h2>A single curl call away from godmode</h2>
+<ol>
+<li>Untrusted text (a GitHub issue, a README, a code comment) carries an injected instruction.</li>
+<li>The agent, working inside its sandbox, treats the instruction as a routine task and issues a shell command.</li>
+<li>That command is one HTTP call to the harness's own control API at <code>127.0.0.1:3080</code>, reachable because the sandbox's network namespace was never unshared.</li>
+<li><code>isTrustedApiRequest()</code> reads the <code>Host</code> header, sees a loopback value, and trusts it; it never checks the actual peer (CWE-807).</li>
+<li>The API applies the request: session <code>approvalMode</code> flips to <code>danger-full-access</code>, <code>approvalPolicy</code> to <code>never</code>. The change is logged as <code>source: {kind: "user"}</code>.</li>
+<li>Every later shell command the agent issues runs completely unconfined: no sandbox, no approval prompt.</li>
+<li><strong>Remote variant:</strong> if port 3080 is reachable through a tunnel, SSH forward, reverse proxy, or editor port-forward, an outside attacker repeats steps 3&ndash;6 directly, with no agent involvement at all, and can also pull every stored conversation off the session.</li>
+</ol>
+
+<figure class="diagram">
+<svg viewBox="0 0 680 900" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Exploitation flow: step 1, untrusted text carries an injected instruction. Step 2, the agent issues a shell command. Step 3, that command calls the harness control API on loopback port 3080. Step 4, the control API trusts the client-supplied Host header without checking the real peer. Step 5, the session's approval policy is switched to full, unattended access and logged as a user action. Step 6, every later command runs with no sandbox and no approval prompt, reaching the host filesystem, shell configuration, SSH keys, and stored conversations. A branch from step 3 shows the remote variant: an outside attacker reachable on port 3080 through a tunnel or port forward can repeat steps 3 through 6 directly.">
+<defs>
+  <marker id="arrowB" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+    <path d="M0,0 L10,5 L0,10 z" fill="var(--accent)"/>
+  </marker>
+  <marker id="arrowC" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+    <path d="M0,0 L10,5 L0,10 z" fill="var(--muted)"/>
+  </marker>
+</defs>
+
+<path d="M50,66 L50,144" fill="none" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#arrowB)"/>
+<path d="M50,176 L50,264" fill="none" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#arrowB)"/>
+<path d="M50,296 L50,384" fill="none" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#arrowB)"/>
+<path d="M50,416 L50,494" fill="none" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#arrowB)"/>
+<path d="M50,526 L50,594" fill="none" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#arrowB)"/>
+<path d="M50,626 L50,655" fill="none" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#arrowB)"/>
+
+<circle cx="50" cy="50" r="16" fill="var(--bg)" stroke="var(--fg)" stroke-width="1.5"/>
+<text x="50" y="55" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="600" fill="var(--fg)">1</text>
+<rect x="90" y="25" width="560" height="50" rx="8" fill="var(--bg)" stroke="var(--border)"/>
+<text x="106" y="47" font-family="Segoe UI, Arial, sans-serif" font-size="11.5" fill="var(--fg)">Untrusted text carries an injected instruction</text>
+<text x="106" y="63" font-family="Segoe UI, Arial, sans-serif" font-size="10.5" fill="var(--muted)">(README, GitHub issue, or code comment)</text>
+
+<circle cx="50" cy="160" r="16" fill="var(--bg)" stroke="var(--fg)" stroke-width="1.5"/>
+<text x="50" y="165" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="600" fill="var(--fg)">2</text>
+<rect x="90" y="135" width="560" height="50" rx="8" fill="var(--bg)" stroke="var(--border)"/>
+<text x="106" y="165" font-family="Segoe UI, Arial, sans-serif" font-size="11.5" fill="var(--fg)">Agent treats it as a routine task, issues a shell command</text>
+
+<circle cx="50" cy="280" r="16" fill="var(--bg)" stroke="var(--fg)" stroke-width="1.5"/>
+<text x="50" y="285" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="600" fill="var(--fg)">3</text>
+<rect x="90" y="245" width="560" height="70" rx="8" fill="var(--bg)" stroke="var(--accent)"/>
+<text x="106" y="270" font-family="Segoe UI, Arial, sans-serif" font-size="11.5" fill="var(--fg)">Command is one HTTP call to the harness's own control API</text>
+<text x="106" y="288" font-family="Segoe UI, Arial, sans-serif" font-size="11.5" fill="var(--fg)">at <tspan font-family="SFMono-Regular, Consolas, monospace">127.0.0.1:3080</tspan>, loopback was never unshared</text>
+<text x="106" y="304" font-family="Segoe UI, Arial, sans-serif" font-size="10.5" fill="var(--muted)">already presents as loopback, no header forgery needed here</text>
+
+<circle cx="50" cy="400" r="16" fill="var(--bg)" stroke="var(--fg)" stroke-width="1.5"/>
+<text x="50" y="405" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="600" fill="var(--fg)">4</text>
+<rect x="90" y="365" width="560" height="50" rx="8" fill="var(--bg)" stroke="var(--accent)"/>
+<text x="106" y="387" font-family="Segoe UI, Arial, sans-serif" font-size="11.5" fill="var(--fg)"><tspan font-family="SFMono-Regular, Consolas, monospace">isTrustedApiRequest()</tspan> trusts the Host header</text>
+<text x="106" y="403" font-family="Segoe UI, Arial, sans-serif" font-size="10.5" fill="var(--muted)">never checks the real peer address (CWE-807)</text>
+
+<circle cx="50" cy="510" r="16" fill="var(--bg)" stroke="var(--fg)" stroke-width="1.5"/>
+<text x="50" y="515" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="600" fill="var(--fg)">5</text>
+<rect x="90" y="480" width="560" height="50" rx="8" fill="var(--bg)" stroke="var(--border)"/>
+<text x="106" y="502" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="var(--fg)">Session flips to <tspan font-family="SFMono-Regular, Consolas, monospace">danger-full-access</tspan> / <tspan font-family="SFMono-Regular, Consolas, monospace">never</tspan></text>
+<text x="106" y="518" font-family="Segoe UI, Arial, sans-serif" font-size="10.5" fill="var(--muted)">logged as <tspan font-family="SFMono-Regular, Consolas, monospace">source: {kind: "user"}</tspan></text>
+
+<circle cx="50" cy="610" r="16" fill="var(--bg)" stroke="var(--accent)" stroke-width="1.75"/>
+<text x="50" y="615" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="600" fill="var(--accent)">6</text>
+<rect x="90" y="580" width="560" height="50" rx="8" fill="var(--bg)" stroke="var(--accent)" stroke-width="1.75"/>
+<text x="106" y="602" font-family="Segoe UI, Arial, sans-serif" font-size="11.5" font-weight="600" fill="var(--accent)">Every later command runs completely unconfined</text>
+<text x="106" y="618" font-family="Segoe UI, Arial, sans-serif" font-size="10.5" fill="var(--accent)">zero sandbox, zero approval prompt</text>
+
+<rect x="90" y="655" width="560" height="55" rx="8" fill="var(--bg)" stroke="var(--accent)" stroke-dasharray="5 4"/>
+<text x="370" y="678" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="var(--fg)">host filesystem &middot; shell configs (.zshrc) &middot; SSH keys</text>
+<text x="370" y="696" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="var(--fg)">stored conversations, all now reachable</text>
+
+<path d="M34,280 C6,330 6,750 34,796" fill="none" stroke="var(--muted)" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#arrowC)"/>
+<circle cx="50" cy="810" r="16" fill="var(--bg)" stroke="var(--muted)" stroke-width="1.5" stroke-dasharray="4 3"/>
+<text x="50" y="815" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="600" fill="var(--muted)">7</text>
+<rect x="90" y="770" width="560" height="80" rx="8" fill="var(--bg)" stroke="var(--muted)" stroke-dasharray="4 3"/>
+<text x="106" y="793" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="var(--muted)">Remote variant: the same call works from outside if port</text>
+<text x="106" y="809" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="var(--muted)">3080 is reachable via tunnel, SSH forward, reverse proxy,</text>
+<text x="106" y="825" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="var(--muted)">or editor port-forward, no agent involvement needed</text>
+<text x="106" y="841" font-family="Segoe UI, Arial, sans-serif" font-size="10.5" fill="var(--muted)">branches off step 3; repeats steps 3&ndash;6 from outside the host</text>
+</svg>
+</figure>
+<p class="figcap">Fig. 2: the exploitation flow from injected instruction to unconfined host access, with the remote entry point as an alternate branch off step 3.</p>
+
+<figure class="diagram">
+<img src="exploit_flow.gif" alt="Animated walkthrough of the same seven-step exploitation flow, stepping through each stage with the technical detail behind it: the injected diagnostic command, the sandbox policy table showing loopback networking left open, the isTrustedApiRequest() source reading the Host header without checking the real peer, the approvalMode and approvalPolicy fields flipping and the audit log misattributing the change to a user, the unconfined commands that follow, and the remote variant reachable through a tunnel or port forward." style="width:100%;height:auto;display:block;border:1px solid var(--border);border-radius:8px;">
+</figure>
+<p class="figcap">Fig. 3: the same flow, animated, with the underlying detail for each step spelled out, the injected command, the <code>isTrustedApiRequest()</code> source, the exact policy fields that flip, the audit-log entry, and the unconfined commands that follow.</p>
+
+<p>Because bubblewrap never unshared the network namespace, the agent's own confined shell could already reach <code>127.0.0.1:3080</code> directly: no header forgery was required, since a loopback process talking to a loopback port already presents as loopback. The proof was a matched-control test: two fresh sessions, identical default preset, identical follow-up command. Only one of them first made a call to the session-policy endpoint, flipping its approval mode to full, unattended access. That session went on to write to <code>/home/ubuntu</code>, outside the workspace entirely. The control session, given the exact same later command, was blocked.</p>
+<p>What follows is a reconstruction of the mechanism as described in prose, not a transcription of the literal captured request, which, again, exists only as a screenshot in the original disclosure:</p>
+<pre><code># Representative of the escalation call being described, not the literal captured command
+curl -s -X POST "http://127.0.0.1:3080/api/session/$SESSION_ID/policy" \
+  -H "Content-Type: application/json" \
+  -d '{"approvalMode":"danger-full-access","approvalPolicy":"never"}'</code></pre>
+<p>After that one call, every later shell command the agent issues runs completely unconfined and with no approval prompt, because routine command execution was never gated on approval in the first place; only explicit <em>sandbox-escalation requests</em> were supposed to be. The agent never has to ask permission to escape. It just has to ask the control API to lower the fence, and the control API has no way to tell the agent's own shell apart from a human at the keyboard.</p>
+<p>That last part compounds the problem. The policy change was recorded in the audit log with <code>source: {kind: "user"}</code>; the harness couldn't distinguish the agent's own shell from a human at the keyboard. There is no corresponding "approval/request" event anywhere in the session log. The one artifact that should have flagged the privilege change instead attributes it to the person who never touched the keyboard.</p>
+<p>And the trigger for all of this is ordinary prompt injection: a crafted instruction sitting in a code comment, a README, or issue text, inducing the agent to run that one API call as if it were a routine diagnostic command: to the harness, it was.</p>
+<div class="quote">A second, worse path exists if port 3080 is reachable through anything other than pure loopback: a tunnel, a reverse proxy, an SSH port forward, or an editor's own port-forwarding feature, including container port-forwarding misconfigurations a developer may have set up for unrelated reasons. No specific tool is named anywhere public; this is a described class of misconfiguration, not a demonstrated one. Once reachable, because trust is decided by a header the client controls, an unauthenticated remote attacker who can reach that port can seize the session outright and download every stored conversation, without an API key or model call needed. That remote path is a plausible contributor to the bug's 9.4 severity rating: an inference drawn from the mechanism, not something confirmed in an official statement.</div>
+
+<h2>A reproduction I actually ran, with a real OS boundary to escape</h2>
+<div class="caveat">Scope, stated plainly: neither disclosure write-up publishes a repository URL or install command for the real DeepSeek Harness binary, and a PyPI package also named <code>dsh</code> is an unrelated project, not DeepSeek's tool; installing it on a name match alone would mean running unverified code, which I'm not going to do. Real Linux sandboxing (bubblewrap) also isn't available in this environment; this machine doesn't have virtualization enabled, so WSL2 can't start. An earlier pass at this reproduction only gated the write with an <code>if</code> statement in my own server code, which proved the authentication bug but proved nothing about an actual escape, since there was nothing real to escape from. This version fixes that: the confined directory below is protected by a genuine Windows NTFS deny permission, set with <code>icacls</code>, enforced by the kernel for every process on this machine, not by my application. Every screenshot is an unedited, full-screen capture of real execution. Full source (<code>control_api.py</code>) is alongside these images.</div>
+
+<p>Server started, listening on <code>127.0.0.1:3080</code>, default session state:</p>
+<figure class="diagram shot-wide"><img src="poc_screens/01_server_started_crop.png" alt="Terminal screenshot: the PoC control API server starting up, printing 'Control API PoC reproduction listening on 127.0.0.1:3080' and the initial session state approvalMode ask-each-time, approvalPolicy ask, followed by the first incoming GET request logged with its Host header, real peer address, and trust decision." style="max-width:100%;height:auto;display:block;border:1px solid var(--border);border-radius:8px;"></figure>
+<p class="figcap">Screenshot 1: the real server process, just started, followed by the first sanity-check request hitting it.</p>
+
+<p>The real boundary, set up before any of this runs: a Windows deny permission on a directory called <code>confined</code>, for this user specifically. To prove it's a genuine OS-level control and not something only my server respects, this next write attempt goes through a brand-new PowerShell process that has never heard of the server, curl, or port 3080:</p>
+<figure class="diagram shot-wide"><img src="poc_screens/os1_real_confinement_crop.png" alt="Terminal screenshot: icacls output showing a DENY write permission for the current user on the confined directory, followed by a raw file write attempt from an unrelated PowerShell process that fails with a real Windows Access is denied error." style="max-width:100%;height:auto;display:block;border:1px solid var(--border);border-radius:8px;"></figure>
+<p class="figcap">Screenshot 2: a kernel-enforced deny rule, and a completely unrelated process getting refused by the operating system itself.</p>
+
+<p>With that real boundary standing, the session policy is also still at its default, so the control API's own gate refuses the privileged action before the OS boundary is even reached:</p>
+<figure class="diagram shot-wide"><img src="poc_screens/os2_app_gate_blocked_crop.png" alt="Terminal screenshot: a POST to the exec endpoint targeting the confined directory is rejected with HTTP 403 approval required, because the session approval mode is still the default." style="max-width:100%;height:auto;display:block;border:1px solid var(--border);border-radius:8px;"></figure>
+<p class="figcap">Screenshot 3: two independent layers both holding, before the bug is triggered.</p>
+
+<p>Then the actual bug: one unauthenticated call to the policy endpoint, followed immediately by a retried exec call. That second call is the one that matters: it will run <code>icacls /remove:d</code> against the real deny rule, for real, as its privileged action:</p>
+<figure class="diagram shot-wide"><img src="poc_screens/os3_escalate_and_lift_crop.png" alt="Terminal screenshot: a POST to the session policy endpoint escalates approvalMode to danger-full-access with no authentication beyond the default Host header, then a retried exec call returns HTTP 200 with unconfined true." style="max-width:100%;height:auto;display:block;border:1px solid var(--border);border-radius:8px;"></figure>
+<p class="figcap">Screenshot 4: the escalation call, and the exec call that follows it immediately succeeding.</p>
+
+<p>The server's own side of that exchange: the real peer address logged and explicitly unused, then the line that matters most, <code>icacls /remove:d -&gt; rc=0</code>, a real child process, actually invoked, actually succeeding:</p>
+<figure class="diagram shot-wide"><img src="poc_screens/os3b_server_log_crop.png" alt="Terminal screenshot: the server's own log showing the exec blocked while approvalMode was still default, the policy escalation audit entry attributing the change to source kind user, then the icacls remove command executing with return code 0, followed by the write succeeding outside the workspace." style="max-width:100%;height:auto;display:block;border:1px solid var(--border);border-radius:8px;"></figure>
+<p class="figcap">Screenshot 5: the server actually shelling out to <code>icacls</code> to lift the real permission, logged in real time, right after the same misattributed audit entry from before.</p>
+
+<p>And here's the part that doesn't depend on trusting my server's own account of what happened. Two independent checks, from a fresh process: ask the OS directly whether the deny rule is still there, and try a second, different raw write that has nothing to do with the server's own write:</p>
+<figure class="diagram shot-wide"><img src="poc_screens/os4_independent_verify_crop.png" alt="Terminal screenshot: icacls output showing the deny permission is now gone from the operating system's own access control list, followed by a second independent raw write succeeding and a directory listing showing both the server's file and the independently-written file present." style="max-width:100%;height:auto;display:block;border:1px solid var(--border);border-radius:8px;"></figure>
+<p class="figcap">Screenshot 6: this is the confirmation. The OS's own permission table no longer has the deny rule, and a process that never touched the server can now write there too. That's not an app returning a different JSON body; that's a real, kernel-enforced boundary that existed before the exploit chain and doesn't exist after it.</p>
+
+<p>And the authentication bug underneath all of it, in eight lines of real, running source:</p>
+<figure class="diagram shot-wide"><img src="poc_screens/06_source_code_proof_crop.png" alt="Terminal screenshot: the actual running Python source of is_trusted_api_request, showing it reads only the Host header and checks it against a fixed set of trusted hosts, with no reference anywhere to the real peer address." style="max-width:100%;height:auto;display:block;border:1px solid var(--border);border-radius:8px;"></figure>
+<p class="figcap">Screenshot 7: the entire trust decision. No token, no cookie, no peer check. Just a header the caller supplied.</p>
+
+<div class="caveat"><strong>What this does and doesn't prove:</strong> the deny permission on <code>confined</code> is a genuine Windows ACL, enforced by the kernel for any process on this machine, independently verified by a write attempt that never went anywhere near my server or curl. Removing it required an actual <code>icacls</code> child process to run and return success, which only happened because the authentication bug let an unattended request flip the policy flag that triggers it. That's a real boundary standing, then not standing, as a direct, verified consequence of the bug, not a claim about what the code would do. What I still can't claim: that this is literally bubblewrap or Seatbelt, or that DeepSeek Harness's real codebase wires its policy flag to its sandbox in exactly this way. NTFS ACLs and Linux namespace sandboxing are different mechanisms; I used the real kernel-level control this machine actually has, as a structurally honest stand-in for the one the disclosure describes.</div>
+
+<h2>The paperwork</h2>
+<table>
+<tr><th>Field</th><th>Value</th></tr>
+<tr><td>CVE</td><td>CVE-2026-82533</td></tr>
+<tr><td>CWE</td><td>CWE-807: Reliance on Untrusted Inputs in a Security Decision</td></tr>
+<tr><td>CVSS 4.0</td><td>9.4 (<code>CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:P/VC:H/VI:H/VA:H/SC:H/SI:H/SA:H</code>)</td></tr>
+<tr><td>Affected</td><td>DeepSeek Harness (<code>dsh</code>) 0.1.1-rc.2 and earlier, including third-party desktop wrappers or IDE integrations that may bundle an older copy of the harness independently of the upstream project's own release cadence</td></tr>
+<tr><td>Fixed in</td><td>0.1.2-alpha.1, per most public references. One recommendations summary instead says "0.1.2-alpha.2 or later"; the public record disagrees with itself by one point release. Treat neither as final without checking the upstream changelog.</td></tr>
+<tr><td>CNA</td><td>VulnCheck</td></tr>
+<tr><td>Fix shape</td><td>The Host-header check was replaced with a one-time-token scheme: Harness now prints a token to its own startup output, the legitimate client exchanges it for a signed cookie, and the control API requires that cookie on every later call. The fix stops asking a request what it claims to be and starts asking it to prove it was present when the process started.</td></tr>
+</table>
+
+<table>
+<tr><th>Date (2026)</th><th>Event</th></tr>
+<tr><td>Aug 13&ndash;14</td><td>Unverified community reports: the same escape technique reportedly surfaces on DeepSeek's own GitHub discussion board, ahead of any formal report</td></tr>
+<tr><td>Aug 24</td><td>Escape confirmed by execution; CVE reservation requested</td></tr>
+<tr><td>Aug 27</td><td>Fix released in Harness 0.1.2-alpha.1</td></tr>
+<tr><td>Aug 30</td><td>Patched build re-tested and confirmed remediated</td></tr>
+<tr><td>Sep 8</td><td>CVE-2026-82533 published, alongside the original technical write-up</td></tr>
+<tr><td>Sep 10</td><td>A comparative analysis tying the bug to the OpenAI Codex, Cursor, and Docker Sandboxes findings below publishes</td></tr>
+</table>
+
+<h3>Recommendations, in full</h3>
+<p>The disclosure record breaks its guidance into three tiers, worth reproducing rather than condensing, since the specifics matter more than the headline advice:</p>
+<p><strong>Immediate actions:</strong> confirm your deployed Harness version and treat anything at 0.1.1-rc.2 or earlier as vulnerable "regardless of how it is packaged"; where upgrading isn't immediately possible, "disabling the local web interface entirely removes the exposed attack surface until a patch can be applied"; and audit whether the control port "is reachable from anything beyond the local loopback interface."</p>
+<p><strong>Short-term mitigations:</strong> extend the same review to "any coding agent or MCP server that exposes a local control API"; confirm sandbox policies "restrict network egress by default rather than assuming loopback traffic is inherently safe"; and make sure logging and monitoring for coding-agent deployments "specifically capture privilege-escalation or approval-mode-change events at the harness or runtime level", exactly the gap that let this escalation get logged as a user action.</p>
+<p><strong>Strategic considerations:</strong> treat sandbox architecture as "an explicit vendor selection and assurance criterion"; ask whether isolation is enforced "at the process, container, or microVM level"; ask whether "identity and capability scoping apply per task rather than granting a session broad, standing authority"; and ask whether "the vendor produces tamper-resistant audit records." These tie back to the AI Controls Matrix (AICM) v1.1, cited for its domains covering execution control, privilege management, and identity and access management for AI systems (though no specific domain IDs are given), and to the MAESTRO threat-modeling framework, cited for its layered view of agent frameworks and deployment infrastructure, again without naming specific layers.</p>
+
+<h2>DeepSeek didn't say much, because its own docs already had</h2>
+<p>No official DeepSeek statement, bug-bounty acknowledgment, or credit line is publicly available. What is available is DeepSeek's own project documentation, which already disclaimed that its sandboxing "does not guarantee isolation or prevent damage": a disclaimer that reads as remarkably consistent with exactly the failure mode that got CVE'd. DeepSeek shipped the fix within days of the report regardless of whether anyone issued a public statement about it.</p>
+<div class="moral"><strong>Moral:</strong> an asymmetric sandbox, hard on one channel, silent on another, isn't a partial mitigation. It's a map of exactly which channel to use.</div>
+
+<h2>It's not a DeepSeek problem</h2>
+
+<h3>OpenAI Codex: "Heapjack" and "Overpatch"</h3>
+<p>Reported to OpenAI on August 12, 2026 by independent researcher Oren Yomtov of Accomplish AI; both fixed inside eight days, landing in an "August 20, 2026 fix window." Both were first publicly documented on September 15, 2026.</p>
+<p><strong>Heapjack</strong> (Codex Desktop's <code>node_repl</code> tool) exploited the fact that trusted orchestration code and untrusted agent code shared one V8 heap. The legitimate control flow required trusted code to present a random token, generated fresh on every session, before the native Rust parent process, running outside the sandbox on the other end of a shared communication pipe, would act on a request. The exploit called <code>v8.getHeapSnapshot()</code> from inside the sandboxed Node process, scanned the resulting heap dump for that token, and used it to forge a JSON request indistinguishable from a legitimate one. The parent accepted it and invoked the OS <code>open</code> command through <code>launchd</code>, a path that bypassed Codex's own process-tree monitoring (the mechanics of that monitoring aren't explained anywhere public beyond naming it). Where Docker was installed, the same forged-request access reached the Docker daemon's Unix socket to gain container-level access, though no method beyond that phrase is documented. It worked in Codex's <em>read-only</em> sandbox mode, the strictest setting Codex ships, and required no user approval.</p>
+<p><strong>Overpatch</strong> (Codex CLI's <code>apply_patch</code> tool) abused a design rule: <code>apply_patch</code> grants write access to the parent directory of every file path referenced inside a patch. A crafted two-entry patch exploited that literally. The first entry used a symlink to append commands to the target's <code>.zshrc</code>. The second entry referenced a path under <code>/tmp</code> that was never actually executed; its only job was to exist inside the patch and widen the tool's write grant outward until it encompassed the filesystem root. It worked in workspace-write mode, again without approval. The literal patch syntax used isn't published anywhere public.</p>
+<div class="caveat">No CVE was assigned to either flaw and no formal CVSS score is documented; the only severity language available is qualitative: that the absence of a CVE "does not diminish the severity of what was found," and that Heapjack "defeated the strictest configuration" Codex offers. OpenAI's own statement: "we addressed both issues in August&hellip; we're continually strengthening our sandboxes." Fixed in Codex Desktop build 26.818.21641 and Codex CLI 0.149.0; no earlier affected-version range beyond "before those builds" is given.</div>
+<p>Overpatch is classified elsewhere as "close to a textbook instance" of a broader "trust handoff" pattern, first named in an earlier comparative note covering similar findings across Cursor, Codex CLI, Gemini CLI, and Antigravity: "the sandbox itself remains intact, but a trusted component outside the sandbox later reads, runs, or scans something the agent was allowed to write." Overpatch's symlink use is also described as "functionally the same technique" as GhostApproval, a separate 2026 finding of symlink-based sandbox bypasses across six different AI coding assistants. Heapjack, by contrast, is flagged as a <em>new</em> boundary type not previously catalogued: trust anchored to "an in-memory token rather than a filesystem path." One recommended fix architecture for this class of bug: run agents in VMs, treat everything inside the guest (including root) as untrusted, keep real credentials on the host, and issue the agent placeholder credentials routed through a proxy instead.</p>
+
+<h3>Cursor: "DuneSlide" (CVE-2026-50548 / CVE-2026-50549)</h3>
+<p>Publicly documented July 1, 2026; patched in Cursor 3.0, released April 2, 2026. Both CVEs are reported at 9.8 on the CVSS 3.x scale, or 9.3 under CVSS 4.0, though no vector string for either score is published anywhere found. Cato Networks, the discloser, reported both issues to Cursor on February 19; Cursor initially declined them, reportedly citing a threat model that didn't cover MCP-server misuse; Cato escalated on February 26, and Cursor reopened and fixed both. The CVE IDs themselves weren't assigned until June 5, two months after the fix had already shipped in 3.0.</p>
+<p>Two chained flaws. First: the <code>run_terminal_cmd</code> tool accepts a <code>working_directory</code> parameter that overrides the project-scoped default. A prompt injection riding in a poisoned MCP server response or a manipulated web-search result can steer the agent into pointing writes at the <code>cursorsandbox</code> executable itself, a shell config file, or, on macOS, <code>~/Library/LaunchAgents</code>. Second: Cursor tries to canonicalize a symlink target to confirm it resolves inside the project root, but falls back to trusting the <em>original, in-project-looking</em> symlink path "if canonicalization fails (for example, when the path doesn't exist or if the path lacks read permissions on one of its directories)"; those two conditions are the only documented failure modes. The disclosure's own description, quoted directly: the exploit "requires no prior user privileges or specific user interaction," and fires "when a victim makes an innocuous prompt."</p>
+<div class="caveat">No CVSS vector string, CWE classification, or Cursor/Anysphere statement is publicly documented anywhere I could verify, even though the headline score itself is widely reported. The original disclosure's own URL slug describes them as "two critical RCE vulnerabilities," a severity signal that couldn't be independently confirmed since that page didn't render on fetch. The disclosure states it is "in the process of responsibly disclosing vulnerabilities in all popular coding agents," framed as evidence "a more systemic approach to protection is required", but names no other specific agents or results.</div>
+
+<h3>Docker Sandboxes: <code>sbx cp</code> (CVE-2026-103916)</h3>
+<p>This is the one finding in this piece with a fully reproducible, published command sequence, so it's worth walking in full. The target is <code>sbx</code>, the standalone CLI for Docker Sandboxes (it doesn't require Docker Desktop). Setup:</p>
+<pre><code>sbx policy init balanced
+sbx create shell ~/sbxlab/repro/work --name repro</code></pre>
+<p>The write primitive, escaping through a copy-<em>out</em> destination:</p>
+<pre><code># Inside the sandbox, plant a symlink where a copy-out destination will land
+sbx exec repro -- sh -c 'mkdir -p /tmp/out; echo "OWNED-BY-THE-SANDBOX" > /tmp/out/notes.txt'
+ln -sfn /Users/$USER/sbxlab/repro/secret /Users/$USER/sbxlab/repro/work/results
+
+# From the host, an ordinary-looking copy now writes through the symlink
+sbx cp repro:/tmp/out/notes.txt ~/sbxlab/repro/work/results/
+# exits 0, no output: nothing about this looks like a failure</code></pre>
+<p>The read primitive, same trick, aimed at a copy-<em>in</em> source's parent component instead of its last component, which is the only position <code>sbx cp</code>'s <code>-L</code> flag actually guards:</p>
+<pre><code>ln -sfn /Users/$USER/sbxlab/repro/secret /Users/$USER/sbxlab/repro/work/vendor
+sbx cp ~/sbxlab/repro/work/vendor/notes.txt repro:/tmp/in/
+# no -L flag needed at all for this one</code></pre>
+<p>The published control case shows the guard isn't totally absent; it's just misplaced. Symlinking the exact leaf file instead of a parent directory does get caught:</p>
+<pre><code>ln -sfn /Users/$USER/sbxlab/repro/secret/notes.txt /Users/$USER/sbxlab/repro/work/leaf.txt
+sbx cp ~/sbxlab/repro/work/leaf.txt repro:/tmp/in/
+# "No such file or directory"</code></pre>
+<p>That's the whole bug, taxonomized: a copy command resolves symlinks on the host at four distinct path positions (copy-out destination's last component, copy-out destination's parent component, copy-in source's last component, copy-in source's parent component), and the <code>-L</code> flag only gates the one that's least useful to an attacker (copy-in source, last component). The other three resolve through the host filesystem freely, which sidesteps the allowlist that's only enforced on the shared virtio-fs mount in the first place. A trailing slash or a <code>vendor/.</code>-style path gets lexically collapsed back into the one gated case, which is the closest thing to a safe pattern documented.</p>
+<p>Escalation from read/write to code execution is framed as reasoning, not a demonstrated exploit, naming the obvious targets: <code>~/.zshrc</code>, <code>~/.ssh/authorized_keys</code>, the <code>core.pager</code> setting in <code>~/.gitconfig</code>, a <code>.git/hooks</code> script in a checked-out repository, or a binary under <code>node_modules</code>. The one real constraint: the write primitive needs the target's parent directory to already exist, since it can't create missing directories on its own.</p>
+<table>
+<tr><th>Field</th><th>Value</th></tr>
+<tr><td>CVE</td><td>CVE-2026-103916: CWE-59 (Improper Link Resolution Before File Access)</td></tr>
+<tr><td>CVSS 3.1</td><td>8.2 High (<code>AV:L/AC:L/PR:L/UI:R/S:C/C:H/I:H/A:H</code>)</td></tr>
+<tr><td>CVSS 4.0</td><td>7.3 High (<code>AV:L/AC:L/AT:P/PR:L/UI:A/VC:H/VI:H/VA:H/SC:H/SI:H/SA:H</code>), per the discloser's own write-up. Docker's CNA record scores the same bug at 8.4 (<code>AV:L/AC:L/AT:N/PR:N/UI:A/VC:H/VI:H/VA:H/SC:N/SI:N/SA:N</code>, no CVSS 3.1 given); the two disagree on both score and vector, and neither source flags the other.</td></tr>
+<tr><td>Examined / affected</td><td>v0.43.0 examined by the discloser. The CNA's published record does state a range the write-up doesn't: 0.28.0 up to, but not including, 0.51.0.</td></tr>
+<tr><td>Fix timeline</td><td>First fix planned for v0.48.0 (Oct 13, 2026) turned out incomplete; the real fix shipped in v0.51.0 (Nov 3, 2026)</td></tr>
+<tr><td>Sibling bug</td><td>CVE-2026-17106, an earlier, narrower <code>sbx cp</code> copy-<em>out</em> flaw, fixed in v0.38.0; that fix worked relative to the extraction root but never checked the root itself or the copy-in source, which is exactly where CVE-2026-103916 lives</td></tr>
+</table>
+<div class="caveat">No report-to-vendor date, bug-bounty program, or official Docker spokesperson statement is documented anywhere public. The CVE record does give a reservation date distinct from publication (reserved Oct 1, 2026; published Nov 3, 2026), which undercuts treating the two as the same event. One notable detail: v0.43.0 had <code>cyphar/filepath-securejoin</code> (a library built for exactly this class of bug) linked into the binary but not actually used on any host-side path, which is almost a more damning detail than the bug itself.</div>
+<p>A closely related finding exists in <strong>brig</strong>, a different sandbox project: a symlink-traversal bug (GHSA-wp6x-29qx-fpr7, CWE-59 and, on the Unix path, CWE-61) fixed in brig 0.3.0 and carrying the identical CVSS 3.1 vector as the Docker bug (8.2, same string). brig mounts two shares: a strictly-checked workspace share, and a project share whose only validation was confirming the resolved path wasn't literally <code>/</code>. brig passed the project path to its VMM <em>unresolved</em>, letting the VMM itself resolve a symlink planted inside the read-write workspace, the same underlying mistake as Docker's, just reached through a different door. It reproduced on macOS 15 arm64 (brig's "hull" microVM backend) and Ubuntu 24.04 (nerdctl). brig's maintainers "requested a CVE" and reportedly pushed back on calling it a "sandbox escape" at all: a framing dispute that's its own small data point about how reluctant projects are to use that phrase even when the mechanism matches.</p>
+
+<h2>Three ordinary ingredients</h2>
+<p>The framing for why these keep happening across unrelated codebases: each one combines an attacker-controllable input, a dangerous capability, and unchecked ambient authority. None of those three is exotic on its own. The dangerous capability in DeepSeek's case was the harness's own escalation endpoint: a feature, not a bug, for the legitimate client it was built for. The ambient authority was the quiet assumption that anything arriving over loopback must already be trusted. None of the three conditions is individually exotic, but their combination in a single, widely adopted tool turned a design shortcut into a critical vulnerability.</p>
+<p>It's worth being honest about the limits of this pattern-matching: whether it reflects a broader industry pattern, or simply reflects which incidents have so far drawn public attention, isn't established. But the shape repeats anyway:</p>
+<table>
+<tr><th>Case</th><th>Sandbox tech</th><th>Trust anchor that failed</th><th>CVE / score</th><th>Days to fix</th></tr>
+<tr><td>DeepSeek Harness</td><td>bubblewrap / Landlock (Linux), Seatbelt (macOS)</td><td>Client-supplied <code>Host</code> header, no peer check (CWE-807)</td><td>CVE-2026-82533 &middot; CVSS 9.4</td><td>3 (Aug 24 report &rarr; Aug 27 fix)</td></tr>
+<tr><td>Codex Heapjack</td><td>Codex Desktop read-only mode; shared V8 heap</td><td>In-memory session token readable via heap snapshot</td><td>No CVE assigned</td><td>&le;8 (Aug 12 &rarr; Aug 20 window)</td></tr>
+<tr><td>Codex Overpatch</td><td>Codex CLI workspace-write mode</td><td><code>apply_patch</code>'s parent-directory write grant, widened via a decoy patch entry</td><td>No CVE assigned</td><td>&le;8 (same window)</td></tr>
+<tr><td>Cursor DuneSlide</td><td>Cursor command-execution sandbox</td><td><code>working_directory</code> override + symlink-canonicalization fallback</td><td>CVE-2026-50548 / -50549</td><td>Unknown; patched in Cursor 3.0, no exact dates published</td></tr>
+<tr><td>Docker Sandboxes</td><td><code>sbx</code> CLI, virtio-fs shared mount</td><td><code>sbx cp</code> resolving host symlinks at 3 of 4 path positions (CWE-59)</td><td>CVE-2026-103916 &middot; CVSS 8.2 (3.1) / 7.3 (4.0)</td><td>Unknown report date; first attempted fix (Oct 13) was itself incomplete, final fix Nov 3</td></tr>
+</table>
+<p>A sandbox that locks down one channel (the filesystem) while leaving another, loopback networking, implicitly trusted, shows up in the DeepSeek case directly, and rhymes with Heapjack's shared-heap trust boundary, Overpatch's parent-directory write grant, DuneSlide's canonicalization fallback, and <code>sbx cp</code>'s unguarded symlink positions. Five different bugs, four different vendors, one repeated design instinct: pick a boundary, enforce it carefully in the one place everyone was looking, and leave the adjacent surface on an honor system.</p>
+<div class="quote">The sharper point, worth keeping verbatim from the broader analysis: "the issue is not simply whether an agent's sandbox holds, but what, inside or outside that sandbox, will eventually trust something the agent produced."</div>
+
+<hr>
+
+<h2>A shorter checklist than last time</h2>
+<p>Condensed from the recommendations above, read against all five bugs rather than just DeepSeek's: audit any coding-agent harness or MCP server for a local control API that trusts a header or a claimed identity instead of a verified peer or a proof-of-presence token; default-deny sandbox network egress the same way you default-deny filesystem writes, instead of treating loopback as a free pass; log privilege-escalation and approval-mode changes as their own event class, distinct from ordinary command execution, so a policy flip can't get misattributed to a human who was never there; check whether a tool's own write-grant logic (an <code>apply_patch</code>-style "parent directory of every referenced path" rule, or a copy command's symlink handling) can be walked outward by a crafted argument rather than a crafted path; and when evaluating a vendor, ask what their sandbox architecture actually is (process-level, container, or microVM), because that answer predicts how many of these five bugs you're already carrying.</p>
+
+<p>Four vendors, five bugs, the same two-sentence failure: the sandbox did exactly what it was told to restrict, and something standing right next to it (a port, a shared heap, a write-grant rule, a copy command) was never told it was part of the boundary at all.</p>
+
+<div class="moral"><strong>Next week, Part 2:</strong> everything above, the control-plane trust bug, the real OS-level escape built and run for this piece, the five-bug pattern across four vendors, is the base the rest of this series works from. Part 2 picks up where "three ordinary ingredients" left off and goes looking for that same shape somewhere new.</div>
+
+<footer>Case study built from the public CVE records and disclosure write-ups for CVE-2026-82533 (DeepSeek Harness), the OpenAI Codex Heapjack/Overpatch pair, CVE-2026-50548 / CVE-2026-50549 (Cursor DuneSlide), and CVE-2026-103916 (Docker Sandboxes), plus the related brig finding (GHSA-wp6x-29qx-fpr7). The OS-level reproduction and its screenshots are original work built for this piece, not part of any vendor or disclosure material. Points sourced from a single disclosure, or where disclosures disagree with each other, are flagged inline rather than resolved by guessing.</footer>
+
+</main>
+<script>
+(function(){
+  var root = document.documentElement;
+  var btn = document.getElementById('themeToggle');
+  var stored = null;
+  try { stored = localStorage.getItem('theme'); } catch(e) {}
+  var systemDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  var theme = stored || (systemDark ? 'dark' : 'light');
+  function apply(t){
+    root.setAttribute('data-theme', t);
+    btn.innerHTML = t === 'dark' ? '&#9728;' : '&#9789;';
+    btn.title = t === 'dark' ? 'Switch to light theme' : 'Switch to dark theme';
+  }
+  apply(theme);
+  btn.addEventListener('click', function(){
+    theme = theme === 'dark' ? 'light' : 'dark';
+    apply(theme);
+    try { localStorage.setItem('theme', theme); } catch(e) {}
+  });
+})();
+</script>
+</body>
+</html>
