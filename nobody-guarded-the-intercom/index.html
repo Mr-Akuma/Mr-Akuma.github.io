@@ -4,6 +4,18 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Nobody Guarded the Intercom (Part 1)</title>
+<meta name="description" content="Five related 2026 AI coding-agent sandbox escapes across four vendors (DeepSeek, OpenAI Codex, Cursor, Docker Sandboxes) share the same failure shape: the sandbox is enforced carefully on one channel and left wide open on the one next to it. Includes a real, kernel-enforced OS-level reproduction.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://mr-akuma.github.io/nobody-guarded-the-intercom/">
+<meta property="og:title" content="Nobody Guarded the Intercom &middot; AI Agent Trust Boundaries, Part 1">
+<meta property="og:description" content="Five related 2026 AI coding-agent sandbox escapes across four vendors share the same failure shape: the sandbox is enforced carefully on one channel and left wide open on the one next to it. Includes a real, kernel-enforced OS-level reproduction.">
+<meta property="og:image" content="https://mr-akuma.github.io/nobody-guarded-the-intercom/og-card.png">
+<meta property="og:image:secure_url" content="https://mr-akuma.github.io/nobody-guarded-the-intercom/og-card.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1195">
+<meta property="og:image:height" content="625">
+<meta property="og:image:alt" content="Nobody Guarded the Intercom: a diagram showing an OS sandbox that denies file writes but allows loopback networking, next to an unauthenticated control API on 127.0.0.1:3080 trusting only the client Host header (CWE-807).">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="shortcut icon" href="../images/favicon.png" type="image/png">
 <link rel="icon" href="../images/favicon.png" type="image/png">
 <style>
