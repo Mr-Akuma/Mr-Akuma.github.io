@@ -382,8 +382,7 @@ sbx cp ~/sbxlab/repro/work/leaf.txt repro:/tmp/in/
   var btn = document.getElementById('themeToggle');
   var stored = null;
   try { stored = localStorage.getItem('theme'); } catch(e) {}
-  var systemDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-  var theme = stored || (systemDark ? 'dark' : 'light');
+  var theme = stored || 'dark';
   function apply(t){
     root.setAttribute('data-theme', t);
     btn.innerHTML = t === 'dark' ? '&#9728;' : '&#9789;';
