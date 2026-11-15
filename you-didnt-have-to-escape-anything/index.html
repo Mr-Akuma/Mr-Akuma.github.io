@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>You Didn't Have to Escape Anything (Part 2)</title>
+<meta name="description" content="CVE-2026-54504: a missing-authentication bug in a real, currently-published MCP documentation-server package gives full unauthenticated read/write/delete over an AI agent's knowledge base, no sandbox escape required.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://mr-akuma.github.io/you-didnt-have-to-escape-anything/">
+<meta property="og:title" content="You Didn't Have to Escape Anything &middot; AI Agent Trust Boundaries, Part 2">
+<meta property="og:description" content="Part 1's sandbox confined the filesystem and nothing else. The network path to CVE-2026-54504 was open before anyone broke a single thing.">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="You Didn't Have to Escape Anything (Part 2)">
+<meta name="twitter:description" content="Part 1's sandbox confined the filesystem and nothing else. The network path to CVE-2026-54504 was open before anyone broke a single thing.">
+<link rel="shortcut icon" href="../images/favicon.png" type="image/png">
+<link rel="icon" href="../images/favicon.png" type="image/png">
+<style>
+  :root{
+    --bg:#0e0f12; --fg:#e7e7ea; --muted:#9a9aa2; --accent:#ff5d5d;
+    --card:#17181c; --border:#272830;
+  }
+  @media (prefers-color-scheme: light){
+    :root:not([data-theme="dark"]){ --bg:#faf9f7; --fg:#15151a; --muted:#5b5b63; --accent:#c3362b; --card:#fff; --border:#e4e2dd; }
+  }
+  :root[data-theme="light"]{ --bg:#faf9f7; --fg:#15151a; --muted:#5b5b63; --accent:#c3362b; --card:#fff; --border:#e4e2dd; }
+  :root[data-theme="dark"]{ --bg:#0e0f12; --fg:#e7e7ea; --muted:#9a9aa2; --accent:#ff5d5d; --card:#17181c; --border:#272830; }
+  *{box-sizing:border-box}
+  .theme-toggle{
+    position:fixed; top:16px; right:16px; z-index:10;
+    width:40px; height:40px; border-radius:50%;
+    background:var(--card); border:1px solid var(--border); color:var(--fg);
+    font-size:1.1rem; line-height:1; cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    font-family: -apple-system, Segoe UI, Arial, sans-serif;
+  }
+  .theme-toggle:hover{border-color:var(--accent)}
+  body{ margin:0; background:var(--bg); color:var(--fg); font-family: Georgia, 'Times New Roman', serif; line-height:1.65; }
+  main{max-width:780px; margin:0 auto; padding:48px 20px 96px;}
+  .series{ font-family: -apple-system, Segoe UI, Arial, sans-serif; color:var(--accent); font-size:0.75rem; font-weight:700; letter-spacing:0.09em; text-transform:uppercase; margin:0 0 10px; }
+  h1{ font-family: -apple-system, Segoe UI, Arial, sans-serif; font-size:2.1rem; line-height:1.15; margin:0 0 4px; letter-spacing:-0.01em; }
+  .kicker{ font-family: -apple-system, Segoe UI, Arial, sans-serif; color:var(--muted); font-size:0.95rem; margin:0 0 6px; }
+  .byline{ font-family: -apple-system, Segoe UI, Arial, sans-serif; color:var(--muted); font-size:0.85rem; margin:0 0 36px; }
+  h2{ font-family: -apple-system, Segoe UI, Arial, sans-serif; font-size:1.2rem; margin:40px 0 2px; color:var(--accent); border-top:1px solid var(--border); padding-top:28px; }
+  h2:first-of-type{border-top:none; padding-top:0;}
+  h3{ font-family: -apple-system, Segoe UI, Arial, sans-serif; font-size:1rem; margin:26px 0 2px; color:var(--fg); }
+  .dateline{ font-family: -apple-system, Segoe UI, Arial, sans-serif; color:var(--muted); font-size:0.8rem; font-style:italic; margin:0 0 10px;}
+  .meta{ font-family: -apple-system, Segoe UI, Arial, sans-serif; color:var(--muted); font-size:0.85rem; margin:0 0 16px; }
+  .meta strong{color:var(--fg)}
+  p{margin:0 0 16px; font-size:1.02rem;}
+  strong{color:var(--fg)}
+  .moral{ background:var(--card); border:1px solid var(--border); border-left:3px solid var(--accent); padding:14px 18px; margin:18px 0; border-radius:4px; font-size:0.98rem; }
+  .quote{ background:var(--card); border:1px solid var(--border); border-left:3px solid var(--muted); padding:12px 18px; margin:14px 0; border-radius:4px; font-size:0.95rem; font-style:italic; }
+  .caveat{ background:var(--card); border:1px solid var(--border); border-left:3px solid var(--muted); padding:10px 16px; margin:14px 0; border-radius:4px; font-size:0.88rem; color:var(--muted); }
+  .diagram{ margin:20px 0 6px; }
+  .diagram svg{ width:100%; height:auto; display:block; background:var(--card); border:1px solid var(--border); border-radius:8px; }
+  .shot-wide{ width:min(1200px, 94vw); margin:20px 0 6px; margin-left:50%; transform:translateX(-50%); }
+  .shot-wide img{ max-width:100%; height:auto; display:block; margin:0 auto; }
+  .figcap{ font-family: -apple-system, Segoe UI, Arial, sans-serif; color:var(--muted); font-size:0.8rem; margin:0 0 20px; text-align:center; font-style:italic; }
+  ol{ margin:0 0 16px; padding-left:1.3em; font-size:1.02rem; }
+  ol li{ margin-bottom:8px; }
+  code{ background:var(--card); border:1px solid var(--border); border-radius:4px; padding:0.15em 0.4em; font-family: 'SFMono-Regular', Consolas, monospace; font-size:0.86em; }
+  pre{ background:var(--card); border:1px solid var(--border); border-radius:6px; padding:14px 16px; overflow-x:auto; font-size:0.8rem; line-height:1.5;}
+  pre code{background:none; border:none; padding:0;}
+  table{ width:100%; border-collapse:collapse; margin:16px 0; font-size:0.9rem; font-family: -apple-system, Segoe UI, Arial, sans-serif;}
+  th,td{ border:1px solid var(--border); padding:8px 10px; text-align:left; vertical-align:top;}
+  th{background:var(--card); color:var(--muted); font-weight:600;}
+  hr{border:none; border-top:1px solid var(--border); margin:36px 0;}
+  .tablewrap{overflow-x:auto; margin:16px 0;}
+  .tablewrap table{margin:0;}
+  .tablecap{ font-family: -apple-system, Segoe UI, Arial, sans-serif; color:var(--muted); font-size:0.8rem; margin:0 0 6px; font-style:italic; }
+  footer{color:var(--muted); font-size:0.85rem; margin-top:56px; font-family: -apple-system, Segoe UI, Arial, sans-serif;}
+</style>
+</head>
+<body>
+<button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle dark/light theme" title="Toggle theme">&#9789;</button>
+<main>
+
+<p class="series">Part 2 of 2: the conclusion of a series on AI agent trust boundaries</p>
+<h1>You Didn't Have to Escape Anything</h1>
+<p class="kicker">Part 1's sandbox confined the filesystem and nothing else. The network path to this was open before anyone broke a single thing. Then it was fixed, and the fix is the second half of the story.</p>
+<p class="byline"><strong>CVE-2026-54504</strong> is a missing-authentication bug in <code>@andrea9293/mcp-documentation-server</code>, a real, currently-published npm package that gives AI coding agents a local document store with semantic search. Every version from 1.13.0 up to, but not including, the 1.13.1 patch ships a web API with zero authentication, bound to every network interface, on by default. Part 1 closed on a thesis: sandbox failures come down to an attacker-controllable input, a dangerous capability, and unchecked ambient authority, not weak containment technology. This piece tests that thesis against software Part 1 never touched, and unlike Part 1, nothing here needed a stand-in. I installed the real vulnerable version from the public registry and reproduced the bug directly against it. The second half then reads the patch that closed it, sets it next to the fix from Part 1, and ends the series.</p>
+
+<h2>What mcp-documentation-server actually is</h2>
+<p><code>@andrea9293/mcp-documentation-server</code> is a TypeScript MCP (Model Context Protocol) server: a local document-management and semantic-search tool that AI coding agents connect to over MCP so they can store, search, and retrieve project documentation with embeddings. It's a real, actively maintained package, published by a single maintainer (andrea9293), currently at version 1.15.3 on npm with a clean release history back through 1.0.0. Alongside its MCP interface it ships an optional web UI: a small Express server meant to let a human browse and manage the same document store from a browser.</p>
+<p>That web UI is the whole story. It starts automatically, binds to every network interface by default, and checks nothing before answering a request.</p>
+
+<h2>No escape required</h2>
+<p>Part 1's sandbox policy, quoted directly from that piece: "writes outside the workspace are denied, and everything else (process execution, file reads, loopback networking) is allowed by default." That sandbox, like every sandbox in Part 1's comparison table, only ever confined the filesystem. Network access to other local services was never restricted, escaped or not.</p>
+<p>That matters here specifically because this bug doesn't require an agent, a sandbox, an escalation, or an escape at all. Anyone who can reach the port can read, write, and delete an AI agent's knowledge base directly. No prompt injection needed to get an agent to do it on your behalf; you can just do it yourself. The "escalation" step that took up most of Part 1 doesn't exist in this story because there was never a gate to get past in the first place.</p>
+
+<figure class="diagram">
+<svg viewBox="0 0 680 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Architecture diagram: a host machine runs the mcp-documentation-server web UI, which starts automatically and binds to all network interfaces on port 3080 by default. Its API routes have no authentication middleware anywhere in the code. Any device on the same network or routed path can reach those routes directly with an ordinary HTTP request, no agent, sandbox, or escalation required.">
+<defs>
+  <marker id="arrowP" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+    <path d="M0,0 L10,5 L0,10 z" fill="var(--accent)"/>
+  </marker>
+</defs>
+<rect x="20" y="40" width="300" height="340" rx="12" fill="none" stroke="var(--border)" stroke-dasharray="6 5"/>
+<text x="36" y="62" font-family="Segoe UI, Arial, sans-serif" font-size="11" letter-spacing="1" fill="var(--muted)">HOST MACHINE</text>
+
+<rect x="50" y="90" width="240" height="150" rx="10" fill="var(--bg)" stroke="var(--accent)" stroke-width="1.75"/>
+<text x="66" y="114" font-family="Segoe UI, Arial, sans-serif" font-size="12.5" font-weight="600" fill="var(--fg)">mcp-documentation-server</text>
+<text x="66" y="132" font-family="SFMono-Regular, Consolas, monospace" font-size="10.5" fill="var(--muted)">web-server.js</text>
+<text x="66" y="154" font-family="SFMono-Regular, Consolas, monospace" font-size="10.5" fill="var(--fg)">app.listen(PORT)</text>
+<text x="66" y="170" font-family="Segoe UI, Arial, sans-serif" font-size="10" fill="var(--muted)">no host argument given</text>
+<rect x="66" y="182" width="140" height="18" rx="9" fill="var(--card)" stroke="var(--accent)"/>
+<text x="136" y="194.5" text-anchor="middle" font-family="SFMono-Regular, Consolas, monospace" font-size="9.5" fill="var(--accent)">CWE-306</text>
+<text x="66" y="218" font-family="Segoe UI, Arial, sans-serif" font-size="10" fill="var(--accent)" font-weight="600">0 auth checks in the route table</text>
+
+<rect x="50" y="260" width="240" height="90" rx="8" fill="var(--bg)" stroke="var(--fg)"/>
+<text x="170" y="282" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="var(--fg)">document store</text>
+<text x="170" y="298" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="10" fill="var(--muted)">what the agent actually</text>
+<text x="170" y="312" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="10" fill="var(--muted)">knows and retrieves from</text>
+
+<path d="M170,240 L170,260" fill="none" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#arrowP)"/>
+
+<rect x="400" y="140" width="260" height="90" rx="10" fill="var(--bg)" stroke="var(--muted)" stroke-dasharray="4 3"/>
+<text x="530" y="168" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="11.5" fill="var(--fg)">anyone on the same LAN,</text>
+<text x="530" y="184" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="11.5" fill="var(--fg)">VPN, container bridge, or</text>
+<text x="530" y="200" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="11.5" fill="var(--fg)">routed network path</text>
+
+<path d="M400,185 L292,165" fill="none" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#arrowP)"/>
+<text x="300" y="150" font-family="Segoe UI, Arial, sans-serif" font-size="10" fill="var(--accent)">GET / POST / DELETE</text>
+<text x="300" y="250" font-family="Segoe UI, Arial, sans-serif" font-size="10" fill="var(--accent)">no token, no header,</text>
+<text x="300" y="264" font-family="Segoe UI, Arial, sans-serif" font-size="10" fill="var(--accent)">nothing required</text>
+</svg>
+<figcaption class="figcap">Fig. 1: no sandbox, no agent, and no escalation anywhere in this diagram. The route table itself is the entire attack surface.</figcaption>
+</figure>
+
+<h2>A reproduction I actually ran, against the real thing</h2>
+<div class="caveat">Scope, stated plainly: this is the genuine, currently-published vulnerable version, installed from the public npm registry on this machine, not a stand-in. Every screenshot below is an unedited, full-screen capture of real execution against real, unmodified code. One deliberate substitution: the server's own auto-generated document ID (an arbitrary hex string) is swapped for the literal placeholder <code>&lt;doc-id&gt;</code> by the capture script before the terminal is screenshotted, purely so a meaningless local identifier isn't published verbatim. Every HTTP call shown, including the delete in Screenshot 6, is still made with the real ID the server actually returned.</div>
+
+<p>Installing the exact vulnerable version, from the real registry:</p>
+<figure class="diagram shot-wide">
+<img src="mcp_screens/shot_01_install_crop.png" alt="Terminal screenshot: npm install of @andrea9293/mcp-documentation-server version 1.13.0 completing successfully, with the installed package.json confirming the exact name and version." style="max-width:100%;height:auto;display:block;border:1px solid var(--border);border-radius:8px;">
+<figcaption class="figcap">Screenshot 1: 322 packages, real registry, confirmed name and version. npm's own audit also flagged 7 high-severity vulnerabilities in the dependency tree, a separate issue from the one this piece is about.</figcaption>
+</figure>
+
+<p>The real, shipped, compiled code, not a paraphrase of it:</p>
+<figure class="diagram shot-wide">
+<img src="mcp_screens/shot_02_source_crop.png" alt="Terminal screenshot: grep output from the real installed package showing the START_WEB_UI default-on check, the app.listen call with no host argument, every registered API route, and a search for any auth or middleware check that finds nothing but a comment labeled Middleware with no authentication behind it." style="max-width:100%;height:auto;display:block;border:1px solid var(--border);border-radius:8px;">
+<figcaption class="figcap">Screenshot 2: fourteen routes, zero authentication. The only hit for "middleware" in the whole file is a comment; what's actually under it is body-parsing and static file serving, nothing that checks who's asking. The GHSA advisory names six of those fourteen by path; the other eight, including four separate unauthenticated upload endpoints, aren't called out there.</figcaption>
+</figure>
+
+<p>Starting it with nothing but the defaults:</p>
+<figure class="diagram shot-wide">
+<img src="mcp_screens/shot_03_server_started_crop.png" alt="Terminal screenshot: the real server's own startup banner, printing Local http://localhost:3080 and Network http://0.0.0.0:3080, disclosing its own exposure to every network interface." style="max-width:100%;height:auto;display:block;border:1px solid var(--border);border-radius:8px;">
+<figcaption class="figcap">Screenshot 3: the server announces its own exposure in its own startup banner. Nobody had to find this; it prints it.</figcaption>
+</figure>
+
+<p>No login, no token, no header, just asking:</p>
+<figure class="diagram shot-wide">
+<img src="mcp_screens/shot_04_enumerate_crop.png" alt="Terminal screenshot: GET requests to /api/config and /api/documents both returning HTTP 200 with real data and no authentication of any kind." style="max-width:100%;height:auto;display:block;border:1px solid var(--border);border-radius:8px;">
+<figcaption class="figcap">Screenshot 4: two unauthenticated reads, two 200s.</figcaption>
+</figure>
+
+<p>Writing into the knowledge base the same way:</p>
+<figure class="diagram shot-wide">
+<img src="mcp_screens/shot_05_poison_crop.png" alt="Terminal screenshot: an unauthenticated POST to /api/documents returning HTTP 200 with a new document ID and success message, followed by a confirming GET that shows the planted document now present with a real timestamp." style="max-width:100%;height:auto;display:block;border:1px solid var(--border);border-radius:8px;">
+<figcaption class="figcap">Screenshot 5: a document with attacker-chosen content, now sitting in the agent's real knowledge base, timestamped and confirmed by a second unauthenticated call.</figcaption>
+</figure>
+
+<p>And deleting it, closing the loop on full unauthenticated CRUD:</p>
+<figure class="diagram shot-wide">
+<img src="mcp_screens/shot_06_destroy_crop.png" alt="Terminal screenshot: an unauthenticated DELETE request succeeding with HTTP 200, followed by a confirming GET showing the document store back to empty." style="max-width:100%;height:auto;display:block;border:1px solid var(--border);border-radius:8px;">
+<figcaption class="figcap">Screenshot 6: read, write, and delete, all with zero authentication, all against the real, unmodified, currently-published package.</figcaption>
+</figure>
+
+<h2>The paperwork</h2>
+<p class="tablecap">Table 1: vulnerability summary.</p>
+<div class="tablewrap"><table>
+<tr><th>Field</th><th>Value</th></tr>
+<tr><td>CVE</td><td>CVE-2026-54504</td></tr>
+<tr><td>CWE</td><td>CWE-306 (Missing Authentication for Critical Function), CWE-668 (Exposure of Resource to Wrong Sphere)</td></tr>
+<tr><td>CVSS 3.1</td><td>8.8 High, vector <code>AV:A/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H</code> per the CNA advisory.</td></tr>
+<tr><td>Affected</td><td>&gt;= 1.13.0, &lt; 1.13.1</td></tr>
+<tr><td>Fixed in</td><td>1.13.1</td></tr>
+<tr><td>Scope confirmed</td><td>Read, enumerate, write, and delete documents, confirmed live against the real package for this piece. The advisory explicitly states this does not provide remote code execution; I didn't attempt to find any, and nothing here should be read as a claim that one exists.</td></tr>
+<tr><td>EPSS / KEV</td><td>EPSS 0.57% (45.2nd percentile) at last check. Not in CISA's Known Exploited Vulnerabilities list.</td></tr>
+</table></div>
+<div class="caveat">The CVSS vector's <code>AV:A</code> means adjacent-network-only, but the same advisory's own description frames the service as reachable from "LAN, VM network, container bridge, VPN, or another routed network," which reads broader than strictly adjacent. Check the GHSA advisory's own vector before citing this elsewhere.</div>
+
+<p class="tablecap">Table 2: disclosure timeline.</p>
+<div class="tablewrap"><table>
+<tr><th>Date (2026)</th><th>Event</th></tr>
+<tr><td>Jun 4</td><td>GHSA-6f5r-5672-72j7 published on GitHub, about three months before the CVE/OSV publish date below; which date better reflects the actual disclosure isn't clear from either page</td></tr>
+<tr><td>Sep 17</td><td>CVE-2026-54504 published</td></tr>
+<tr><td>Sep 30</td><td>Advisory last modified (status shown as "Deferred" on the aggregator I checked; not explained there)</td></tr>
+<tr><td>Jun 4</td><td>1.13.1 published to npm, the same day as the GHSA, per the registry's own publish time. It changes the Web UI's default bind address. It does not change the default-on behavior; see the patch below</td></tr>
+</table></div>
+<div class="caveat">Checked directly against the primary source for this revision: the GitHub security advisory (GHSA-6f5r-5672-72j7) credits GitHub user <strong>mcfly-zzh</strong> as reporter, and fix commit plus PR #20 on the andrea9293/mcp-documentation-server repository back the 1.13.1 release above. The GHSA and OSV also agree on CWE-306 and CWE-668 and on the CVSS 3.1 vector in Table 1. The three-month gap between the GHSA's own publish date and the CVE/OSV publish date is flagged above rather than resolved; what the registry does settle is that the gap sits between the fix and the CVE record, not between disclosure and fix.</div>
+
+<h2>It's not a documentation-server problem</h2>
+<p>The same shape, trust whatever's local, shows up across the Model Context Protocol ecosystem in 2026, not just in one small package from one maintainer:</p>
+<h3>MCP SDKs: the bug lives one layer below the server</h3>
+<p>Three official language SDKs used to build MCP servers shipped the same class of flaw, meaning any server built on top of them inherited it by default:</p>
+<p><strong>Go SDK (CVE-2026-34742):</strong> DNS-rebinding protection was off by default for HTTP-based servers using <code>StreamableHTTPHandler</code> or <code>SSEHandler</code>. A malicious website could use DNS rebinding to get a victim's browser to bypass same-origin restrictions and reach a local MCP server directly. Fixed in 1.4.0, where the protection is now on by default when binding to localhost; <code>stdio</code>-transport servers were never affected. CVSS 3.1 8.1, CWE-1188 (Initialization of a Resource with an Insecure Default). A separate, later, non-CVE fix in the same codebase corrected a case-sensitivity bug where <code>IsLoopback</code> compared hostnames against literal lowercase "localhost," meaning a request claiming <code>Host: LocalHost</code> was rejected even legitimately; that fix is not confirmed to be in the same 1.4.0 release.</p>
+<p><strong>Java SDK (CVE-2026-35568)</strong> and <strong>Ruby SDK (CVE-2026-63118):</strong> the same underlying pattern, missing or insufficient Host/Origin header validation on HTTP transport, letting a browser steered by DNS rebinding reach a locally-bound MCP server. Severity reporting on the Ruby SDK finding is inconsistent across sources I checked, one lists CVSS v4 6.9, another's own title calls it critical, so don't treat either number as settled without checking the advisory directly.</p>
+<h3>Real products built on top</h3>
+<p><strong>Jan (CVE-2026-66005):</strong> a popular local AI app's API server dropped its trusted-hosts allowlist entirely when bound for LAN access, via a wildcard that matched every <code>Host</code> header including attacker-controlled ones, making DNS rebinding straightforward against its MCP tool-invocation surface.</p>
+<p><strong>Apollo MCP Server (CVE-2026-35577):</strong> versions before 1.7.0 skipped Host header validation on <code>StreamableHTTP</code> transport, the same DNS-rebinding exposure, fixed by enabling that validation by default.</p>
+<p><strong>CircleCI's MCP server:</strong> three advisories from the same research, Pluto Security's "Vicious Circle." The maximum-severity one, CVSS 10.0, is unauthenticated command injection through a crafted filename, reaching the operator's own CI pipeline and credentials, not the header issue below. A separate, lower-severity flaw, CVSS 8.3, is the Host/Origin gap: the server's allowlist never checked either header, so a malicious website a developer merely visits can reach the local server through DNS rebinding and drive it with the operator's own API token.</p>
+<p><strong>9router (GHSA-4922-8r65-fq26):</strong> an <code>isLocalRequest()</code> gate that, like the pattern throughout this list, trusted the client-supplied <code>Host</code> header instead of the actual socket peer address. Chained with a default password and unvalidated MCP plugin arguments, that combination reached remote code execution. The advisory's own suggested fix: check the socket address, not the header.</p>
+<div class="caveat">Atlassian's MCP server ecosystem has at least two more 2026 findings in the same broad family (unauthenticated access and token-handling issues, including one reported at CVSS 10.0), which I'm naming here without the same level of verified detail as the findings above; treat those as a pointer to check directly rather than as verified claims in this piece.</div>
+
+<h2>Three ordinary ingredients, tested</h2>
+<p>Part 1's thesis: an attacker-controllable input, a dangerous capability, and unchecked ambient authority, combined, is what turns a design shortcut into a critical vulnerability, not weak sandboxing technology specifically. Here, the same three ingredients show up in their most extreme form: attacker-controllable input needs no prompt injection at all, just network reach; the dangerous capability is full read/write/delete control of an agent's actual knowledge; and the unchecked ambient authority isn't a broken check like Part 1's Host-header trust, it's the complete absence of any check, the honor system with nothing in it at all.</p>
+<p>That's the real finding here: Part 1 had a lock, picked badly. This has no lock. If the thesis is that unchecked ambient authority is the recurring failure mode rather than any one vendor's mistake, finding it in its purest form on the very next real target tested is a stronger confirmation than finding another broken-lock variant would have been.</p>
+<div class="quote">And the connective thread back to Part 1, worth stating plainly since it's easy to miss: this isn't "a sandbox escape led here." Part 1's own sandbox policy allowed loopback and local networking by default, the same way every sandbox in that piece's comparison table did. An agent never had to escape anything to reach this server; the network path was open the entire time, sandboxed or not. What actually connects the two pieces isn't a causal chain, it's the same question asked twice: not whether a sandbox holds, but what, inside or outside of one, will trust something it was never supposed to.</div>
+
+<h2>Then it was fixed</h2>
+<p>Everything above is the bug. The rest of this piece is the patch, because a fix is the one place a project writes down what it thinks the boundary is.</p>
+<div class="caveat">Scope for this half, stated plainly: I downloaded the published tarballs of versions 1.13.0, 1.13.1, and 1.15.3 of the package from the public npm registry and compared their compiled <code>dist/web-server.js</code> and <code>dist/server.js</code> files. That's a static read of shipped code. I did not run the patched versions, I did not probe them, and nothing below is a claim that a new vulnerability exists in any current release. Where I'm describing what the code does, it's from the source; where I'm drawing a conclusion from that, I say so. The Part 1 fix is described only from the public record quoted in Part 1, since that codebase was never available to me.</div>
+
+<h2>The fix, in full</h2>
+<p>The entire security-relevant change between 1.13.0 and 1.13.1 is in one file. This is the real diff, trimmed only of the cosmetic banner lines around it:</p>
+<pre><code> export async function startWebServer(portArg, sharedManager) {
+     const PORT = parseInt(String(portArg || process.env.WEB_PORT || '3080'));
++    const HOST = process.env.WEB_HOST || '127.0.0.1';
+ ...
+-    // Start server
+-    const server = app.listen(PORT, () =&gt; {
++    // Start server (bind to HOST, default 127.0.0.1 for security)
++    const server = app.listen(PORT, HOST, () =&gt; {
+ ...
++        if (HOST === '127.0.0.1') {
++            console.log(`  ℹ️  Set WEB_HOST=0.0.0.0 to expose on all interfaces`);
++        }</code></pre>
+<p class="figcap">The patch: a host argument where there wasn't one, a loopback default, and an opt-in environment variable for the old behavior.</p>
+<p>That is a correct fix for the bug as the CVE describes it. The one-line vulnerability class named above was <code>app.listen(PORT)</code> with no host argument; the patch supplies the argument. A device elsewhere on the LAN, VPN, or container bridge can no longer reach the port by default, and the advisory's adjacent-network vector no longer applies to a default install.</p>
+<p>It's also worth being exact about what the patch does not touch, because that's the part this piece is about:</p>
+<ol>
+<li><strong>The route table is unchanged.</strong> The same routes are registered in 1.13.1 and in 1.15.3, with the same handlers. Between 1.13.1 and 1.15.3 the only change to this file is the startup banner moving from <code>console.log</code> to <code>console.error</code>.</li>
+<li><strong>No identity check was added.</strong> The middleware section is still body parsing and static file serving. The fix changes where the server listens, not who it listens to.</li>
+<li><strong>The web UI is still on by default.</strong> The check in <code>server.js</code> is still <code>process.env.START_WEB_UI !== 'false'</code> in all three versions I read, and the current README still documents the default as <code>true</code>.</li>
+</ol>
+
+<figure class="diagram">
+<svg viewBox="0 0 680 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Before and after diagram. Before, in version 1.13.0, the web UI binds to every interface on port 3080 and a device elsewhere on the network can reach its routes directly. After, in 1.13.1 and later, the web UI binds to 127.0.0.1 so the network path is closed, but the routes themselves are unchanged and ask no credential of any process on the same machine.">
+<defs>
+  <marker id="arrowF" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+    <path d="M0,0 L10,5 L0,10 z" fill="var(--accent)"/>
+  </marker>
+  <marker id="arrowG" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+    <path d="M0,0 L10,5 L0,10 z" fill="var(--muted)"/>
+  </marker>
+</defs>
+
+<text x="20" y="28" font-family="Segoe UI, Arial, sans-serif" font-size="11" letter-spacing="1" fill="var(--muted)">BEFORE &#183; 1.13.0</text>
+<text x="360" y="28" font-family="Segoe UI, Arial, sans-serif" font-size="11" letter-spacing="1" fill="var(--muted)">AFTER &#183; 1.13.1 AND LATER</text>
+<line x1="340" y1="14" x2="340" y2="386" stroke="var(--border)"/>
+
+<rect x="80" y="44" width="180" height="46" rx="8" fill="var(--bg)" stroke="var(--muted)" stroke-dasharray="4 3"/>
+<text x="170" y="64" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="var(--fg)">anyone on the network</text>
+<text x="170" y="79" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="10" fill="var(--muted)">LAN, VPN, container bridge</text>
+<path d="M170,90 L170,166" fill="none" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#arrowF)"/>
+<text x="180" y="112" font-family="Segoe UI, Arial, sans-serif" font-size="10" fill="var(--accent)">reaches every route</text>
+
+<rect x="20" y="130" width="300" height="250" rx="12" fill="none" stroke="var(--border)" stroke-dasharray="6 5"/>
+<text x="34" y="150" font-family="Segoe UI, Arial, sans-serif" font-size="10" letter-spacing="1" fill="var(--muted)">HOST MACHINE</text>
+<rect x="50" y="168" width="240" height="96" rx="10" fill="var(--bg)" stroke="var(--accent)" stroke-width="1.75"/>
+<text x="66" y="190" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="600" fill="var(--fg)">web UI + API</text>
+<text x="66" y="210" font-family="SFMono-Regular, Consolas, monospace" font-size="10.5" fill="var(--fg)">app.listen(PORT)</text>
+<text x="66" y="228" font-family="SFMono-Regular, Consolas, monospace" font-size="10.5" fill="var(--accent)">binds 0.0.0.0:3080</text>
+<text x="66" y="248" font-family="Segoe UI, Arial, sans-serif" font-size="10" fill="var(--muted)">no credential asked</text>
+<path d="M170,264 L170,296" fill="none" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#arrowF)"/>
+<rect x="50" y="298" width="240" height="56" rx="8" fill="var(--bg)" stroke="var(--fg)"/>
+<text x="170" y="322" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="var(--fg)">document store</text>
+<text x="170" y="338" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="10" fill="var(--muted)">read, write, delete</text>
+
+<rect x="420" y="44" width="180" height="46" rx="8" fill="var(--bg)" stroke="var(--muted)" stroke-dasharray="4 3"/>
+<text x="510" y="64" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="var(--fg)">anyone on the network</text>
+<text x="510" y="79" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="10" fill="var(--muted)">LAN, VPN, container bridge</text>
+<path d="M510,90 L510,114" fill="none" stroke="var(--muted)" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#arrowG)"/>
+<line x1="501" y1="113" x2="519" y2="127" stroke="var(--muted)" stroke-width="2"/>
+<line x1="519" y1="113" x2="501" y2="127" stroke="var(--muted)" stroke-width="2"/>
+<text x="528" y="108" font-family="Segoe UI, Arial, sans-serif" font-size="10" fill="var(--muted)">closed by the fix</text>
+
+<rect x="360" y="130" width="300" height="250" rx="12" fill="none" stroke="var(--border)" stroke-dasharray="6 5"/>
+<text x="374" y="150" font-family="Segoe UI, Arial, sans-serif" font-size="10" letter-spacing="1" fill="var(--muted)">HOST MACHINE</text>
+<rect x="374" y="168" width="150" height="96" rx="10" fill="var(--bg)" stroke="var(--fg)" stroke-width="1.5"/>
+<text x="386" y="190" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="600" fill="var(--fg)">web UI + API</text>
+<text x="386" y="210" font-family="SFMono-Regular, Consolas, monospace" font-size="9.5" fill="var(--fg)">listen(PORT, HOST)</text>
+<text x="386" y="228" font-family="SFMono-Regular, Consolas, monospace" font-size="9.5" fill="var(--fg)">127.0.0.1:3080</text>
+<text x="386" y="248" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="600" fill="var(--accent)">same routes, unchanged</text>
+<rect x="556" y="176" width="92" height="80" rx="8" fill="var(--bg)" stroke="var(--muted)" stroke-dasharray="4 3"/>
+<text x="602" y="198" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="10.5" fill="var(--fg)">any local</text>
+<text x="602" y="212" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="10.5" fill="var(--fg)">process</text>
+<text x="602" y="230" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="9" fill="var(--muted)">browser, agent,</text>
+<text x="602" y="242" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="9" fill="var(--muted)">dev tools</text>
+<path d="M556,216 L527,216" fill="none" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#arrowF)"/>
+<path d="M449,264 L449,296" fill="none" stroke="var(--fg)" stroke-width="1.5" marker-end="url(#arrowG)"/>
+<text x="459" y="284" font-family="Segoe UI, Arial, sans-serif" font-size="10" fill="var(--accent)">still no credential asked</text>
+<rect x="374" y="298" width="274" height="56" rx="8" fill="var(--bg)" stroke="var(--fg)"/>
+<text x="511" y="322" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="var(--fg)">document store</text>
+<text x="511" y="338" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="10" fill="var(--muted)">read, write, delete</text>
+</svg>
+<figcaption class="figcap">Fig. 2: what the patch moved and what it left. The network path is gone. The trust rule inside the machine is the same one as before: being able to connect is the whole credential.</figcaption>
+</figure>
+
+<p>The registry also settles something the advisory pages didn't: 1.13.1 was published on June 4, 2026, the same day as the GHSA, with 1.13.2 eleven minutes later and 1.14.0 about two hours after that. The fix was fast.</p>
+
+<h2>Two fixes, two different ideas of the boundary</h2>
+<p>Set that next to the fix from Part 1. DeepSeek Harness had a control API that trusted a client-supplied <code>Host</code> header. Its fix, per the public record, replaced that check with a one-time token printed at startup, exchanged for a signed cookie that every later call must carry. Part 1 summarized it this way: the fix "stops asking a request what it claims to be and starts asking it to prove it was present when the process started."</p>
+<p class="tablecap">Table 3: the two fixes compared.</p>
+<div class="tablewrap"><table>
+<tr><th></th><th>Part 1: DeepSeek Harness</th><th>This piece: mcp-documentation-server</th></tr>
+<tr><td>What failed</td><td>A check that trusted the wrong input (CWE-807)</td><td>No check at all (CWE-306), on every interface (CWE-668)</td></tr>
+<tr><td>Fix shape</td><td>Proof of presence: startup token, signed cookie on every call</td><td>Narrower reach: bind to <code>127.0.0.1</code> unless <code>WEB_HOST</code> says otherwise</td></tr>
+<tr><td>Ingredient removed</td><td>Unchecked ambient authority</td><td>Network-wide reachability of the input</td></tr>
+<tr><td>Who is trusted after the fix</td><td>Whoever holds the token</td><td>Whatever can open a connection on the local machine</td></tr>
+<tr><td>Where the boundary now sits</td><td>At the request</td><td>At the network interface</td></tr>
+</table></div>
+<p>One fix added a lock. The other moved the door indoors. Both close the reported bug, and I'm not arguing the second one is wrong: for a single-maintainer tool whose stated threat was exposure to the local network, binding to loopback is the proportionate, standard remedy, and it shipped the same day as the advisory.</p>
+<p>But the series thesis makes a specific prediction about which of those two shapes ages better. The thesis was that these failures come from three ordinary ingredients together: an attacker-controllable input, a dangerous capability, and unchecked ambient authority. The Part 1 fix removes the third ingredient outright. The fix here leaves the second and third exactly as they were and shrinks the first: the set of things that can supply input goes from "anything on the network" to "anything on this machine."</p>
+<p>Whether that's enough depends entirely on what else lives on the machine, and this is where the series folds back on itself. Part 1's whole subject was a class of local process that isn't the user: an AI agent in a sandbox that confined the filesystem and, by policy, left loopback networking open. Every sandbox in that piece's comparison table made the same choice. And the documentation-server's own README now recommends its local REST API as the preferred way for coding agents to use it, with plain unauthenticated calls to <code>127.0.0.1:3080</code>, as a feature.</p>
+<div class="caveat">To be careful about what that paragraph is and isn't: it's a reading of a design, not a finding. An agent calling an API it was deliberately given is the intended use, not an exploit. I haven't tested any chain against the patched versions and I'm not claiming one. The narrower, defensible statement is this: after the fix, the server's trust model is "local means authorized," and Part 1 is a documented case of what that same assumption cost a different project when one of the local callers was an agent acting on injected text.</div>
+
+<h2>What the series actually established</h2>
+<p class="tablecap">Table 4: the series, on one page.</p>
+<div class="tablewrap"><table>
+<tr><th>Piece</th><th>Target</th><th>State of the lock</th><th>Evidence</th></tr>
+<tr><td>Part 1</td><td>DeepSeek Harness control API (CVE-2026-82533), plus four related sandbox escapes</td><td>A lock, picked: trust decided by a header the caller writes</td><td>Stand-in reproduction with a real OS-level boundary; public records for the rest</td></tr>
+<tr><td>This piece, first half</td><td>mcp-documentation-server 1.13.0 (CVE-2026-54504), plus SDK and product advisories</td><td>No lock: every route open on every interface</td><td>Live reproduction against the real published package</td></tr>
+<tr><td>This piece, second half</td><td>The two fixes</td><td>One lock added, one door moved</td><td>Static diff of published versions; public record for Part 1's fix</td></tr>
+</table></div>
+<p>The thesis held up in the way that matters: it described a bug in software it wasn't written about (the first half of this piece), and it gave a useful way to read a patch (the second half), by asking which of the three ingredients the patch actually removes. That second use turned out to be the more practical one. "Is it fixed?" has a yes or no answer that's tied to one CVE. "Which ingredient did the fix take away?" tells you what the software still assumes.</p>
+<p>The limits are the same ones Part 1 admitted and they haven't gone away. This is two reproduced cases and a larger set of advisories read secondhand, chosen because they fit. It can't show that the pattern is the dominant cause of agent-adjacent vulnerabilities, only that it recurs often enough to be worth checking for first. Several of the supporting advisories in Part 1 and above carry disagreements between sources that I flagged and never resolved. And the comparison of the two fixes leans on a description of the Part 1 fix that I couldn't verify against code.</p>
+
+<div class="quote">The line from Part 1 that the whole series kept returning to: "the issue is not simply whether an agent's sandbox holds, but what, inside or outside that sandbox, will eventually trust something the agent produced." After all of it I'd shorten it. The question to ask of any local service isn't where it listens. It's what a caller has to prove.</div>
+
+<hr>
+
+<h2>The last checklist</h2>
+<p><strong>For finding this kind of bug</strong>, read alongside Part 1's list: before running any local tool, agent-adjacent or not, check what it binds to by default, not what its documentation claims; <code>app.listen(PORT)</code> with no host argument is a one-line vulnerability class, and it's worth grepping your own dependencies for it directly rather than trusting a changelog; treat "local-only" as a claim to verify, not a property to assume, especially for anything that starts a web server automatically without being asked; and if a tool exposes an MCP interface built on a third-party SDK, check that SDK's own security advisories separately, the vulnerability may not be in the tool's code at all.</p>
+<p><strong>For reading a fix</strong>, your own or someone else's:</p>
+<ol>
+<li><strong>Name the ingredient the patch removes.</strong> Input reach, capability, or ambient authority. If it's only reach, write down who can still reach it.</li>
+<li><strong>Treat "binds to localhost" as a network control, not an authentication control.</strong> It answers where a request can come from. It says nothing about which local process sent it, and on a machine running agents, browsers, containers, and dev tools, those are not all the user.</li>
+<li><strong>If a local API can change or delete state, give it a credential.</strong> A startup token is cheap, it's the shape Part 1's fix took, and it turns "anything local" into "the client I started."</li>
+<li><strong>Read the changelog claim against the diff.</strong> An earlier draft of this piece repeated a summary saying the default-on behavior had been addressed. The diff is a few lines long and says otherwise.</li>
+<li><strong>Check the default, not the option.</strong> A service that's off until asked for is a smaller surface than one that's on until told otherwise, whatever interface it binds.</li>
+<li><strong>Line your sandbox policy up against your local services.</strong> If the sandbox allows loopback and a local service trusts loopback, those two decisions are one boundary, and somebody should own it as one.</li>
+</ol>
+
+<p>Two pieces, one broken lock, one missing lock, and two repairs. The bugs were different every time. The assumption underneath them wasn't: that being nearby is the same as being allowed.</p>
+
+<footer>Case study built from the public CVE record for CVE-2026-54504 (GHSA-6f5r-5672-72j7), the real, currently-published <code>@andrea9293/mcp-documentation-server</code> package installed and tested directly for this piece, and public 2026 advisories for CVE-2026-34742 (MCP Go SDK), CVE-2026-35568 (MCP Java SDK), CVE-2026-63118 (MCP Ruby SDK), CVE-2026-66005 (Jan), CVE-2026-35577 (Apollo MCP Server), CircleCI's MCP server advisories, and GHSA-4922-8r65-fq26 (9router). The reproduction and its screenshots are original work built for this piece. The patch analysis is a static comparison of the published npm tarballs for versions 1.13.0, 1.13.1, and 1.15.3; no patched version was executed or tested, and nothing here asserts a new vulnerability. The Part 1 fix is described from the public record for CVE-2026-82533 as quoted in Part 1. Claims sourced from a single advisory, or flagged as unverified against a primary source, are noted inline rather than smoothed over.</footer>
+
+</main>
+<script>
+(function(){
+  var root = document.documentElement;
+  var btn = document.getElementById('themeToggle');
+  var stored = null;
+  try { stored = localStorage.getItem('theme'); } catch(e) {}
+  var theme = stored || 'dark';
+  function apply(t){
+    root.setAttribute('data-theme', t);
+    btn.innerHTML = t === 'dark' ? '&#9728;' : '&#9789;';
+    btn.title = t === 'dark' ? 'Switch to light theme' : 'Switch to dark theme';
+  }
+  apply(theme);
+  btn.addEventListener('click', function(){
+    theme = theme === 'dark' ? 'light' : 'dark';
+    apply(theme);
+    try { localStorage.setItem('theme', theme); } catch(e) {}
+  });
+})();
+</script>
+</body>
+</html>

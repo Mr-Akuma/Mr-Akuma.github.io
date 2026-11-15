@@ -419,7 +419,7 @@ sbx cp ~/sbxlab/repro/work/leaf.txt repro:/tmp/in/
 
 <p>Four vendors, five bugs, the same two-sentence failure: the sandbox did exactly what it was told to restrict, and something standing right next to it (a port, a shared heap, a write-grant rule, a copy command) was never told it was part of the boundary at all.</p>
 
-<div class="moral"><strong>Next week, Part 2:</strong> everything above, the control-plane trust bug, the real OS-level escape built and run for this piece, the five-bug pattern across four vendors, is the base the rest of this series works from. Part 2 picks up where "three ordinary ingredients" left off and goes looking for that same shape somewhere new.</div>
+<div class="moral"><strong>Part 2 is live:</strong> everything above, the control-plane trust bug, the real OS-level escape built and run for this piece, the five-bug pattern across four vendors, is the base the rest of this series works from. <a href="../you-didnt-have-to-escape-anything/">Part 2, "You Didn't Have to Escape Anything,"</a> picks up where "three ordinary ingredients" left off and goes looking for that same shape somewhere new.</div>
 
 <footer>Case study built from the public CVE records and disclosure write-ups for CVE-2026-82533 (DeepSeek Harness), the OpenAI Codex Heapjack/Overpatch pair, CVE-2026-50548 / CVE-2026-50549 (Cursor DuneSlide), and CVE-2026-103916 (Docker Sandboxes), plus the related brig finding (GHSA-wp6x-29qx-fpr7). The OS-level reproduction and its screenshots are original work built for this piece, not part of any vendor or disclosure material. Points sourced from a single disclosure, or where disclosures disagree with each other, are flagged inline rather than resolved by guessing.</footer>
 
