@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <radialGradient id="glow" cx="0.78" cy="0.08" r="0.75">
+      <stop offset="0" stop-color="#ff5d5d" stop-opacity="0.16"/>
+      <stop offset="0.6" stop-color="#ff5d5d" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="grid" width="28" height="28" patternUnits="userSpaceOnUse">
+      <path d="M28 0H0V28" fill="none" stroke="#1c1d22" stroke-width="1"/>
+    </pattern>
+    <marker id="arrow" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L6,3 L0,6 Z" fill="#ff5d5d"/>
+    </marker>
+  </defs>
+
+  <rect width="1200" height="630" fill="#0e0f12"/>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+  <rect x="8" y="8" width="1184" height="614" rx="10" fill="none" stroke="#272830" stroke-width="1.5"/>
+
+  <text x="76" y="104" font-family="-apple-system, Segoe UI, Arial, sans-serif" font-size="22" letter-spacing="4" font-weight="700" fill="#ff5d5d">PART 2 &#183; AI AGENT TRUST BOUNDARIES</text>
+
+  <text x="74" y="196" font-family="-apple-system, Segoe UI, Arial, sans-serif" font-size="68" font-weight="700" fill="#e7e7ea">You Didn't Have</text>
+  <text x="74" y="272" font-family="-apple-system, Segoe UI, Arial, sans-serif" font-size="68" font-weight="700" fill="#e7e7ea">to Escape Anything</text>
+
+  <!-- no-lock panel -->
+  <g transform="translate(74,330)">
+    <rect x="0" y="0" width="460" height="150" rx="10" fill="#17181c" stroke="#e7e7ea" stroke-width="1.5"/>
+    <text x="24" y="34" font-family="-apple-system, Segoe UI, Arial, sans-serif" font-size="17" font-weight="600" fill="#e7e7ea">web UI + API, on by default</text>
+    <text x="24" y="60" font-family="SFMono-Regular, Consolas, monospace" font-size="15" fill="#e7e7ea">app.listen(PORT)</text>
+    <text x="24" y="86" font-family="-apple-system, Segoe UI, Arial, sans-serif" font-size="14" fill="#9a9aa2">binds every interface</text>
+    <text x="436" y="86" text-anchor="end" font-family="SFMono-Regular, Consolas, monospace" font-size="14" font-weight="600" fill="#9a9aa2">0.0.0.0:3080</text>
+    <text x="24" y="122" font-family="-apple-system, Segoe UI, Arial, sans-serif" font-size="16" font-weight="700" fill="#ff5d5d">auth checks in route table</text>
+    <text x="436" y="122" text-anchor="end" font-family="-apple-system, Segoe UI, Arial, sans-serif" font-size="16" font-weight="700" fill="#ff5d5d">zero</text>
+
+    <path d="M470,75 L620,75" fill="none" stroke="#ff5d5d" stroke-width="2" marker-end="url(#arrow)"/>
+
+    <rect x="636" y="0" width="470" height="150" rx="10" fill="#17181c" stroke="#ff5d5d" stroke-width="2"/>
+    <text x="660" y="34" font-family="-apple-system, Segoe UI, Arial, sans-serif" font-size="17" font-weight="600" fill="#e7e7ea">The agent's knowledge base</text>
+    <text x="660" y="62" font-family="-apple-system, Segoe UI, Arial, sans-serif" font-size="14" fill="#9a9aa2">read &#183; enumerate &#183; write &#183; delete</text>
+    <text x="660" y="86" font-family="-apple-system, Segoe UI, Arial, sans-serif" font-size="14" fill="#9a9aa2">no token, no header, nothing</text>
+    <text x="660" y="110" font-family="-apple-system, Segoe UI, Arial, sans-serif" font-size="14" fill="#9a9aa2">reproduced live, real package</text>
+    <rect x="660" y="120" width="98" height="22" rx="11" fill="#0e0f12" stroke="#ff5d5d"/>
+    <text x="709" y="135" text-anchor="middle" font-family="SFMono-Regular, Consolas, monospace" font-size="12.5" fill="#ff5d5d">CWE-306</text>
+  </g>
+
+  <text x="76" y="560" font-family="-apple-system, Segoe UI, Arial, sans-serif" font-size="19" fill="#9a9aa2">CVE-2026-54504 &#183; @andrea9293/mcp-documentation-server &#183; unauthenticated CRUD</text>
+  <text x="76" y="592" font-family="-apple-system, Segoe UI, Arial, sans-serif" font-size="19" font-style="italic" fill="#e7e7ea">there was never a gate to get past in the first place.</text>
+</svg>

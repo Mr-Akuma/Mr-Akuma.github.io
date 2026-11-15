@@ -9,9 +9,16 @@
 <meta property="og:url" content="https://mr-akuma.github.io/you-didnt-have-to-escape-anything/">
 <meta property="og:title" content="You Didn't Have to Escape Anything &middot; AI Agent Trust Boundaries, Part 2">
 <meta property="og:description" content="Part 1's sandbox confined the filesystem and nothing else. The network path to CVE-2026-54504 was open before anyone broke a single thing.">
-<meta name="twitter:card" content="summary">
+<meta property="og:image" content="https://mr-akuma.github.io/you-didnt-have-to-escape-anything/og-card.png">
+<meta property="og:image:secure_url" content="https://mr-akuma.github.io/you-didnt-have-to-escape-anything/og-card.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="You Didn't Have to Escape Anything: a diagram showing an MCP documentation-server web UI binding every interface on 0.0.0.0:3080 with zero auth checks in its route table, next to an agent's knowledge base open to unauthenticated read, enumerate, write, and delete (CWE-306). CVE-2026-54504.">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="You Didn't Have to Escape Anything (Part 2)">
 <meta name="twitter:description" content="Part 1's sandbox confined the filesystem and nothing else. The network path to CVE-2026-54504 was open before anyone broke a single thing.">
+<meta name="twitter:image" content="https://mr-akuma.github.io/you-didnt-have-to-escape-anything/og-card.png">
 <link rel="shortcut icon" href="../images/favicon.png" type="image/png">
 <link rel="icon" href="../images/favicon.png" type="image/png">
 <style>
@@ -79,6 +86,8 @@
 <h1>You Didn't Have to Escape Anything</h1>
 <p class="kicker">Part 1's sandbox confined the filesystem and nothing else. The network path to this was open before anyone broke a single thing. Then it was fixed, and the fix is the second half of the story.</p>
 <p class="byline"><strong>CVE-2026-54504</strong> is a missing-authentication bug in <code>@andrea9293/mcp-documentation-server</code>, a real, currently-published npm package that gives AI coding agents a local document store with semantic search. Every version from 1.13.0 up to, but not including, the 1.13.1 patch ships a web API with zero authentication, bound to every network interface, on by default. Part 1 closed on a thesis: sandbox failures come down to an attacker-controllable input, a dangerous capability, and unchecked ambient authority, not weak containment technology. This piece tests that thesis against software Part 1 never touched, and unlike Part 1, nothing here needed a stand-in. I installed the real vulnerable version from the public registry and reproduced the bug directly against it. The second half then reads the patch that closed it, sets it next to the fix from Part 1, and ends the series.</p>
+
+<figure class="diagram shot-wide"><img src="og-card.png" alt="You Didn't Have to Escape Anything: a diagram showing an MCP documentation-server web UI binding every interface on 0.0.0.0:3080 with zero auth checks in its route table, next to an agent's knowledge base open to unauthenticated read, enumerate, write, and delete (CWE-306). CVE-2026-54504." style="max-width:100%;height:auto;display:block;border:1px solid var(--border);border-radius:8px;"></figure>
 
 <h2>What mcp-documentation-server actually is</h2>
 <p><code>@andrea9293/mcp-documentation-server</code> is a TypeScript MCP (Model Context Protocol) server: a local document-management and semantic-search tool that AI coding agents connect to over MCP so they can store, search, and retrieve project documentation with embeddings. It's a real, actively maintained package, published by a single maintainer (andrea9293), currently at version 1.15.3 on npm with a clean release history back through 1.0.0. Alongside its MCP interface it ships an optional web UI: a small Express server meant to let a human browse and manage the same document store from a browser.</p>
