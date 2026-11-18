@@ -1382,6 +1382,109 @@
     .pentest-xref b{font-family:var(--font-mono);font-weight:600;color:var(--muted);font-size:.7rem;letter-spacing:.04em;text-transform:uppercase}
     .pentest-xref a{font-family:var(--font-mono);font-size:.72rem;color:var(--teal);text-decoration:none;border:1px solid var(--teal-soft);border-radius:6px;padding:.16em .55em}
     .pentest-xref a:hover{background:var(--teal-soft);color:var(--ink)}
+
+    /* ---- Attack chains (added) ---- */
+    .ch-section{width:100%;max-width:none;margin:34px 0;padding:0}
+    .ch-feature{position:relative;border:1px solid var(--line-strong);border-radius:20px;
+      padding:34px 30px 30px;overflow:hidden;
+      background:
+        radial-gradient(120% 90% at 0% 0%, rgba(77,213,208,.10), transparent 55%),
+        radial-gradient(120% 90% at 100% 0%, rgba(255,141,128,.08), transparent 55%),
+        var(--paper);
+      box-shadow:0 1px 0 rgba(237,247,241,.04) inset, 0 24px 60px -34px rgba(0,0,0,.8);}
+    .ch-feature::before{content:"";position:absolute;inset:0 0 auto 0;height:3px;
+      background:linear-gradient(90deg,var(--teal),var(--moss),var(--coral),var(--violet));opacity:.9}
+    .ch-hero{margin:0 0 24px}
+    .ch-eyebrow{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-mono);
+      font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--teal);margin:0 0 12px;
+      background:var(--teal-soft);border:1px solid rgba(77,213,208,.3);border-radius:999px;padding:5px 13px}
+    .ch-dot{width:7px;height:7px;border-radius:50%;background:var(--teal);box-shadow:0 0 0 3px rgba(77,213,208,.25)}
+    .ch-title{font-size:34px;line-height:1.05;margin:0 0 14px;letter-spacing:-.02em;
+      background:linear-gradient(92deg,var(--ink),var(--teal));-webkit-background-clip:text;background-clip:text;color:transparent}
+    .ch-lede{color:var(--muted);max-width:74ch;margin:0 0 18px;font-size:15.5px}
+    .ch-lede b{color:var(--ink)}
+    .ch-ribbon{display:flex;flex-wrap:wrap;align-items:center;gap:6px 4px;
+      font-family:var(--font-mono);font-size:11.5px;letter-spacing:.06em;text-transform:uppercase}
+    .ch-stage{color:var(--ink);background:var(--paper-soft);border:1px solid var(--line-strong);
+      border-radius:7px;padding:5px 11px}
+    .ch-stage-arr{color:var(--teal);font-size:15px}
+    .ch-subhead{font-family:var(--font-mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;
+      color:var(--muted);margin:26px 0 12px;padding-bottom:7px;border-bottom:1px solid var(--line)}
+    .ch-panel{background:var(--paper-soft);border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin:0 0 6px}
+    .ch-panel--hero{border-color:rgba(77,213,208,.28);box-shadow:0 0 0 1px rgba(77,213,208,.06) inset;
+      background:linear-gradient(180deg, rgba(77,213,208,.05), transparent 60%), var(--paper-soft)}
+    .ch-panel h3{margin:0 0 10px;font-size:16px;display:flex;align-items:center;gap:8px}
+    .ch-shield{color:var(--teal)}
+    .ch-rollup{list-style:none;margin:0;padding:0;display:grid;gap:9px;grid-template-columns:1fr 1fr}
+    .ch-rollup li{font-size:13.5px;padding-left:2px}
+    .ch-rollup b{color:var(--teal);font-weight:600}
+    .ch-note{color:var(--muted);font-size:13.5px;margin:0 0 12px}
+    .ch-note--soft{margin:12px 0 0;opacity:.85;font-size:12.5px}
+    @media(max-width:620px){.ch-rollup{grid-template-columns:1fr}}
+    .ch-v code{font-family:var(--font-mono);background:var(--paper-soft);border:1px solid var(--line-strong);border-radius:6px;padding:1px 6px;color:var(--ink);font-size:12.5px}
+    .ch-v:hover code{border-color:var(--teal)}
+    .ch-tablewrap{overflow-x:auto;margin:0 0 22px}
+    .ch-table{width:100%;border-collapse:collapse;font-size:13px}
+    .ch-table th,.ch-table td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+    .ch-table th{font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+    .ch-nm{font-weight:600;white-space:nowrap}
+    .ch-pc code{font-family:var(--font-mono);font-size:11.5px;color:var(--muted)}
+    .ch-ckc code{font-family:var(--font-mono)}
+    .ch-cid{font-family:var(--font-mono);color:var(--amber);font-size:12px}
+    .ch-arr{color:var(--line-strong)}
+    .ch-chips{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 16px}
+    .ch-chip{font-family:var(--font-mono);font-size:12px;background:var(--paper);color:var(--muted);border:1px solid var(--line-strong);border-radius:999px;padding:6px 13px;cursor:pointer}
+    .ch-chip--active{background:var(--teal);color:#06110f;border-color:var(--teal);font-weight:600}
+    .ch-chain{background:var(--paper);border:1px solid var(--line);border-left:3px solid var(--muted);border-radius:12px;margin:0 0 10px;overflow:hidden;transition:transform .12s ease,border-color .12s ease,box-shadow .12s ease}
+    .ch-chain:hover{transform:translateY(-1px);border-color:var(--line-strong);box-shadow:0 10px 26px -20px rgba(0,0,0,.9)}
+    .ch-head{display:flex;align-items:center;gap:12px;padding:14px 18px;cursor:pointer;flex-wrap:wrap}
+    .ch-head strong{font-size:15px}
+    .ch-head .ch-obj{color:var(--muted);font-size:12.5px}
+    .ch-head .ch-steps{margin-left:auto;font-family:var(--font-mono);font-size:11px;color:var(--muted);
+      background:var(--paper-soft);border:1px solid var(--line);border-radius:999px;padding:3px 10px}
+    .ch-head::after{content:"+";font-family:var(--font-mono);color:var(--muted);font-size:17px;width:14px;text-align:center;order:5}
+    .ch-chain.ch-open .ch-head::after{content:"\2212";color:var(--teal)}
+    .ch-cid{font-family:var(--font-mono);color:var(--amber);font-size:11px;background:var(--amber-soft);
+      border:1px solid rgba(255,199,100,.28);border-radius:6px;padding:3px 7px}
+    .ch-body{display:none;padding:8px 22px 22px;border-top:1px solid var(--line)}
+    .ch-chain.ch-open .ch-body{display:block}
+    .ch-r{display:grid;grid-template-columns:120px 1fr;gap:16px;padding:14px 0;border-bottom:1px dashed var(--line)}
+    .ch-r:last-child{border-bottom:0}
+    .ch-grid2 .ch-r{border-bottom:1px dashed var(--line)}
+    .ch-r b{font-family:var(--font-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding-top:2px}
+    .ch-r p{margin:0}
+    .ch-path{display:flex;flex-wrap:wrap;gap:6px 4px;align-items:center;line-height:2}
+    .ch-vt{color:var(--muted);font-size:12.5px}
+    .ch-choke{background:var(--coral-soft);border:1px solid rgba(255,141,128,.25);border-radius:10px;
+      padding:12px 14px;margin:6px 0;border-bottom:1px solid rgba(255,141,128,.25) !important}
+    .ch-choke b{color:var(--coral)}
+    .ch-choke p{color:var(--ink);line-height:1.55} .ch-choke .ch-v code{border-color:rgba(255,141,128,.4)}
+    .ch-flow{color:var(--ink);line-height:1.6;font-size:14.5px}
+    /* hand-off ladder */
+    .ch-ladder{list-style:none;margin:2px 0 0;padding:0;display:grid;gap:0}
+    .ch-step{position:relative;display:grid;grid-template-columns:26px 1fr;gap:12px;padding:0 0 16px}
+    .ch-step::before{content:"";position:absolute;left:12px;top:24px;bottom:-2px;width:2px;background:var(--line-strong)}
+    .ch-step--last::before{display:none}
+    .ch-stepnum{width:24px;height:24px;border-radius:50%;display:grid;place-items:center;
+      font-family:var(--font-mono);font-size:12px;color:var(--bg);background:var(--teal);font-weight:600;z-index:1}
+    .ch-step--last .ch-stepnum{background:var(--coral)}
+    .ch-stepmain{padding-top:2px}
+    .ch-grant{display:block;font-size:13px;margin-top:3px;line-height:1.5}
+    .ch-step .ch-grant{color:var(--teal);opacity:.9}
+    .ch-step--last .ch-grant{color:var(--coral);opacity:.95}
+    .ch-grid2{display:grid;grid-template-columns:1fr 1fr;gap:0 18px}
+    .ch-r--blast p,.ch-r--detect p{color:var(--ink);line-height:1.55;font-size:13.5px}
+    .ch-r--blast b{color:var(--amber)} .ch-r--detect b{color:var(--blue)}
+    @media(max-width:620px){.ch-grid2{grid-template-columns:1fr}}
+    .ch-maps{font-family:var(--font-mono);font-size:12px;color:var(--muted)}
+    .ch-chain--coral{border-left-color:var(--coral)} .ch-chain--amber{border-left-color:var(--amber)}
+    .ch-chain--orange{border-left-color:var(--orange)} .ch-chain--violet{border-left-color:var(--violet)}
+    .ch-chain--blue{border-left-color:var(--blue)} .ch-chain--indigo{border-left-color:var(--indigo)}
+    .ch-chain--moss{border-left-color:var(--moss)} .ch-chain--cyan{border-left-color:var(--cyan)}
+    .ch-chain--olive{border-left-color:var(--olive)} .ch-chain--rose{border-left-color:var(--rose)}
+    .ch-chain--slate{border-left-color:var(--slate)} .ch-chain--mint{border-left-color:var(--mint)}
+    .ch-chain--teal{border-left-color:var(--teal)}
+    @media(max-width:620px){.ch-r{grid-template-columns:1fr} .ch-pc{display:none} .ch-section h2{font-size:22px}}
   </style>
 </head>
 <body>
@@ -30126,9 +30229,824 @@
         </div>
       </section>
 
+
+      <section class="ch-section animate" id="attack-chains" aria-label="Attack chains">
+       <div class="ch-feature">
+        <div class="ch-hero">
+          <p class="ch-eyebrow"><span class="ch-dot"></span>The kill-chain view &middot; 49 attack chains</p>
+          <h2 class="ch-title">Attack chains</h2>
+          <p class="ch-lede">The atlas names 540 vectors one by one. Real incidents are never one vector &mdash; they are a <b>hand-off</b>, where each step grants the capability the next one needs. These 49 chains correlate the leaves into ordered paths, and name the one early control that breaks each chain before impact.</p>
+          <div class="ch-ribbon"><span class="ch-stage">Recon</span> <span class="ch-stage-arr">&rsaquo;</span> <span class="ch-stage">Entry</span> <span class="ch-stage-arr">&rsaquo;</span> <span class="ch-stage">Influence</span> <span class="ch-stage-arr">&rsaquo;</span> <span class="ch-stage">Authority</span> <span class="ch-stage-arr">&rsaquo;</span> <span class="ch-stage">Impact</span> <span class="ch-stage-arr">&rsaquo;</span> <span class="ch-stage">Cover</span></div>
+        </div>
+
+        <div class="ch-panel ch-panel--hero">
+          <h3><span class="ch-shield">&#9830;</span> Where the chains converge</h3>
+          <p class="ch-note">Almost every chain ends at the same few impact sinks &mdash; <code>117</code> destructive action, <code>115</code> payment, <code>116</code> deploy, and the shared bypass neck <code>151</code> quorum bypass &mdash; so defending the sinks alone is late. The leverage is upstream: ten early controls each sit on the critical path of a whole chain class, before the sink.</p>
+          <ul class="ch-rollup"><li><a class="ch-v" href="#LLM-055" title="Model-context provenance loss"><code>055</code></a> <b>Model-context provenance loss</b> &mdash; every injection-origin exfil and action chain</li><li><a class="ch-v" href="#LLM-105" title="Confused deputy through tools"><code>105</code></a> <b>Confused deputy through tools</b> &mdash; the confused-deputy and tool chains</li><li><a class="ch-v" href="#LLM-148" title="Missing egress policy for tools"><code>148</code></a> <b>Missing egress policy for tools</b> &mdash; the exfil exits and SSRF-to-cloud</li><li><a class="ch-v" href="#LLM-264" title="Unsafe auto-ingestion of output"><code>264</code></a> <b>Unsafe auto-ingestion of output</b> &mdash; output-to-execution chains</li><li><a class="ch-v" href="#LLM-158" title="Approval not bound to exact action"><code>158</code></a> <b>Approval not bound to exact action</b> &mdash; the approval-race and summary chains</li><li><a class="ch-v" href="#LLM-165" title="Shared-model non-independence"><code>165</code></a> <b>Shared-model non-independence</b> &mdash; consensus-neutralised quorum chains</li><li><a class="ch-v" href="#LLM-410" title="Unsigned tool manifest"><code>410</code></a> <b>Unsigned tool manifest</b> &mdash; MCP and marketplace supply chains</li><li><a class="ch-v" href="#LLM-217" title="Backdoored model weights"><code>217</code></a> <b>Backdoored model weights</b> &mdash; model and adapter backdoor chains</li><li><a class="ch-v" href="#LLM-131" title="Unbounded agent loop"><code>131</code></a> <b>Unbounded agent loop</b> &mdash; self-replication and DoS chains</li><li><a class="ch-v" href="#LLM-399" title="Evidence hash missing"><code>399</code></a> <b>Evidence hash missing</b> &mdash; the cover epilogue on every chain</li></ul>
+          <p class="ch-note ch-note--soft">Counts are a hand-read over the 49 chains, not an automated graph. The reproducible version tags every vector with requires/enables and lets the atlas emit the edges itself.</p>
+        </div>
+
+        <h3 class="ch-subhead">All 49 chains at a glance</h3>
+        <div class="ch-tablewrap">
+          <table class="ch-table">
+            <thead><tr><th>ID</th><th>Chain</th><th>Path</th><th>Chokepoint</th></tr></thead>
+            <tbody><tr><td><code class="ch-cid">COMBO-01</code></td><td class="ch-nm">Poisoned corpus to data theft</td><td class="ch-pc"><code>040</code> <span class="ch-arr">&rarr;</span> <code>055</code> <span class="ch-arr">&rarr;</span> <code>077</code> <span class="ch-arr">&rarr;</span> <code>141</code></td><td class="ch-ckc"><a href="#LLM-055"><code>055</code></a> Model-context provenance loss</td></tr><tr><td><code class="ch-cid">COMBO-02</code></td><td class="ch-nm">Injection to secret disclosure</td><td class="ch-pc"><code>002</code> <span class="ch-arr">&rarr;</span> <code>070</code> <span class="ch-arr">&rarr;</span> <code>072</code> <span class="ch-arr">&rarr;</span> <code>089</code></td><td class="ch-ckc"><a href="#LLM-072"><code>072</code></a> Secret-in-prompt exposure</td></tr><tr><td><code class="ch-cid">COMBO-03</code></td><td class="ch-nm">Cross-tenant read</td><td class="ch-pc"><code>193</code> <span class="ch-arr">&rarr;</span> <code>037</code> <span class="ch-arr">&rarr;</span> <code>039</code> <span class="ch-arr">&rarr;</span> <code>096</code></td><td class="ch-ckc"><a href="#LLM-036"><code>036</code></a> RAG authorization bypass</td></tr><tr><td><code class="ch-cid">COMBO-04</code></td><td class="ch-nm">Cache / memory bleed</td><td class="ch-pc"><code>430</code> <span class="ch-arr">&rarr;</span> <code>429</code> <span class="ch-arr">&rarr;</span> <code>099</code></td><td class="ch-ckc"><a href="#LLM-430"><code>430</code></a> Prompt prefix cache tenant collision</td></tr><tr><td><code class="ch-cid">COMBO-05</code></td><td class="ch-nm">Browser session exposure</td><td class="ch-pc"><code>078</code> <span class="ch-arr">&rarr;</span> <code>090</code></td><td class="ch-ckc"><a href="#LLM-078"><code>078</code></a> Browser/session data exposure</td></tr><tr><td><code class="ch-cid">COMBO-06</code></td><td class="ch-nm">Multimodal entry to exfiltration</td><td class="ch-pc"><code>342</code> <span class="ch-arr">&rarr;</span> <code>354</code> <span class="ch-arr">&rarr;</span> <code>121</code> <span class="ch-arr">&rarr;</span> <code>480</code></td><td class="ch-ckc"><a href="#LLM-121"><code>121</code></a> Tool return-value injection</td></tr><tr><td><code class="ch-cid">COMBO-07</code></td><td class="ch-nm">Privacy-request retention gap</td><td class="ch-pc"><code>433</code> <span class="ch-arr">&rarr;</span> <code>434</code> <span class="ch-arr">&rarr;</span> <code>440</code> <span class="ch-arr">&rarr;</span> <code>102</code></td><td class="ch-ckc"><a href="#LLM-433"><code>433</code></a> Right-to-deletion memory gap</td></tr><tr><td><code class="ch-cid">COMBO-08</code></td><td class="ch-nm">Context pollution to delayed tool invocation</td><td class="ch-pc"><code>482</code> <span class="ch-arr">&rarr;</span> <code>104</code> <span class="ch-arr">&rarr;</span> <code>121</code> <span class="ch-arr">&rarr;</span> <code>107</code> <span class="ch-arr">&rarr;</span> <code>127</code></td><td class="ch-ckc"><a href="#LLM-482"><code>482</code></a> Delayed execution of LLM instructions</td></tr><tr><td><code class="ch-cid">COMBO-09</code></td><td class="ch-nm">Injection to RCE to sandbox escape to lateral</td><td class="ch-pc"><code>008</code> <span class="ch-arr">&rarr;</span> <code>108</code> <span class="ch-arr">&rarr;</span> <code>110</code> <span class="ch-arr">&rarr;</span> <code>111</code> <span class="ch-arr">&rarr;</span> <code>078</code> <span class="ch-arr">&rarr;</span> <code>080</code> <span class="ch-arr">&rarr;</span> <code>139</code> <span class="ch-arr">&rarr;</span> <code>116</code></td><td class="ch-ckc"><a href="#LLM-110"><code>110</code></a> Code execution abuse</td></tr><tr><td><code class="ch-cid">COMBO-10</code></td><td class="ch-nm">Confused deputy</td><td class="ch-pc"><code>002</code> <span class="ch-arr">&rarr;</span> <code>107</code> <span class="ch-arr">&rarr;</span> <code>105</code> <span class="ch-arr">&rarr;</span> <code>196</code> <span class="ch-arr">&rarr;</span> <code>115</code></td><td class="ch-ckc"><a href="#LLM-105"><code>105</code></a> Confused deputy through tools</td></tr><tr><td><code class="ch-cid">COMBO-11</code></td><td class="ch-nm">Read to write tool-chain pivot</td><td class="ch-pc"><code>144</code> <span class="ch-arr">&rarr;</span> <code>150</code> <span class="ch-arr">&rarr;</span> <code>117</code></td><td class="ch-ckc"><a href="#LLM-118"><code>118</code></a> Missing dry-run path</td></tr><tr><td><code class="ch-cid">COMBO-12</code></td><td class="ch-nm">SSRF to cloud takeover</td><td class="ch-pc"><code>112</code> <span class="ch-arr">&rarr;</span> <code>136</code> <span class="ch-arr">&rarr;</span> <code>242</code> <span class="ch-arr">&rarr;</span> <code>116</code></td><td class="ch-ckc"><a href="#LLM-148"><code>148</code></a> Missing egress policy for tools</td></tr><tr><td><code class="ch-cid">COMBO-13</code></td><td class="ch-nm">Output to downstream execution</td><td class="ch-pc"><code>522</code> <span class="ch-arr">&rarr;</span> <code>265</code> <span class="ch-arr">&rarr;</span> <code>264</code> <span class="ch-arr">&rarr;</span> <code>250</code></td><td class="ch-ckc"><a href="#LLM-264"><code>264</code></a> Unsafe auto-ingestion of output</td></tr><tr><td><code class="ch-cid">COMBO-14</code></td><td class="ch-nm">Sensor-deceived physical actuation</td><td class="ch-pc"><code>466</code> <span class="ch-arr">&rarr;</span> <code>507</code> <span class="ch-arr">&rarr;</span> <code>117</code></td><td class="ch-ckc"><a href="#LLM-507"><code>507</code></a> Sensor-deceived physical actuation</td></tr><tr><td><code class="ch-cid">COMBO-15</code></td><td class="ch-nm">Autofill to transfer</td><td class="ch-pc"><code>443</code> <span class="ch-arr">&rarr;</span> <code>115</code></td><td class="ch-ckc"><a href="#LLM-443"><code>443</code></a> Live form autofill exfiltration</td></tr><tr><td><code class="ch-cid">COMBO-16</code></td><td class="ch-nm">Browser / computer-use clickjacking</td><td class="ch-pc"><code>441</code> <span class="ch-arr">&rarr;</span> <code>442</code> <span class="ch-arr">&rarr;</span> <code>113</code> <span class="ch-arr">&rarr;</span> <code>115</code> <span class="ch-arr">&rarr;</span> <code>145</code> <span class="ch-arr">&rarr;</span> <code>143</code></td><td class="ch-ckc"><a href="#LLM-442"><code>442</code></a> Browser-agent clickjacking</td></tr><tr><td><code class="ch-cid">COMBO-17</code></td><td class="ch-nm">Voice command to action abuse</td><td class="ch-pc"><code>444</code> <span class="ch-arr">&rarr;</span> <code>445</code> <span class="ch-arr">&rarr;</span> <code>114</code> <span class="ch-arr">&rarr;</span> <code>141</code> <span class="ch-arr">&rarr;</span> <code>115</code></td><td class="ch-ckc"><a href="#LLM-445"><code>445</code></a> Realtime interruption attack</td></tr><tr><td><code class="ch-cid">COMBO-18</code></td><td class="ch-nm">Consensus neutralised</td><td class="ch-pc"><code>166</code> <span class="ch-arr">&rarr;</span> <code>165</code> <span class="ch-arr">&rarr;</span> <code>184</code> <span class="ch-arr">&rarr;</span> <code>159</code> <span class="ch-arr">&rarr;</span> <code>115</code></td><td class="ch-ckc"><a href="#LLM-165"><code>165</code></a> Shared-model non-independence</td></tr><tr><td><code class="ch-cid">COMBO-19</code></td><td class="ch-nm">Race / revocation</td><td class="ch-pc"><code>158</code> <span class="ch-arr">&rarr;</span> <code>160</code> <span class="ch-arr">&rarr;</span> <code>161</code> <span class="ch-arr">&rarr;</span> <code>117</code></td><td class="ch-ckc"><a href="#LLM-158"><code>158</code></a> Approval not bound to exact action</td></tr><tr><td><code class="ch-cid">COMBO-20</code></td><td class="ch-nm">Shadow approval channel</td><td class="ch-pc"><code>190</code> <span class="ch-arr">&rarr;</span> <code>185</code> <span class="ch-arr">&rarr;</span> <code>179</code> <span class="ch-arr">&rarr;</span> <code>117</code></td><td class="ch-ckc"><a href="#LLM-179"><code>179</code></a> Missing separation of duties</td></tr><tr><td><code class="ch-cid">COMBO-21</code></td><td class="ch-nm">Deepfake approver</td><td class="ch-pc"><code>465</code> <span class="ch-arr">&rarr;</span> <code>162</code> <span class="ch-arr">&rarr;</span> <code>115</code></td><td class="ch-ckc"><a href="#LLM-162"><code>162</code></a> Approver identity spoofing</td></tr><tr><td><code class="ch-cid">COMBO-22</code></td><td class="ch-nm">Injection to approval bypass to irreversible action</td><td class="ch-pc"><code>012</code> <span class="ch-arr">&rarr;</span> <code>159</code> <span class="ch-arr">&rarr;</span> <code>173</code> <span class="ch-arr">&rarr;</span> <code>160</code> <span class="ch-arr">&rarr;</span> <code>186</code> <span class="ch-arr">&rarr;</span> <code>151</code> <span class="ch-arr">&rarr;</span> <code>117</code></td><td class="ch-ckc"><a href="#LLM-159"><code>159</code></a> Approval summary mismatch</td></tr><tr><td><code class="ch-cid">COMBO-23</code></td><td class="ch-nm">Human-factors social approval bypass</td><td class="ch-pc"><code>365</code> <span class="ch-arr">&rarr;</span> <code>173</code> <span class="ch-arr">&rarr;</span> <code>367</code> <span class="ch-arr">&rarr;</span> <code>174</code> <span class="ch-arr">&rarr;</span> <code>159</code> <span class="ch-arr">&rarr;</span> <code>179</code> <span class="ch-arr">&rarr;</span> <code>151</code></td><td class="ch-ckc"><a href="#LLM-173"><code>173</code></a> Human rubber-stamping</td></tr><tr><td><code class="ch-cid">COMBO-24</code></td><td class="ch-nm">Connected-app escalation</td><td class="ch-pc"><code>201</code> <span class="ch-arr">&rarr;</span> <code>203</code> <span class="ch-arr">&rarr;</span> <code>125</code> <span class="ch-arr">&rarr;</span> <code>127</code></td><td class="ch-ckc"><a href="#LLM-201"><code>201</code></a> Default-allow connector policy</td></tr><tr><td><code class="ch-cid">COMBO-25</code></td><td class="ch-nm">MCP token reuse across servers</td><td class="ch-pc"><code>404</code> <span class="ch-arr">&rarr;</span> <code>422</code> <span class="ch-arr">&rarr;</span> <code>209</code> <span class="ch-arr">&rarr;</span> <code>200</code></td><td class="ch-ckc"><a href="#LLM-422"><code>422</code></a> OAuth token reuse across MCP servers</td></tr><tr><td><code class="ch-cid">COMBO-26</code></td><td class="ch-nm">Co-presented scope disclosure</td><td class="ch-pc"><code>514</code> <span class="ch-arr">&rarr;</span> <code>515</code> <span class="ch-arr">&rarr;</span> <code>105</code></td><td class="ch-ckc"><a href="#LLM-514"><code>514</code></a> Spontaneous over-disclosure of the more sensitive held grant</td></tr><tr><td><code class="ch-cid">COMBO-27</code></td><td class="ch-nm">Generated IaC / manifest to privilege escalation</td><td class="ch-pc"><code>270</code> <span class="ch-arr">&rarr;</span> <code>271</code> <span class="ch-arr">&rarr;</span> <code>257</code> <span class="ch-arr">&rarr;</span> <code>231</code> <span class="ch-arr">&rarr;</span> <code>196</code> <span class="ch-arr">&rarr;</span> <code>116</code></td><td class="ch-ckc"><a href="#LLM-271"><code>271</code></a> Kubernetes manifest privilege escalation</td></tr><tr><td><code class="ch-cid">COMBO-28</code></td><td class="ch-nm">SSRF / DNS-rebind to cloud credential access</td><td class="ch-pc"><code>135</code> <span class="ch-arr">&rarr;</span> <code>134</code> <span class="ch-arr">&rarr;</span> <code>112</code> <span class="ch-arr">&rarr;</span> <code>136</code> <span class="ch-arr">&rarr;</span> <code>078</code> <span class="ch-arr">&rarr;</span> <code>116</code></td><td class="ch-ckc"><a href="#LLM-136"><code>136</code></a> Cloud metadata access through tools</td></tr><tr><td><code class="ch-cid">COMBO-29</code></td><td class="ch-nm">Launder to lateral to cascade</td><td class="ch-pc"><code>334</code> <span class="ch-arr">&rarr;</span> <code>320</code> <span class="ch-arr">&rarr;</span> <code>322</code> <span class="ch-arr">&rarr;</span> <code>498</code> <span class="ch-arr">&rarr;</span> <code>503</code></td><td class="ch-ckc"><a href="#LLM-324"><code>324</code></a> Manager-agent blind trust</td></tr><tr><td><code class="ch-cid">COMBO-30</code></td><td class="ch-nm">Persistence via self-modification</td><td class="ch-pc"><code>130</code> <span class="ch-arr">&rarr;</span> <code>047</code></td><td class="ch-ckc"><a href="#LLM-047"><code>047</code></a> Persistent memory poisoning</td></tr><tr><td><code class="ch-cid">COMBO-31</code></td><td class="ch-nm">Steganographic collusion</td><td class="ch-pc"><code>323</code> <span class="ch-arr">&rarr;</span> <code>521</code> <span class="ch-arr">&rarr;</span> <code>338</code></td><td class="ch-ckc"><a href="#LLM-325"><code>325</code></a> Cross-agent context leakage</td></tr><tr><td><code class="ch-cid">COMBO-32</code></td><td class="ch-nm">Orchestrator hijack</td><td class="ch-pc"><code>499</code> <span class="ch-arr">&rarr;</span> <code>329</code> <span class="ch-arr">&rarr;</span> <code>340</code> <span class="ch-arr">&rarr;</span> <code>117</code></td><td class="ch-ckc"><a href="#LLM-499"><code>499</code></a> Orchestrator / router hijacking</td></tr><tr><td><code class="ch-cid">COMBO-33</code></td><td class="ch-nm">Self-modify to self-replicate to persist</td><td class="ch-pc"><code>001</code> <span class="ch-arr">&rarr;</span> <code>130</code> <span class="ch-arr">&rarr;</span> <code>016</code> <span class="ch-arr">&rarr;</span> <code>140</code> <span class="ch-arr">&rarr;</span> <code>331</code> <span class="ch-arr">&rarr;</span> <code>322</code> <span class="ch-arr">&rarr;</span> <code>131</code> <span class="ch-arr">&rarr;</span> <code>279</code></td><td class="ch-ckc"><a href="#LLM-130"><code>130</code></a> Agent self-modification</td></tr><tr><td><code class="ch-cid">COMBO-34</code></td><td class="ch-nm">Laundering to quorum manipulation to bypass</td><td class="ch-pc"><code>320</code> <span class="ch-arr">&rarr;</span> <code>323</code> <span class="ch-arr">&rarr;</span> <code>166</code> <span class="ch-arr">&rarr;</span> <code>168</code> <span class="ch-arr">&rarr;</span> <code>165</code> <span class="ch-arr">&rarr;</span> <code>184</code> <span class="ch-arr">&rarr;</span> <code>170</code> <span class="ch-arr">&rarr;</span> <code>151</code></td><td class="ch-ckc"><a href="#LLM-165"><code>165</code></a> Shared-model non-independence</td></tr><tr><td><code class="ch-cid">COMBO-35</code></td><td class="ch-nm">Latent backdoor</td><td class="ch-pc"><code>218</code> <span class="ch-arr">&rarr;</span> <code>451</code> <span class="ch-arr">&rarr;</span> <code>309</code> <span class="ch-arr">&rarr;</span> <code>116</code></td><td class="ch-ckc"><a href="#LLM-217"><code>217</code></a> Backdoored model weights</td></tr><tr><td><code class="ch-cid">COMBO-36</code></td><td class="ch-nm">RLHF / reward poisoning</td><td class="ch-pc"><code>448</code> <span class="ch-arr">&rarr;</span> <code>449</code> <span class="ch-arr">&rarr;</span> <code>307</code> <span class="ch-arr">&rarr;</span> <code>263</code></td><td class="ch-ckc"><a href="#LLM-449"><code>449</code></a> Reward model poisoning</td></tr><tr><td><code class="ch-cid">COMBO-37</code></td><td class="ch-nm">Tokenizer artifact</td><td class="ch-pc"><code>244</code> <span class="ch-arr">&rarr;</span> <code>243</code> <span class="ch-arr">&rarr;</span> <code>307</code></td><td class="ch-ckc"><a href="#LLM-243"><code>243</code></a> Unpinned tokenizer behavior</td></tr><tr><td><code class="ch-cid">COMBO-38</code></td><td class="ch-nm">MCP marketplace rug-pull</td><td class="ch-pc"><code>479</code> <span class="ch-arr">&rarr;</span> <code>409</code> <span class="ch-arr">&rarr;</span> <code>121</code> <span class="ch-arr">&rarr;</span> <code>141</code></td><td class="ch-ckc"><a href="#LLM-410"><code>410</code></a> Unsigned tool manifest</td></tr><tr><td><code class="ch-cid">COMBO-39</code></td><td class="ch-nm">Backdoored model to trigger to exfil</td><td class="ch-pc"><code>218</code> <span class="ch-arr">&rarr;</span> <code>451</code> <span class="ch-arr">&rarr;</span> <code>309</code> <span class="ch-arr">&rarr;</span> <code>304</code> <span class="ch-arr">&rarr;</span> <code>107</code> <span class="ch-arr">&rarr;</span> <code>073</code></td><td class="ch-ckc"><a href="#LLM-217"><code>217</code></a> Backdoored model weights</td></tr><tr><td><code class="ch-cid">COMBO-40</code></td><td class="ch-nm">Model extraction to artifact theft</td><td class="ch-pc"><code>305</code> <span class="ch-arr">&rarr;</span> <code>319</code> <span class="ch-arr">&rarr;</span> <code>235</code></td><td class="ch-ckc"><a href="#LLM-300"><code>300</code></a> Model extraction</td></tr><tr><td><code class="ch-cid">COMBO-41</code></td><td class="ch-nm">Embedding inversion</td><td class="ch-pc"><code>054</code> <span class="ch-arr">&rarr;</span> <code>073</code></td><td class="ch-ckc"><a href="#LLM-054"><code>054</code></a> Embedding sensitive data leakage</td></tr><tr><td><code class="ch-cid">COMBO-42</code></td><td class="ch-nm">Extraction to clone to safety evasion</td><td class="ch-pc"><code>300</code> <span class="ch-arr">&rarr;</span> <code>319</code> <span class="ch-arr">&rarr;</span> <code>462</code> <span class="ch-arr">&rarr;</span> <code>307</code> <span class="ch-arr">&rarr;</span> <code>306</code> <span class="ch-arr">&rarr;</span> <code>310</code></td><td class="ch-ckc"><a href="#LLM-307"><code>307</code></a> Safety classifier evasion</td></tr><tr><td><code class="ch-cid">COMBO-43</code></td><td class="ch-nm">Recursive agent loop</td><td class="ch-pc"><code>131</code> <span class="ch-arr">&rarr;</span> <code>298</code> <span class="ch-arr">&rarr;</span> <code>279</code></td><td class="ch-ckc"><a href="#LLM-131"><code>131</code></a> Unbounded agent loop</td></tr><tr><td><code class="ch-cid">COMBO-44</code></td><td class="ch-nm">Parser / compression bomb</td><td class="ch-pc"><code>286</code> <span class="ch-arr">&rarr;</span> <code>297</code> <span class="ch-arr">&rarr;</span> <code>285</code></td><td class="ch-ckc"><a href="#LLM-286"><code>286</code></a> Parser bomb</td></tr><tr><td><code class="ch-cid">COMBO-45</code></td><td class="ch-nm">Approval-queue exhaustion</td><td class="ch-pc"><code>172</code> <span class="ch-arr">&rarr;</span> <code>289</code> <span class="ch-arr">&rarr;</span> <code>299</code></td><td class="ch-ckc"><a href="#LLM-289"><code>289</code></a> Approval queue exhaustion</td></tr><tr><td><code class="ch-cid">COMBO-46</code></td><td class="ch-nm">Grant-stuffing denial</td><td class="ch-pc"><code>513</code> <span class="ch-arr">&rarr;</span> <code>515</code></td><td class="ch-ckc"><a href="#LLM-513"><code>513</code></a> Grant-stuffing denial via over-inclusive capability presentation</td></tr><tr><td><code class="ch-cid">COMBO-47</code></td><td class="ch-nm">DoS to fallback to fail-open to weakening</td><td class="ch-pc"><code>276</code> <span class="ch-arr">&rarr;</span> <code>289</code> <span class="ch-arr">&rarr;</span> <code>155</code> <span class="ch-arr">&rarr;</span> <code>153</code> <span class="ch-arr">&rarr;</span> <code>152</code> <span class="ch-arr">&rarr;</span> <code>151</code> <span class="ch-arr">&rarr;</span> <code>226</code> <span class="ch-arr">&rarr;</span> <code>234</code></td><td class="ch-ckc"><a href="#LLM-155"><code>155</code></a> Fail-open approval gate</td></tr><tr><td><code class="ch-cid">COMBO-48</code></td><td class="ch-nm">Recon prologue</td><td class="ch-pc"><code>496</code> <span class="ch-arr">&rarr;</span> <code>495</code> <span class="ch-arr">&rarr;</span> <code>305</code> <span class="ch-arr">&rarr;</span> <code>306</code></td><td class="ch-ckc"><a href="#LLM-397"><code>397</code></a> Model version missing from logs</td></tr><tr><td><code class="ch-cid">COMBO-49</code></td><td class="ch-nm">Cover epilogue</td><td class="ch-pc"><code>132</code> <span class="ch-arr">&rarr;</span> <code>385</code> <span class="ch-arr">&rarr;</span> <code>388</code> <span class="ch-arr">&rarr;</span> <code>394</code></td><td class="ch-ckc"><a href="#LLM-399"><code>399</code></a> Evidence hash missing</td></tr></tbody>
+          </table>
+        </div>
+
+        <h3 class="ch-subhead">Walk a chain</h3>
+        <div class="ch-chips"><button class="ch-chip ch-chip--active" data-f="*">All 49</button><button class="ch-chip" data-f="Exfiltrate data">Exfiltrate data</button><button class="ch-chip" data-f="Code execution">Code execution</button><button class="ch-chip" data-f="Unauthorized action">Unauthorized action</button><button class="ch-chip" data-f="Defeat the gate">Defeat the gate</button><button class="ch-chip" data-f="Escalate privilege">Escalate privilege</button><button class="ch-chip" data-f="Multi-agent spread">Multi-agent spread</button><button class="ch-chip" data-f="Supply chain">Supply chain</button><button class="ch-chip" data-f="Model / IP theft">Model / IP theft</button><button class="ch-chip" data-f="Denial / cost">Denial / cost</button><button class="ch-chip" data-f="Bookend">Bookend</button></div>
+        <div class="ch-cards">
+        <article class="ch-chain ch-chain--coral" data-obj="Exfiltrate data">
+          <header class="ch-head" role="button" tabindex="0" aria-expanded="false">
+            <code class="ch-cid">COMBO-01</code><strong>Poisoned corpus to data theft</strong>
+            <span class="ch-obj">Exfiltrate data</span><span class="ch-steps">4 steps</span>
+          </header>
+          <div class="ch-body">
+            <div class="ch-r"><b>How it plays out</b><p class="ch-flow">poison the corpus, provenance is lost so the chunk reads as policy, the tool over-returns, a webhook ships it out.</p></div>
+            <div class="ch-r"><b>The hand-off</b><ol class="ch-ladder"><li class="ch-step"><span class="ch-stepnum">1</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-040" title="RAG document poisoning"><code>040</code></a> <span class="ch-vt">RAG document poisoning</span><span class="ch-grant">grants attacker content living inside the trusted corpus</span></div></li><li class="ch-step"><span class="ch-stepnum">2</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-055" title="Model-context provenance loss"><code>055</code></a> <span class="ch-vt">Model-context provenance loss</span><span class="ch-grant">grants loss of the data-vs-instruction boundary</span></div></li><li class="ch-step"><span class="ch-stepnum">3</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-077" title="Tool response overexposure"><code>077</code></a> <span class="ch-vt">Tool response overexposure</span><span class="ch-grant">grants more data than the task needed, returned by a tool</span></div></li><li class="ch-step ch-step--last"><span class="ch-stepnum">4</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-141" title="Webhook exfiltration"><code>141</code></a> <span class="ch-vt">Webhook exfiltration</span><span class="ch-grant">grants a channel that posts data to the attacker</span></div></li></ol></div>
+            <div class="ch-r ch-choke"><b>Break it here</b><p><a class="ch-v" href="#LLM-055" title="Model-context provenance loss"><code>055</code></a> <span class="ch-vt">Model-context provenance loss</span><br>Trust-label retrieved content and preserve provenance so a chunk can never be read as an instruction.</p></div>
+            <div class="ch-grid2">
+              <div class="ch-r ch-r--blast"><b>Ends at</b><p>Attacker-controlled data leaves the system over a webhook.</p></div>
+              <div class="ch-r ch-r--detect"><b>Watch for</b><p>Egress to new destinations; tool returns larger than the task needs; retrieval crossing tenant or permission scope.</p></div>
+            </div>
+            <div class="ch-r"><b>Maps</b><p class="ch-maps">OWASP LLM09 to LLM02 | ATLAS AML.T0070 to T0086</p></div>
+          </div>
+        </article>
+        <article class="ch-chain ch-chain--coral" data-obj="Exfiltrate data">
+          <header class="ch-head" role="button" tabindex="0" aria-expanded="false">
+            <code class="ch-cid">COMBO-02</code><strong>Injection to secret disclosure</strong>
+            <span class="ch-obj">Exfiltrate data</span><span class="ch-steps">4 steps</span>
+          </header>
+          <div class="ch-body">
+            <div class="ch-r"><b>How it plays out</b><p class="ch-flow">indirect injection pulls the system prompt, which exposes an embedded secret, then an output transform slips it past DLP.</p></div>
+            <div class="ch-r"><b>The hand-off</b><ol class="ch-ladder"><li class="ch-step"><span class="ch-stepnum">1</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-002" title="Indirect prompt injection from RAG"><code>002</code></a> <span class="ch-vt">Indirect prompt injection from RAG</span><span class="ch-grant">grants a foothold through retrieved content, no direct access needed</span></div></li><li class="ch-step"><span class="ch-stepnum">2</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-070" title="System prompt leakage"><code>070</code></a> <span class="ch-vt">System prompt leakage</span><span class="ch-grant">grants the hidden system prompt and its internal rules</span></div></li><li class="ch-step"><span class="ch-stepnum">3</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-072" title="Secret-in-prompt exposure"><code>072</code></a> <span class="ch-vt">Secret-in-prompt exposure</span><span class="ch-grant">grants a secret or key that was sitting in the prompt</span></div></li><li class="ch-step ch-step--last"><span class="ch-stepnum">4</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-089" title="Sensitive output transformation"><code>089</code></a> <span class="ch-vt">Sensitive output transformation</span><span class="ch-grant">grants an output reshaped to slip past DLP</span></div></li></ol></div>
+            <div class="ch-r ch-choke"><b>Break it here</b><p><a class="ch-v" href="#LLM-072" title="Secret-in-prompt exposure"><code>072</code></a> <span class="ch-vt">Secret-in-prompt exposure</span><br>Keep secrets out of prompt context entirely; run DLP on transformed and encoded output, not just plaintext.</p></div>
+            <div class="ch-grid2">
+              <div class="ch-r ch-r--blast"><b>Ends at</b><p>Sensitive data leaves reshaped to evade DLP.</p></div>
+              <div class="ch-r ch-r--detect"><b>Watch for</b><p>Egress to new destinations; tool returns larger than the task needs; retrieval crossing tenant or permission scope.</p></div>
+            </div>
+            <div class="ch-r"><b>Maps</b><p class="ch-maps">OWASP LLM01 to LLM02 | ATLAS AML.T0056 to T0057</p></div>
+          </div>
+        </article>
+        <article class="ch-chain ch-chain--coral" data-obj="Exfiltrate data">
+          <header class="ch-head" role="button" tabindex="0" aria-expanded="false">
+            <code class="ch-cid">COMBO-03</code><strong>Cross-tenant read</strong>
+            <span class="ch-obj">Exfiltrate data</span><span class="ch-steps">4 steps</span>
+          </header>
+          <div class="ch-body">
+            <div class="ch-r"><b>How it plays out</b><p class="ch-flow">attacker supplies a tenant id in the prompt, retrieval crosses tenants past a bypassed metadata filter, embedding-metadata PII returns.</p></div>
+            <div class="ch-r"><b>The hand-off</b><ol class="ch-ladder"><li class="ch-step"><span class="ch-stepnum">1</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-193" title="Prompt-supplied tenant or user ID"><code>193</code></a> <span class="ch-vt">Prompt-supplied tenant or user ID</span><span class="ch-grant">grants an identity the user supplied in the prompt</span></div></li><li class="ch-step"><span class="ch-stepnum">2</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-037" title="Cross-tenant retrieval"><code>037</code></a> <span class="ch-vt">Cross-tenant retrieval</span><span class="ch-grant">grants reach into another tenant&#x27;s documents</span></div></li><li class="ch-step"><span class="ch-stepnum">3</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-039" title="Metadata filter bypass"><code>039</code></a> <span class="ch-vt">Metadata filter bypass</span><span class="ch-grant">grants a defeated access filter on retrieval metadata</span></div></li><li class="ch-step ch-step--last"><span class="ch-stepnum">4</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-096" title="Embedding metadata PII leakage"><code>096</code></a> <span class="ch-vt">Embedding metadata PII leakage</span><span class="ch-grant">grants names and identifiers from vector metadata</span></div></li></ol></div>
+            <div class="ch-r ch-choke"><b>Break it here</b><p><a class="ch-v" href="#LLM-036" title="RAG authorization bypass"><code>036</code></a> <span class="ch-vt">RAG authorization bypass</span><br>Authorize retrieval server-side against the real user before anything enters context; never trust a prompt-supplied identity.</p></div>
+            <div class="ch-grid2">
+              <div class="ch-r ch-r--blast"><b>Ends at</b><p>Another tenant&#x27;s PII is disclosed.</p></div>
+              <div class="ch-r ch-r--detect"><b>Watch for</b><p>Egress to new destinations; tool returns larger than the task needs; retrieval crossing tenant or permission scope.</p></div>
+            </div>
+            <div class="ch-r"><b>Maps</b><p class="ch-maps">OWASP LLM02 | ATLAS AML.T0057</p></div>
+          </div>
+        </article>
+        <article class="ch-chain ch-chain--coral" data-obj="Exfiltrate data">
+          <header class="ch-head" role="button" tabindex="0" aria-expanded="false">
+            <code class="ch-cid">COMBO-04</code><strong>Cache / memory bleed</strong>
+            <span class="ch-obj">Exfiltrate data</span><span class="ch-steps">3 steps</span>
+          </header>
+          <div class="ch-body">
+            <div class="ch-r"><b>How it plays out</b><p class="ch-flow">a prompt-prefix cache collision across tenants leaks another user KV-cache and prompt-cache fragments.</p></div>
+            <div class="ch-r"><b>The hand-off</b><ol class="ch-ladder"><li class="ch-step"><span class="ch-stepnum">1</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-430" title="Prompt prefix cache tenant collision"><code>430</code></a> <span class="ch-vt">Prompt prefix cache tenant collision</span><span class="ch-grant">grants tenant context mixed in via a shared cache prefix</span></div></li><li class="ch-step"><span class="ch-stepnum">2</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-429" title="Cross-user KV-cache leakage"><code>429</code></a> <span class="ch-vt">Cross-user KV-cache leakage</span><span class="ch-grant">grants prompt fragments from another user&#x27;s request</span></div></li><li class="ch-step ch-step--last"><span class="ch-stepnum">3</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-099" title="Shared prompt cache leakage"><code>099</code></a> <span class="ch-vt">Shared prompt cache leakage</span><span class="ch-grant">grants another user&#x27;s cached prompt or completion</span></div></li></ol></div>
+            <div class="ch-r ch-choke"><b>Break it here</b><p><a class="ch-v" href="#LLM-430" title="Prompt prefix cache tenant collision"><code>430</code></a> <span class="ch-vt">Prompt prefix cache tenant collision</span><br>Isolate prompt-prefix, KV and semantic caches per tenant; never key a shared cache on content alone.</p></div>
+            <div class="ch-grid2">
+              <div class="ch-r ch-r--blast"><b>Ends at</b><p>Another user&#x27;s cached content is disclosed.</p></div>
+              <div class="ch-r ch-r--detect"><b>Watch for</b><p>Egress to new destinations; tool returns larger than the task needs; retrieval crossing tenant or permission scope.</p></div>
+            </div>
+            <div class="ch-r"><b>Maps</b><p class="ch-maps">OWASP LLM02 | ATLAS AML.T0085</p></div>
+          </div>
+        </article>
+        <article class="ch-chain ch-chain--coral" data-obj="Exfiltrate data">
+          <header class="ch-head" role="button" tabindex="0" aria-expanded="false">
+            <code class="ch-cid">COMBO-05</code><strong>Browser session exposure</strong>
+            <span class="ch-obj">Exfiltrate data</span><span class="ch-steps">2 steps</span>
+          </header>
+          <div class="ch-body">
+            <div class="ch-r"><b>How it plays out</b><p class="ch-flow">an agent reads a logged-in session and carries it out in a conversation export.</p></div>
+            <div class="ch-r"><b>The hand-off</b><ol class="ch-ladder"><li class="ch-step"><span class="ch-stepnum">1</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-078" title="Browser/session data exposure"><code>078</code></a> <span class="ch-vt">Browser/session data exposure</span><span class="ch-grant">grants the contents of a logged-in browser session</span></div></li><li class="ch-step ch-step--last"><span class="ch-stepnum">2</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-090" title="Conversation export leakage"><code>090</code></a> <span class="ch-vt">Conversation export leakage</span><span class="ch-grant">grants a full conversation export, context included</span></div></li></ol></div>
+            <div class="ch-r ch-choke"><b>Break it here</b><p><a class="ch-v" href="#LLM-078" title="Browser/session data exposure"><code>078</code></a> <span class="ch-vt">Browser/session data exposure</span><br>Scope browser agents away from session storage and cookies; strip sensitive context from exports.</p></div>
+            <div class="ch-grid2">
+              <div class="ch-r ch-r--blast"><b>Ends at</b><p>A full conversation export leaks.</p></div>
+              <div class="ch-r ch-r--detect"><b>Watch for</b><p>Egress to new destinations; tool returns larger than the task needs; retrieval crossing tenant or permission scope.</p></div>
+            </div>
+            <div class="ch-r"><b>Maps</b><p class="ch-maps">OWASP LLM02 | ATLAS AML.T0057</p></div>
+          </div>
+        </article>
+        <article class="ch-chain ch-chain--coral" data-obj="Exfiltrate data">
+          <header class="ch-head" role="button" tabindex="0" aria-expanded="false">
+            <code class="ch-cid">COMBO-06</code><strong>Multimodal entry to exfiltration</strong>
+            <span class="ch-obj">Exfiltrate data</span><span class="ch-steps">4 steps</span>
+          </header>
+          <div class="ch-body">
+            <div class="ch-r"><b>How it plays out</b><p class="ch-flow">hidden text in an image carries a steganographic instruction, the model treats a tool return as command, an MCP callback leaks context.</p></div>
+            <div class="ch-r"><b>The hand-off</b><ol class="ch-ladder"><li class="ch-step"><span class="ch-stepnum">1</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-342" title="Hidden text in images"><code>342</code></a> <span class="ch-vt">Hidden text in images</span><span class="ch-grant">grants instructions hidden in an image</span></div></li><li class="ch-step"><span class="ch-stepnum">2</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-354" title="Steganographic instruction content"><code>354</code></a> <span class="ch-vt">Steganographic instruction content</span><span class="ch-grant">grants a payload concealed inside the content itself</span></div></li><li class="ch-step"><span class="ch-stepnum">3</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-121" title="Tool return-value injection"><code>121</code></a> <span class="ch-vt">Tool return-value injection</span><span class="ch-grant">grants a tool return treated as a command</span></div></li><li class="ch-step ch-step--last"><span class="ch-stepnum">4</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-480" title="MCP tool output callback exfiltration"><code>480</code></a> <span class="ch-vt">MCP tool output callback exfiltration</span><span class="ch-grant">grants context leaked through a tool-output callback</span></div></li></ol></div>
+            <div class="ch-r ch-choke"><b>Break it here</b><p><a class="ch-v" href="#LLM-121" title="Tool return-value injection"><code>121</code></a> <span class="ch-vt">Tool return-value injection</span><br>Treat all tool and multimodal returns as untrusted data; render them, never execute them.</p></div>
+            <div class="ch-grid2">
+              <div class="ch-r ch-r--blast"><b>Ends at</b><p>Context leaks through a tool-output callback.</p></div>
+              <div class="ch-r ch-r--detect"><b>Watch for</b><p>Egress to new destinations; tool returns larger than the task needs; retrieval crossing tenant or permission scope.</p></div>
+            </div>
+            <div class="ch-r"><b>Maps</b><p class="ch-maps">OWASP LLM01 | ATLAS AML.T0051.001 to T0080</p></div>
+          </div>
+        </article>
+        <article class="ch-chain ch-chain--coral" data-obj="Exfiltrate data">
+          <header class="ch-head" role="button" tabindex="0" aria-expanded="false">
+            <code class="ch-cid">COMBO-07</code><strong>Privacy-request retention gap</strong>
+            <span class="ch-obj">Exfiltrate data</span><span class="ch-steps">4 steps</span>
+          </header>
+          <div class="ch-body">
+            <div class="ch-r"><b>How it plays out</b><p class="ch-flow">after a deletion request, memory and vector chunks are retained, a transcript gap hides it, and audit-log search later exposes it.</p></div>
+            <div class="ch-r"><b>The hand-off</b><ol class="ch-ladder"><li class="ch-step"><span class="ch-stepnum">1</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-433" title="Right-to-deletion memory gap"><code>433</code></a> <span class="ch-vt">Right-to-deletion memory gap</span><span class="ch-grant">grants personal data still in memory after deletion</span></div></li><li class="ch-step"><span class="ch-stepnum">2</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-434" title="Vector retention after privacy request"><code>434</code></a> <span class="ch-vt">Vector retention after privacy request</span><span class="ch-grant">grants embeddings that outlive the deleted source</span></div></li><li class="ch-step"><span class="ch-stepnum">3</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-440" title="Privacy request transcript gap"><code>440</code></a> <span class="ch-vt">Privacy request transcript gap</span><span class="ch-grant">grants prompts/outputs a deletion request never reached</span></div></li><li class="ch-step ch-step--last"><span class="ch-stepnum">4</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-102" title="Audit-log search exposure"><code>102</code></a> <span class="ch-vt">Audit-log search exposure</span><span class="ch-grant">grants sensitive prompt and tool data via log search</span></div></li></ol></div>
+            <div class="ch-r ch-choke"><b>Break it here</b><p><a class="ch-v" href="#LLM-433" title="Right-to-deletion memory gap"><code>433</code></a> <span class="ch-vt">Right-to-deletion memory gap</span><br>Make deletion reach memory, vector chunks, caches, backups and transcripts; prove removal, do not assume it.</p></div>
+            <div class="ch-grid2">
+              <div class="ch-r ch-r--blast"><b>Ends at</b><p>Sensitive data is read from audit logs.</p></div>
+              <div class="ch-r ch-r--detect"><b>Watch for</b><p>Egress to new destinations; tool returns larger than the task needs; retrieval crossing tenant or permission scope.</p></div>
+            </div>
+            <div class="ch-r"><b>Maps</b><p class="ch-maps">GDPR Art.17 / CCPA | OWASP LLM02</p></div>
+          </div>
+        </article>
+        <article class="ch-chain ch-chain--coral" data-obj="Exfiltrate data">
+          <header class="ch-head" role="button" tabindex="0" aria-expanded="false">
+            <code class="ch-cid">COMBO-08</code><strong>Context pollution to delayed tool invocation</strong>
+            <span class="ch-obj">Exfiltrate data</span><span class="ch-steps">5 steps</span>
+          </header>
+          <div class="ch-body">
+            <div class="ch-r"><b>How it plays out</b><p class="ch-flow">a delayed instruction sits in stored context, fires later on an auto tool call, injects via the tool return, tampers params and exfiltrates.</p></div>
+            <div class="ch-r"><b>The hand-off</b><ol class="ch-ladder"><li class="ch-step"><span class="ch-stepnum">1</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-482" title="Delayed execution of LLM instructions"><code>482</code></a> <span class="ch-vt">Delayed execution of LLM instructions</span><span class="ch-grant">grants an instruction that detonates later, not now</span></div></li><li class="ch-step"><span class="ch-stepnum">2</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-104" title="Unsafe automatic tool invocation"><code>104</code></a> <span class="ch-vt">Unsafe automatic tool invocation</span><span class="ch-grant">grants a tool that fires without fresh user intent</span></div></li><li class="ch-step"><span class="ch-stepnum">3</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-121" title="Tool return-value injection"><code>121</code></a> <span class="ch-vt">Tool return-value injection</span><span class="ch-grant">grants a tool return treated as a command</span></div></li><li class="ch-step"><span class="ch-stepnum">4</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-107" title="Prompt-to-API parameter tampering"><code>107</code></a> <span class="ch-vt">Prompt-to-API parameter tampering</span><span class="ch-grant">grants rewritten tool arguments: IDs, amounts, recipients</span></div></li><li class="ch-step ch-step--last"><span class="ch-stepnum">5</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-127" title="File upload/download exfiltration"><code>127</code></a> <span class="ch-vt">File upload/download exfiltration</span><span class="ch-grant">grants files moved out to an attacker location</span></div></li></ol></div>
+            <div class="ch-r ch-choke"><b>Break it here</b><p><a class="ch-v" href="#LLM-482" title="Delayed execution of LLM instructions"><code>482</code></a> <span class="ch-vt">Delayed execution of LLM instructions</span><br>Do not auto-invoke tools from stored or retrieved context; expire delayed instructions and require fresh user intent.</p></div>
+            <div class="ch-grid2">
+              <div class="ch-r ch-r--blast"><b>Ends at</b><p>Files are exfiltrated to an attacker location.</p></div>
+              <div class="ch-r ch-r--detect"><b>Watch for</b><p>Egress to new destinations; tool returns larger than the task needs; retrieval crossing tenant or permission scope.</p></div>
+            </div>
+            <div class="ch-r"><b>Maps</b><p class="ch-maps">OWASP LLM01 | ATLAS AML.T0051.001 to T0086</p></div>
+          </div>
+        </article>
+        <article class="ch-chain ch-chain--orange" data-obj="Code execution">
+          <header class="ch-head" role="button" tabindex="0" aria-expanded="false">
+            <code class="ch-cid">COMBO-09</code><strong>Injection to RCE to sandbox escape to lateral</strong>
+            <span class="ch-obj">Code execution</span><span class="ch-steps">8 steps</span>
+          </header>
+          <div class="ch-body">
+            <div class="ch-r"><b>How it plays out</b><p class="ch-flow">template-variable injection reaches a shell, code executes, path traversal and session data yield secrets, a rotation misuse drives a deploy.</p></div>
+            <div class="ch-r"><b>The hand-off</b><ol class="ch-ladder"><li class="ch-step"><span class="ch-stepnum">1</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-008" title="Prompt template variable injection"><code>008</code></a> <span class="ch-vt">Prompt template variable injection</span><span class="ch-grant">grants broken prompt delimiters, so injected text escapes the data slot</span></div></li><li class="ch-step"><span class="ch-stepnum">2</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-108" title="Shell command injection"><code>108</code></a> <span class="ch-vt">Shell command injection</span><span class="ch-grant">grants a shell: model text reaches the command line</span></div></li><li class="ch-step"><span class="ch-stepnum">3</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-110" title="Code execution abuse"><code>110</code></a> <span class="ch-vt">Code execution abuse</span><span class="ch-grant">grants arbitrary code execution</span></div></li><li class="ch-step"><span class="ch-stepnum">4</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-111" title="Path traversal through file tools"><code>111</code></a> <span class="ch-vt">Path traversal through file tools</span><span class="ch-grant">grants read/write outside the intended workspace</span></div></li><li class="ch-step"><span class="ch-stepnum">5</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-078" title="Browser/session data exposure"><code>078</code></a> <span class="ch-vt">Browser/session data exposure</span><span class="ch-grant">grants the contents of a logged-in browser session</span></div></li><li class="ch-step"><span class="ch-stepnum">6</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-080" title="Log and trace secret leakage"><code>080</code></a> <span class="ch-vt">Log and trace secret leakage</span><span class="ch-grant">grants secrets pulled from logs and traces</span></div></li><li class="ch-step"><span class="ch-stepnum">7</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-139" title="Secret rotation misuse"><code>139</code></a> <span class="ch-vt">Secret rotation misuse</span><span class="ch-grant">grants a mis-rotated or printed secret</span></div></li><li class="ch-step ch-step--last"><span class="ch-stepnum">8</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-116" title="Production deployment abuse"><code>116</code></a> <span class="ch-vt">Production deployment abuse</span><span class="ch-grant">grants a push to production: code, infra, or secrets</span></div></li></ol></div>
+            <div class="ch-r ch-choke"><b>Break it here</b><p><a class="ch-v" href="#LLM-110" title="Code execution abuse"><code>110</code></a> <span class="ch-vt">Code execution abuse</span><br>Sandbox code execution with no broad fs or network; never concatenate model text into a shell.</p></div>
+            <div class="ch-grid2">
+              <div class="ch-r ch-r--blast"><b>Ends at</b><p>The attacker reaches production: code, infra, or secrets.</p></div>
+              <div class="ch-r ch-r--detect"><b>Watch for</b><p>Model text reaching a shell or eval; fetches to internal IPs or the metadata endpoint; writes outside the workspace.</p></div>
+            </div>
+            <div class="ch-r"><b>Maps</b><p class="ch-maps">OWASP LLM01 to LLM10 | ATLAS AML.T0051 to T0105</p></div>
+          </div>
+        </article>
+        <article class="ch-chain ch-chain--amber" data-obj="Unauthorized action">
+          <header class="ch-head" role="button" tabindex="0" aria-expanded="false">
+            <code class="ch-cid">COMBO-10</code><strong>Confused deputy</strong>
+            <span class="ch-obj">Unauthorized action</span><span class="ch-steps">5 steps</span>
+          </header>
+          <div class="ch-body">
+            <div class="ch-r"><b>How it plays out</b><p class="ch-flow">injection tampers parameters, the agent acts on attacker intent with its own over-broad credentials, money moves.</p></div>
+            <div class="ch-r"><b>The hand-off</b><ol class="ch-ladder"><li class="ch-step"><span class="ch-stepnum">1</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-002" title="Indirect prompt injection from RAG"><code>002</code></a> <span class="ch-vt">Indirect prompt injection from RAG</span><span class="ch-grant">grants a foothold through retrieved content, no direct access needed</span></div></li><li class="ch-step"><span class="ch-stepnum">2</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-107" title="Prompt-to-API parameter tampering"><code>107</code></a> <span class="ch-vt">Prompt-to-API parameter tampering</span><span class="ch-grant">grants rewritten tool arguments: IDs, amounts, recipients</span></div></li><li class="ch-step"><span class="ch-stepnum">3</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-105" title="Confused deputy through tools"><code>105</code></a> <span class="ch-vt">Confused deputy through tools</span><span class="ch-grant">grants the agent acting with its own credentials on attacker intent</span></div></li><li class="ch-step"><span class="ch-stepnum">4</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-196" title="Overprivileged service account"><code>196</code></a> <span class="ch-vt">Overprivileged service account</span><span class="ch-grant">grants a service account far broader than needed</span></div></li><li class="ch-step ch-step--last"><span class="ch-stepnum">5</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-115" title="Payment or transfer abuse"><code>115</code></a> <span class="ch-vt">Payment or transfer abuse</span><span class="ch-grant">grants a completed payment or transfer</span></div></li></ol></div>
+            <div class="ch-r ch-choke"><b>Break it here</b><p><a class="ch-v" href="#LLM-105" title="Confused deputy through tools"><code>105</code></a> <span class="ch-vt">Confused deputy through tools</span><br>Authorize every action server-side for the real user and exact parameters, not at login.</p></div>
+            <div class="ch-grid2">
+              <div class="ch-r ch-r--blast"><b>Ends at</b><p>Money moves — a payment or transfer completes.</p></div>
+              <div class="ch-r ch-r--detect"><b>Watch for</b><p>Tool calls whose parameters differ from the user&#x27;s request; high-impact actions with no dry-run; actions on an authenticated session with no fresh intent.</p></div>
+            </div>
+            <div class="ch-r"><b>Maps</b><p class="ch-maps">OWASP LLM01 to LLM03 | ATLAS AML.T0051 to T0053</p></div>
+          </div>
+        </article>
+        <article class="ch-chain ch-chain--amber" data-obj="Unauthorized action">
+          <header class="ch-head" role="button" tabindex="0" aria-expanded="false">
+            <code class="ch-cid">COMBO-11</code><strong>Read to write tool-chain pivot</strong>
+            <span class="ch-obj">Unauthorized action</span><span class="ch-steps">3 steps</span>
+          </header>
+          <div class="ch-body">
+            <div class="ch-r"><b>How it plays out</b><p class="ch-flow">a read-only tool output pivots into a bulk-action parameter abuse and an irreversible write.</p></div>
+            <div class="ch-r"><b>The hand-off</b><ol class="ch-ladder"><li class="ch-step"><span class="ch-stepnum">1</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-144" title="Tool chain pivot"><code>144</code></a> <span class="ch-vt">Tool chain pivot</span><span class="ch-grant">grants a read tool&#x27;s output feeding a write tool</span></div></li><li class="ch-step"><span class="ch-stepnum">2</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-150" title="Bulk action parameter abuse"><code>150</code></a> <span class="ch-vt">Bulk action parameter abuse</span><span class="ch-grant">grants one call that hits many records at once</span></div></li><li class="ch-step ch-step--last"><span class="ch-stepnum">3</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-117" title="Destructive action abuse"><code>117</code></a> <span class="ch-vt">Destructive action abuse</span><span class="ch-grant">grants an irreversible delete, overwrite, or revoke</span></div></li></ol></div>
+            <div class="ch-r ch-choke"><b>Break it here</b><p><a class="ch-v" href="#LLM-118" title="Missing dry-run path"><code>118</code></a> <span class="ch-vt">Missing dry-run path</span><br>Require a dry-run preview with exact parameters for high-impact actions; cap bulk scope.</p></div>
+            <div class="ch-grid2">
+              <div class="ch-r ch-r--blast"><b>Ends at</b><p>An irreversible destroy/overwrite/revoke lands.</p></div>
+              <div class="ch-r ch-r--detect"><b>Watch for</b><p>Tool calls whose parameters differ from the user&#x27;s request; high-impact actions with no dry-run; actions on an authenticated session with no fresh intent.</p></div>
+            </div>
+            <div class="ch-r"><b>Maps</b><p class="ch-maps">OWASP LLM03 to LLM10 | ATLAS AML.T0053 to T0101</p></div>
+          </div>
+        </article>
+        <article class="ch-chain ch-chain--orange" data-obj="Unauthorized action">
+          <header class="ch-head" role="button" tabindex="0" aria-expanded="false">
+            <code class="ch-cid">COMBO-12</code><strong>SSRF to cloud takeover</strong>
+            <span class="ch-obj">Unauthorized action</span><span class="ch-steps">4 steps</span>
+          </header>
+          <div class="ch-body">
+            <div class="ch-r"><b>How it plays out</b><p class="ch-flow">a fetch becomes SSRF against cloud metadata, yielding a provider key and a deploy.</p></div>
+            <div class="ch-r"><b>The hand-off</b><ol class="ch-ladder"><li class="ch-step"><span class="ch-stepnum">1</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-112" title="SSRF through fetch or browser tools"><code>112</code></a> <span class="ch-vt">SSRF through fetch or browser tools</span><span class="ch-grant">grants requests to internal URLs the attacker picks</span></div></li><li class="ch-step"><span class="ch-stepnum">2</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-136" title="Cloud metadata access through tools"><code>136</code></a> <span class="ch-vt">Cloud metadata access through tools</span><span class="ch-grant">grants cloud instance-metadata and its identity tokens</span></div></li><li class="ch-step"><span class="ch-stepnum">3</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-242" title="Provider API key compromise"><code>242</code></a> <span class="ch-vt">Provider API key compromise</span><span class="ch-grant">grants the provider API key and all its usage</span></div></li><li class="ch-step ch-step--last"><span class="ch-stepnum">4</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-116" title="Production deployment abuse"><code>116</code></a> <span class="ch-vt">Production deployment abuse</span><span class="ch-grant">grants a push to production: code, infra, or secrets</span></div></li></ol></div>
+            <div class="ch-r ch-choke"><b>Break it here</b><p><a class="ch-v" href="#LLM-148" title="Missing egress policy for tools"><code>148</code></a> <span class="ch-vt">Missing egress policy for tools</span><br>Enforce an egress allowlist and block the metadata endpoint for all tools.</p></div>
+            <div class="ch-grid2">
+              <div class="ch-r ch-r--blast"><b>Ends at</b><p>The attacker reaches production: code, infra, or secrets.</p></div>
+              <div class="ch-r ch-r--detect"><b>Watch for</b><p>Tool calls whose parameters differ from the user&#x27;s request; high-impact actions with no dry-run; actions on an authenticated session with no fresh intent.</p></div>
+            </div>
+            <div class="ch-r"><b>Maps</b><p class="ch-maps">OWASP LLM03 | ATLAS AML.T0053</p></div>
+          </div>
+        </article>
+        <article class="ch-chain ch-chain--amber" data-obj="Unauthorized action">
+          <header class="ch-head" role="button" tabindex="0" aria-expanded="false">
+            <code class="ch-cid">COMBO-13</code><strong>Output to downstream execution</strong>
+            <span class="ch-obj">Unauthorized action</span><span class="ch-steps">4 steps</span>
+          </header>
+          <div class="ch-body">
+            <div class="ch-r"><b>How it plays out</b><p class="ch-flow">backdoored generated code is trusted as verified, auto-ingested, and becomes a command injection.</p></div>
+            <div class="ch-r"><b>The hand-off</b><ol class="ch-ladder"><li class="ch-step"><span class="ch-stepnum">1</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-522" title="AI-introduced backdoor in generated application code"><code>522</code></a> <span class="ch-vt">AI-introduced backdoor in generated application code</span><span class="ch-grant">grants a backdoor sitting in generated application code</span></div></li><li class="ch-step"><span class="ch-stepnum">2</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-265" title="Output trust confusion"><code>265</code></a> <span class="ch-vt">Output trust confusion</span><span class="ch-grant">grants downstream unable to tell generated from verified</span></div></li><li class="ch-step"><span class="ch-stepnum">3</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-264" title="Unsafe auto-ingestion of output"><code>264</code></a> <span class="ch-vt">Unsafe auto-ingestion of output</span><span class="ch-grant">grants model output fed straight into a live system</span></div></li><li class="ch-step ch-step--last"><span class="ch-stepnum">4</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-250" title="Command injection from generated commands"><code>250</code></a> <span class="ch-vt">Command injection from generated commands</span><span class="ch-grant">grants a generated command that runs on a host</span></div></li></ol></div>
+            <div class="ch-r ch-choke"><b>Break it here</b><p><a class="ch-v" href="#LLM-264" title="Unsafe auto-ingestion of output"><code>264</code></a> <span class="ch-vt">Unsafe auto-ingestion of output</span><br>Treat model output as untrusted before you execute, store or forward it.</p></div>
+            <div class="ch-grid2">
+              <div class="ch-r ch-r--blast"><b>Ends at</b><p>A generated command executes on a host.</p></div>
+              <div class="ch-r ch-r--detect"><b>Watch for</b><p>Tool calls whose parameters differ from the user&#x27;s request; high-impact actions with no dry-run; actions on an authenticated session with no fresh intent.</p></div>
+            </div>
+            <div class="ch-r"><b>Maps</b><p class="ch-maps">OWASP LLM10 | ATLAS AML.T0077</p></div>
+          </div>
+        </article>
+        <article class="ch-chain ch-chain--amber" data-obj="Unauthorized action">
+          <header class="ch-head" role="button" tabindex="0" aria-expanded="false">
+            <code class="ch-cid">COMBO-14</code><strong>Sensor-deceived physical actuation</strong>
+            <span class="ch-obj">Unauthorized action</span><span class="ch-steps">3 steps</span>
+          </header>
+          <div class="ch-body">
+            <div class="ch-r"><b>How it plays out</b><p class="ch-flow">a screen overlay deceives a computer-use agent into a sensor-driven physical action that cannot be undone.</p></div>
+            <div class="ch-r"><b>The hand-off</b><ol class="ch-ladder"><li class="ch-step"><span class="ch-stepnum">1</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-466" title="Screen overlay injection"><code>466</code></a> <span class="ch-vt">Screen overlay injection</span><span class="ch-grant">grants an overlay that deceives a screen-reading agent</span></div></li><li class="ch-step"><span class="ch-stepnum">2</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-507" title="Sensor-deceived physical actuation"><code>507</code></a> <span class="ch-vt">Sensor-deceived physical actuation</span><span class="ch-grant">grants a physical actuator driven on bad sensor data</span></div></li><li class="ch-step ch-step--last"><span class="ch-stepnum">3</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-117" title="Destructive action abuse"><code>117</code></a> <span class="ch-vt">Destructive action abuse</span><span class="ch-grant">grants an irreversible delete, overwrite, or revoke</span></div></li></ol></div>
+            <div class="ch-r ch-choke"><b>Break it here</b><p><a class="ch-v" href="#LLM-507" title="Sensor-deceived physical actuation"><code>507</code></a> <span class="ch-vt">Sensor-deceived physical actuation</span><br>Confirm physical actuation out-of-band; do not drive actuators from screen-read state alone.</p></div>
+            <div class="ch-grid2">
+              <div class="ch-r ch-r--blast"><b>Ends at</b><p>An irreversible destroy/overwrite/revoke lands.</p></div>
+              <div class="ch-r ch-r--detect"><b>Watch for</b><p>Tool calls whose parameters differ from the user&#x27;s request; high-impact actions with no dry-run; actions on an authenticated session with no fresh intent.</p></div>
+            </div>
+            <div class="ch-r"><b>Maps</b><p class="ch-maps">OWASP LLM03 | ATLAS AML.T0053</p></div>
+          </div>
+        </article>
+        <article class="ch-chain ch-chain--amber" data-obj="Unauthorized action">
+          <header class="ch-head" role="button" tabindex="0" aria-expanded="false">
+            <code class="ch-cid">COMBO-15</code><strong>Autofill to transfer</strong>
+            <span class="ch-obj">Unauthorized action</span><span class="ch-steps">2 steps</span>
+          </header>
+          <div class="ch-body">
+            <div class="ch-r"><b>How it plays out</b><p class="ch-flow">a live-form autofill leaks credentials into an attacker form and a transfer is abused.</p></div>
+            <div class="ch-r"><b>The hand-off</b><ol class="ch-ladder"><li class="ch-step"><span class="ch-stepnum">1</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-443" title="Live form autofill exfiltration"><code>443</code></a> <span class="ch-vt">Live form autofill exfiltration</span><span class="ch-grant">grants secrets autofilled into an attacker&#x27;s form</span></div></li><li class="ch-step ch-step--last"><span class="ch-stepnum">2</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-115" title="Payment or transfer abuse"><code>115</code></a> <span class="ch-vt">Payment or transfer abuse</span><span class="ch-grant">grants a completed payment or transfer</span></div></li></ol></div>
+            <div class="ch-r ch-choke"><b>Break it here</b><p><a class="ch-v" href="#LLM-443" title="Live form autofill exfiltration"><code>443</code></a> <span class="ch-vt">Live form autofill exfiltration</span><br>Never autofill secrets or payment data into forms reached from untrusted content; confirm transfers out-of-band.</p></div>
+            <div class="ch-grid2">
+              <div class="ch-r ch-r--blast"><b>Ends at</b><p>Money moves — a payment or transfer completes.</p></div>
+              <div class="ch-r ch-r--detect"><b>Watch for</b><p>Tool calls whose parameters differ from the user&#x27;s request; high-impact actions with no dry-run; actions on an authenticated session with no fresh intent.</p></div>
+            </div>
+            <div class="ch-r"><b>Maps</b><p class="ch-maps">OWASP LLM02 | ATLAS AML.T0057</p></div>
+          </div>
+        </article>
+        <article class="ch-chain ch-chain--rose" data-obj="Unauthorized action">
+          <header class="ch-head" role="button" tabindex="0" aria-expanded="false">
+            <code class="ch-cid">COMBO-16</code><strong>Browser / computer-use clickjacking</strong>
+            <span class="ch-obj">Unauthorized action</span><span class="ch-steps">6 steps</span>
+          </header>
+          <div class="ch-body">
+            <div class="ch-r"><b>How it plays out</b><p class="ch-flow">screen-control injection and a clickjack steer an authenticated browser agent to a different target, moving money and abusing an archive extraction.</p></div>
+            <div class="ch-r"><b>The hand-off</b><ol class="ch-ladder"><li class="ch-step"><span class="ch-stepnum">1</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-441" title="Computer-use screen-control injection"><code>441</code></a> <span class="ch-vt">Computer-use screen-control injection</span><span class="ch-grant">grants control of what a computer-use agent clicks</span></div></li><li class="ch-step"><span class="ch-stepnum">2</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-442" title="Browser-agent clickjacking"><code>442</code></a> <span class="ch-vt">Browser-agent clickjacking</span><span class="ch-grant">grants a click landing on a hidden, different target</span></div></li><li class="ch-step"><span class="ch-stepnum">3</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-113" title="Unsafe browser automation"><code>113</code></a> <span class="ch-vt">Unsafe browser automation</span><span class="ch-grant">grants an agent that clicks, submits, and buys on sites</span></div></li><li class="ch-step"><span class="ch-stepnum">4</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-115" title="Payment or transfer abuse"><code>115</code></a> <span class="ch-vt">Payment or transfer abuse</span><span class="ch-grant">grants a completed payment or transfer</span></div></li><li class="ch-step"><span class="ch-stepnum">5</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-145" title="Authenticated browser action abuse"><code>145</code></a> <span class="ch-vt">Authenticated browser action abuse</span><span class="ch-grant">grants actions through an already-authenticated session</span></div></li><li class="ch-step ch-step--last"><span class="ch-stepnum">6</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-143" title="Archive extraction abuse"><code>143</code></a> <span class="ch-vt">Archive extraction abuse</span><span class="ch-grant">grants files written outside the extract directory</span></div></li></ol></div>
+            <div class="ch-r ch-choke"><b>Break it here</b><p><a class="ch-v" href="#LLM-442" title="Browser-agent clickjacking"><code>442</code></a> <span class="ch-vt">Browser-agent clickjacking</span><br>Confirm high-impact clicks out-of-band; detect overlay and hidden-element deception.</p></div>
+            <div class="ch-grid2">
+              <div class="ch-r ch-r--blast"><b>Ends at</b><p>The attack reaches its objective: browser / computer-use clickjacking.</p></div>
+              <div class="ch-r ch-r--detect"><b>Watch for</b><p>Tool calls whose parameters differ from the user&#x27;s request; high-impact actions with no dry-run; actions on an authenticated session with no fresh intent.</p></div>
+            </div>
+            <div class="ch-r"><b>Maps</b><p class="ch-maps">OWASP LLM01 | ATLAS AML.T0051</p></div>
+          </div>
+        </article>
+        <article class="ch-chain ch-chain--rose" data-obj="Unauthorized action">
+          <header class="ch-head" role="button" tabindex="0" aria-expanded="false">
+            <code class="ch-cid">COMBO-17</code><strong>Voice command to action abuse</strong>
+            <span class="ch-obj">Unauthorized action</span><span class="ch-steps">5 steps</span>
+          </header>
+          <div class="ch-body">
+            <div class="ch-r"><b>How it plays out</b><p class="ch-flow">a spoken or replayed command plus a realtime interruption invokes messaging and payment tools without verified intent.</p></div>
+            <div class="ch-r"><b>The hand-off</b><ol class="ch-ladder"><li class="ch-step"><span class="ch-stepnum">1</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-444" title="Voice-command tool invocation"><code>444</code></a> <span class="ch-vt">Voice-command tool invocation</span><span class="ch-grant">grants a tool call triggered by audio</span></div></li><li class="ch-step"><span class="ch-stepnum">2</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-445" title="Realtime interruption attack"><code>445</code></a> <span class="ch-vt">Realtime interruption attack</span><span class="ch-grant">grants an in-progress action redirected mid-stream</span></div></li><li class="ch-step"><span class="ch-stepnum">3</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-114" title="Email or messaging abuse"><code>114</code></a> <span class="ch-vt">Email or messaging abuse</span><span class="ch-grant">grants outbound email/messages in the user&#x27;s name</span></div></li><li class="ch-step"><span class="ch-stepnum">4</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-141" title="Webhook exfiltration"><code>141</code></a> <span class="ch-vt">Webhook exfiltration</span><span class="ch-grant">grants a channel that posts data to the attacker</span></div></li><li class="ch-step ch-step--last"><span class="ch-stepnum">5</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-115" title="Payment or transfer abuse"><code>115</code></a> <span class="ch-vt">Payment or transfer abuse</span><span class="ch-grant">grants a completed payment or transfer</span></div></li></ol></div>
+            <div class="ch-r ch-choke"><b>Break it here</b><p><a class="ch-v" href="#LLM-445" title="Realtime interruption attack"><code>445</code></a> <span class="ch-vt">Realtime interruption attack</span><br>Require verified user intent for voice-triggered tool calls; reject background, replayed and interrupting audio.</p></div>
+            <div class="ch-grid2">
+              <div class="ch-r ch-r--blast"><b>Ends at</b><p>Money moves — a payment or transfer completes.</p></div>
+              <div class="ch-r ch-r--detect"><b>Watch for</b><p>Tool calls whose parameters differ from the user&#x27;s request; high-impact actions with no dry-run; actions on an authenticated session with no fresh intent.</p></div>
+            </div>
+            <div class="ch-r"><b>Maps</b><p class="ch-maps">OWASP LLM01 | ATLAS AML.T0051</p></div>
+          </div>
+        </article>
+        <article class="ch-chain ch-chain--violet" data-obj="Defeat the gate">
+          <header class="ch-head" role="button" tabindex="0" aria-expanded="false">
+            <code class="ch-cid">COMBO-18</code><strong>Consensus neutralised</strong>
+            <span class="ch-obj">Defeat the gate</span><span class="ch-steps">5 steps</span>
+          </header>
+          <div class="ch-body">
+            <div class="ch-r"><b>How it plays out</b><p class="ch-flow">a poisoned shared context reaches every voter, approvers are the same model on the same evidence, the summary hides it, the action runs.</p></div>
+            <div class="ch-r"><b>The hand-off</b><ol class="ch-ladder"><li class="ch-step"><span class="ch-stepnum">1</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-166" title="Shared-context compromise"><code>166</code></a> <span class="ch-vt">Shared-context compromise</span><span class="ch-grant">grants one poisoned source reaching every voter</span></div></li><li class="ch-step"><span class="ch-stepnum">2</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-165" title="Shared-model non-independence"><code>165</code></a> <span class="ch-vt">Shared-model non-independence</span><span class="ch-grant">grants &#x27;independent&#x27; voters that are the same model</span></div></li><li class="ch-step"><span class="ch-stepnum">3</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-184" title="Common evidence source failure"><code>184</code></a> <span class="ch-vt">Common evidence source failure</span><span class="ch-grant">grants all approvers trusting the same poisoned evidence</span></div></li><li class="ch-step"><span class="ch-stepnum">4</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-159" title="Approval summary mismatch"><code>159</code></a> <span class="ch-vt">Approval summary mismatch</span><span class="ch-grant">grants a clean summary hiding the real action</span></div></li><li class="ch-step ch-step--last"><span class="ch-stepnum">5</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-115" title="Payment or transfer abuse"><code>115</code></a> <span class="ch-vt">Payment or transfer abuse</span><span class="ch-grant">grants a completed payment or transfer</span></div></li></ol></div>
+            <div class="ch-r ch-choke"><b>Break it here</b><p><a class="ch-v" href="#LLM-165" title="Shared-model non-independence"><code>165</code></a> <span class="ch-vt">Shared-model non-independence</span><br>Make approvers independent in model, prompt, context and identity; one poisoned source must not reach all.</p></div>
+            <div class="ch-grid2">
+              <div class="ch-r ch-r--blast"><b>Ends at</b><p>Money moves — a payment or transfer completes.</p></div>
+              <div class="ch-r ch-r--detect"><b>Watch for</b><p>Approvals not bound to exact parameters; approver and requester overlap; summaries shown instead of raw actions; approval arriving off the official channel.</p></div>
+            </div>
+            <div class="ch-r"><b>Maps</b><p class="ch-maps">OWASP LLM03 | ATLAS AML.T0080</p></div>
+          </div>
+        </article>
+        <article class="ch-chain ch-chain--violet" data-obj="Defeat the gate">
+          <header class="ch-head" role="button" tabindex="0" aria-expanded="false">
+            <code class="ch-cid">COMBO-19</code><strong>Race / revocation</strong>
+            <span class="ch-obj">Defeat the gate</span><span class="ch-steps">4 steps</span>
+          </header>
+          <div class="ch-body">
+            <div class="ch-r"><b>How it plays out</b><p class="ch-flow">approval is not bound to the exact action, a parameter changes after approval, and execution wins the race before revocation.</p></div>
+            <div class="ch-r"><b>The hand-off</b><ol class="ch-ladder"><li class="ch-step"><span class="ch-stepnum">1</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-158" title="Approval not bound to exact action"><code>158</code></a> <span class="ch-vt">Approval not bound to exact action</span><span class="ch-grant">grants an approval not tied to the exact action</span></div></li><li class="ch-step"><span class="ch-stepnum">2</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-160" title="Hidden parameter change after approval"><code>160</code></a> <span class="ch-vt">Hidden parameter change after approval</span><span class="ch-grant">grants a parameter swapped after sign-off</span></div></li><li class="ch-step"><span class="ch-stepnum">3</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-161" title="Race between approval and execution"><code>161</code></a> <span class="ch-vt">Race between approval and execution</span><span class="ch-grant">grants a window between approval and execution</span></div></li><li class="ch-step ch-step--last"><span class="ch-stepnum">4</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-117" title="Destructive action abuse"><code>117</code></a> <span class="ch-vt">Destructive action abuse</span><span class="ch-grant">grants an irreversible delete, overwrite, or revoke</span></div></li></ol></div>
+            <div class="ch-r ch-choke"><b>Break it here</b><p><a class="ch-v" href="#LLM-158" title="Approval not bound to exact action"><code>158</code></a> <span class="ch-vt">Approval not bound to exact action</span><br>Bind approval cryptographically to exact parameters; re-check at execution time.</p></div>
+            <div class="ch-grid2">
+              <div class="ch-r ch-r--blast"><b>Ends at</b><p>An irreversible destroy/overwrite/revoke lands.</p></div>
+              <div class="ch-r ch-r--detect"><b>Watch for</b><p>Approvals not bound to exact parameters; approver and requester overlap; summaries shown instead of raw actions; approval arriving off the official channel.</p></div>
+            </div>
+            <div class="ch-r"><b>Maps</b><p class="ch-maps">OWASP LLM03 | ATLAS AML.T0053</p></div>
+          </div>
+        </article>
+        <article class="ch-chain ch-chain--violet" data-obj="Defeat the gate">
+          <header class="ch-head" role="button" tabindex="0" aria-expanded="false">
+            <code class="ch-cid">COMBO-20</code><strong>Shadow approval channel</strong>
+            <span class="ch-obj">Defeat the gate</span><span class="ch-steps">4 steps</span>
+          </header>
+          <div class="ch-body">
+            <div class="ch-r"><b>How it plays out</b><p class="ch-flow">a chat or ticket is treated as approval, break-glass becomes routine, duties are not separated, the action runs.</p></div>
+            <div class="ch-r"><b>The hand-off</b><ol class="ch-ladder"><li class="ch-step"><span class="ch-stepnum">1</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-190" title="Shadow approval channel"><code>190</code></a> <span class="ch-vt">Shadow approval channel</span><span class="ch-grant">grants a chat/ticket treated as real approval</span></div></li><li class="ch-step"><span class="ch-stepnum">2</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-185" title="Break-glass approval misuse"><code>185</code></a> <span class="ch-vt">Break-glass approval misuse</span><span class="ch-grant">grants an emergency override used as a normal path</span></div></li><li class="ch-step"><span class="ch-stepnum">3</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-179" title="Missing separation of duties"><code>179</code></a> <span class="ch-vt">Missing separation of duties</span><span class="ch-grant">grants one principal filling requester and approver</span></div></li><li class="ch-step ch-step--last"><span class="ch-stepnum">4</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-117" title="Destructive action abuse"><code>117</code></a> <span class="ch-vt">Destructive action abuse</span><span class="ch-grant">grants an irreversible delete, overwrite, or revoke</span></div></li></ol></div>
+            <div class="ch-r ch-choke"><b>Break it here</b><p><a class="ch-v" href="#LLM-179" title="Missing separation of duties"><code>179</code></a> <span class="ch-vt">Missing separation of duties</span><br>Accept approval only through one authoritative gate; enforce separation of duties.</p></div>
+            <div class="ch-grid2">
+              <div class="ch-r ch-r--blast"><b>Ends at</b><p>An irreversible destroy/overwrite/revoke lands.</p></div>
+              <div class="ch-r ch-r--detect"><b>Watch for</b><p>Approvals not bound to exact parameters; approver and requester overlap; summaries shown instead of raw actions; approval arriving off the official channel.</p></div>
+            </div>
+            <div class="ch-r"><b>Maps</b><p class="ch-maps">OWASP LLM03 | ATLAS AML.T0053</p></div>
+          </div>
+        </article>
+        <article class="ch-chain ch-chain--violet" data-obj="Defeat the gate">
+          <header class="ch-head" role="button" tabindex="0" aria-expanded="false">
+            <code class="ch-cid">COMBO-21</code><strong>Deepfake approver</strong>
+            <span class="ch-obj">Defeat the gate</span><span class="ch-steps">3 steps</span>
+          </header>
+          <div class="ch-body">
+            <div class="ch-r"><b>How it plays out</b><p class="ch-flow">a replayed or generated voice satisfies the approver check, forges an approval, money moves.</p></div>
+            <div class="ch-r"><b>The hand-off</b><ol class="ch-ladder"><li class="ch-step"><span class="ch-stepnum">1</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-465" title="Audio deepfake approver spoofing"><code>465</code></a> <span class="ch-vt">Audio deepfake approver spoofing</span><span class="ch-grant">grants a synthetic voice that passes the approver check</span></div></li><li class="ch-step"><span class="ch-stepnum">2</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-162" title="Approver identity spoofing"><code>162</code></a> <span class="ch-vt">Approver identity spoofing</span><span class="ch-grant">grants an approval that appears to come from someone trusted</span></div></li><li class="ch-step ch-step--last"><span class="ch-stepnum">3</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-115" title="Payment or transfer abuse"><code>115</code></a> <span class="ch-vt">Payment or transfer abuse</span><span class="ch-grant">grants a completed payment or transfer</span></div></li></ol></div>
+            <div class="ch-r ch-choke"><b>Break it here</b><p><a class="ch-v" href="#LLM-162" title="Approver identity spoofing"><code>162</code></a> <span class="ch-vt">Approver identity spoofing</span><br>Verify approver identity with a channel that a replayed or synthetic voice cannot satisfy.</p></div>
+            <div class="ch-grid2">
+              <div class="ch-r ch-r--blast"><b>Ends at</b><p>Money moves — a payment or transfer completes.</p></div>
+              <div class="ch-r ch-r--detect"><b>Watch for</b><p>Approvals not bound to exact parameters; approver and requester overlap; summaries shown instead of raw actions; approval arriving off the official channel.</p></div>
+            </div>
+            <div class="ch-r"><b>Maps</b><p class="ch-maps">OWASP LLM07 | ATLAS AML.T0088</p></div>
+          </div>
+        </article>
+        <article class="ch-chain ch-chain--violet" data-obj="Defeat the gate">
+          <header class="ch-head" role="button" tabindex="0" aria-expanded="false">
+            <code class="ch-cid">COMBO-22</code><strong>Injection to approval bypass to irreversible action</strong>
+            <span class="ch-obj">Defeat the gate</span><span class="ch-steps">7 steps</span>
+          </header>
+          <div class="ch-body">
+            <div class="ch-r"><b>How it plays out</b><p class="ch-flow">context stuffing buries the warning, a summary mismatch and rubber-stamp get it approved, a param changes, scope is ambiguous, quorum falls, action runs.</p></div>
+            <div class="ch-r"><b>The hand-off</b><ol class="ch-ladder"><li class="ch-step"><span class="ch-stepnum">1</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-012" title="Context stuffing"><code>012</code></a> <span class="ch-vt">Context stuffing</span><span class="ch-grant">grants a buried policy: the real rule is pushed out of attention</span></div></li><li class="ch-step"><span class="ch-stepnum">2</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-159" title="Approval summary mismatch"><code>159</code></a> <span class="ch-vt">Approval summary mismatch</span><span class="ch-grant">grants a clean summary hiding the real action</span></div></li><li class="ch-step"><span class="ch-stepnum">3</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-173" title="Human rubber-stamping"><code>173</code></a> <span class="ch-vt">Human rubber-stamping</span><span class="ch-grant">grants a human who approves without really looking</span></div></li><li class="ch-step"><span class="ch-stepnum">4</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-160" title="Hidden parameter change after approval"><code>160</code></a> <span class="ch-vt">Hidden parameter change after approval</span><span class="ch-grant">grants a parameter swapped after sign-off</span></div></li><li class="ch-step"><span class="ch-stepnum">5</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-186" title="Approval scope ambiguity"><code>186</code></a> <span class="ch-vt">Approval scope ambiguity</span><span class="ch-grant">grants approval stretched beyond the intended instance</span></div></li><li class="ch-step"><span class="ch-stepnum">6</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-151" title="Quorum bypass"><code>151</code></a> <span class="ch-vt">Quorum bypass</span><span class="ch-grant">grants a privileged action with the gate skipped</span></div></li><li class="ch-step ch-step--last"><span class="ch-stepnum">7</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-117" title="Destructive action abuse"><code>117</code></a> <span class="ch-vt">Destructive action abuse</span><span class="ch-grant">grants an irreversible delete, overwrite, or revoke</span></div></li></ol></div>
+            <div class="ch-r ch-choke"><b>Break it here</b><p><a class="ch-v" href="#LLM-159" title="Approval summary mismatch"><code>159</code></a> <span class="ch-vt">Approval summary mismatch</span><br>Show approvers the raw action, not a model summary; bind approval to exact parameters and scope.</p></div>
+            <div class="ch-grid2">
+              <div class="ch-r ch-r--blast"><b>Ends at</b><p>An irreversible destroy/overwrite/revoke lands.</p></div>
+              <div class="ch-r ch-r--detect"><b>Watch for</b><p>Approvals not bound to exact parameters; approver and requester overlap; summaries shown instead of raw actions; approval arriving off the official channel.</p></div>
+            </div>
+            <div class="ch-r"><b>Maps</b><p class="ch-maps">OWASP LLM07 | ATLAS AML.T0067</p></div>
+          </div>
+        </article>
+        <article class="ch-chain ch-chain--violet" data-obj="Defeat the gate">
+          <header class="ch-head" role="button" tabindex="0" aria-expanded="false">
+            <code class="ch-cid">COMBO-23</code><strong>Human-factors social approval bypass</strong>
+            <span class="ch-obj">Defeat the gate</span><span class="ch-steps">7 steps</span>
+          </header>
+          <div class="ch-body">
+            <div class="ch-r"><b>How it plays out</b><p class="ch-flow">fatigue and a truncated, spoofed UI get a human to approve a summary they never inspected, duties are not separated, quorum falls.</p></div>
+            <div class="ch-r"><b>The hand-off</b><ol class="ch-ladder"><li class="ch-step"><span class="ch-stepnum">1</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-365" title="Approval fatigue"><code>365</code></a> <span class="ch-vt">Approval fatigue</span><span class="ch-grant">grants approvers numbed by volume</span></div></li><li class="ch-step"><span class="ch-stepnum">2</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-173" title="Human rubber-stamping"><code>173</code></a> <span class="ch-vt">Human rubber-stamping</span><span class="ch-grant">grants a human who approves without really looking</span></div></li><li class="ch-step"><span class="ch-stepnum">3</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-367" title="UI truncation of critical details"><code>367</code></a> <span class="ch-vt">UI truncation of critical details</span><span class="ch-grant">grants the risky detail pushed out of the visible UI</span></div></li><li class="ch-step"><span class="ch-stepnum">4</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-174" title="Approval UI spoofing"><code>174</code></a> <span class="ch-vt">Approval UI spoofing</span><span class="ch-grant">grants an approval UI that misrepresents the action</span></div></li><li class="ch-step"><span class="ch-stepnum">5</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-159" title="Approval summary mismatch"><code>159</code></a> <span class="ch-vt">Approval summary mismatch</span><span class="ch-grant">grants a clean summary hiding the real action</span></div></li><li class="ch-step"><span class="ch-stepnum">6</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-179" title="Missing separation of duties"><code>179</code></a> <span class="ch-vt">Missing separation of duties</span><span class="ch-grant">grants one principal filling requester and approver</span></div></li><li class="ch-step ch-step--last"><span class="ch-stepnum">7</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-151" title="Quorum bypass"><code>151</code></a> <span class="ch-vt">Quorum bypass</span><span class="ch-grant">grants a privileged action with the gate skipped</span></div></li></ol></div>
+            <div class="ch-r ch-choke"><b>Break it here</b><p><a class="ch-v" href="#LLM-173" title="Human rubber-stamping"><code>173</code></a> <span class="ch-vt">Human rubber-stamping</span><br>Reduce approval volume and show raw action detail; enforce separation of duties so one human cannot clear it.</p></div>
+            <div class="ch-grid2">
+              <div class="ch-r ch-r--blast"><b>Ends at</b><p>The attack reaches its objective: human-factors social approval bypass.</p></div>
+              <div class="ch-r ch-r--detect"><b>Watch for</b><p>Approvals not bound to exact parameters; approver and requester overlap; summaries shown instead of raw actions; approval arriving off the official channel.</p></div>
+            </div>
+            <div class="ch-r"><b>Maps</b><p class="ch-maps">OWASP LLM07 | ATLAS AML.T0067</p></div>
+          </div>
+        </article>
+        <article class="ch-chain ch-chain--blue" data-obj="Escalate privilege">
+          <header class="ch-head" role="button" tabindex="0" aria-expanded="false">
+            <code class="ch-cid">COMBO-24</code><strong>Connected-app escalation</strong>
+            <span class="ch-obj">Escalate privilege</span><span class="ch-steps">4 steps</span>
+          </header>
+          <div class="ch-body">
+            <div class="ch-r"><b>How it plays out</b><p class="ch-flow">a default-allow connector policy lets a low-privilege user reach a high-privilege app, scope creeps, data exfiltrates.</p></div>
+            <div class="ch-r"><b>The hand-off</b><ol class="ch-ladder"><li class="ch-step"><span class="ch-stepnum">1</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-201" title="Default-allow connector policy"><code>201</code></a> <span class="ch-vt">Default-allow connector policy</span><span class="ch-grant">grants new connectors allowed unless explicitly blocked</span></div></li><li class="ch-step"><span class="ch-stepnum">2</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-203" title="Privilege escalation via connected app"><code>203</code></a> <span class="ch-vt">Privilege escalation via connected app</span><span class="ch-grant">grants low-privilege user acting through a high-privilege app</span></div></li><li class="ch-step"><span class="ch-stepnum">3</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-125" title="Connector scope creep"><code>125</code></a> <span class="ch-vt">Connector scope creep</span><span class="ch-grant">grants connector scopes wider than the task</span></div></li><li class="ch-step ch-step--last"><span class="ch-stepnum">4</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-127" title="File upload/download exfiltration"><code>127</code></a> <span class="ch-vt">File upload/download exfiltration</span><span class="ch-grant">grants files moved out to an attacker location</span></div></li></ol></div>
+            <div class="ch-r ch-choke"><b>Break it here</b><p><a class="ch-v" href="#LLM-201" title="Default-allow connector policy"><code>201</code></a> <span class="ch-vt">Default-allow connector policy</span><br>Default-deny connectors and review scopes; a user must not reach privilege through an app indirectly.</p></div>
+            <div class="ch-grid2">
+              <div class="ch-r ch-r--blast"><b>Ends at</b><p>Files are exfiltrated to an attacker location.</p></div>
+              <div class="ch-r ch-r--detect"><b>Watch for</b><p>Tokens accepted cross-service or cross-tenant; connector scopes widening; actions spanning workspaces.</p></div>
+            </div>
+            <div class="ch-r"><b>Maps</b><p class="ch-maps">OWASP LLM03 | ATLAS AML.T0053</p></div>
+          </div>
+        </article>
+        <article class="ch-chain ch-chain--blue" data-obj="Escalate privilege">
+          <header class="ch-head" role="button" tabindex="0" aria-expanded="false">
+            <code class="ch-cid">COMBO-25</code><strong>MCP token reuse across servers</strong>
+            <span class="ch-obj">Escalate privilege</span><span class="ch-steps">4 steps</span>
+          </header>
+          <div class="ch-body">
+            <div class="ch-r"><b>How it plays out</b><p class="ch-flow">MCP token mismanagement lets an OAuth token be reused on another server past an audience mismatch, reaching a cross-workspace action.</p></div>
+            <div class="ch-r"><b>The hand-off</b><ol class="ch-ladder"><li class="ch-step"><span class="ch-stepnum">1</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-404" title="MCP token mismanagement"><code>404</code></a> <span class="ch-vt">MCP token mismanagement</span><span class="ch-grant">grants MCP tokens that are long-lived and over-scoped</span></div></li><li class="ch-step"><span class="ch-stepnum">2</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-422" title="OAuth token reuse across MCP servers"><code>422</code></a> <span class="ch-vt">OAuth token reuse across MCP servers</span><span class="ch-grant">grants one server&#x27;s token accepted by another</span></div></li><li class="ch-step"><span class="ch-stepnum">3</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-209" title="Token audience mismatch"><code>209</code></a> <span class="ch-vt">Token audience mismatch</span><span class="ch-grant">grants a token one service accepts though issued for another</span></div></li><li class="ch-step ch-step--last"><span class="ch-stepnum">4</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-200" title="Cross-workspace action"><code>200</code></a> <span class="ch-vt">Cross-workspace action</span><span class="ch-grant">grants actions reaching across workspaces or tenants</span></div></li></ol></div>
+            <div class="ch-r ch-choke"><b>Break it here</b><p><a class="ch-v" href="#LLM-422" title="OAuth token reuse across MCP servers"><code>422</code></a> <span class="ch-vt">OAuth token reuse across MCP servers</span><br>Make tokens audience-bound, scoped and non-reusable across servers.</p></div>
+            <div class="ch-grid2">
+              <div class="ch-r ch-r--blast"><b>Ends at</b><p>Actions cross into another workspace or tenant.</p></div>
+              <div class="ch-r ch-r--detect"><b>Watch for</b><p>Tokens accepted cross-service or cross-tenant; connector scopes widening; actions spanning workspaces.</p></div>
+            </div>
+            <div class="ch-r"><b>Maps</b><p class="ch-maps">OWASP MCP01/MCP07 | ATLAS AML.T0098</p></div>
+          </div>
+        </article>
+        <article class="ch-chain ch-chain--blue" data-obj="Escalate privilege">
+          <header class="ch-head" role="button" tabindex="0" aria-expanded="false">
+            <code class="ch-cid">COMBO-26</code><strong>Co-presented scope disclosure</strong>
+            <span class="ch-obj">Escalate privilege</span><span class="ch-steps">3 steps</span>
+          </header>
+          <div class="ch-body">
+            <div class="ch-r"><b>How it plays out</b><p class="ch-flow">the agent over-discloses the more sensitive held grant, a denial error leaks co-presented scopes, and the confused deputy acts.</p></div>
+            <div class="ch-r"><b>The hand-off</b><ol class="ch-ladder"><li class="ch-step"><span class="ch-stepnum">1</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-514" title="Spontaneous over-disclosure of the more sensitive held grant"><code>514</code></a> <span class="ch-vt">Spontaneous over-disclosure of the more sensitive held grant</span><span class="ch-grant">grants the more sensitive of two held grants, volunteered</span></div></li><li class="ch-step"><span class="ch-stepnum">2</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-515" title="Denial-error scope disclosure of co-presented grants"><code>515</code></a> <span class="ch-vt">Denial-error scope disclosure of co-presented grants</span><span class="ch-grant">grants co-presented scopes leaked in a denial error</span></div></li><li class="ch-step ch-step--last"><span class="ch-stepnum">3</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-105" title="Confused deputy through tools"><code>105</code></a> <span class="ch-vt">Confused deputy through tools</span><span class="ch-grant">grants the agent acting with its own credentials on attacker intent</span></div></li></ol></div>
+            <div class="ch-r ch-choke"><b>Break it here</b><p><a class="ch-v" href="#LLM-514" title="Spontaneous over-disclosure of the more sensitive held grant"><code>514</code></a> <span class="ch-vt">Spontaneous over-disclosure of the more sensitive held grant</span><br>Present the minimum grant for the task; never surface a second, more sensitive grant or its scope in errors.</p></div>
+            <div class="ch-grid2">
+              <div class="ch-r ch-r--blast"><b>Ends at</b><p>The agent becomes a confused deputy for the attacker.</p></div>
+              <div class="ch-r ch-r--detect"><b>Watch for</b><p>Tokens accepted cross-service or cross-tenant; connector scopes widening; actions spanning workspaces.</p></div>
+            </div>
+            <div class="ch-r"><b>Maps</b><p class="ch-maps">OWASP LLM02 | ATLAS AML.T0057</p></div>
+          </div>
+        </article>
+        <article class="ch-chain ch-chain--orange" data-obj="Escalate privilege">
+          <header class="ch-head" role="button" tabindex="0" aria-expanded="false">
+            <code class="ch-cid">COMBO-27</code><strong>Generated IaC / manifest to privilege escalation</strong>
+            <span class="ch-obj">Escalate privilege</span><span class="ch-steps">6 steps</span>
+          </header>
+          <div class="ch-body">
+            <div class="ch-r"><b>How it plays out</b><p class="ch-flow">a generated Terraform plan and K8s manifest ship unsafe privilege, an environment mix-up widens scope to an over-privileged account, and it deploys.</p></div>
+            <div class="ch-r"><b>The hand-off</b><ol class="ch-ladder"><li class="ch-step"><span class="ch-stepnum">1</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-270" title="Terraform or IaC destructive plan"><code>270</code></a> <span class="ch-vt">Terraform or IaC destructive plan</span><span class="ch-grant">grants an infra plan that destroys or exposes resources</span></div></li><li class="ch-step"><span class="ch-stepnum">2</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-271" title="Kubernetes manifest privilege escalation"><code>271</code></a> <span class="ch-vt">Kubernetes manifest privilege escalation</span><span class="ch-grant">grants a privileged pod or broad RBAC in the cluster</span></div></li><li class="ch-step"><span class="ch-stepnum">3</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-257" title="Unsafe infrastructure-as-code"><code>257</code></a> <span class="ch-vt">Unsafe infrastructure-as-code</span><span class="ch-grant">grants infrastructure code with weak IAM or secrets</span></div></li><li class="ch-step"><span class="ch-stepnum">4</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-231" title="Environment mix-up"><code>231</code></a> <span class="ch-vt">Environment mix-up</span><span class="ch-grant">grants test keys or data reaching production</span></div></li><li class="ch-step"><span class="ch-stepnum">5</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-196" title="Overprivileged service account"><code>196</code></a> <span class="ch-vt">Overprivileged service account</span><span class="ch-grant">grants a service account far broader than needed</span></div></li><li class="ch-step ch-step--last"><span class="ch-stepnum">6</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-116" title="Production deployment abuse"><code>116</code></a> <span class="ch-vt">Production deployment abuse</span><span class="ch-grant">grants a push to production: code, infra, or secrets</span></div></li></ol></div>
+            <div class="ch-r ch-choke"><b>Break it here</b><p><a class="ch-v" href="#LLM-271" title="Kubernetes manifest privilege escalation"><code>271</code></a> <span class="ch-vt">Kubernetes manifest privilege escalation</span><br>Human-review generated IaC and manifests, require a dry-run plan, and deny privileged pods and broad RBAC.</p></div>
+            <div class="ch-grid2">
+              <div class="ch-r ch-r--blast"><b>Ends at</b><p>The attacker reaches production: code, infra, or secrets.</p></div>
+              <div class="ch-r ch-r--detect"><b>Watch for</b><p>Tokens accepted cross-service or cross-tenant; connector scopes widening; actions spanning workspaces.</p></div>
+            </div>
+            <div class="ch-r"><b>Maps</b><p class="ch-maps">OWASP LLM10 | ATLAS AML.T0101</p></div>
+          </div>
+        </article>
+        <article class="ch-chain ch-chain--orange" data-obj="Escalate privilege">
+          <header class="ch-head" role="button" tabindex="0" aria-expanded="false">
+            <code class="ch-cid">COMBO-28</code><strong>SSRF / DNS-rebind to cloud credential access</strong>
+            <span class="ch-obj">Escalate privilege</span><span class="ch-steps">6 steps</span>
+          </header>
+          <div class="ch-body">
+            <div class="ch-r"><b>How it plays out</b><p class="ch-flow">DNS rebinding and an allowlist bypass turn a fetch into SSRF against cloud metadata, session data yields creds, a deploy follows.</p></div>
+            <div class="ch-r"><b>The hand-off</b><ol class="ch-ladder"><li class="ch-step"><span class="ch-stepnum">1</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-135" title="DNS rebinding through browsing tools"><code>135</code></a> <span class="ch-vt">DNS rebinding through browsing tools</span><span class="ch-grant">grants a public host that resolves to an internal one</span></div></li><li class="ch-step"><span class="ch-stepnum">2</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-134" title="URL allowlist bypass"><code>134</code></a> <span class="ch-vt">URL allowlist bypass</span><span class="ch-grant">grants a destination outside the allowlist</span></div></li><li class="ch-step"><span class="ch-stepnum">3</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-112" title="SSRF through fetch or browser tools"><code>112</code></a> <span class="ch-vt">SSRF through fetch or browser tools</span><span class="ch-grant">grants requests to internal URLs the attacker picks</span></div></li><li class="ch-step"><span class="ch-stepnum">4</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-136" title="Cloud metadata access through tools"><code>136</code></a> <span class="ch-vt">Cloud metadata access through tools</span><span class="ch-grant">grants cloud instance-metadata and its identity tokens</span></div></li><li class="ch-step"><span class="ch-stepnum">5</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-078" title="Browser/session data exposure"><code>078</code></a> <span class="ch-vt">Browser/session data exposure</span><span class="ch-grant">grants the contents of a logged-in browser session</span></div></li><li class="ch-step ch-step--last"><span class="ch-stepnum">6</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-116" title="Production deployment abuse"><code>116</code></a> <span class="ch-vt">Production deployment abuse</span><span class="ch-grant">grants a push to production: code, infra, or secrets</span></div></li></ol></div>
+            <div class="ch-r ch-choke"><b>Break it here</b><p><a class="ch-v" href="#LLM-136" title="Cloud metadata access through tools"><code>136</code></a> <span class="ch-vt">Cloud metadata access through tools</span><br>Block the metadata endpoint and enforce egress allowlisting; pin DNS for tool fetches.</p></div>
+            <div class="ch-grid2">
+              <div class="ch-r ch-r--blast"><b>Ends at</b><p>The attacker reaches production: code, infra, or secrets.</p></div>
+              <div class="ch-r ch-r--detect"><b>Watch for</b><p>Tokens accepted cross-service or cross-tenant; connector scopes widening; actions spanning workspaces.</p></div>
+            </div>
+            <div class="ch-r"><b>Maps</b><p class="ch-maps">OWASP LLM03 | ATLAS AML.T0053</p></div>
+          </div>
+        </article>
+        <article class="ch-chain ch-chain--indigo" data-obj="Multi-agent spread">
+          <header class="ch-head" role="button" tabindex="0" aria-expanded="false">
+            <code class="ch-cid">COMBO-29</code><strong>Launder to lateral to cascade</strong>
+            <span class="ch-obj">Multi-agent spread</span><span class="ch-steps">5 steps</span>
+          </header>
+          <div class="ch-body">
+            <div class="ch-r"><b>How it plays out</b><p class="ch-flow">a task title injects agent A, which launders it to B as trusted work, trust expands, movement goes lateral, compromise cascades faster than containment.</p></div>
+            <div class="ch-r"><b>The hand-off</b><ol class="ch-ladder"><li class="ch-step"><span class="ch-stepnum">1</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-334" title="Task title prompt injection"><code>334</code></a> <span class="ch-vt">Task title prompt injection</span><span class="ch-grant">grants a task title that steers the next agent</span></div></li><li class="ch-step"><span class="ch-stepnum">2</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-320" title="Instruction laundering between agents"><code>320</code></a> <span class="ch-vt">Instruction laundering between agents</span><span class="ch-grant">grants a payload passed to another agent as trusted work</span></div></li><li class="ch-step"><span class="ch-stepnum">3</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-322" title="Transitive trust expansion"><code>322</code></a> <span class="ch-vt">Transitive trust expansion</span><span class="ch-grant">grants trust in one agent extended to its tools and data</span></div></li><li class="ch-step"><span class="ch-stepnum">4</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-498" title="Agent-to-agent lateral movement"><code>498</code></a> <span class="ch-vt">Agent-to-agent lateral movement</span><span class="ch-grant">grants movement from one agent to the next</span></div></li><li class="ch-step ch-step--last"><span class="ch-stepnum">5</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-503" title="Cascading compromise outruns containment"><code>503</code></a> <span class="ch-vt">Cascading compromise outruns containment</span><span class="ch-grant">grants spread across the agent graph before detection</span></div></li></ol></div>
+            <div class="ch-r ch-choke"><b>Break it here</b><p><a class="ch-v" href="#LLM-324" title="Manager-agent blind trust"><code>324</code></a> <span class="ch-vt">Manager-agent blind trust</span><br>Verify hand-offs with evidence, not trust; add a circuit breaker that caps propagation to one hop.</p></div>
+            <div class="ch-grid2">
+              <div class="ch-r ch-r--blast"><b>Ends at</b><p>Compromise cascades across the agent graph faster than containment.</p></div>
+              <div class="ch-r ch-r--detect"><b>Watch for</b><p>Hand-offs accepted without evidence; one source steering many agents; secrets passed to lower-trust agents; propagation with no circuit breaker.</p></div>
+            </div>
+            <div class="ch-r"><b>Maps</b><p class="ch-maps">OWASP LLM03 | ATLAS AML.T0080</p></div>
+          </div>
+        </article>
+        <article class="ch-chain ch-chain--indigo" data-obj="Multi-agent spread">
+          <header class="ch-head" role="button" tabindex="0" aria-expanded="false">
+            <code class="ch-cid">COMBO-30</code><strong>Persistence via self-modification</strong>
+            <span class="ch-obj">Multi-agent spread</span><span class="ch-steps">2 steps</span>
+          </header>
+          <div class="ch-body">
+            <div class="ch-r"><b>How it plays out</b><p class="ch-flow">the agent rewrites its own policy and poisons its persistent memory, re-triggering across sessions.</p></div>
+            <div class="ch-r"><b>The hand-off</b><ol class="ch-ladder"><li class="ch-step"><span class="ch-stepnum">1</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-130" title="Agent self-modification"><code>130</code></a> <span class="ch-vt">Agent self-modification</span><span class="ch-grant">grants an agent that can rewrite its own rules and tools</span></div></li><li class="ch-step ch-step--last"><span class="ch-stepnum">2</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-047" title="Persistent memory poisoning"><code>047</code></a> <span class="ch-vt">Persistent memory poisoning</span><span class="ch-grant">grants a payload that survives into future sessions</span></div></li></ol></div>
+            <div class="ch-r ch-choke"><b>Break it here</b><p><a class="ch-v" href="#LLM-047" title="Persistent memory poisoning"><code>047</code></a> <span class="ch-vt">Persistent memory poisoning</span><br>Make agent instructions immutable at runtime; gate and scope memory writes, and expire them.</p></div>
+            <div class="ch-grid2">
+              <div class="ch-r ch-r--blast"><b>Ends at</b><p>The attack reaches its objective: persistence via self-modification.</p></div>
+              <div class="ch-r ch-r--detect"><b>Watch for</b><p>Hand-offs accepted without evidence; one source steering many agents; secrets passed to lower-trust agents; propagation with no circuit breaker.</p></div>
+            </div>
+            <div class="ch-r"><b>Maps</b><p class="ch-maps">OWASP LLM03 | ATLAS AML.T0081</p></div>
+          </div>
+        </article>
+        <article class="ch-chain ch-chain--indigo" data-obj="Multi-agent spread">
+          <header class="ch-head" role="button" tabindex="0" aria-expanded="false">
+            <code class="ch-cid">COMBO-31</code><strong>Steganographic collusion</strong>
+            <span class="ch-obj">Multi-agent spread</span><span class="ch-steps">3 steps</span>
+          </header>
+          <div class="ch-body">
+            <div class="ch-r"><b>How it plays out</b><p class="ch-flow">a poisoned shared workspace carries a steganographic side-channel between agents, passing secrets across trust boundaries.</p></div>
+            <div class="ch-r"><b>The hand-off</b><ol class="ch-ladder"><li class="ch-step"><span class="ch-stepnum">1</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-323" title="Shared workspace poisoning"><code>323</code></a> <span class="ch-vt">Shared workspace poisoning</span><span class="ch-grant">grants a shared workspace that steers many agents</span></div></li><li class="ch-step"><span class="ch-stepnum">2</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-521" title="Steganographic inter-agent collusion"><code>521</code></a> <span class="ch-vt">Steganographic inter-agent collusion</span><span class="ch-grant">grants a covert channel between colluding agents</span></div></li><li class="ch-step ch-step--last"><span class="ch-stepnum">3</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-338" title="Cross-agent secret sharing"><code>338</code></a> <span class="ch-vt">Cross-agent secret sharing</span><span class="ch-grant">grants secrets handed to a lower-trust agent</span></div></li></ol></div>
+            <div class="ch-r ch-choke"><b>Break it here</b><p><a class="ch-v" href="#LLM-325" title="Cross-agent context leakage"><code>325</code></a> <span class="ch-vt">Cross-agent context leakage</span><br>Isolate per-agent context; inspect shared-workspace content for covert channels.</p></div>
+            <div class="ch-grid2">
+              <div class="ch-r ch-r--blast"><b>Ends at</b><p>The attack reaches its objective: steganographic collusion.</p></div>
+              <div class="ch-r ch-r--detect"><b>Watch for</b><p>Hand-offs accepted without evidence; one source steering many agents; secrets passed to lower-trust agents; propagation with no circuit breaker.</p></div>
+            </div>
+            <div class="ch-r"><b>Maps</b><p class="ch-maps">OWASP LLM03 | ATLAS AML.T0080</p></div>
+          </div>
+        </article>
+        <article class="ch-chain ch-chain--indigo" data-obj="Multi-agent spread">
+          <header class="ch-head" role="button" tabindex="0" aria-expanded="false">
+            <code class="ch-cid">COMBO-32</code><strong>Orchestrator hijack</strong>
+            <span class="ch-obj">Multi-agent spread</span><span class="ch-steps">4 steps</span>
+          </header>
+          <div class="ch-body">
+            <div class="ch-r"><b>How it plays out</b><p class="ch-flow">the router is hijacked, delegates tools it should not, grants a child unauthorized scope, and reaches a destructive action.</p></div>
+            <div class="ch-r"><b>The hand-off</b><ol class="ch-ladder"><li class="ch-step"><span class="ch-stepnum">1</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-499" title="Orchestrator / router hijacking"><code>499</code></a> <span class="ch-vt">Orchestrator / router hijacking</span><span class="ch-grant">grants control of the router that dispatches agents</span></div></li><li class="ch-step"><span class="ch-stepnum">2</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-329" title="Delegated tool misuse"><code>329</code></a> <span class="ch-vt">Delegated tool misuse</span><span class="ch-grant">grants a sub-agent using tools it should not have</span></div></li><li class="ch-step"><span class="ch-stepnum">3</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-340" title="Unauthorized agent tool grant"><code>340</code></a> <span class="ch-vt">Unauthorized agent tool grant</span><span class="ch-grant">grants a child agent granted scopes it should not hold</span></div></li><li class="ch-step ch-step--last"><span class="ch-stepnum">4</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-117" title="Destructive action abuse"><code>117</code></a> <span class="ch-vt">Destructive action abuse</span><span class="ch-grant">grants an irreversible delete, overwrite, or revoke</span></div></li></ol></div>
+            <div class="ch-r ch-choke"><b>Break it here</b><p><a class="ch-v" href="#LLM-499" title="Orchestrator / router hijacking"><code>499</code></a> <span class="ch-vt">Orchestrator / router hijacking</span><br>Harden the orchestrator as the trust root; it must not grant scopes it cannot itself justify.</p></div>
+            <div class="ch-grid2">
+              <div class="ch-r ch-r--blast"><b>Ends at</b><p>An irreversible destroy/overwrite/revoke lands.</p></div>
+              <div class="ch-r ch-r--detect"><b>Watch for</b><p>Hand-offs accepted without evidence; one source steering many agents; secrets passed to lower-trust agents; propagation with no circuit breaker.</p></div>
+            </div>
+            <div class="ch-r"><b>Maps</b><p class="ch-maps">OWASP LLM03 | ATLAS AML.T0053</p></div>
+          </div>
+        </article>
+        <article class="ch-chain ch-chain--indigo" data-obj="Multi-agent spread">
+          <header class="ch-head" role="button" tabindex="0" aria-expanded="false">
+            <code class="ch-cid">COMBO-33</code><strong>Self-modify to self-replicate to persist</strong>
+            <span class="ch-obj">Multi-agent spread</span><span class="ch-steps">8 steps</span>
+          </header>
+          <div class="ch-body">
+            <div class="ch-r"><b>How it plays out</b><p class="ch-flow">one injection lets the agent rewrite its policy, launder instructions, schedule a job, spawn more agents, expand trust and loop - persistence beyond the session.</p></div>
+            <div class="ch-r"><b>The hand-off</b><ol class="ch-ladder"><li class="ch-step"><span class="ch-stepnum">1</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-001" title="Direct prompt injection"><code>001</code></a> <span class="ch-vt">Direct prompt injection</span><span class="ch-grant">grants a foothold: attacker text is read as an instruction</span></div></li><li class="ch-step"><span class="ch-stepnum">2</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-130" title="Agent self-modification"><code>130</code></a> <span class="ch-vt">Agent self-modification</span><span class="ch-grant">grants an agent that can rewrite its own rules and tools</span></div></li><li class="ch-step"><span class="ch-stepnum">3</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-016" title="Instruction laundering through examples"><code>016</code></a> <span class="ch-vt">Instruction laundering through examples</span><span class="ch-grant">grants laundered intent: the payload looks like a harmless example</span></div></li><li class="ch-step"><span class="ch-stepnum">4</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-140" title="Task scheduler abuse"><code>140</code></a> <span class="ch-vt">Task scheduler abuse</span><span class="ch-grant">grants a job that runs later with stale authority</span></div></li><li class="ch-step"><span class="ch-stepnum">5</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-331" title="Agent self-replication"><code>331</code></a> <span class="ch-vt">Agent self-replication</span><span class="ch-grant">grants agents spawning more agents ungoverned</span></div></li><li class="ch-step"><span class="ch-stepnum">6</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-322" title="Transitive trust expansion"><code>322</code></a> <span class="ch-vt">Transitive trust expansion</span><span class="ch-grant">grants trust in one agent extended to its tools and data</span></div></li><li class="ch-step"><span class="ch-stepnum">7</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-131" title="Unbounded agent loop"><code>131</code></a> <span class="ch-vt">Unbounded agent loop</span><span class="ch-grant">grants an agent that never stops looping</span></div></li><li class="ch-step ch-step--last"><span class="ch-stepnum">8</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-279" title="Recursive agent loop"><code>279</code></a> <span class="ch-vt">Recursive agent loop</span><span class="ch-grant">grants an agent recursively spawning work</span></div></li></ol></div>
+            <div class="ch-r ch-choke"><b>Break it here</b><p><a class="ch-v" href="#LLM-130" title="Agent self-modification"><code>130</code></a> <span class="ch-vt">Agent self-modification</span><br>Make agent instructions and tools immutable at runtime; cap loops and self-spawned work.</p></div>
+            <div class="ch-grid2">
+              <div class="ch-r ch-r--blast"><b>Ends at</b><p>The system loops until cost/time/context is exhausted.</p></div>
+              <div class="ch-r ch-r--detect"><b>Watch for</b><p>Hand-offs accepted without evidence; one source steering many agents; secrets passed to lower-trust agents; propagation with no circuit breaker.</p></div>
+            </div>
+            <div class="ch-r"><b>Maps</b><p class="ch-maps">OWASP LLM03 | ATLAS AML.T0081 to T0108</p></div>
+          </div>
+        </article>
+        <article class="ch-chain ch-chain--indigo" data-obj="Multi-agent spread">
+          <header class="ch-head" role="button" tabindex="0" aria-expanded="false">
+            <code class="ch-cid">COMBO-34</code><strong>Laundering to quorum manipulation to bypass</strong>
+            <span class="ch-obj">Multi-agent spread</span><span class="ch-steps">8 steps</span>
+          </header>
+          <div class="ch-body">
+            <div class="ch-r"><b>How it plays out</b><p class="ch-flow">laundered instructions poison a shared workspace that reaches every voter, a favorable majority forms on the same model and evidence, veto is bypassed, quorum falls.</p></div>
+            <div class="ch-r"><b>The hand-off</b><ol class="ch-ladder"><li class="ch-step"><span class="ch-stepnum">1</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-320" title="Instruction laundering between agents"><code>320</code></a> <span class="ch-vt">Instruction laundering between agents</span><span class="ch-grant">grants a payload passed to another agent as trusted work</span></div></li><li class="ch-step"><span class="ch-stepnum">2</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-323" title="Shared workspace poisoning"><code>323</code></a> <span class="ch-vt">Shared workspace poisoning</span><span class="ch-grant">grants a shared workspace that steers many agents</span></div></li><li class="ch-step"><span class="ch-stepnum">3</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-166" title="Shared-context compromise"><code>166</code></a> <span class="ch-vt">Shared-context compromise</span><span class="ch-grant">grants one poisoned source reaching every voter</span></div></li><li class="ch-step"><span class="ch-stepnum">4</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-168" title="Majority manipulation through sub-agents"><code>168</code></a> <span class="ch-vt">Majority manipulation through sub-agents</span><span class="ch-grant">grants a manufactured favorable majority</span></div></li><li class="ch-step"><span class="ch-stepnum">5</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-165" title="Shared-model non-independence"><code>165</code></a> <span class="ch-vt">Shared-model non-independence</span><span class="ch-grant">grants &#x27;independent&#x27; voters that are the same model</span></div></li><li class="ch-step"><span class="ch-stepnum">6</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-184" title="Common evidence source failure"><code>184</code></a> <span class="ch-vt">Common evidence source failure</span><span class="ch-grant">grants all approvers trusting the same poisoned evidence</span></div></li><li class="ch-step"><span class="ch-stepnum">7</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-170" title="Veto bypass"><code>170</code></a> <span class="ch-vt">Veto bypass</span><span class="ch-grant">grants a negative vote ignored or reclassified</span></div></li><li class="ch-step ch-step--last"><span class="ch-stepnum">8</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-151" title="Quorum bypass"><code>151</code></a> <span class="ch-vt">Quorum bypass</span><span class="ch-grant">grants a privileged action with the gate skipped</span></div></li></ol></div>
+            <div class="ch-r ch-choke"><b>Break it here</b><p><a class="ch-v" href="#LLM-165" title="Shared-model non-independence"><code>165</code></a> <span class="ch-vt">Shared-model non-independence</span><br>Make approvers independent in model, prompt, context and identity; verify agent hand-offs with evidence.</p></div>
+            <div class="ch-grid2">
+              <div class="ch-r ch-r--blast"><b>Ends at</b><p>The attack reaches its objective: laundering to quorum manipulation to bypass.</p></div>
+              <div class="ch-r ch-r--detect"><b>Watch for</b><p>Hand-offs accepted without evidence; one source steering many agents; secrets passed to lower-trust agents; propagation with no circuit breaker.</p></div>
+            </div>
+            <div class="ch-r"><b>Maps</b><p class="ch-maps">OWASP LLM03 | ATLAS AML.T0080</p></div>
+          </div>
+        </article>
+        <article class="ch-chain ch-chain--moss" data-obj="Supply chain">
+          <header class="ch-head" role="button" tabindex="0" aria-expanded="false">
+            <code class="ch-cid">COMBO-35</code><strong>Latent backdoor</strong>
+            <span class="ch-obj">Supply chain</span><span class="ch-steps">4 steps</span>
+          </header>
+          <div class="ch-body">
+            <div class="ch-r"><b>How it plays out</b><p class="ch-flow">a malicious adapter plants a backdoor, a rare trigger fires the latent behavior, and it drives a deploy.</p></div>
+            <div class="ch-r"><b>The hand-off</b><ol class="ch-ladder"><li class="ch-step"><span class="ch-stepnum">1</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-218" title="Malicious fine-tune adapter"><code>218</code></a> <span class="ch-vt">Malicious fine-tune adapter</span><span class="ch-grant">grants a backdoor baked into a fine-tune adapter</span></div></li><li class="ch-step"><span class="ch-stepnum">2</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-451" title="Fine-tuning backdoor trigger"><code>451</code></a> <span class="ch-vt">Fine-tuning backdoor trigger</span><span class="ch-grant">grants unsafe behavior armed by a fine-tune trigger</span></div></li><li class="ch-step"><span class="ch-stepnum">3</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-309" title="Latent backdoor trigger"><code>309</code></a> <span class="ch-vt">Latent backdoor trigger</span><span class="ch-grant">grants hidden behavior fired by a rare trigger</span></div></li><li class="ch-step ch-step--last"><span class="ch-stepnum">4</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-116" title="Production deployment abuse"><code>116</code></a> <span class="ch-vt">Production deployment abuse</span><span class="ch-grant">grants a push to production: code, infra, or secrets</span></div></li></ol></div>
+            <div class="ch-r ch-choke"><b>Break it here</b><p><a class="ch-v" href="#LLM-217" title="Backdoored model weights"><code>217</code></a> <span class="ch-vt">Backdoored model weights</span><br>Sign and pin model and adapter artifacts; verify provenance before load.</p></div>
+            <div class="ch-grid2">
+              <div class="ch-r ch-r--blast"><b>Ends at</b><p>The attacker reaches production: code, infra, or secrets.</p></div>
+              <div class="ch-r ch-r--detect"><b>Watch for</b><p>Unsigned or changed model/tool/tokenizer artifacts; behavior drift after an update; backdoor triggers in eval regressions.</p></div>
+            </div>
+            <div class="ch-r"><b>Maps</b><p class="ch-maps">OWASP LLM04/LLM05 | ATLAS AML.T0018 to T0058</p></div>
+          </div>
+        </article>
+        <article class="ch-chain ch-chain--moss" data-obj="Supply chain">
+          <header class="ch-head" role="button" tabindex="0" aria-expanded="false">
+            <code class="ch-cid">COMBO-36</code><strong>RLHF / reward poisoning</strong>
+            <span class="ch-obj">Supply chain</span><span class="ch-steps">4 steps</span>
+          </header>
+          <div class="ch-body">
+            <div class="ch-r"><b>How it plays out</b><p class="ch-flow">poisoned preference data trains a compromised reward model that rewards evasion, and the classifier is bypassed to emit policy-violating output.</p></div>
+            <div class="ch-r"><b>The hand-off</b><ol class="ch-ladder"><li class="ch-step"><span class="ch-stepnum">1</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-448" title="RLHF preference poisoning"><code>448</code></a> <span class="ch-vt">RLHF preference poisoning</span><span class="ch-grant">grants a model trained to prefer unsafe behavior</span></div></li><li class="ch-step"><span class="ch-stepnum">2</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-449" title="Reward model poisoning"><code>449</code></a> <span class="ch-vt">Reward model poisoning</span><span class="ch-grant">grants a judge that rewards attacker-desired output</span></div></li><li class="ch-step"><span class="ch-stepnum">3</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-307" title="Safety classifier evasion"><code>307</code></a> <span class="ch-vt">Safety classifier evasion</span><span class="ch-grant">grants moderation and policy classifiers bypassed</span></div></li><li class="ch-step ch-step--last"><span class="ch-stepnum">4</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-263" title="Policy-violating content generation"><code>263</code></a> <span class="ch-vt">Policy-violating content generation</span><span class="ch-grant">grants content supporting phishing, fraud, or malware</span></div></li></ol></div>
+            <div class="ch-r ch-choke"><b>Break it here</b><p><a class="ch-v" href="#LLM-449" title="Reward model poisoning"><code>449</code></a> <span class="ch-vt">Reward model poisoning</span><br>Govern preference and reward data provenance; audit the reward model as a security component.</p></div>
+            <div class="ch-grid2">
+              <div class="ch-r ch-r--blast"><b>Ends at</b><p>The model emits attacker-useful harmful content.</p></div>
+              <div class="ch-r ch-r--detect"><b>Watch for</b><p>Unsigned or changed model/tool/tokenizer artifacts; behavior drift after an update; backdoor triggers in eval regressions.</p></div>
+            </div>
+            <div class="ch-r"><b>Maps</b><p class="ch-maps">OWASP LLM04 | ATLAS AML.T0018/T0020</p></div>
+          </div>
+        </article>
+        <article class="ch-chain ch-chain--moss" data-obj="Supply chain">
+          <header class="ch-head" role="button" tabindex="0" aria-expanded="false">
+            <code class="ch-cid">COMBO-37</code><strong>Tokenizer artifact</strong>
+            <span class="ch-obj">Supply chain</span><span class="ch-steps">3 steps</span>
+          </header>
+          <div class="ch-body">
+            <div class="ch-r"><b>How it plays out</b><p class="ch-flow">a malicious tokenizer artifact with unpinned behavior shifts prompt boundaries and bypasses the safety classifier.</p></div>
+            <div class="ch-r"><b>The hand-off</b><ol class="ch-ladder"><li class="ch-step"><span class="ch-stepnum">1</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-244" title="Malicious tokenizer artifact"><code>244</code></a> <span class="ch-vt">Malicious tokenizer artifact</span><span class="ch-grant">grants a tokenizer artifact that reshapes inputs</span></div></li><li class="ch-step"><span class="ch-stepnum">2</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-243" title="Unpinned tokenizer behavior"><code>243</code></a> <span class="ch-vt">Unpinned tokenizer behavior</span><span class="ch-grant">grants (control) a pinned, tested tokenizer</span></div></li><li class="ch-step ch-step--last"><span class="ch-stepnum">3</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-307" title="Safety classifier evasion"><code>307</code></a> <span class="ch-vt">Safety classifier evasion</span><span class="ch-grant">grants moderation and policy classifiers bypassed</span></div></li></ol></div>
+            <div class="ch-r ch-choke"><b>Break it here</b><p><a class="ch-v" href="#LLM-243" title="Unpinned tokenizer behavior"><code>243</code></a> <span class="ch-vt">Unpinned tokenizer behavior</span><br>Pin tokenizer version and verify its artifact; test safety behavior after any tokenizer change.</p></div>
+            <div class="ch-grid2">
+              <div class="ch-r ch-r--blast"><b>Ends at</b><p>The safety classifier is bypassed.</p></div>
+              <div class="ch-r ch-r--detect"><b>Watch for</b><p>Unsigned or changed model/tool/tokenizer artifacts; behavior drift after an update; backdoor triggers in eval regressions.</p></div>
+            </div>
+            <div class="ch-r"><b>Maps</b><p class="ch-maps">OWASP LLM04 | ATLAS AML.T0010</p></div>
+          </div>
+        </article>
+        <article class="ch-chain ch-chain--moss" data-obj="Supply chain">
+          <header class="ch-head" role="button" tabindex="0" aria-expanded="false">
+            <code class="ch-cid">COMBO-38</code><strong>MCP marketplace rug-pull</strong>
+            <span class="ch-obj">Supply chain</span><span class="ch-steps">4 steps</span>
+          </header>
+          <div class="ch-body">
+            <div class="ch-r"><b>How it plays out</b><p class="ch-flow">a trusted marketplace package changes behavior after approval, the tool return injects, and a webhook exfiltrates.</p></div>
+            <div class="ch-r"><b>The hand-off</b><ol class="ch-ladder"><li class="ch-step"><span class="ch-stepnum">1</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-479" title="Poisoned MCP marketplace package"><code>479</code></a> <span class="ch-vt">Poisoned MCP marketplace package</span><span class="ch-grant">grants a trusted-looking but malicious MCP package</span></div></li><li class="ch-step"><span class="ch-stepnum">2</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-409" title="Tool rug pull"><code>409</code></a> <span class="ch-vt">Tool rug pull</span><span class="ch-grant">grants a tool whose behavior changes after approval</span></div></li><li class="ch-step"><span class="ch-stepnum">3</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-121" title="Tool return-value injection"><code>121</code></a> <span class="ch-vt">Tool return-value injection</span><span class="ch-grant">grants a tool return treated as a command</span></div></li><li class="ch-step ch-step--last"><span class="ch-stepnum">4</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-141" title="Webhook exfiltration"><code>141</code></a> <span class="ch-vt">Webhook exfiltration</span><span class="ch-grant">grants a channel that posts data to the attacker</span></div></li></ol></div>
+            <div class="ch-r ch-choke"><b>Break it here</b><p><a class="ch-v" href="#LLM-410" title="Unsigned tool manifest"><code>410</code></a> <span class="ch-vt">Unsigned tool manifest</span><br>Pin and re-verify MCP package manifests on update; alert on post-approval behavior change.</p></div>
+            <div class="ch-grid2">
+              <div class="ch-r ch-r--blast"><b>Ends at</b><p>Attacker-controlled data leaves the system over a webhook.</p></div>
+              <div class="ch-r ch-r--detect"><b>Watch for</b><p>Unsigned or changed model/tool/tokenizer artifacts; behavior drift after an update; backdoor triggers in eval regressions.</p></div>
+            </div>
+            <div class="ch-r"><b>Maps</b><p class="ch-maps">OWASP MCP09 | ATLAS AML.T0104 to T0086</p></div>
+          </div>
+        </article>
+        <article class="ch-chain ch-chain--moss" data-obj="Supply chain">
+          <header class="ch-head" role="button" tabindex="0" aria-expanded="false">
+            <code class="ch-cid">COMBO-39</code><strong>Backdoored model to trigger to exfil</strong>
+            <span class="ch-obj">Supply chain</span><span class="ch-steps">6 steps</span>
+          </header>
+          <div class="ch-body">
+            <div class="ch-r"><b>How it plays out</b><p class="ch-flow">a malicious adapter plants a backdoor, a trigger fires it, inversion recovers proprietary patterns, param tampering exfiltrates PII.</p></div>
+            <div class="ch-r"><b>The hand-off</b><ol class="ch-ladder"><li class="ch-step"><span class="ch-stepnum">1</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-218" title="Malicious fine-tune adapter"><code>218</code></a> <span class="ch-vt">Malicious fine-tune adapter</span><span class="ch-grant">grants a backdoor baked into a fine-tune adapter</span></div></li><li class="ch-step"><span class="ch-stepnum">2</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-451" title="Fine-tuning backdoor trigger"><code>451</code></a> <span class="ch-vt">Fine-tuning backdoor trigger</span><span class="ch-grant">grants unsafe behavior armed by a fine-tune trigger</span></div></li><li class="ch-step"><span class="ch-stepnum">3</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-309" title="Latent backdoor trigger"><code>309</code></a> <span class="ch-vt">Latent backdoor trigger</span><span class="ch-grant">grants hidden behavior fired by a rare trigger</span></div></li><li class="ch-step"><span class="ch-stepnum">4</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-304" title="Fine-tune inversion"><code>304</code></a> <span class="ch-vt">Fine-tune inversion</span><span class="ch-grant">grants reconstructed fine-tune patterns and labels</span></div></li><li class="ch-step"><span class="ch-stepnum">5</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-107" title="Prompt-to-API parameter tampering"><code>107</code></a> <span class="ch-vt">Prompt-to-API parameter tampering</span><span class="ch-grant">grants rewritten tool arguments: IDs, amounts, recipients</span></div></li><li class="ch-step ch-step--last"><span class="ch-stepnum">6</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-073" title="PII disclosure"><code>073</code></a> <span class="ch-vt">PII disclosure</span><span class="ch-grant">grants disclosed personal data</span></div></li></ol></div>
+            <div class="ch-r ch-choke"><b>Break it here</b><p><a class="ch-v" href="#LLM-217" title="Backdoored model weights"><code>217</code></a> <span class="ch-vt">Backdoored model weights</span><br>Sign and pin model and adapter artifacts; verify provenance before load and gate inference on inversion patterns.</p></div>
+            <div class="ch-grid2">
+              <div class="ch-r ch-r--blast"><b>Ends at</b><p>Personal data is disclosed.</p></div>
+              <div class="ch-r ch-r--detect"><b>Watch for</b><p>Unsigned or changed model/tool/tokenizer artifacts; behavior drift after an update; backdoor triggers in eval regressions.</p></div>
+            </div>
+            <div class="ch-r"><b>Maps</b><p class="ch-maps">OWASP LLM04/LLM05 | ATLAS AML.T0018 to T0024</p></div>
+          </div>
+        </article>
+        <article class="ch-chain ch-chain--cyan" data-obj="Model / IP theft">
+          <header class="ch-head" role="button" tabindex="0" aria-expanded="false">
+            <code class="ch-cid">COMBO-40</code><strong>Model extraction to artifact theft</strong>
+            <span class="ch-obj">Model / IP theft</span><span class="ch-steps">3 steps</span>
+          </header>
+          <div class="ch-body">
+            <div class="ch-r"><b>How it plays out</b><p class="ch-flow">fingerprinting guides behavior cloning, which approximates the model well enough to enable artifact theft.</p></div>
+            <div class="ch-r"><b>The hand-off</b><ol class="ch-ladder"><li class="ch-step"><span class="ch-stepnum">1</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-305" title="Model fingerprinting"><code>305</code></a> <span class="ch-vt">Model fingerprinting</span><span class="ch-grant">grants the model, version, and safety layer in use</span></div></li><li class="ch-step"><span class="ch-stepnum">2</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-319" title="Behavior cloning through distillation"><code>319</code></a> <span class="ch-vt">Behavior cloning through distillation</span><span class="ch-grant">grants a clone of the model&#x27;s behavior</span></div></li><li class="ch-step ch-step--last"><span class="ch-stepnum">3</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-235" title="Model artifact theft"><code>235</code></a> <span class="ch-vt">Model artifact theft</span><span class="ch-grant">grants the model weights themselves</span></div></li></ol></div>
+            <div class="ch-r ch-choke"><b>Break it here</b><p><a class="ch-v" href="#LLM-300" title="Model extraction"><code>300</code></a> <span class="ch-vt">Model extraction</span><br>Rate-limit and watermark queries; detect systematic extraction and cloning patterns.</p></div>
+            <div class="ch-grid2">
+              <div class="ch-r ch-r--blast"><b>Ends at</b><p>The model weights are stolen.</p></div>
+              <div class="ch-r ch-r--detect"><b>Watch for</b><p>Systematic high-volume querying; fingerprinting and probing patterns; answer-harvesting at scale.</p></div>
+            </div>
+            <div class="ch-r"><b>Maps</b><p class="ch-maps">OWASP LLM10 | ATLAS AML.T0024/T0048</p></div>
+          </div>
+        </article>
+        <article class="ch-chain ch-chain--cyan" data-obj="Model / IP theft">
+          <header class="ch-head" role="button" tabindex="0" aria-expanded="false">
+            <code class="ch-cid">COMBO-41</code><strong>Embedding inversion</strong>
+            <span class="ch-obj">Model / IP theft</span><span class="ch-steps">2 steps</span>
+          </header>
+          <div class="ch-body">
+            <div class="ch-r"><b>How it plays out</b><p class="ch-flow">an embedding leak is inverted to recover the underlying sensitive text, disclosing PII.</p></div>
+            <div class="ch-r"><b>The hand-off</b><ol class="ch-ladder"><li class="ch-step"><span class="ch-stepnum">1</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-054" title="Embedding sensitive data leakage"><code>054</code></a> <span class="ch-vt">Embedding sensitive data leakage</span><span class="ch-grant">grants sensitive text recoverable from stored embeddings</span></div></li><li class="ch-step ch-step--last"><span class="ch-stepnum">2</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-073" title="PII disclosure"><code>073</code></a> <span class="ch-vt">PII disclosure</span><span class="ch-grant">grants disclosed personal data</span></div></li></ol></div>
+            <div class="ch-r ch-choke"><b>Break it here</b><p><a class="ch-v" href="#LLM-054" title="Embedding sensitive data leakage"><code>054</code></a> <span class="ch-vt">Embedding sensitive data leakage</span><br>Protect embeddings and similarity endpoints as sensitive data; restrict raw-vector access and export.</p></div>
+            <div class="ch-grid2">
+              <div class="ch-r ch-r--blast"><b>Ends at</b><p>Personal data is disclosed.</p></div>
+              <div class="ch-r ch-r--detect"><b>Watch for</b><p>Systematic high-volume querying; fingerprinting and probing patterns; answer-harvesting at scale.</p></div>
+            </div>
+            <div class="ch-r"><b>Maps</b><p class="ch-maps">OWASP LLM02 | ATLAS AML.T0024.001</p></div>
+          </div>
+        </article>
+        <article class="ch-chain ch-chain--cyan" data-obj="Model / IP theft">
+          <header class="ch-head" role="button" tabindex="0" aria-expanded="false">
+            <code class="ch-cid">COMBO-42</code><strong>Extraction to clone to safety evasion</strong>
+            <span class="ch-obj">Model / IP theft</span><span class="ch-steps">6 steps</span>
+          </header>
+          <div class="ch-body">
+            <div class="ch-r"><b>How it plays out</b><p class="ch-flow">extraction and answer harvesting clone behavior, the clone maps and evades the guardrails, overfit evals hide it.</p></div>
+            <div class="ch-r"><b>The hand-off</b><ol class="ch-ladder"><li class="ch-step"><span class="ch-stepnum">1</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-300" title="Model extraction"><code>300</code></a> <span class="ch-vt">Model extraction</span><span class="ch-grant">grants an approximation of the proprietary model</span></div></li><li class="ch-step"><span class="ch-stepnum">2</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-319" title="Behavior cloning through distillation"><code>319</code></a> <span class="ch-vt">Behavior cloning through distillation</span><span class="ch-grant">grants a clone of the model&#x27;s behavior</span></div></li><li class="ch-step"><span class="ch-stepnum">3</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-462" title="Distillation via answer harvesting"><code>462</code></a> <span class="ch-vt">Distillation via answer harvesting</span><span class="ch-grant">grants enough answers to clone policy and reasoning</span></div></li><li class="ch-step"><span class="ch-stepnum">4</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-307" title="Safety classifier evasion"><code>307</code></a> <span class="ch-vt">Safety classifier evasion</span><span class="ch-grant">grants moderation and policy classifiers bypassed</span></div></li><li class="ch-step"><span class="ch-stepnum">5</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-306" title="Guardrail boundary probing"><code>306</code></a> <span class="ch-vt">Guardrail boundary probing</span><span class="ch-grant">grants a map of what the guardrails allow and block</span></div></li><li class="ch-step ch-step--last"><span class="ch-stepnum">6</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-310" title="Eval overfitting"><code>310</code></a> <span class="ch-vt">Eval overfitting</span><span class="ch-grant">grants controls that only hold on known test cases</span></div></li></ol></div>
+            <div class="ch-r ch-choke"><b>Break it here</b><p><a class="ch-v" href="#LLM-307" title="Safety classifier evasion"><code>307</code></a> <span class="ch-vt">Safety classifier evasion</span><br>Rate-limit extraction; test guardrails against distilled clones, not just known eval cases.</p></div>
+            <div class="ch-grid2">
+              <div class="ch-r ch-r--blast"><b>Ends at</b><p>The attack reaches its objective: extraction to clone to safety evasion.</p></div>
+              <div class="ch-r ch-r--detect"><b>Watch for</b><p>Systematic high-volume querying; fingerprinting and probing patterns; answer-harvesting at scale.</p></div>
+            </div>
+            <div class="ch-r"><b>Maps</b><p class="ch-maps">OWASP LLM10 | ATLAS AML.T0024/T0048</p></div>
+          </div>
+        </article>
+        <article class="ch-chain ch-chain--olive" data-obj="Denial / cost">
+          <header class="ch-head" role="button" tabindex="0" aria-expanded="false">
+            <code class="ch-cid">COMBO-43</code><strong>Recursive agent loop</strong>
+            <span class="ch-obj">Denial / cost</span><span class="ch-steps">3 steps</span>
+          </header>
+          <div class="ch-body">
+            <div class="ch-r"><b>How it plays out</b><p class="ch-flow">an unbounded agent loop starves the queue and recurses until cost, time or context is exhausted.</p></div>
+            <div class="ch-r"><b>The hand-off</b><ol class="ch-ladder"><li class="ch-step"><span class="ch-stepnum">1</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-131" title="Unbounded agent loop"><code>131</code></a> <span class="ch-vt">Unbounded agent loop</span><span class="ch-grant">grants an agent that never stops looping</span></div></li><li class="ch-step"><span class="ch-stepnum">2</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-298" title="Queue starvation"><code>298</code></a> <span class="ch-vt">Queue starvation</span><span class="ch-grant">grants high-priority jobs starved behind the attacker&#x27;s</span></div></li><li class="ch-step ch-step--last"><span class="ch-stepnum">3</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-279" title="Recursive agent loop"><code>279</code></a> <span class="ch-vt">Recursive agent loop</span><span class="ch-grant">grants an agent recursively spawning work</span></div></li></ol></div>
+            <div class="ch-r ch-choke"><b>Break it here</b><p><a class="ch-v" href="#LLM-131" title="Unbounded agent loop"><code>131</code></a> <span class="ch-vt">Unbounded agent loop</span><br>Cap agent loops, depth and self-spawned work; enforce per-tenant budget.</p></div>
+            <div class="ch-grid2">
+              <div class="ch-r ch-r--blast"><b>Ends at</b><p>The system loops until cost/time/context is exhausted.</p></div>
+              <div class="ch-r ch-r--detect"><b>Watch for</b><p>Cost and loop spikes per tenant; parse/expansion ratios; approval-queue depth; fail-open fallbacks firing.</p></div>
+            </div>
+            <div class="ch-r"><b>Maps</b><p class="ch-maps">OWASP LLM06 | ATLAS AML.T0034.002</p></div>
+          </div>
+        </article>
+        <article class="ch-chain ch-chain--olive" data-obj="Denial / cost">
+          <header class="ch-head" role="button" tabindex="0" aria-expanded="false">
+            <code class="ch-cid">COMBO-44</code><strong>Parser / compression bomb</strong>
+            <span class="ch-obj">Denial / cost</span><span class="ch-steps">3 steps</span>
+          </header>
+          <div class="ch-body">
+            <div class="ch-r"><b>How it plays out</b><p class="ch-flow">a parser bomb and a compression bomb expand compact input into exhausting parse, embed and index work.</p></div>
+            <div class="ch-r"><b>The hand-off</b><ol class="ch-ladder"><li class="ch-step"><span class="ch-stepnum">1</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-286" title="Parser bomb"><code>286</code></a> <span class="ch-vt">Parser bomb</span><span class="ch-grant">grants parsing resources exhausted by one file</span></div></li><li class="ch-step"><span class="ch-stepnum">2</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-297" title="Prompt compression bomb"><code>297</code></a> <span class="ch-vt">Prompt compression bomb</span><span class="ch-grant">grants compact input exploding into huge context</span></div></li><li class="ch-step ch-step--last"><span class="ch-stepnum">3</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-285" title="Embedding ingestion flood"><code>285</code></a> <span class="ch-vt">Embedding ingestion flood</span><span class="ch-grant">grants ingestion overloaded by embedding work</span></div></li></ol></div>
+            <div class="ch-r ch-choke"><b>Break it here</b><p><a class="ch-v" href="#LLM-286" title="Parser bomb"><code>286</code></a> <span class="ch-vt">Parser bomb</span><br>Bound parse depth, expansion ratio and ingestion cost before processing untrusted files.</p></div>
+            <div class="ch-grid2">
+              <div class="ch-r ch-r--blast"><b>Ends at</b><p>Ingestion is overwhelmed (denial of service).</p></div>
+              <div class="ch-r ch-r--detect"><b>Watch for</b><p>Cost and loop spikes per tenant; parse/expansion ratios; approval-queue depth; fail-open fallbacks firing.</p></div>
+            </div>
+            <div class="ch-r"><b>Maps</b><p class="ch-maps">OWASP LLM06 | ATLAS AML.T0034.001</p></div>
+          </div>
+        </article>
+        <article class="ch-chain ch-chain--olive" data-obj="Denial / cost">
+          <header class="ch-head" role="button" tabindex="0" aria-expanded="false">
+            <code class="ch-cid">COMBO-45</code><strong>Approval-queue exhaustion</strong>
+            <span class="ch-obj">Denial / cost</span><span class="ch-steps">3 steps</span>
+          </header>
+          <div class="ch-body">
+            <div class="ch-r"><b>How it plays out</b><p class="ch-flow">a quorum DoS floods the approval queue and a failed-approval loop keeps consuming review capacity.</p></div>
+            <div class="ch-r"><b>The hand-off</b><ol class="ch-ladder"><li class="ch-step"><span class="ch-stepnum">1</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-172" title="Quorum denial of service"><code>172</code></a> <span class="ch-vt">Quorum denial of service</span><span class="ch-grant">grants approvers blocked so the system falls back</span></div></li><li class="ch-step"><span class="ch-stepnum">2</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-289" title="Approval queue exhaustion"><code>289</code></a> <span class="ch-vt">Approval queue exhaustion</span><span class="ch-grant">grants the human review queue flooded</span></div></li><li class="ch-step ch-step--last"><span class="ch-stepnum">3</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-299" title="Failed approval loop"><code>299</code></a> <span class="ch-vt">Failed approval loop</span><span class="ch-grant">grants review capacity drained by repeated denials</span></div></li></ol></div>
+            <div class="ch-r ch-choke"><b>Break it here</b><p><a class="ch-v" href="#LLM-289" title="Approval queue exhaustion"><code>289</code></a> <span class="ch-vt">Approval queue exhaustion</span><br>Rate-limit and prioritize the approval queue; fail closed and shed low-priority load.</p></div>
+            <div class="ch-grid2">
+              <div class="ch-r ch-r--blast"><b>Ends at</b><p>Review and model capacity is drained (denial of service).</p></div>
+              <div class="ch-r ch-r--detect"><b>Watch for</b><p>Cost and loop spikes per tenant; parse/expansion ratios; approval-queue depth; fail-open fallbacks firing.</p></div>
+            </div>
+            <div class="ch-r"><b>Maps</b><p class="ch-maps">OWASP LLM06 | ATLAS AML.T0034</p></div>
+          </div>
+        </article>
+        <article class="ch-chain ch-chain--olive" data-obj="Denial / cost">
+          <header class="ch-head" role="button" tabindex="0" aria-expanded="false">
+            <code class="ch-cid">COMBO-46</code><strong>Grant-stuffing denial</strong>
+            <span class="ch-obj">Denial / cost</span><span class="ch-steps">2 steps</span>
+          </header>
+          <div class="ch-body">
+            <div class="ch-r"><b>How it plays out</b><p class="ch-flow">an over-inclusive capability presentation denies service and a denial error leaks co-presented scopes.</p></div>
+            <div class="ch-r"><b>The hand-off</b><ol class="ch-ladder"><li class="ch-step"><span class="ch-stepnum">1</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-513" title="Grant-stuffing denial via over-inclusive capability presentation"><code>513</code></a> <span class="ch-vt">Grant-stuffing denial via over-inclusive capability presentation</span><span class="ch-grant">grants service denied by an over-stuffed grant request</span></div></li><li class="ch-step ch-step--last"><span class="ch-stepnum">2</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-515" title="Denial-error scope disclosure of co-presented grants"><code>515</code></a> <span class="ch-vt">Denial-error scope disclosure of co-presented grants</span><span class="ch-grant">grants co-presented scopes leaked in a denial error</span></div></li></ol></div>
+            <div class="ch-r ch-choke"><b>Break it here</b><p><a class="ch-v" href="#LLM-513" title="Grant-stuffing denial via over-inclusive capability presentation"><code>513</code></a> <span class="ch-vt">Grant-stuffing denial via over-inclusive capability presentation</span><br>Present the minimum capability set; keep denial errors generic and scope-free.</p></div>
+            <div class="ch-grid2">
+              <div class="ch-r ch-r--blast"><b>Ends at</b><p>Co-presented scopes leak in a denial error.</p></div>
+              <div class="ch-r ch-r--detect"><b>Watch for</b><p>Cost and loop spikes per tenant; parse/expansion ratios; approval-queue depth; fail-open fallbacks firing.</p></div>
+            </div>
+            <div class="ch-r"><b>Maps</b><p class="ch-maps">OWASP LLM06 | ATLAS AML.T0034</p></div>
+          </div>
+        </article>
+        <article class="ch-chain ch-chain--olive" data-obj="Denial / cost">
+          <header class="ch-head" role="button" tabindex="0" aria-expanded="false">
+            <code class="ch-cid">COMBO-47</code><strong>DoS to fallback to fail-open to weakening</strong>
+            <span class="ch-obj">Denial / cost</span><span class="ch-steps">8 steps</span>
+          </header>
+          <div class="ch-body">
+            <div class="ch-r"><b>How it plays out</b><p class="ch-flow">token and queue exhaustion force the gate to fail open, thresholds downgrade, quorum is bypassed, a weaker fallback model runs with guardrails flagged off.</p></div>
+            <div class="ch-r"><b>The hand-off</b><ol class="ch-ladder"><li class="ch-step"><span class="ch-stepnum">1</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-276" title="Token exhaustion"><code>276</code></a> <span class="ch-vt">Token exhaustion</span><span class="ch-grant">grants workers tied up by very long prompts</span></div></li><li class="ch-step"><span class="ch-stepnum">2</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-289" title="Approval queue exhaustion"><code>289</code></a> <span class="ch-vt">Approval queue exhaustion</span><span class="ch-grant">grants the human review queue flooded</span></div></li><li class="ch-step"><span class="ch-stepnum">3</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-155" title="Fail-open approval gate"><code>155</code></a> <span class="ch-vt">Fail-open approval gate</span><span class="ch-grant">grants execution allowed when the gate service is down</span></div></li><li class="ch-step"><span class="ch-stepnum">4</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-153" title="Timeout downgrade"><code>153</code></a> <span class="ch-vt">Timeout downgrade</span><span class="ch-grant">grants weaker approval after a delay or timeout</span></div></li><li class="ch-step"><span class="ch-stepnum">5</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-152" title="Threshold misconfiguration"><code>152</code></a> <span class="ch-vt">Threshold misconfiguration</span><span class="ch-grant">grants an approval threshold set too low to matter</span></div></li><li class="ch-step"><span class="ch-stepnum">6</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-151" title="Quorum bypass"><code>151</code></a> <span class="ch-vt">Quorum bypass</span><span class="ch-grant">grants a privileged action with the gate skipped</span></div></li><li class="ch-step"><span class="ch-stepnum">7</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-226" title="Unsafe fallback model"><code>226</code></a> <span class="ch-vt">Unsafe fallback model</span><span class="ch-grant">grants a weaker, less-guarded fallback model</span></div></li><li class="ch-step ch-step--last"><span class="ch-stepnum">8</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-234" title="Feature flag guardrail bypass"><code>234</code></a> <span class="ch-vt">Feature flag guardrail bypass</span><span class="ch-grant">grants filters or sandboxing turned off by a flag</span></div></li></ol></div>
+            <div class="ch-r ch-choke"><b>Break it here</b><p><a class="ch-v" href="#LLM-155" title="Fail-open approval gate"><code>155</code></a> <span class="ch-vt">Fail-open approval gate</span><br>Fail closed on approval and model-routing outages; cap loops and per-tenant cost.</p></div>
+            <div class="ch-grid2">
+              <div class="ch-r ch-r--blast"><b>Ends at</b><p>The attack reaches its objective: dos to fallback to fail-open to weakening.</p></div>
+              <div class="ch-r ch-r--detect"><b>Watch for</b><p>Cost and loop spikes per tenant; parse/expansion ratios; approval-queue depth; fail-open fallbacks firing.</p></div>
+            </div>
+            <div class="ch-r"><b>Maps</b><p class="ch-maps">OWASP LLM06 | ATLAS AML.T0034</p></div>
+          </div>
+        </article>
+        <article class="ch-chain ch-chain--teal" data-obj="Bookend">
+          <header class="ch-head" role="button" tabindex="0" aria-expanded="false">
+            <code class="ch-cid">COMBO-48</code><strong>Recon prologue</strong>
+            <span class="ch-obj">Bookend</span><span class="ch-steps">4 steps</span>
+          </header>
+          <div class="ch-body">
+            <div class="ch-r"><b>How it plays out</b><p class="ch-flow">open-source search and identity gathering profile the target, fingerprint the model, and map the guardrails - feeding any chain above.</p></div>
+            <div class="ch-r"><b>The hand-off</b><ol class="ch-ladder"><li class="ch-step"><span class="ch-stepnum">1</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-496" title="Search open websites and domains for reconnaissance"><code>496</code></a> <span class="ch-vt">Search open websites and domains for reconnaissance</span><span class="ch-grant">grants open-source intel on the target</span></div></li><li class="ch-step"><span class="ch-stepnum">2</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-495" title="Gather victim identity information"><code>495</code></a> <span class="ch-vt">Gather victim identity information</span><span class="ch-grant">grants the target&#x27;s identities and relationships</span></div></li><li class="ch-step"><span class="ch-stepnum">3</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-305" title="Model fingerprinting"><code>305</code></a> <span class="ch-vt">Model fingerprinting</span><span class="ch-grant">grants the model, version, and safety layer in use</span></div></li><li class="ch-step ch-step--last"><span class="ch-stepnum">4</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-306" title="Guardrail boundary probing"><code>306</code></a> <span class="ch-vt">Guardrail boundary probing</span><span class="ch-grant">grants a map of what the guardrails allow and block</span></div></li></ol></div>
+            <div class="ch-r ch-choke"><b>Break it here</b><p><a class="ch-v" href="#LLM-397" title="Model version missing from logs"><code>397</code></a> <span class="ch-vt">Model version missing from logs</span><br>Do not leak model or version; rate-limit fingerprinting and guardrail-probing patterns.</p></div>
+            <div class="ch-grid2">
+              <div class="ch-r ch-r--blast"><b>Ends at</b><p>The guardrails are mapped for a follow-on attack.</p></div>
+              <div class="ch-r ch-r--detect"><b>Watch for</b><p>Reconnaissance and fingerprinting bursts; audit gaps, mutable evidence, and missing kill-switch coverage.</p></div>
+            </div>
+            <div class="ch-r"><b>Maps</b><p class="ch-maps">ATLAS AML.T0000/T0004 | MITRE Recon</p></div>
+          </div>
+        </article>
+        <article class="ch-chain ch-chain--teal" data-obj="Bookend">
+          <header class="ch-head" role="button" tabindex="0" aria-expanded="false">
+            <code class="ch-cid">COMBO-49</code><strong>Cover epilogue</strong>
+            <span class="ch-obj">Bookend</span><span class="ch-steps">4 steps</span>
+          </header>
+          <div class="ch-body">
+            <div class="ch-r"><b>How it plays out</b><p class="ch-flow">after impact, an audit gap and mutable evidence hide the act, no kill switch stops it, containment is incomplete - following any chain above.</p></div>
+            <div class="ch-r"><b>The hand-off</b><ol class="ch-ladder"><li class="ch-step"><span class="ch-stepnum">1</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-132" title="Action audit gap"><code>132</code></a> <span class="ch-vt">Action audit gap</span><span class="ch-grant">grants an action with no audit trail</span></div></li><li class="ch-step"><span class="ch-stepnum">2</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-385" title="Mutable audit evidence"><code>385</code></a> <span class="ch-vt">Mutable audit evidence</span><span class="ch-grant">grants an audit record that can be altered after the fact</span></div></li><li class="ch-step"><span class="ch-stepnum">3</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-388" title="No kill switch"><code>388</code></a> <span class="ch-vt">No kill switch</span><span class="ch-grant">grants no fast way to disable the agent or tool</span></div></li><li class="ch-step ch-step--last"><span class="ch-stepnum">4</span><div class="ch-stepmain"><a class="ch-v" href="#LLM-394" title="Incomplete incident containment"><code>394</code></a> <span class="ch-vt">Incomplete incident containment</span><span class="ch-grant">grants compromised memory and tokens left in place</span></div></li></ol></div>
+            <div class="ch-r ch-choke"><b>Break it here</b><p><a class="ch-v" href="#LLM-399" title="Evidence hash missing"><code>399</code></a> <span class="ch-vt">Evidence hash missing</span><br>Keep immutable, hashed audit of every action; wire a kill switch and a containment runbook.</p></div>
+            <div class="ch-grid2">
+              <div class="ch-r ch-r--blast"><b>Ends at</b><p>The incident persists — memory and tokens are left in place.</p></div>
+              <div class="ch-r ch-r--detect"><b>Watch for</b><p>Reconnaissance and fingerprinting bursts; audit gaps, mutable evidence, and missing kill-switch coverage.</p></div>
+            </div>
+            <div class="ch-r"><b>Maps</b><p class="ch-maps">OWASP governance | ATLAS AML.T0000</p></div>
+          </div>
+        </article></div>
+       </div>
+      </section>
+
       <section class="pentest-panel animate" id="offensive-checklist" aria-label="AI offensive pentest checklist">
         <h2>AI offensive pentest checklist</h2>
-        <p class="lede">The atlas above is the inventory. This is how you exercise it against a live LLM-agent target: a repeatable offensive methodology in twenty-four kill-chain phases spanning all fifteen atlas domains (A-O). Every item is tagged with its Atlas domain plus OWASP (LLM 2026 / Agentic ASI 2026 / MCP) and MITRE ATLAS/ATT&amp;CK mappings, and links down to the exact vectors it covers, so a finding drops straight into a report. Progress is saved in your browser only.</p>
+        <p class="lede">The atlas above is the inventory. This is how you exercise it against a live LLM-agent target: a repeatable offensive methodology in twenty-five kill-chain phases spanning all fifteen atlas domains (A-O). Every item is tagged with its Atlas domain plus OWASP (LLM 2026 / Agentic ASI 2026 / MCP) and MITRE ATLAS/ATT&amp;CK mappings, and links down to the Atlas domains and vectors it covers, so a finding drops straight into a report. Progress is saved in your browser only.</p>
         <div class="pentest-note"><strong>Authorized testing only.</strong> Run this against systems you own or are explicitly contracted to test. The goal is a <em>proof</em> - a canary string, a benign marker resource, a blocked-vs-ran verdict - never a real destructive action. Prove the gate is missing; don't rotate the production key.</div>
 
         <div class="pentest-bar">
@@ -30165,6 +31083,7 @@
             <div class="pentest-xref"><b>Atlas vectors &rarr;</b><a href="#b-rag-context-memory-and-embeddings">B · RAG &amp; Memory</a><a href="#l-multimodal-document-and-file-based-inputs">L · Multimodal / File</a><a href="#k-multi-agent-and-delegation-risks">K · Multi-Agent</a></div>
             <label class="pentest-item"><input type="checkbox"><span class="t"><span class="lead-t">Payload in auto-ingested content</span><span class="desc">Hide the instruction in a RAG doc, ticket, email, PDF, or web page the agent reads without a human in the loop. This is the EchoLeak class - no paste required, the data channel is the delivery.</span><span class="maps"><span class="m a">B · RAG</span><span class="m o">LLM01</span><span class="m t">AML.T0051.001</span></span></span></label>
             <label class="pentest-item"><input type="checkbox"><span class="t"><span class="lead-t">Injection via tool / API output</span><span class="desc">Poison a downstream service the agent queries so the response carries instructions. The harness re-feeds tool output as trusted context - a classic confused-deputy amplifier.</span><span class="maps"><span class="m a">B · Data</span><span class="m o">LLM01</span><span class="m t">AML.T0051.001</span></span></span></label>
+            <label class="pentest-item"><input type="checkbox"><span class="t"><span class="lead-t">Agentjacking via a connected data feed</span><span class="desc">Plant the instruction in a third-party service the agent subscribes to through a connector or MCP server - a Sentry event, a CRM note, an issue comment. The agent acts on it under the user&rsquo;s own identity, so the call looks authorized and conventional controls miss it. (CSA &ldquo;agentjacking&rdquo;, 2026.)</span><span class="maps"><span class="m a">B &middot; Data</span><span class="m o">LLM01</span><span class="m t">AML.T0051.001</span></span></span></label>
             <label class="pentest-item"><input type="checkbox"><span class="t"><span class="lead-t">Injection across an agent handoff</span><span class="desc">In multi-agent / A2A setups, plant the payload so a delegated agent executes it, or forge an agent card / capability claim (authN &ne; authZ). The soft joint is the handoff - trust propagates without re-validation.</span><span class="maps"><span class="m a">D · Tool Use</span><span class="m o">LLM06</span><span class="m t">AML.T0053</span></span></span></label>
           </div>
         </details>
@@ -30250,6 +31169,7 @@
             <label class="pentest-item"><input type="checkbox"><span class="t"><span class="lead-t">Malicious document / PDF / spreadsheet</span><span class="desc">Hide instructions in a file the agent parses - white text, comments, hidden sheets, form fields, or object metadata. Classic indirect-injection carrier for zero-click flows.</span><span class="maps"><span class="m a">L · File</span><span class="m o">LLM01</span><span class="m t">AML.T0051.001</span></span></span></label>
             <label class="pentest-item"><input type="checkbox"><span class="t"><span class="lead-t">Voice / audio command injection</span><span class="desc">Feed spoken or ultrasonic instructions to a speech-enabled agent, including commands inaudible or unintelligible to the human operator supervising it.</span><span class="maps"><span class="m a">L · Multimodal</span><span class="m o">LLM01</span><span class="m t">AML.T0051</span></span></span></label>
             <label class="pentest-item"><input type="checkbox"><span class="t"><span class="lead-t">OCR / file-format confusion</span><span class="desc">Exploit how the parser or OCR normalizes content (homoglyphs, RTL overrides, layered layers) to smuggle instructions past a text-level filter that never sees the rendered form.</span><span class="maps"><span class="m a">L · File</span><span class="m o">LLM01</span><span class="m t">AML.T0068</span></span></span></label>
+            <label class="pentest-item"><input type="checkbox"><span class="t"><span class="lead-t">Realtime interruption &amp; deepfake-voice approval</span><span class="desc">On a live voice or streaming interface, interrupt or redirect an in-progress action, or satisfy a voice identity / approval check with replayed or synthetic audio. Confirm transcript, frame, and visible state cannot be desynchronized mid-action.</span><span class="maps"><span class="m a">L &middot; Multimodal</span><span class="m o">LLM07</span><span class="m t">AML.T0088</span></span></span></label>
           </div>
         </details>
 
@@ -30320,6 +31240,9 @@
             <label class="pentest-item"><input type="checkbox"><span class="t"><span class="lead-t">Tool shadowing &amp; rug pull</span><span class="desc">A duplicate tool intercepts calls meant for a trusted one, or a tool behaves cleanly at install then silently changes its definition after consent (clients rarely re-verify).</span><span class="maps"><span class="m a">O · MCP</span><span class="m o">MCP03</span><span class="m t">AML.T0110</span></span></span></label>
             <label class="pentest-item"><input type="checkbox"><span class="t"><span class="lead-t">Shadow / unapproved MCP servers</span><span class="desc">Undiscovered servers with default credentials or permissive configs running outside governance. Enumerate what the agent can actually connect to.</span><span class="maps"><span class="m a">O · MCP</span><span class="m o">MCP09</span><span class="m t">AML.T0010</span></span></span></label>
             <label class="pentest-item"><input type="checkbox"><span class="t"><span class="lead-t">Insecure inter-agent communication &amp; context over-sharing</span><span class="desc">Unauthenticated or unsigned messages between agents, line-jumping, and shared/persistent context windows that leak data across users, tasks, or tenants.</span><span class="maps"><span class="m a">K · Multi-Agent</span><span class="m o">ASI07 / MCP10</span><span class="m t">AML.T0080</span></span></span></label>
+            <label class="pentest-item"><input type="checkbox"><span class="t"><span class="lead-t">A2A message tampering (adversary-in-the-middle)</span><span class="desc">Rewrite, replay, or forge messages in transit between agents where the channel is unauthenticated or unsigned. The receiving agent treats a tampered task or result as trusted work and acts on it.</span><span class="maps"><span class="m a">K &middot; Multi-Agent</span><span class="m o">ASI07</span><span class="m t">AML.T0080</span></span></span></label>
+            <label class="pentest-item"><input type="checkbox"><span class="t"><span class="lead-t">MCP cross-server composition</span><span class="desc">Chain two individually-safe MCP servers so one server&rsquo;s output drives another&rsquo;s privileged tool. The composition, not any single server, is the vulnerability - test servers together, never in isolation.</span><span class="maps"><span class="m a">O &middot; MCP</span><span class="m o">MCP08</span><span class="m t">AML.T0053</span></span></span></label>
+            <label class="pentest-item"><input type="checkbox"><span class="t"><span class="lead-t">Skill / tool / agent name squatting</span><span class="desc">Register a skill, tool, or sub-agent with a name or description near-identical to a trusted one so the router or model selects it. Authentication &ne; authorization - a valid identity can still over-claim capability (A2A agent-card forgery).</span><span class="maps"><span class="m a">O &middot; MCP</span><span class="m o">ASI01</span><span class="m t">AML.T0104</span></span></span></label>
           </div>
         </details>
 
@@ -30397,6 +31320,19 @@
             <label class="pentest-item"><input type="checkbox"><span class="t"><span class="lead-t">Missing rate limits &amp; quota abuse</span><span class="desc">Unbounded requests drive cost blowup and give a model-extraction / brute-force runway. Confirm per-caller quotas, budgets, and anomaly throttling.</span><span class="maps"><span class="m a">I · Denial</span><span class="m o">LLM10</span><span class="m t">AML.T0034</span></span></span></label>
             <label class="pentest-item"><input type="checkbox"><span class="t"><span class="lead-t">Prompt / trace log exposure</span><span class="desc">Secrets, PII, and full prompts sitting in request logs, traces, or error messages - a quiet exfiltration and audit-tampering surface.</span><span class="maps"><span class="m a">C · Sensitive</span><span class="m o">LLM02</span><span class="m t">T1552</span></span></span></label>
             <label class="pentest-item"><input type="checkbox"><span class="t"><span class="lead-t">Server-side SSRF / template injection in the serving layer</span><span class="desc">The gateway, prompt-template renderer, or orchestration service is itself an attack surface - test it like any web app, not just the model.</span><span class="maps"><span class="m a">D · Tool Use</span><span class="m o">LLM06</span><span class="m t">T1190</span></span></span></label>
+          </div>
+        </details>
+
+        <details class="pentest-phase">
+          <summary><span class="pnum">24</span> Computer-use &amp; GUI-agent operation <span class="pmeta">D &middot; Tool Use / L &middot; Multimodal</span></summary>
+          <div class="pentest-items">
+            <div class="pentest-xref"><b>Atlas vectors &rarr;</b><a href="#LLM-441">441</a><a href="#LLM-442">442</a><a href="#LLM-443">443</a><a href="#LLM-466">466</a><a href="#LLM-507">507</a><a href="#LLM-145">145</a><a href="#d-tool-use-function-calling-and-execution">D &middot; Tool Use</a><a href="#l-multimodal-document-and-file-based-inputs">L &middot; Multimodal</a></div>
+            <label class="pentest-item"><input type="checkbox"><span class="t"><span class="lead-t">Branch steering / on-screen instruction injection</span><span class="desc">Put instructions in on-screen text, a pop-up, a banner, or an overlay so a screen-reading (vision-language) agent follows them instead of the user&rsquo;s task. The agent reads the rendered frame as ground truth, so injected UI text becomes a command.</span><span class="maps"><span class="m a">D &middot; Tool Use</span><span class="m o">LLM01</span><span class="m t">AML.T0051</span></span></span></label>
+            <label class="pentest-item"><input type="checkbox"><span class="t"><span class="lead-t">Clickjack the agent</span><span class="desc">Use hidden, overlaid, or deceptively-positioned elements so the agent clicks a different target than it intends. Confirm high-impact clicks are not driven from screen state alone and that overlay/hidden-element deception is detected.</span><span class="maps"><span class="m a">D &middot; Tool Use</span><span class="m o">ASI02</span><span class="m t">AML.T0053</span></span></span></label>
+            <label class="pentest-item"><input type="checkbox"><span class="t"><span class="lead-t">Autofill / credential exfiltration into a hostile form</span><span class="desc">Steer the agent to type secrets, tokens, PII, or payment data into an attacker-controlled field or form reached from untrusted content. The agent should never autofill sensitive values into forms it arrived at via a link in observed content.</span><span class="maps"><span class="m a">D &middot; Tool Use</span><span class="m o">LLM02</span><span class="m t">AML.T0057</span></span></span></label>
+            <label class="pentest-item"><input type="checkbox"><span class="t"><span class="lead-t">Authenticated-session action abuse</span><span class="desc">Drive clicks, submits, or purchases through an already logged-in browser session with no fresh user intent. Prove the agent will act on a sensitive control (send, pay, delete) from injected content rather than an explicit user instruction.</span><span class="maps"><span class="m a">D &middot; Tool Use</span><span class="m o">ASI02</span><span class="m t">AML.T0053</span></span></span></label>
+            <label class="pentest-item"><input type="checkbox"><span class="t"><span class="lead-t">Sensor-deceived physical actuation</span><span class="desc">Feed bad visual or sensor state so a computer-use or embodied agent drives a real actuator or an irreversible action. The proof is a blocked-vs-ran verdict on a benign actuator, never a real destructive move.</span><span class="maps"><span class="m a">D &middot; Tool Use</span><span class="m o">ASI05</span><span class="m t">AML.T0053</span></span></span></label>
+            <label class="pentest-item"><input type="checkbox"><span class="t"><span class="lead-t">Realtime multimodal desync</span><span class="desc">Make the transcript, the visible frame, and the agent&rsquo;s internal state disagree during a live audio/video session, then act in the gap. Tests whether the agent commits to actions on a state the user never actually saw.</span><span class="maps"><span class="m a">L &middot; Multimodal</span><span class="m o">LLM01</span><span class="m t">AML.T0051</span></span></span></label>
           </div>
         </details>
       </section>
@@ -30640,6 +31576,25 @@
       };
       render();
     })();
+  </script>
+
+  <script>
+  (function(){
+    document.querySelectorAll('#attack-chains .ch-head').forEach(function(h){
+      function tog(){var c=h.parentElement;c.classList.toggle('ch-open');
+        h.setAttribute('aria-expanded',c.classList.contains('ch-open'));}
+      h.addEventListener('click',tog);
+      h.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();tog();}});
+    });
+    document.querySelectorAll('#attack-chains .ch-chip').forEach(function(ch){
+      ch.addEventListener('click',function(){
+        document.querySelectorAll('#attack-chains .ch-chip').forEach(function(x){x.classList.remove('ch-chip--active')});
+        ch.classList.add('ch-chip--active');var f=ch.getAttribute('data-f');
+        document.querySelectorAll('#attack-chains .ch-chain').forEach(function(c){
+          c.style.display=(f==='*'||c.getAttribute('data-obj')===f)?'':'none';});
+      });
+    });
+  })();
   </script>
 </body>
 </html>
